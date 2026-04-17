@@ -187,11 +187,11 @@ a:hover { text-decoration: underline; }
 
 /* ═══════════════ 레이아웃 ═══════════════ */
 .layout {
-  display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr;
+  /* 데스크톱: 사이드바는 fixed 로 별도 배치, main 에 padding 으로 공간 확보 */
   min-height: 100vh;
   min-height: 100dvh; /* iOS Safari URL바 변동 보정 */
   padding-top: calc(var(--topbar-h) + env(safe-area-inset-top, 0px));
+  padding-left: var(--sidebar-w);
 }
 
 /* ═══════════════ 사이드바 ═══════════════ */
@@ -199,13 +199,17 @@ a:hover { text-decoration: underline; }
   background: var(--sidebar);
   border-right: 1px solid var(--rule);
   padding: 24px 20px 40px;
-  position: sticky;
+  /* fixed 로 전환 — body 의 overflow-x:hidden 이 sticky 를 깨뜨리는 문제 회피 */
+  position: fixed;
   top: calc(var(--topbar-h) + env(safe-area-inset-top, 0px));
+  left: 0;
+  width: var(--sidebar-w);
   height: calc(100vh - var(--topbar-h) - env(safe-area-inset-top, 0px));
   height: calc(100dvh - var(--topbar-h) - env(safe-area-inset-top, 0px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   font-size: 15px;
+  z-index: 50;
 }
 
 /* ─── 홈으로 가기 링크 (사이드바 상단) ─── */
@@ -837,6 +841,63 @@ blockquote.pull {
   font-size: var(--t-caption);
 }
 
+/* ─── 다음 강의 링크 (각 강의 맨 끝) ─── */
+.next-lecture {
+  margin: 56px 0 20px;
+}
+.next-lecture a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 26px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.next-lecture a:hover {
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.next-lecture .lec-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-label);
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+.next-lecture a:hover .lec-hint { color: #cfc8b0; }
+.next-lecture .lec-title {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: var(--t-h4);
+  font-weight: 800;
+  display: block;
+  line-height: 1.3;
+}
+.next-lecture .lec-arrow {
+  font-size: 26px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+/* 마지막 강의(7강) 완주 버전 */
+.next-lecture.final a {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.next-lecture.final a:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.next-lecture.final .lec-hint { color: #fbecea; }
+
 /* ─── 에필로그 ─── */
 .epilogue {
   margin-top: 80px;
@@ -1062,25 +1123,21 @@ blockquote.pull {
   }
 
   .layout {
-    grid-template-columns: 1fr;
+    /* 모바일: 사이드바는 드로어로 숨김, main 이 전체 폭 사용 */
+    padding-left: 0;
   }
 
   .topbar .hamburger { display: inline-flex; }
 
   .sidebar {
-    position: fixed;
-    top: calc(var(--topbar-h) + env(safe-area-inset-top, 0px));
-    left: 0;
+    /* fixed 유지, 드로어 모드 */
     width: 86%;
     max-width: 340px;
-    height: calc(100vh - var(--topbar-h) - env(safe-area-inset-top, 0px));
-    height: calc(100dvh - var(--topbar-h) - env(safe-area-inset-top, 0px));
     transform: translateX(-100%);
     transition: transform 0.28s ease-out;
     z-index: 99;
     padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
     box-shadow: 0 0 0 rgba(0,0,0,0);
-    -webkit-overflow-scrolling: touch;
   }
   .sidebar.open {
     transform: translateX(0);

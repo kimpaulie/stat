@@ -225,6 +225,18 @@
   function highlightSidebarChapter(idx) {
     const chapLinks = qsa('.sidebar .chap-list a');
     chapLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
+
+    // 활성 챕터가 사이드바 내에서 항상 보이게 자동 스크롤
+    const active = chapLinks[idx];
+    if (!active || !sidebar) return;
+    const sRect = sidebar.getBoundingClientRect();
+    const aRect = active.getBoundingClientRect();
+    const margin = 40;
+    if (aRect.top < sRect.top + margin) {
+      sidebar.scrollBy({ top: aRect.top - sRect.top - margin, behavior: 'smooth' });
+    } else if (aRect.bottom > sRect.bottom - margin) {
+      sidebar.scrollBy({ top: aRect.bottom - sRect.bottom + margin, behavior: 'smooth' });
+    }
   }
 
   // ──────────── 5. 히스토리 anchor 스크롤 보정 ────────────
