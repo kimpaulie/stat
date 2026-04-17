@@ -19,12 +19,12 @@
     courseName: 'KAIST BIT500 · Management Statistical Analysis',
     courseOwner: 'KAIST 경영대학',
     disclaimerHTML: [
-      '이 문서는 <em>개인 학습용 해설 노트</em>예요.<br>',
+      '이 문서는 <em>개인 학습용 해설 노트</em>입니다.<br>',
       '원본 슬라이드 저작권은<br>',
-      '<em>KAIST 경영대학</em>에 있어요.<br>',
+      '<em>KAIST 경영대학</em>에 있습니다.<br>',
       '본 해설은 초심자 눈높이로 풀어 쓴<br>',
-      '<em>파생 학습 자료</em>예요.<br>',
-      '상업적 이용·무단 재배포는 금지돼요.'
+      '<em>파생 학습 자료</em>입니다.<br>',
+      '상업적 이용·무단 재배포를 금지합니다.'
     ].join('')
   };
 
