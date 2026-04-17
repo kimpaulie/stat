@@ -1159,14 +1159,21 @@ blockquote.pull {
   margin-top: 32px;
   padding-top: 24px;
   border-top: 1px dashed var(--rule);
-  font-size: 12.5px;
-  line-height: 1.85;
+  font-size: 13px;
+  line-height: 1.9;
   color: var(--muted);
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
+  /* 고아 단어 방지 (지원 브라우저에서) */
+  text-wrap: pretty;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
-.hub-footer .ft-disclaimer br { line-height: 2; }
+.hub-footer .ft-disclaimer em {
+  /* 고지 박스 안 em 은 너무 굵지 않게 — 전체 밸런스 */
+  font-weight: 600;
+}
 
 /* ═══════════════ 반응형 · 태블릿 이하 ═══════════════ */
 @media (max-width: 960px) {
@@ -1265,7 +1272,12 @@ blockquote.pull {
   .hub-footer { margin-top: 56px; padding-top: 28px; }
   .hub-footer .ft-value { font-size: 16px; }
   .hub-footer .ft-value-sm { font-size: 13px; }
-  .hub-footer .ft-disclaimer { font-size: 12.5px; padding: 22px 14px 0; }
+  .hub-footer .ft-disclaimer {
+    font-size: 12.5px;
+    line-height: 1.85;
+    padding: 22px 12px 0;
+    margin-top: 24px;
+  }
 }
 
 /* ═══════════════ 반응형 · iPhone급 소형 ═══════════════ */
