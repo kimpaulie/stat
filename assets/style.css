@@ -1109,13 +1109,56 @@ blockquote.pull {
 
 .hub-footer {
   margin-top: 80px;
-  padding-top: 28px;
+  padding-top: 32px;
   border-top: 1px solid var(--rule);
   text-align: center;
+  color: var(--muted);
+}
+.hub-footer .ft-block {
+  margin: 22px 0;
+}
+.hub-footer .ft-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-label);
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.hub-footer .ft-value {
+  font-family: 'Nanum Myeongjo', serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.hub-footer .ft-value-sm {
   font-size: 13.5px;
   color: var(--muted);
-  line-height: var(--lh-snug);
+  margin-top: 4px;
+  line-height: 1.5;
 }
+.hub-footer .ft-value-sm a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.hub-footer .ft-value-sm a:hover {
+  text-decoration: underline;
+}
+.hub-footer .ft-disclaimer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--rule);
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hub-footer .ft-disclaimer br { line-height: 2; }
 
 /* ═══════════════ 반응형 · 태블릿 이하 ═══════════════ */
 @media (max-width: 960px) {
@@ -1211,7 +1254,10 @@ blockquote.pull {
   .lec-card { padding: 22px 20px 18px; border-radius: 12px; }
   .lec-card .lec-num { font-size: 34px; }
 
-  .hub-footer { margin-top: 56px; font-size: 13px; }
+  .hub-footer { margin-top: 56px; padding-top: 28px; }
+  .hub-footer .ft-value { font-size: 16px; }
+  .hub-footer .ft-value-sm { font-size: 13px; }
+  .hub-footer .ft-disclaimer { font-size: 12.5px; padding: 22px 14px 0; }
 }
 
 /* ═══════════════ 반응형 · iPhone급 소형 ═══════════════ */

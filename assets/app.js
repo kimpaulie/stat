@@ -48,15 +48,23 @@
   const hubFooter = qs('.hub-footer');
   if (hubFooter) {
     hubFooter.innerHTML = [
-      '<strong>원본</strong> · ' + META.courseOwner + ' · BIT500 Management Statistical Analysis<br>',
-      '<strong>해설 · 편집</strong> · ' + META.author + ' · ',
-      '<a href="' + META.instagramUrl + '" target="_blank" rel="noopener" ',
-      'style="color:#c0392b; text-decoration:none; font-weight:600;">',
-      'Instagram ' + META.instagramHandle + '</a>',
-      '<br><br>',
-      '<small style="line-height:1.7;">',
-      META.disclaimerHTML,
-      '</small>'
+      '<div class="ft-block">',
+        '<div class="ft-label">원본</div>',
+        '<div class="ft-value">' + META.courseOwner + '</div>',
+        '<div class="ft-value-sm">BIT500 · Management Statistical Analysis</div>',
+      '</div>',
+      '<div class="ft-block">',
+        '<div class="ft-label">해설 · 편집</div>',
+        '<div class="ft-value">' + META.author + '</div>',
+        '<div class="ft-value-sm">',
+          '<a href="' + META.instagramUrl + '" target="_blank" rel="noopener">',
+            'Instagram · ' + META.instagramHandle,
+          '</a>',
+        '</div>',
+      '</div>',
+      '<div class="ft-disclaimer">',
+        META.disclaimerHTML,
+      '</div>'
     ].join('');
   }
 
