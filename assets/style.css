@@ -210,6 +210,14 @@ a:hover { text-decoration: underline; }
   -webkit-overflow-scrolling: touch;
   font-size: 15px;
   z-index: 50;
+  /* topbar 이 숨/표시될 때 함께 이동 */
+  transition: top 0.28s ease, height 0.28s ease;
+}
+/* topbar 이 숨었을 때 사이드바도 맨 위까지 확장 (상단 공백 제거) */
+.sidebar.sidebar--top-extended {
+  top: env(safe-area-inset-top, 0px);
+  height: calc(100vh - env(safe-area-inset-top, 0px));
+  height: calc(100dvh - env(safe-area-inset-top, 0px));
 }
 
 /* ─── 홈으로 가기 링크 (사이드바 상단) ─── */

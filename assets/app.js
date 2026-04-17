@@ -76,6 +76,11 @@
 
   function showTopbar() {
     if (topbar) topbar.classList.remove('topbar--hidden');
+    if (sidebar) sidebar.classList.remove('sidebar--top-extended');
+  }
+  function hideTopbar() {
+    if (topbar) topbar.classList.add('topbar--hidden');
+    if (sidebar) sidebar.classList.add('sidebar--top-extended');
   }
   function openDrawer() {
     if (!sidebar) return;
@@ -217,10 +222,27 @@
     updateNavState();
   }
 
+  let lastScrolledIdx = -1;
   function highlightSidebarChapter(idx) {
     const chapLinks = qsa('.sidebar .chap-list a');
     chapLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
-    // 활성 챕터 자동 스크롤 제거 — 본문 스크롤과 함께 사이드바가 움직여서 혼란스러움
+
+    // 활성 챕터가 사이드바 범위 "완전히 밖" 으로 나갔을 때만 살짝 조정
+    // (살짝 보이는 중엔 절대 안 움직임 — 본문 따라 사이드바가 움직이는 느낌 회피)
+    if (idx === lastScrolledIdx) return;
+    lastScrolledIdx = idx;
+    const active = chapLinks[idx];
+    if (!active || !sidebar) return;
+    const sRect = sidebar.getBoundingClientRect();
+    const aRect = active.getBoundingClientRect();
+    const margin = 8;
+    if (aRect.top > sRect.bottom - margin) {
+      // 활성 챕터가 사이드바 아래로 완전히 벗어남 → 살짝 내려서 노출
+      sidebar.scrollBy({ top: aRect.bottom - sRect.bottom + 48, behavior: 'smooth' });
+    } else if (aRect.bottom < sRect.top + margin) {
+      // 활성 챕터가 사이드바 위로 완전히 벗어남 → 살짝 올려서 노출
+      sidebar.scrollBy({ top: aRect.top - sRect.top - 48, behavior: 'smooth' });
+    }
   }
 
   // ──────────── 5. 히스토리 anchor 스크롤 보정 ────────────
@@ -259,7 +281,7 @@
       if (y < THRESHOLD) {
         showTopbar();
       } else if (delta > 4) {
-        topbar.classList.add('topbar--hidden');
+        hideTopbar();
       } else if (delta < -4) {
         showTopbar();
       }
