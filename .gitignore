@@ -1,0 +1,23 @@
+# macOS 메타데이터
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# 원본 강의 슬라이드 PDF (저작권: KAIST 경영대학)
+# 학습 노트 배포용 repo 에는 올리지 않음
+*.pdf
+
+# 에디터·IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 로그·캐시
+*.log
+.cache/
+node_modules/
+
+# Claude Code 로컬 설정
+.claude/

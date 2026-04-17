@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>4강 · 이산 확률분포 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">4강 이산 확률분포</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture03.html" aria-label="이전 강의">◀</a>
+    <a href="lecture05.html" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<!-- ═══════ 레이아웃 ═══════ -->
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html" class="active"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">확률변수란</a></li>
+      <li><a href="#ch2">이산 확률분포</a></li>
+      <li><a href="#ch3">기댓값과 분산</a></li>
+      <li><a href="#ch4">Bernoulli 분포</a></li>
+      <li><a href="#ch5">Binomial 분포</a></li>
+      <li><a href="#ch6">이항분포의 모양</a></li>
+      <li><a href="#ch7">공분산 Covariance</a></li>
+      <li><a href="#ch8">상관계수</a></li>
+      <li><a href="#ch9">공분산 0의 함정</a></li>
+      <li><a href="#ch10">분산의 합 공식</a></li>
+      <li><a href="#ch11">투자 의사결정</a></li>
+      <li><a href="#ch12">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="04"><!-- populated by app.js --></div>
+  </aside>
+
+  <!-- ─── 본문 ─── -->
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 04<br>Discrete Probability Distributions</div>
+      <h1>이산 확률분포
+        <span class="small">— 확률을 한 표에 담는 법</span>
+      </h1>
+      <p class="lead">
+        확률이 <em>점 하나</em>였다면, 확률분포는 <em>지도 한 장</em>이에요.<br>
+        주사위의 모든 눈, 동전의 모든 결과가 한눈에 들어오는 지도.<br>
+        오늘은 그 지도를 읽는 법을 배워요.
+      </p>
+    </div>
+
+    <!-- ═══════ 여는 글 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · 가능한 결과를 한 상에 차리다</h2>
+      <div class="chap-sub">확률분포란 뭘까</div>
+
+      <p class="story">
+        주사위 하나를 던져요. 나올 수 있는 값은 1, 2, 3, 4, 5, 6.
+        각각의 확률은 <strong>1/6</strong>씩이에요.
+      </p>
+
+      <p class="story">
+        이 "값과 확률의 짝"을 한 표로 정리한 것. 그게 바로 <strong>확률분포</strong>예요.
+        모든 가능한 미래를 한눈에 보는 지도죠.
+      </p>
+
+      <p class="story">
+        지난 3강에서는 확률 "하나"를 계산했어요.
+        오늘은 모든 경우의 확률을 <em>한 번에</em> 다뤄요.
+        통계가 주는 가장 큰 선물이에요.
+      </p>
+
+      <div class="callout">
+        <div class="label">오늘의 약속</div>
+        <p>주사위·동전·복권. 친숙한 예로 출발합니다.
+        공식은 항상 이야기 뒤에 따라와요. 겁먹지 않아도 괜찮아요.</p>
+      </div>
+
+    </section>
+
+    <!-- ═══════ 1장 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>확률변수 — 숫자가 된 결과</h2>
+      <div class="chap-sub">Random Variable</div>
+
+      <p>먼저 낯선 이름부터 풀어요. <strong>확률변수</strong>라는 말,
+      처음 듣기엔 어렵죠. 그런데 정체는 단순합니다.</p>
+
+      <div class="definition">
+        <div class="term">Random Variable · 확률변수</div>
+        <div class="kor">결과를 숫자로 바꾸는 규칙</div>
+        <p>실험의 결과 하나하나에 <em>숫자 하나</em>를 붙여주는 함수예요.
+        기호는 보통 대문자 <strong>X</strong>로 써요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>동전 던지기로 볼까요.</strong></p>
+        <p>· 결과: 앞면 · 뒷면 (말)<br>
+        · 확률변수 X: 앞면 → 1 · 뒷면 → 0 (숫자)</p>
+        <p>"말"이었던 결과가 "숫자"가 됐어요. 그러면 더하고, 평균 내고, 비교할 수 있죠.</p>
+      </div>
+
+      <h3>두 종류의 확률변수</h3>
+      <p>변수처럼 확률변수도 두 형제가 있어요. 변수 챕터의 기억을 살려주세요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>이산 Discrete</h5>
+          <div class="kor-sub">셀 수 있는 값</div>
+          <p>값이 톡톡 떨어져 있어요. 주사위 눈, 전화 수신 건수, 불량품 개수처럼요.</p>
+          <ul>
+            <li>0, 1, 2, 3, …</li>
+            <li>값과 값 사이가 비어 있음</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h5>연속 Continuous</h5>
+          <div class="kor-sub">잴 수 있는 값</div>
+          <p>값이 실선처럼 이어져요. 키, 시간, 무게. 이론상 소수점 끝이 없어요.</p>
+          <ul>
+            <li>170.3cm · 170.35cm · …</li>
+            <li>값 사이가 다 채워짐</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">오늘의 집중 대상</div>
+        <p>이번 강의는 <strong>이산</strong>에 집중해요.
+        연속 확률변수는 다음 강의(정규분포)에서 만나요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        확률변수 = 결과에 숫자를 붙이는 규칙. 이산은 세는 것, 연속은 재는 것.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 2장 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>이산 확률분포 — 값과 확률의 짝</h2>
+      <div class="chap-sub">Probability Distribution Table</div>
+
+      <p>확률변수 X가 가질 수 있는 모든 값에
+      그에 대응하는 확률을 붙이면 <strong>확률분포</strong>가 돼요.
+      표로 그리면 가장 잘 보여요.</p>
+
+      <div class="definition">
+        <div class="term">Probability Distribution · 확률분포</div>
+        <div class="kor">모든 가능한 값 × 그 확률</div>
+        <p>이산 확률변수의 경우 표 하나로 담을 수 있어요.
+        각 확률은 0과 1 사이. 다 더하면 반드시 <strong>1</strong>이 돼요.</p>
+      </div>
+
+      <p>앞으로 자주 보게 될 기호 하나. <strong>P(X = x)</strong>는
+      "확률변수 X가 어떤 구체적인 값 x를 가질 확률"이에요.
+      큰 X는 변수, 작은 x는 그 변수가 가진 값이라고 생각하세요.</p>
+
+      <h3>예시 · 주사위 하나</h3>
+
+      <div class="table-scroll">
+      <table class="green-head center">
+        <caption>공정한 주사위의 확률분포</caption>
+        <thead>
+          <tr><th>X (눈)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>합</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P(X)</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td><strong>1</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">확률분포의 두 약속</div>
+        <p>① 각 확률 <strong>P(X=x)</strong>는 0과 1 사이.<br>
+        ② 모든 확률의 합은 <strong>1</strong>이에요.</p>
+      </div>
+
+      <h3>예시 · 두 자녀의 딸 수</h3>
+      <p>한 가정에 아이가 둘. 딸의 수를 X라고 해요. X는 0, 1, 2 중 하나.</p>
+
+      <div class="data-strip">
+        (아들, 아들) → X=0 · 확률 1/4<br>
+        (아들, 딸) · (딸, 아들) → X=1 · 확률 2/4<br>
+        (딸, 딸) → X=2 · 확률 1/4
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>두 자녀의 딸 수 · 확률분포</caption>
+        <thead><tr><th>X</th><th>P(X)</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>0.25</td></tr>
+          <tr><td>1</td><td class="hi">0.50</td></tr>
+          <tr><td>2</td><td>0.25</td></tr>
+          <tr><td><strong>합</strong></td><td><strong>1.00</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <!-- 확률분포 막대 그래프 -->
+      <div class="chart-wrap">
+        <div class="chart-title">확률분포 시각화 · 막대로 보기</div>
+        <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="70" y1="30" x2="70" y2="220" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="70" y1="220" x2="470" y2="220" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="end">
+            <text x="64" y="224">0</text>
+            <text x="64" y="178">0.1</text>
+            <text x="64" y="132">0.3</text>
+            <text x="64" y="86">0.4</text>
+            <text x="64" y="40">0.5</text>
+          </g>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="70" y1="178" x2="470" y2="178"/>
+            <line x1="70" y1="132" x2="470" y2="132"/>
+            <line x1="70" y1="86" x2="470" y2="86"/>
+            <line x1="70" y1="40" x2="470" y2="40"/>
+          </g>
+          <rect x="130" y="105" width="70" height="115" fill="#3b82f6"/>
+          <rect x="230" y="40" width="70" height="180" fill="#1e3a8a"/>
+          <rect x="330" y="105" width="70" height="115" fill="#3b82f6"/>
+          <g font-size="12" fill="#fff" font-weight="700" text-anchor="middle">
+            <text x="165" y="170">0.25</text>
+            <text x="265" y="120">0.50</text>
+            <text x="365" y="170">0.25</text>
+          </g>
+          <g font-size="12" fill="#1d1d1f" text-anchor="middle">
+            <text x="165" y="238">X=0</text>
+            <text x="265" y="238">X=1</text>
+            <text x="365" y="238">X=2</text>
+          </g>
+          <text x="270" y="255" font-size="11" fill="#6b6b6b" text-anchor="middle" font-style="italic">두 자녀 중 딸의 수</text>
+        </svg>
+        <div class="chart-caption">X=1(딸 한 명)이 가장 흔한 결과예요.</div>
+      </div>
+
+      <blockquote class="pull">
+        확률분포는 <em>가능한 모든 미래의 지도</em>예요.<br>
+        숫자와 무게가 한 상에 차려져 있어요.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        값과 확률의 짝 · 합은 1. 한 표가 곧 한 이야기다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 3장 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>기댓값과 분산 — 분포를 숫자 둘로</h2>
+      <div class="chap-sub">Expected Value &amp; Variance</div>
+
+      <p>확률분포 전체를 한두 개의 숫자로 요약하고 싶어요.
+      이때 쓰는 게 <strong>기댓값</strong>과 <strong>분산</strong>이에요.
+      분포의 <em>중심</em>과 <em>퍼짐</em>을 말해주는 친구들이죠.</p>
+
+      <h3>기댓값 E(X)</h3>
+      <div class="definition">
+        <div class="term">Expected Value · 기댓값</div>
+        <div class="kor">평균적으로 얼마가 나올까</div>
+        <p>값 × 확률의 합. 여러 번 실험했을 때 평균적으로 얻게 될 값이에요.
+        기호는 <strong>E(X)</strong> 또는 <strong>μ</strong>.</p>
+      </div>
+
+      <div class="formula">
+        E(X) = μ = Σ x · P(X=x)
+      </div>
+
+      <p>Σ(시그마)는 "모두 더하라"는 뜻이에요.
+      값 x마다 "x와 그 확률을 곱한 뒤, 전부 더해요".
+      그게 기댓값이에요.</p>
+
+      <div class="analogy">
+        <p><strong>복권 한 장으로 기댓값 감 잡기.</strong></p>
+        <p>5,000원에 산 복권. 1등 1억원(확률 0.00001), 꽝(확률 0.99999).</p>
+        <p>E(X) = 100,000,000 × 0.00001 + 0 × 0.99999 = <strong>1,000원</strong>.</p>
+        <p>5,000원 내고 평균 1,000원 받는 게임이에요. 길게 보면 손해죠.</p>
+      </div>
+
+      <h3>분산 Var(X)</h3>
+      <div class="definition">
+        <div class="term">Variance · 분산</div>
+        <div class="kor">얼마나 출렁일까</div>
+        <p>결과가 평균 μ에서 얼마나 흩어져 있는지를 재는 숫자예요.
+        큰 값일수록 결과가 들쑥날쑥해요.</p>
+      </div>
+
+      <div class="formula wide">
+        Var(X) = σ² = E[(X − μ)²] = Σ (x − μ)² · P(X=x)
+      </div>
+
+      <p>식을 풀면 이래요. 각 값 x에서 평균 μ를 뺀 <em>편차</em>를
+      제곱하고, 그 확률을 곱한 뒤, 모두 더해요.</p>
+
+      <p>왜 제곱할까? 편차는 양수·음수가 섞여 있어 그냥 더하면 0에 가까워져요.
+      제곱하면 모두 양수가 되니 "얼마나 떨어져 있는지"가 살아나요.</p>
+
+      <p>분산에 루트를 씌우면 <strong>표준편차 σ</strong>.
+      분산은 제곱 단위라 감이 안 오니까 루트를 씌워 원래 단위로 맞추는 거예요.</p>
+
+      <div class="formula">
+        σ = √Var(X)
+      </div>
+
+      <h3>계산 예시 · 두 자녀의 딸 수</h3>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>E(X)와 Var(X) 계산 과정</caption>
+        <thead>
+          <tr><th>X</th><th>P(X)</th><th>X · P(X)</th><th>(X−μ)²</th><th>(X−μ)² · P(X)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>0.25</td><td>0.00</td><td>1</td><td>0.25</td></tr>
+          <tr><td>1</td><td>0.50</td><td>0.50</td><td>0</td><td>0.00</td></tr>
+          <tr><td>2</td><td>0.25</td><td>0.50</td><td>1</td><td>0.25</td></tr>
+          <tr><td><strong>합</strong></td><td><strong>1.00</strong></td><td class="hi"><strong>1.00</strong></td><td></td><td class="hi"><strong>0.50</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">읽어낸 이야기</div>
+        <p>E(X) = <strong>1.00</strong> — 두 자녀 중 평균 1명이 딸.<br>
+        Var(X) = <strong>0.50</strong> — σ ≈ 0.71명만큼 흔들려요.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">한 줄 정리</div>
+        <p>기댓값 = <em>분포의 중심</em>. 분산 = <em>분포의 폭</em>.
+        이 둘만 있으면 분포의 얼굴이 그려져요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        E(X)로 중심을, Var(X)로 퍼짐을. 분포는 숫자 둘로 말한다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 4장 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>Bernoulli 분포 — 한 번의 성공/실패</h2>
+      <div class="chap-sub">가장 단순한 확률분포</div>
+
+      <p>세상의 많은 일이 "성공이냐, 실패냐" 둘 중 하나예요.
+      동전의 앞/뒤, 시험의 합격/불합격, 광고 클릭/무시.
+      이런 단 한 번의 시행을 모델로 만든 게 <strong>Bernoulli 분포</strong>예요.</p>
+
+      <div class="definition">
+        <div class="term">Bernoulli Distribution · 베르누이 분포</div>
+        <div class="kor">시도 1번, 결과 2가지</div>
+        <p>확률변수 X는 <strong>1(성공)</strong> 또는 <strong>0(실패)</strong>.
+        성공 확률을 <strong>p</strong>라 하면 실패는 1−p.</p>
+      </div>
+
+      <div class="formula">
+        P(X=1) = p &nbsp;·&nbsp; P(X=0) = 1 − p
+      </div>
+
+      <h3>기댓값과 분산</h3>
+      <p>공식 유도는 간단해요. 위의 표에 기댓값·분산 공식을 그대로 적용하면 돼요.</p>
+
+      <div class="formula">
+        E(X) = p &nbsp;·&nbsp; Var(X) = p(1 − p)
+      </div>
+
+      <div class="analogy">
+        <p><strong>동전 던지기로 확인해 볼까요.</strong></p>
+        <p>공정한 동전이면 p = 0.5.<br>
+        E(X) = 0.5 · Var(X) = 0.5 × 0.5 = 0.25.</p>
+        <p>한 번 던졌을 때 "앞면 개수"의 평균이 0.5. 당연하죠 — 두 번 중 한 번은 앞면.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">왜 중요할까</div>
+        <p>Bernoulli는 통계의 <em>원자</em>예요.
+        이걸 <strong>여러 번 반복</strong>하면 다음 장의 Binomial 분포가 돼요.
+        하나만 알아도 여러 개를 알 수 있어요.</p>
+      </div>
+
+      <h3>분산이 가장 큰 순간은?</h3>
+      <p>Var(X) = p(1−p). p가 0이나 1에 가까우면 분산이 작아요.
+      결과가 거의 정해져 있으니까요. p = 0.5일 때 가장 출렁여요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">베르누이 분산 곡선</div>
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="30" x2="60" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="60" y1="180" x2="460" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="10" fill="#6b6b6b" text-anchor="end">
+            <text x="54" y="184">0</text>
+            <text x="54" y="142">0.1</text>
+            <text x="54" y="100">0.2</text>
+            <text x="54" y="58">0.25</text>
+          </g>
+          <g font-size="10" fill="#6b6b6b" text-anchor="middle">
+            <text x="60" y="198">0</text>
+            <text x="160" y="198">0.25</text>
+            <text x="260" y="198">0.5</text>
+            <text x="360" y="198">0.75</text>
+            <text x="460" y="198">1</text>
+          </g>
+          <path d="M 60 180 Q 260 -30 460 180" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+          <circle cx="260" cy="58" r="5" fill="#c0392b"/>
+          <text x="270" y="50" font-size="11" fill="#c0392b" font-weight="700">최대값 0.25</text>
+          <text x="250" y="215" font-size="11" fill="#6b6b6b" text-anchor="middle">p (성공 확률)</text>
+        </svg>
+        <div class="chart-caption">p=0.5일 때 분산이 최대(0.25). 불확실성이 제일 커요.</div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        단 한 번의 시도 · 성공 p · 실패 1−p. 모든 통계의 시작 원자.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>Binomial 분포 — 여러 번의 성공</h2>
+      <div class="chap-sub">Bernoulli를 n번 반복하면</div>
+
+      <p>Bernoulli 시행을 <strong>n번</strong> 반복해요.
+      매번 성공 확률은 같은 <strong>p</strong>. 서로 독립.
+      "성공 횟수"를 세면 이게 <strong>이항(Binomial) 분포</strong>예요.</p>
+
+      <div class="definition">
+        <div class="term">Binomial Distribution · 이항분포</div>
+        <div class="kor">n번 던져서 몇 번 성공?</div>
+        <p>조건 세 가지: ① 시행은 n번 · ② 매번 성공 확률은 p로 같음 · ③ 시행끼리 독립.
+        기호는 X ~ B(n, p).</p>
+      </div>
+
+      <h3>확률 공식</h3>
+      <div class="formula">
+        P(X = k) = C(n, k)<br>
+        × p<sup>k</sup> × (1 − p)<sup>n − k</sup>
+      </div>
+
+      <p>공식이 갑자기 무섭죠. 기호부터 짚고 갈게요.</p>
+      <p>n은 전체 시도 횟수. k는 그 중 성공 횟수.
+      p는 한 번 시도했을 때의 성공 확률이에요.</p>
+
+      <p>이제 우변을 세 조각으로 쪼개면 덜 무서워져요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>C(n, k)</h5>
+          <div class="kor-sub">경우의 수</div>
+          <p>n번 중 k번 성공하는 <em>순서</em>가 몇 가지인지.
+          nCk로도 써요.</p>
+        </div>
+        <div class="card">
+          <h5>p<sup>k</sup> · (1−p)<sup>n−k</sup></h5>
+          <div class="kor-sub">한 가지 순서의 확률</div>
+          <p>성공 k번과 실패 (n−k)번이 함께 일어날 확률.
+          독립이니까 그냥 곱해요.</p>
+        </div>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">C(n, k) 계산법</div>
+        <p>C(n, k) = n! / [k! · (n−k)!]<br>
+        예) C(5, 2) = 120 / (2 × 6) = <strong>10</strong>.
+        5번 시도 중 2번 성공할 순서가 10가지란 뜻이에요.</p>
+      </div>
+
+      <h3>예시 · 영업 전화 5통</h3>
+      <p>각 전화의 성공률이 0.2. 5통 중 정확히 2건을 성공시킬 확률은?</p>
+
+      <div class="data-strip">
+        n = 5 · p = 0.2 · k = 2<br>
+        P(X=2) = C(5, 2) · 0.2² · 0.8³<br>
+        = 10 × 0.04 × 0.512 = <strong>0.2048</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">답</div>
+        <p>5통 중 2건 성공할 확률은 약 <strong>20.5%</strong>예요.
+        n과 p만 있으면 어떤 k에 대해서도 확률을 구할 수 있어요.</p>
+      </div>
+
+      <h3>기댓값과 분산</h3>
+      <p>공식은 놀랍도록 간단해요. Bernoulli 한 번의 공식에 n을 곱하면 끝.</p>
+
+      <div class="formula">
+        E(X) = n · p &nbsp;·&nbsp; Var(X) = n · p · (1 − p)
+      </div>
+
+      <div class="analogy">
+        <p><strong>감 잡기.</strong> 성공률 20%로 100통 걸면?</p>
+        <p>E(X) = 100 × 0.2 = <strong>20통</strong>.
+        σ = √(100 × 0.2 × 0.8) ≈ <strong>4통</strong>.</p>
+        <p>평균 20건쯤 성공. 보통 16~24 사이에 떨어져요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        이항 = 베르누이 n번. E(X)=np · Var(X)=np(1−p). 외우면 반은 끝.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>이항분포의 모양 — p가 바꾸는 풍경</h2>
+      <div class="chap-sub">Shape of the Binomial</div>
+
+      <p>이항분포는 n과 p에 따라 모습이 달라져요.
+      같은 n이어도 p가 바뀌면 봉우리가 이동해요.
+      그림 세 장으로 한눈에 비교해볼게요.</p>
+
+      <h3>n = 10 · p를 바꿔보면</h3>
+
+      <!-- p=0.3 -->
+      <div class="chart-wrap">
+        <div class="chart-title">① p = 0.3 · 오른쪽 꼬리형</div>
+        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="60" y1="180" x2="580" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="10" fill="#6b6b6b" text-anchor="end">
+            <text x="54" y="184">0</text>
+            <text x="54" y="140">0.1</text>
+            <text x="54" y="100">0.2</text>
+            <text x="54" y="60">0.3</text>
+          </g>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="60" y1="140" x2="580" y2="140"/>
+            <line x1="60" y1="100" x2="580" y2="100"/>
+            <line x1="60" y1="60" x2="580" y2="60"/>
+          </g>
+          <!-- P values for n=10, p=0.3: 0.028, 0.121, 0.233, 0.267, 0.200, 0.103, 0.037, 0.009, 0.001, 0, 0 -->
+          <rect x="80" y="169" width="35" height="11" fill="#c0392b"/>
+          <rect x="125" y="131" width="35" height="49" fill="#c0392b"/>
+          <rect x="170" y="87" width="35" height="93" fill="#c0392b"/>
+          <rect x="215" y="73" width="35" height="107" fill="#c0392b"/>
+          <rect x="260" y="100" width="35" height="80" fill="#c0392b"/>
+          <rect x="305" y="139" width="35" height="41" fill="#c0392b"/>
+          <rect x="350" y="165" width="35" height="15" fill="#c0392b"/>
+          <rect x="395" y="176" width="35" height="4" fill="#c0392b"/>
+          <rect x="440" y="179" width="35" height="1" fill="#c0392b"/>
+          <rect x="485" y="180" width="35" height="0" fill="#c0392b"/>
+          <rect x="530" y="180" width="35" height="0" fill="#c0392b"/>
+          <g font-size="10" fill="#1d1d1f" text-anchor="middle">
+            <text x="97" y="198">0</text><text x="142" y="198">1</text>
+            <text x="187" y="198">2</text><text x="232" y="198">3</text>
+            <text x="277" y="198">4</text><text x="322" y="198">5</text>
+            <text x="367" y="198">6</text><text x="412" y="198">7</text>
+            <text x="457" y="198">8</text><text x="502" y="198">9</text>
+            <text x="547" y="198">10</text>
+          </g>
+          <text x="320" y="215" font-size="11" fill="#6b6b6b" text-anchor="middle">성공 횟수 k · E(X)=3</text>
+        </svg>
+        <div class="chart-caption">p가 작으니 봉우리가 왼쪽에. 큰 k는 거의 안 나와요.</div>
+      </div>
+
+      <!-- p=0.5 -->
+      <div class="chart-wrap">
+        <div class="chart-title">② p = 0.5 · 좌우 대칭</div>
+        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="60" y1="180" x2="580" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="10" fill="#6b6b6b" text-anchor="end">
+            <text x="54" y="184">0</text>
+            <text x="54" y="140">0.1</text>
+            <text x="54" y="100">0.2</text>
+            <text x="54" y="60">0.25</text>
+          </g>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="60" y1="140" x2="580" y2="140"/>
+            <line x1="60" y1="100" x2="580" y2="100"/>
+            <line x1="60" y1="60" x2="580" y2="60"/>
+          </g>
+          <!-- P values for n=10, p=0.5: 0.001, 0.010, 0.044, 0.117, 0.205, 0.246, 0.205, 0.117, 0.044, 0.010, 0.001 -->
+          <rect x="80" y="179" width="35" height="1" fill="#1e3a8a"/>
+          <rect x="125" y="176" width="35" height="4" fill="#1e3a8a"/>
+          <rect x="170" y="162" width="35" height="18" fill="#1e3a8a"/>
+          <rect x="215" y="133" width="35" height="47" fill="#1e3a8a"/>
+          <rect x="260" y="98" width="35" height="82" fill="#1e3a8a"/>
+          <rect x="305" y="82" width="35" height="98" fill="#1e3a8a"/>
+          <rect x="350" y="98" width="35" height="82" fill="#1e3a8a"/>
+          <rect x="395" y="133" width="35" height="47" fill="#1e3a8a"/>
+          <rect x="440" y="162" width="35" height="18" fill="#1e3a8a"/>
+          <rect x="485" y="176" width="35" height="4" fill="#1e3a8a"/>
+          <rect x="530" y="179" width="35" height="1" fill="#1e3a8a"/>
+          <g font-size="10" fill="#1d1d1f" text-anchor="middle">
+            <text x="97" y="198">0</text><text x="142" y="198">1</text>
+            <text x="187" y="198">2</text><text x="232" y="198">3</text>
+            <text x="277" y="198">4</text><text x="322" y="198">5</text>
+            <text x="367" y="198">6</text><text x="412" y="198">7</text>
+            <text x="457" y="198">8</text><text x="502" y="198">9</text>
+            <text x="547" y="198">10</text>
+          </g>
+          <text x="320" y="215" font-size="11" fill="#6b6b6b" text-anchor="middle">성공 횟수 k · E(X)=5</text>
+        </svg>
+        <div class="chart-caption">p=0.5면 완벽한 대칭. 가운데(k=5)가 가장 흔해요.</div>
+      </div>
+
+      <!-- p=0.7 -->
+      <div class="chart-wrap">
+        <div class="chart-title">③ p = 0.7 · 왼쪽 꼬리형</div>
+        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="60" y1="180" x2="580" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="10" fill="#6b6b6b" text-anchor="end">
+            <text x="54" y="184">0</text>
+            <text x="54" y="140">0.1</text>
+            <text x="54" y="100">0.2</text>
+            <text x="54" y="60">0.3</text>
+          </g>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="60" y1="140" x2="580" y2="140"/>
+            <line x1="60" y1="100" x2="580" y2="100"/>
+            <line x1="60" y1="60" x2="580" y2="60"/>
+          </g>
+          <!-- P values for n=10, p=0.7: 0, 0, 0.001, 0.009, 0.037, 0.103, 0.200, 0.267, 0.233, 0.121, 0.028 -->
+          <rect x="80" y="180" width="35" height="0" fill="#2f6d4a"/>
+          <rect x="125" y="180" width="35" height="0" fill="#2f6d4a"/>
+          <rect x="170" y="179" width="35" height="1" fill="#2f6d4a"/>
+          <rect x="215" y="176" width="35" height="4" fill="#2f6d4a"/>
+          <rect x="260" y="165" width="35" height="15" fill="#2f6d4a"/>
+          <rect x="305" y="139" width="35" height="41" fill="#2f6d4a"/>
+          <rect x="350" y="100" width="35" height="80" fill="#2f6d4a"/>
+          <rect x="395" y="73" width="35" height="107" fill="#2f6d4a"/>
+          <rect x="440" y="87" width="35" height="93" fill="#2f6d4a"/>
+          <rect x="485" y="131" width="35" height="49" fill="#2f6d4a"/>
+          <rect x="530" y="169" width="35" height="11" fill="#2f6d4a"/>
+          <g font-size="10" fill="#1d1d1f" text-anchor="middle">
+            <text x="97" y="198">0</text><text x="142" y="198">1</text>
+            <text x="187" y="198">2</text><text x="232" y="198">3</text>
+            <text x="277" y="198">4</text><text x="322" y="198">5</text>
+            <text x="367" y="198">6</text><text x="412" y="198">7</text>
+            <text x="457" y="198">8</text><text x="502" y="198">9</text>
+            <text x="547" y="198">10</text>
+          </g>
+          <text x="320" y="215" font-size="11" fill="#6b6b6b" text-anchor="middle">성공 횟수 k · E(X)=7</text>
+        </svg>
+        <div class="chart-caption">p가 크니 봉우리가 오른쪽으로. p=0.3의 거울이에요.</div>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">세 그림을 한 줄로</div>
+        <p>p가 작으면 왼쪽 · p=0.5면 대칭 · p가 크면 오른쪽.
+        p=0.3과 p=0.7은 서로 거울 이미지예요.
+        봉우리 위치 = 기댓값 np를 따라가요.</p>
+      </div>
+
+      <h3>n이 커지면?</h3>
+      <p>n이 커질수록 분포는 <em>부드러운 종 모양</em>에 가까워져요.
+      이게 다음 강의에서 만날 <strong>정규분포</strong>로 이어지는 다리예요.
+      "세는 분포"가 "재는 분포"와 만나는 지점이죠.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        이항의 얼굴은 p가 결정. n이 크면 종 모양으로 진화한다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>공분산 — 두 변수가 함께 움직이는 방향</h2>
+      <div class="chap-sub">Covariance</div>
+
+      <p>지금까지는 확률변수 하나를 다뤘어요.
+      이제 변수가 둘일 때의 이야기. X와 Y가 같이 움직이는지,
+      따로 움직이는지를 재는 숫자가 <strong>공분산</strong>이에요.</p>
+
+      <div class="definition">
+        <div class="term">Covariance · 공분산</div>
+        <div class="kor">둘이 함께 움직이는 방향</div>
+        <p>X가 평균보다 크면 Y도 큰가? 같은 방향이면 양수,
+        반대 방향이면 음수, 관련이 없으면 0에 가까워요.</p>
+      </div>
+
+      <div class="formula wide">
+        Cov(X, Y) = E[(X − μ<sub>X</sub>)(Y − μ<sub>Y</sub>)]
+      </div>
+
+      <p>공식을 풀어보면 "각 개체의 (X 편차) × (Y 편차)의 평균"이에요.</p>
+
+      <p>둘 다 평균보다 크거나 둘 다 작으면 편차의 곱은 양수.
+      한쪽만 크고 다른 쪽이 작으면 음수.
+      이 곱들의 평균이 공분산이에요.</p>
+
+      <div class="callout blue">
+        <div class="label">계산 공식 (자주 쓰여요)</div>
+        <p>Cov(X, Y) = E[XY] − E[X] · E[Y].</p>
+        <p>실제 계산할 땐 이 꼴이 훨씬 빨라요. 각각의 기댓값만 구하면 되니까요.</p>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>Cov &gt; 0</h5>
+          <div class="kor-sub">같이 오르내림</div>
+          <p>X↑ 일 때 Y↑, X↓ 일 때 Y↓. 기온과 아이스크림 판매량처럼요.</p>
+        </div>
+        <div class="card">
+          <h5>Cov &lt; 0</h5>
+          <div class="kor-sub">반대로 움직임</div>
+          <p>X↑ 일 때 Y↓. 기온과 핫팩 판매량처럼요.</p>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">공분산의 세 풍경</div>
+        <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(30,20)">
+            <rect x="0" y="0" width="200" height="180" fill="#fff" stroke="#e6e1d4"/>
+            <line x1="0" y1="180" x2="200" y2="180" stroke="#1d1d1f"/>
+            <line x1="0" y1="0" x2="0" y2="180" stroke="#1d1d1f"/>
+            <line x1="100" y1="0" x2="100" y2="180" stroke="#e6e1d4" stroke-dasharray="2 3"/>
+            <line x1="0" y1="90" x2="200" y2="90" stroke="#e6e1d4" stroke-dasharray="2 3"/>
+            <g fill="#2f6d4a" opacity="0.75">
+              <circle cx="25" cy="165" r="4"/><circle cx="40" cy="150" r="4"/>
+              <circle cx="55" cy="140" r="4"/><circle cx="65" cy="135" r="4"/>
+              <circle cx="75" cy="120" r="4"/><circle cx="85" cy="125" r="4"/>
+              <circle cx="95" cy="105" r="4"/><circle cx="105" cy="95" r="4"/>
+              <circle cx="115" cy="85" r="4"/><circle cx="125" cy="80" r="4"/>
+              <circle cx="135" cy="65" r="4"/><circle cx="145" cy="60" r="4"/>
+              <circle cx="155" cy="50" r="4"/><circle cx="165" cy="35" r="4"/>
+              <circle cx="175" cy="25" r="4"/><circle cx="185" cy="15" r="4"/>
+            </g>
+            <text x="100" y="-4" text-anchor="middle" font-size="12" font-weight="700" fill="#2f6d4a">Cov &gt; 0 · 양의 상관</text>
+            <text x="100" y="198" text-anchor="middle" font-size="10" fill="#6b6b6b">X →</text>
+          </g>
+          <g transform="translate(250,20)">
+            <rect x="0" y="0" width="200" height="180" fill="#fff" stroke="#e6e1d4"/>
+            <line x1="0" y1="180" x2="200" y2="180" stroke="#1d1d1f"/>
+            <line x1="0" y1="0" x2="0" y2="180" stroke="#1d1d1f"/>
+            <line x1="100" y1="0" x2="100" y2="180" stroke="#e6e1d4" stroke-dasharray="2 3"/>
+            <line x1="0" y1="90" x2="200" y2="90" stroke="#e6e1d4" stroke-dasharray="2 3"/>
+            <g fill="#c0392b" opacity="0.75">
+              <circle cx="25" cy="20" r="4"/><circle cx="40" cy="35" r="4"/>
+              <circle cx="55" cy="40" r="4"/><circle cx="65" cy="55" r="4"/>
+              <circle cx="75" cy="60" r="4"/><circle cx="85" cy="70" r="4"/>
+              <circle cx="95" cy="75" r="4"/><circle cx="105" cy="90" r="4"/>
+              <circle cx="115" cy="100" r="4"/><circle cx="125" cy="110" r="4"/>
+              <circle cx="135" cy="120" r="4"/><circle cx="145" cy="125" r="4"/>
+              <circle cx="155" cy="140" r="4"/><circle cx="165" cy="150" r="4"/>
+              <circle cx="175" cy="160" r="4"/><circle cx="185" cy="170" r="4"/>
+            </g>
+            <text x="100" y="-4" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">Cov &lt; 0 · 음의 상관</text>
+            <text x="100" y="198" text-anchor="middle" font-size="10" fill="#6b6b6b">X →</text>
+          </g>
+          <g transform="translate(470,20)">
+            <rect x="0" y="0" width="200" height="180" fill="#fff" stroke="#e6e1d4"/>
+            <line x1="0" y1="180" x2="200" y2="180" stroke="#1d1d1f"/>
+            <line x1="0" y1="0" x2="0" y2="180" stroke="#1d1d1f"/>
+            <line x1="100" y1="0" x2="100" y2="180" stroke="#e6e1d4" stroke-dasharray="2 3"/>
+            <line x1="0" y1="90" x2="200" y2="90" stroke="#e6e1d4" stroke-dasharray="2 3"/>
+            <g fill="#6b6b6b" opacity="0.75">
+              <circle cx="25" cy="70" r="4"/><circle cx="45" cy="130" r="4"/>
+              <circle cx="55" cy="45" r="4"/><circle cx="65" cy="140" r="4"/>
+              <circle cx="75" cy="85" r="4"/><circle cx="85" cy="55" r="4"/>
+              <circle cx="95" cy="130" r="4"/><circle cx="105" cy="40" r="4"/>
+              <circle cx="115" cy="110" r="4"/><circle cx="125" cy="65" r="4"/>
+              <circle cx="135" cy="145" r="4"/><circle cx="145" cy="80" r="4"/>
+              <circle cx="155" cy="110" r="4"/><circle cx="165" cy="35" r="4"/>
+              <circle cx="175" cy="125" r="4"/><circle cx="185" cy="75" r="4"/>
+            </g>
+            <text x="100" y="-4" text-anchor="middle" font-size="12" font-weight="700" fill="#6b6b6b">Cov ≈ 0 · 관계 없음</text>
+            <text x="100" y="198" text-anchor="middle" font-size="10" fill="#6b6b6b">X →</text>
+          </g>
+          <text x="350" y="245" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">
+            각 점 = (X, Y) 한 쌍. 패턴이 공분산의 부호를 말해줘요.
+          </text>
+        </svg>
+      </div>
+
+      <div class="analogy">
+        <p><strong>아이스크림 가게 이야기.</strong></p>
+        <p>· 기온(X)과 아이스크림 판매량(Y): 같이 올라요. <strong>Cov(X,Y) &gt; 0</strong>.<br>
+        · 기온(X)과 핫초코 판매량(Y): 반대로 가요. <strong>Cov(X,Y) &lt; 0</strong>.<br>
+        · 기온(X)과 볼펜 판매량(Y): 뭐… 상관없어요. <strong>Cov(X,Y) ≈ 0</strong>.</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">공분산의 단점</div>
+        <p>공분산은 <em>크기가 단위에 휘둘려요</em>. 키를 cm로 재면 값이 크고,
+        m로 재면 값이 작아져요. 같은 관계인데 숫자가 달라지죠.
+        그래서 다음 장의 <strong>상관계수</strong>가 필요해요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        부호(+/−)는 방향. 크기는 단위에 휘둘림. 방향만큼은 정확하다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 8장 ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>상관계수 — 공분산의 정규화</h2>
+      <div class="chap-sub">Correlation Coefficient</div>
+
+      <p>공분산은 방향은 정확한데 크기가 오락가락했죠.
+      "각 변수의 표준편차"로 나눠 주면 단위 문제가 사라져요.
+      이게 <strong>상관계수 ρ(로)</strong>예요.</p>
+
+      <div class="definition">
+        <div class="term">Correlation Coefficient · 상관계수</div>
+        <div class="kor">−1과 +1 사이에 갇힌 관계</div>
+        <p>공분산을 두 표준편차의 곱으로 나눠 만든 숫자.
+        단위 없음. 항상 <strong>−1 ≤ ρ ≤ 1</strong>.</p>
+      </div>
+
+      <div class="formula">
+        ρ = <span class="frac"><span class="num">Cov(X, Y)</span><span class="den">σ<sub>X</sub> · σ<sub>Y</sub></span></span>
+      </div>
+
+      <h3>값의 의미</h3>
+      <div class="table-scroll">
+      <table class="center">
+        <caption>ρ 값 해석 가이드</caption>
+        <thead>
+          <tr><th>ρ 값</th><th>관계</th><th>그림</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>+1</td><td>완전한 양의 상관</td><td>딱 올라가는 직선</td></tr>
+          <tr><td>+0.7 ~ +0.9</td><td>강한 양의 상관</td><td>오른쪽 위로 뚜렷</td></tr>
+          <tr><td>+0.3 ~ +0.5</td><td class="hi">약한 양의 상관</td><td>살짝 오르는 경향</td></tr>
+          <tr><td>0</td><td>관계 없음</td><td>동그란 구름</td></tr>
+          <tr><td>−0.3 ~ −0.5</td><td>약한 음의 상관</td><td>살짝 내리는 경향</td></tr>
+          <tr><td>−1</td><td>완전한 음의 상관</td><td>딱 내려가는 직선</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">공분산 vs 상관계수</div>
+        <p>둘 다 <em>방향</em>은 같게 말해요(부호가 같음).
+        차이는 <em>크기</em>. 공분산은 단위 있고 범위도 무한,
+        상관계수는 단위 없고 −1 ~ +1로 갇혀 있어요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>속도계 vs 백분율 게이지.</strong></p>
+        <p>공분산 = 속도계 (단위도, 눈금도 제각각).<br>
+        상관계수 = 백분율 게이지 (0~100%로 통일).</p>
+        <p>여러 관계를 비교할 땐 백분율이 편하죠. 상관계수도 그래서 더 자주 쓰여요.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">상관 ≠ 인과</div>
+        <p>ρ가 크다고 한 쪽이 다른 쪽의 <em>원인</em>이란 뜻은 아니에요.
+        "아이스크림 판매와 익사 사고가 같이 오른다"는 둘 다
+        <strong>더운 날씨</strong>의 결과일 뿐이에요. 조심!</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        상관계수 = 공분산 ÷ 두 표준편차. −1과 +1 사이에서 관계의 세기를 말한다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 9장 · Cov=0 의 함정 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>공분산 0의 함정 — 독립과 같은 말일까?</h2>
+      <div class="chap-sub">Cov = 0 ≠ Independence</div>
+
+      <p>상관계수 ρ나 공분산이 0이면 "아, 두 변수는 관계가 없구나" 라고 생각하기 쉬워요.
+      절반만 맞는 이야기예요.</p>
+
+      <p>조심해야 할 지점이 하나 있거든요. 공식 한 줄로 먼저 정리해 볼게요.</p>
+
+      <div class="formula">
+        X, Y 독립 &nbsp;⇒&nbsp; Cov(X, Y) = 0
+      </div>
+
+      <p>독립이면 공분산은 <strong>반드시</strong> 0이에요.
+      이쪽 방향은 항상 참이죠.</p>
+
+      <div class="formula">
+        Cov(X, Y) = 0 &nbsp;<strong>⇏</strong>&nbsp; X, Y 독립
+      </div>
+
+      <p>그런데 반대 방향은 그렇지 않아요.
+      공분산이 0이라고 해서 <em>꼭</em> 독립이라는 보장은 없어요.</p>
+
+      <div class="callout yellow">
+        <div class="label">핵심 포인트</div>
+        <p>공분산은 <strong>선형(직선) 관계</strong>만 잡아내요.
+        곡선 관계처럼 비선형으로 엮여 있으면, 공분산이 0이어도
+        두 변수가 단단히 종속일 수 있어요.</p>
+      </div>
+
+      <h3>반례 · 곡선으로 묶인 두 변수</h3>
+      <p>확률변수 X가 −1, 0, 1 세 값을 각각 확률 1/3로 가진다고 해요.
+      그리고 Y = X². 즉 Y는 X의 제곱.</p>
+
+      <div class="data-strip">
+        X ∈ {−1, 0, 1} · 각 확률 1/3<br>
+        Y = X² → {1, 0, 1}
+      </div>
+
+      <p>Y는 X에 의해 <em>완전히 결정</em>돼요.
+      X를 알면 Y도 즉시 알 수 있어요. 전혀 독립이 아니죠.</p>
+
+      <p>그런데 공분산을 계산해 보면 놀라운 일이 벌어져요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>X, Y=X² 의 분포</caption>
+        <thead>
+          <tr><th>X</th><th>Y</th><th>P</th><th>X · Y</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>−1</td><td>1</td><td>1/3</td><td>−1/3</td></tr>
+          <tr><td>0</td><td>0</td><td>1/3</td><td>0</td></tr>
+          <tr><td>1</td><td>1</td><td>1/3</td><td>1/3</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="data-strip">
+        E[X] = (−1 + 0 + 1) / 3 = <strong>0</strong><br>
+        E[Y] = (1 + 0 + 1) / 3 = <strong>2/3</strong><br>
+        E[XY] = (−1/3 + 0 + 1/3) = <strong>0</strong><br>
+        Cov(X, Y) = E[XY] − E[X]·E[Y] = 0 − 0 · (2/3) = <strong>0</strong>
+      </div>
+
+      <div class="callout">
+        <div class="label">결과 읽기</div>
+        <p>공분산이 깨끗하게 <strong>0</strong>이 나왔어요.
+        하지만 Y는 X의 제곱이라 X에 완전히 묶여 있어요.
+        "관계 없음"이 아니라 "선형 관계가 없음"인 거죠.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>왜 이런 일이?</strong></p>
+        <p>X=−1일 때도 Y=1, X=+1일 때도 Y=1이에요.
+        왼쪽과 오른쪽이 대칭으로 올라가는 U자 곡선.</p>
+        <p>공분산은 "X가 크면 Y도 큰가?"만 물어봐요.
+        U자처럼 양쪽 다 올라가는 관계는 눈치채지 못해요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험에 나오는 한 줄</div>
+        <p>독립 → 공분산 0 (참).<br>
+        공분산 0 → 독립 (거짓, 반례 있음).<br>
+        단, <strong>정규분포</strong>를 따르는 쌍(X, Y)에서는 공분산 0이면 독립이라는 특별 규칙이 성립해요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        공분산은 직선만 본다. 0이어도 곡선으로 얽혀 있을 수 있다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 10장 · 분산의 합 공식 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>분산의 합 공식 — 둘을 더하면 위험은?</h2>
+      <div class="chap-sub">Variance of a Sum</div>
+
+      <p>확률변수 X와 Y를 더한 <strong>X + Y</strong>.
+      이 합의 분산은 어떻게 될까요?
+      단순히 Var(X) + Var(Y) 일까요?</p>
+
+      <p>정답은 "공분산이 끼어든다" 예요.</p>
+
+      <div class="formula">
+        Var(X + Y) = Var(X) + Var(Y) + 2 · Cov(X, Y)
+      </div>
+
+      <p>두 분산을 더한 뒤, <strong>공분산의 두 배</strong>를 얹어요.
+      공분산의 부호가 이 합의 흔들림을 키우기도 줄이기도 해요.</p>
+
+      <h3>공식은 어디서 왔을까</h3>
+      <p>정의대로 하나씩 풀어보면 공식이 자연스럽게 나와요.
+      μ<sub>X</sub> = E[X], μ<sub>Y</sub> = E[Y] 로 두고요.</p>
+
+      <div class="formula wide">
+        Var(X+Y) = E[ ((X+Y) − (μ<sub>X</sub>+μ<sub>Y</sub>))² ]
+      </div>
+
+      <p>괄호 안을 (X − μ<sub>X</sub>) + (Y − μ<sub>Y</sub>) 로 묶고 제곱을 펼쳐요.</p>
+
+      <div class="formula wide">
+        = E[ (X−μ<sub>X</sub>)² + (Y−μ<sub>Y</sub>)² + 2(X−μ<sub>X</sub>)(Y−μ<sub>Y</sub>) ]
+      </div>
+
+      <p>기댓값은 합에 대해 분배가 돼요. 세 덩어리로 나누면.</p>
+
+      <div class="formula wide">
+        = Var(X) + Var(Y) + 2 · Cov(X, Y)
+      </div>
+
+      <p>평문으로 다시. 첫 두 덩어리는 각자의 분산.
+      세 번째는 정의 그대로 공분산이에요. 이게 공식의 출생 이야기.</p>
+
+      <h3>독립이면 깔끔해져요</h3>
+      <p>X와 Y가 서로 <strong>독립</strong>이면 Cov(X, Y) = 0 이죠.
+      그러면 공식은 아주 단순해져요.</p>
+
+      <div class="formula">
+        독립일 때: Var(X + Y) = Var(X) + Var(Y)
+      </div>
+
+      <p>분산도 "그냥 더하면 된다"가 되는 거예요.
+      이항분포의 Var(X) = np(1−p) 가 이 원리의 결과물이에요.
+      Bernoulli n번이 독립이니 분산이 그대로 n배.</p>
+
+      <div class="callout green">
+        <div class="label">세 가지 경우로 정리</div>
+        <p>· Cov &gt; 0 → Var(X+Y)가 <strong>커져요</strong>. 같이 오르내려서 출렁임 증폭.<br>
+        · Cov = 0 (독립) → Var(X+Y) = Var(X) + Var(Y). 딱 맞게 합산.<br>
+        · Cov &lt; 0 → Var(X+Y)가 <strong>작아져요</strong>. 한 쪽이 떨어질 때 다른 쪽이 받쳐줌.</p>
+      </div>
+
+      <h3>포트폴리오로 느껴보기</h3>
+      <p>두 자산 A, B에 반씩 투자해요. Var(A) = Var(B) = 100 이라고 해볼게요.
+      총 수익의 분산은 Cov에 따라 크게 달라져요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>Cov 에 따른 Var(A+B) 변화</caption>
+        <thead>
+          <tr><th>상황</th><th>Cov(A,B)</th><th>Var(A+B)</th><th>해석</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>같은 방향 자산</td><td>+80</td><td>100 + 100 + 160 = <strong>360</strong></td><td>위험 증폭</td></tr>
+          <tr><td>독립 자산</td><td>0</td><td>100 + 100 + 0 = <strong>200</strong></td><td>기본 합산</td></tr>
+          <tr><td>반대 방향 자산</td><td>−80</td><td>100 + 100 − 160 = <strong>40</strong></td><td class="hi">위험 급감</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="analogy">
+        <p><strong>왜 분산 투자를 할까.</strong></p>
+        <p>같은 업종 주식만 사면 공분산이 양수. 한번 떨어질 때 같이 떨어져 위험이 커져요.</p>
+        <p>서로 반대로 움직이는 자산을 섞으면 공분산이 음수.
+        "한 쪽이 내리면 다른 쪽이 올라가" 총 위험이 줄어요.</p>
+        <p>이게 다음 장 <strong>포트폴리오의 마법</strong>이에요.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">일반화 · n개의 합</div>
+        <p>확률변수 X<sub>1</sub>, …, X<sub>n</sub> 의 합이라면</p>
+        <p>Var(ΣX<sub>i</sub>) = Σ Var(X<sub>i</sub>) + 2 · Σ<sub>i&lt;j</sub> Cov(X<sub>i</sub>, X<sub>j</sub>).</p>
+        <p>모든 쌍의 공분산을 한 번씩 더해주면 끝이에요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Var(X+Y) = Var(X) + Var(Y) + 2Cov. 공분산이 합의 흔들림을 좌우한다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 11장 ═══════ -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">CHAPTER 11</div>
+      <h2>투자 의사결정 — 기댓값 vs 위험</h2>
+      <div class="chap-sub">현실 적용 · 앞에서 배운 공식을 직접 써보기</div>
+
+      <p>여기까지 배운 것들이 현실에서 어떻게 쓰일까요?
+      대표적인 예가 <strong>투자 판단</strong>이에요.
+      기댓값(E)과 분산(Var)으로 두 선택지를 비교해볼게요.</p>
+
+      <h3>상황 · 두 가지 투자안</h3>
+      <p>1년 후의 수익을 확률분포로 예측했어요. 단위는 만원.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>투자 A · 안전</h5>
+          <div class="kor-sub">예금형</div>
+          <ul>
+            <li>확률 0.5: 수익 +20</li>
+            <li>확률 0.5: 수익 +60</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h5>투자 B · 변동</h5>
+          <div class="kor-sub">주식형</div>
+          <ul>
+            <li>확률 0.5: 수익 −30</li>
+            <li>확률 0.5: 수익 +110</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>기댓값 계산</h3>
+      <div class="data-strip">
+        E(A) = 20 × 0.5 + 60 × 0.5 = <strong>40만원</strong><br>
+        E(B) = (−30) × 0.5 + 110 × 0.5 = <strong>40만원</strong>
+      </div>
+
+      <p>기댓값은 똑같네요. 그럼 둘 다 같은 투자일까요?
+      <strong>분산(위험)</strong>을 봐야 진짜 모습이 보여요.</p>
+
+      <h3>분산 계산</h3>
+      <div class="data-strip">
+        Var(A) = (20−40)² × 0.5 + (60−40)² × 0.5 = 400 → σ<sub>A</sub> = <strong>20</strong><br>
+        Var(B) = (−30−40)² × 0.5 + (110−40)² × 0.5 = 4,900 → σ<sub>B</sub> = <strong>70</strong>
+      </div>
+
+      <!-- 기댓값 vs 위험 비교 -->
+      <div class="chart-wrap">
+        <div class="chart-title">두 투자의 기댓값과 위험</div>
+        <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="80" y1="30" x2="80" y2="210" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="80" y1="210" x2="560" y2="210" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="80" y1="120" x2="560" y2="120" stroke="#6b6b6b" stroke-dasharray="3 4"/>
+          <text x="565" y="124" font-size="10" fill="#6b6b6b">E=40</text>
+
+          <!-- 투자 A 막대 -->
+          <rect x="140" y="120" width="60" height="90" fill="#2f6d4a"/>
+          <text x="170" y="165" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">+20</text>
+          <rect x="210" y="30" width="60" height="90" fill="#2f6d4a"/>
+          <text x="240" y="80" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">+60</text>
+          <text x="205" y="228" font-size="12" fill="#1d1d1f" text-anchor="middle">투자 A (σ=20)</text>
+
+          <!-- 투자 B 막대 -->
+          <rect x="360" y="210" width="60" height="90" fill="#c0392b" transform="translate(0,-90)"/>
+          <!-- 위 표현 대신 음수 막대를 0선 위로 그리기 -->
+          <rect x="360" y="210" width="60" height="60" fill="none"/>
+          <rect x="360" y="210" width="60" height="40" fill="#c0392b" opacity="0"/>
+          <rect x="360" y="210" width="60" height="27" fill="#c0392b"/>
+          <text x="390" y="228" font-size="11" fill="#fff" font-weight="700" text-anchor="middle">−30</text>
+          <rect x="430" y="45" width="60" height="165" fill="#c0392b"/>
+          <text x="460" y="135" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">+110</text>
+          <text x="425" y="251" font-size="12" fill="#1d1d1f" text-anchor="middle">투자 B (σ=70)</text>
+
+          <text x="320" y="20" font-size="11" fill="#6b6b6b" text-anchor="middle" font-style="italic">
+            기댓값은 같지만, 막대 높이차가 "위험"을 보여줘요
+          </text>
+        </svg>
+        <div class="chart-caption">A는 막대 간격 작음(안정) · B는 커다란 격차(변동).</div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">선택의 기준</div>
+        <p>· <strong>위험 회피형</strong>: A 선택. 같은 기댓값이면 덜 출렁이는 게 좋아요.<br>
+        · <strong>위험 선호형</strong>: B 선택. 큰 상승의 가능성에 끌려요.</p>
+        <p>통계는 <em>정답</em>을 주지 않아요. 판단에 필요한 <em>정보</em>를 줄 뿐이에요.</p>
+      </div>
+
+      <blockquote class="pull">
+        같은 평균이라도 <em>출렁임</em>이 다르면<br>
+        완전히 다른 선택이에요.
+      </blockquote>
+
+      <div class="analogy">
+        <p><strong>포트폴리오의 마법.</strong></p>
+        <p>A와 B를 반씩 섞으면 어떻게 될까요? 기댓값은 여전히 40.</p>
+        <p>10장에서 배운 공식을 떠올려 봐요.
+        Var(A+B) = Var(A) + Var(B) + 2·Cov(A, B).</p>
+        <p>둘의 <strong>공분산</strong>이 음수라면 마지막 항이 마이너스. 합의 분산이 확 줄어요.
+        "계란을 한 바구니에 담지 말라"의 수학적 근거죠.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        기댓값은 약속된 보상. 분산은 숨은 위험. 둘 다 봐야 진짜 보인다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 12장 ═══════ -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글</h2>
+      <div class="chap-sub">오늘 배운 것, 다음에 만날 것</div>
+
+      <p class="story">
+        확률이 <em>점</em>이었다면, 확률분포는 <em>지도</em>였어요.
+        오늘 우리는 그 지도를 읽는 법을 배웠죠.
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>확률변수 X = 결과에 숫자를 붙이는 규칙</li>
+        <li>이산 확률분포 = 값과 확률의 짝 · 합은 1</li>
+        <li>기댓값 E(X) = 분포의 중심 · 분산 Var(X) = 분포의 폭</li>
+        <li>Bernoulli = 1번의 성공/실패 · E=p, Var=p(1−p)</li>
+        <li>Binomial = Bernoulli n번 · E=np, Var=np(1−p)</li>
+        <li>이항의 얼굴은 p가 결정 (대칭 / 오른쪽 / 왼쪽 꼬리)</li>
+        <li>공분산 Cov(X,Y) = 두 변수가 함께 움직이는 방향</li>
+        <li>상관계수 ρ = 공분산의 정규화 · −1 ~ +1</li>
+        <li><strong>독립이면 Cov=0. 그러나 Cov=0이라고 꼭 독립은 아니다</strong> (반례: Y=X²)</li>
+        <li><strong>Var(X+Y) = Var(X) + Var(Y) + 2·Cov(X,Y)</strong></li>
+        <li>기댓값 + 분산으로 투자 의사결정</li>
+      </ul>
+
+      <h4>다음 주 예고 · 정규분포</h4>
+      <p>이항분포에서 n이 아주 커지면 봉우리가 <em>부드러운 종</em>이 돼요.
+      이게 바로 <strong>정규분포</strong>. 통계학의 주인공이죠.
+      키, 몸무게, 시험 점수 — 많은 자연 현상이 정규분포를 따라요.</p>
+
+      <p>다음 강의에서는 "재는 분포"의 대표 선수를 만나요.
+      곡선 아래 넓이로 확률을 읽는 법, 68-95-99.7 법칙,
+      그리고 표준화(Z-score)까지. 기대해 주세요.</p>
+
+      <div class="epilogue">
+        <h2>오늘의 마음가짐</h2>
+        <p>공식은 잊어도 괜찮아요. 언제든 다시 찾아볼 수 있으니까요.</p>
+        <p>대신 <em>그림 한 장</em>은 가슴에 남겨요. 봉우리의 위치와 폭이
+        우리가 보는 세상의 거의 전부를 말해줘요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 4강, 마침 —</p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

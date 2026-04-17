@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>1강 · 통계 첫걸음 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">1강 통계 첫걸음</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="index.html" class="disabled" aria-label="이전 강의">◀</a>
+    <a href="lecture02.html" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<!-- ═══════ 레이아웃 ═══════ -->
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html" class="active"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">왜 통계를 배울까</a></li>
+      <li><a href="#ch2">통계의 두 얼굴</a></li>
+      <li><a href="#ch3">한 학기 여행 지도</a></li>
+      <li><a href="#ch4">변수와 데이터</a></li>
+      <li><a href="#ch5">변수의 종류</a></li>
+      <li><a href="#ch6">요약표</a></li>
+      <li><a href="#ch7">분할표</a></li>
+      <li><a href="#ch8">세 가지 정규화</a></li>
+      <li><a href="#ch9">도수분포표</a></li>
+      <li><a href="#ch10">상대·누적도수</a></li>
+      <li><a href="#ch11">범주형 시각화</a></li>
+      <li><a href="#ch12">히스토그램</a></li>
+      <li><a href="#ch13">산점도·시계열·폴리곤</a></li>
+      <li><a href="#ch14">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="01"><!-- populated by app.js --></div>
+  </aside>
+
+  <!-- ─── 본문 ─── -->
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 01<br>Descriptive Statistics Part 1</div>
+      <h1>통계 첫걸음
+        <span class="small">— 숫자로 세상을 읽는 첫 번째 수업</span>
+      </h1>
+      <p class="lead">
+        통계라는 말만 들어도 머리가 아픈가요? 괜찮아요.<br>
+        이 책은 낯선 단어부터 하나씩 풀어주는 안내서입니다.<br>
+        차 한 잔과 함께 편하게 시작해 보세요.
+      </p>
+    </div>
+
+    <!-- ═══════ 여는 글 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · 숫자가 말을 걸어올 때</h2>
+      <div class="chap-sub">첫 장을 넘기기 전에</div>
+
+      <p class="story">
+        어느 아침, 기상청이 말해줘요. <strong>"강수 확률 70%"</strong>.
+        짧지만 대단한 문장이에요.
+      </p>
+
+      <p class="story">
+        과거에 비슷한 날씨였던 수천 번의 하루. 그 중 약 70%에서 비가 왔다는 뜻입니다.
+        수많은 <em>데이터</em>에서 뽑아낸 한 줄의 결론이죠.
+      </p>
+
+      <p class="story">
+        세상은 이렇게 숫자로 말을 걸어와요. "평균 점수 72점", "물가 3.2% 상승",
+        "베스트셀러 라면 1위"… 모두 숫자입니다. 이 숫자 더미를 <em>쓸 만한
+        정보</em>로 바꿔주는 기술. 그게 <strong>통계학</strong>이에요.
+      </p>
+
+      <div class="callout">
+        <div class="label">함께할 약속</div>
+        <p>낯선 단어는 그 자리에서 풀어드려요. 수식은 이야기 먼저,
+        식은 나중. 표와 그래프는 "왜 그렇게 생겼나"부터 설명해요.
+        길을 잃으면 왼쪽 목차를 눌러주세요.</p>
+      </div>
+
+    </section>
+
+    <!-- ═══════ 1장 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>왜 통계를 배울까</h2>
+      <div class="chap-sub">Why Statistics? — 교수님의 첫 질문</div>
+
+      <p>수업 첫 장면에서 교수님이 유튜브 영상을 보여주세요.
+      <em>Eric Newburger</em> 씨가 출연해 한 가지 질문을 던집니다.
+      "왜 통계를 배워야 하죠?" 영상의 핵심은 네 가지예요.</p>
+
+      <div class="callout blue">
+        <div class="label">Why Statistics? — 영상 요지</div>
+        <p><strong>① 세상은 너무 큼.</strong> 전 국민에게 일일이 물어볼 수 없어요.</p>
+        <p><strong>② 일부로 전체를 짐작.</strong> 이걸 잘 정리한 학문이 통계예요.</p>
+        <p><strong>③ 결정의 언어.</strong> 회사, 정부, 의사. 모두의 판단에 통계가 깔려 있어요.</p>
+        <p><strong>④ 숫자에 속지 않는 힘.</strong> 통계를 알면 숫자 너머가 보여요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>김치 맛 보기로 비유해 볼까요.</strong></p>
+        <p>큰 항아리에 김치가 가득해요. 맛을 알려면 항아리를 다 먹어야 할까요? 아니죠.
+        젓가락으로 한 점이면 충분합니다.</p>
+        <p>그 한 점이 <strong>표본(sample)</strong>. 항아리 전체가 <strong>모집단
+        (population)</strong>이에요. 한 점에서 전체를 추리하는 것, 그게 통계예요.</p>
+      </div>
+
+      <blockquote class="pull">
+        통계는 계산이 아니에요.<br>
+        <em>세상을 읽는 눈</em>입니다.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        한 줌으로 온 들판을 본다 — 이게 통계의 힘.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 2장 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>통계의 두 얼굴</h2>
+      <div class="chap-sub">Descriptive vs. Inferential</div>
+
+      <div class="definition">
+        <div class="term">Statistics · 통계학</div>
+        <div class="kor">통계학이란</div>
+        <p style="margin:0">데이터를 <strong>쓸 만한 정보</strong>로 바꾸는
+        수학의 한 갈래. 한 줄로 말하면 "숫자 더미 → 결정을 돕는 답"이에요.</p>
+      </div>
+
+      <p>통계학 안에는 형제가 둘 있어요. 기술통계와 추리통계.
+      이름은 어려워 보여도, 하는 일은 단순합니다.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>Descriptive</h5>
+          <div class="kor-sub">기술 통계학</div>
+          <p>손에 있는 데이터를 <em>정리하고 보여주는</em> 일. "우리 반 평균은 78점"처럼요.</p>
+          <ul>
+            <li>수집 (Collecting)</li>
+            <li>요약 (Summarizing)</li>
+            <li>시각화 (Presenting)</li>
+            <li>분석 (Analyzing)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h5>Inferential</h5>
+          <div class="kor-sub">추리 통계학</div>
+          <p>작은 표본으로 <em>큰 모집단을 짐작</em>. "우리 반 결과로 전국 수준을 예측해요."</p>
+          <ul>
+            <li>표본 → 모집단 추론</li>
+            <li>확률을 이용한 판단</li>
+            <li>가설 검증</li>
+            <li>예측</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <p><strong>탐정 이야기로 비유해볼까요.</strong></p>
+        <p>현장에 도착한 탐정. 발자국, 지문, CCTV를 깔끔히 정리해요. 이게 <strong>기술통계</strong>.</p>
+        <p>"이 발자국이면 키 175cm의 남자다"라고 짐작하는 단계. 이게 <strong>추리통계</strong>예요.</p>
+        <p>1~6주차엔 현장 정리법을 배우고, 7주차부터 범인 추리법을 배웁니다.</p>
+      </div>
+
+      <!-- 다이어그램 -->
+      <div class="chart-wrap">
+        <div class="chart-title">Statistics 가족 관계도</div>
+        <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+          <rect x="200" y="20" width="300" height="70" rx="8" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="350" y="50" text-anchor="middle" font-family="Nanum Myeongjo" font-size="20" font-weight="700" fill="#1e3a8a">Statistics</text>
+          <text x="350" y="75" text-anchor="middle" font-size="12" fill="#6b6b6b">데이터 → 유용한 정보</text>
+          <path d="M 280 90 L 160 170" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+          <path d="M 420 90 L 540 170" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/>
+            </marker>
+          </defs>
+          <rect x="30" y="180" width="260" height="110" rx="8" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="160" y="210" text-anchor="middle" font-weight="700" font-size="17" fill="#c0392b" font-family="Nanum Myeongjo">Descriptive</text>
+          <text x="160" y="230" text-anchor="middle" font-size="12" fill="#6b6b6b">기술통계학</text>
+          <text x="160" y="257" text-anchor="middle" font-size="13" fill="#1d1d1f">수집 · 요약</text>
+          <text x="160" y="275" text-anchor="middle" font-size="13" fill="#1d1d1f">정리 · 시각화</text>
+          <rect x="410" y="180" width="260" height="110" rx="8" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="540" y="210" text-anchor="middle" font-weight="700" font-size="17" fill="#1e3a8a" font-family="Nanum Myeongjo">Inferential</text>
+          <text x="540" y="230" text-anchor="middle" font-size="12" fill="#6b6b6b">추리통계학</text>
+          <text x="540" y="257" text-anchor="middle" font-size="13" fill="#1d1d1f">작은 표본으로</text>
+          <text x="540" y="275" text-anchor="middle" font-size="13" fill="#1d1d1f">큰 모집단을 짐작</text>
+        </svg>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        정리하는 기술통계 · 추리하는 추리통계. 두 형제가 통계를 이끌어요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 3장 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>한 학기 여행 지도</h2>
+      <div class="chap-sub">어디로 가는지 미리 엿보기</div>
+
+      <p>교수님이 한 학기 지도를 먼저 펼쳐 보여주세요.
+      지금은 이름만 스쳐도 충분해요. "이런 정거장이 있구나" 정도.</p>
+
+      <h3>Part 1 · 기술통계</h3>
+      <div class="table-scroll">
+      <table class="green-head center">
+        <thead><tr><th>주차</th><th>주제</th><th>교재</th></tr></thead>
+        <tbody>
+          <tr><td>1주차</td><td>통계 소개 · 그래프로 데이터 그리기</td><td>Ch. 1, 2</td></tr>
+          <tr><td>2주차</td><td>숫자로 데이터 요약하기</td><td>Ch. 3</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Part 2 · 확률</h3>
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <thead><tr><th>주차</th><th>주제</th><th>교재</th></tr></thead>
+        <tbody>
+          <tr><td>3주차</td><td>확률</td><td>Ch. 4</td></tr>
+          <tr><td>4주차</td><td>이산 확률 분포</td><td>Ch. 5</td></tr>
+          <tr><td>5주차</td><td>연속 확률 분포</td><td>Ch. 6</td></tr>
+          <tr><td>6주차</td><td>표본추출과 표본분포</td><td>Ch. 7</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Part 3 · 추리통계</h3>
+      <div class="table-scroll">
+      <table class="center">
+        <thead><tr><th>주차</th><th>주제</th><th>교재</th></tr></thead>
+        <tbody>
+          <tr><td>7주차</td><td>신뢰구간 추정</td><td>Ch. 8</td></tr>
+          <tr><td>8주차</td><td>가설 검정</td><td>Ch. 9</td></tr>
+          <tr><td>9주차</td><td>두 표본 검정</td><td>Ch. 10</td></tr>
+          <tr><td>10주차</td><td>단순 회귀분석</td><td>Ch. 13</td></tr>
+          <tr><td>11주차</td><td>분산분석 (ANOVA)</td><td>Ch. 11</td></tr>
+          <tr><td>12주차</td><td>다중 회귀분석</td><td>Ch. 14</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">길잡이</div>
+        <p>먼저 <em>정리·그리기</em>(1~2주). 다음은 <em>확률의 법칙</em>(3~6주).
+        마지막은 <em>결론 내리기</em>(7~12주). 요리 수업과 같아요. 재료 손질 →
+        불 사용 → 손님에게 내놓기 순서예요.</p>
+      </div>
+
+    </section>
+
+    <!-- ═══════ 4장 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>변수와 데이터</h2>
+      <div class="chap-sub">가장 자주 만날 세 단어</div>
+
+      <p>본격적인 이야기 전에, 세 단어와 인사부터 해요.
+      얼굴만 익혀두면 나머지가 편해집니다.</p>
+
+      <div class="definition">
+        <div class="term">Variable · 변수</div>
+        <div class="kor">항목이나 개인의 "특성"</div>
+        <p>변수는 우리가 관심 있는 하나의 <em>질문</em>이에요.
+        "키가 몇 cm?" 여기서 키가 변수예요. 사람마다 답이 다르니까 "변할 변(變)"을 써요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Data · 데이터</div>
+        <div class="kor">변수에 대한 "대답들"</div>
+        <p>변수가 질문이라면, 데이터는 실제 대답들의 모임이에요.
+        "키"라는 질문에 30명이 답했다면 {162, 178, 155, …} 이 숫자 더미가 데이터.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Statistics · 통계학</div>
+        <div class="kor">데이터 → 정보로 바꾸는 기술</div>
+        <p>날것의 숫자를 결정에 쓸 수 있는 정보로 바꿔주는 방법들의 모음이에요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>빵집 이야기.</strong></p>
+        <p>· 변수 = "어떤 빵을 좋아하세요?"라는 질문<br>
+        · 데이터 = 100명의 손님 대답들<br>
+        · 통계학 = "내일은 단팥빵을 더 굽자"로 이어지는 주방장의 판단</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        변수 = 질문. 데이터 = 대답들. 통계 = 그 대답을 쓸 수 있게 만드는 기술.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>변수의 종류</h2>
+      <div class="chap-sub">Types of Variables</div>
+
+      <p>변수라고 다 같진 않아요. 성격에 따라 둘로 나뉩니다.
+      어떤 그래프를 쓸 수 있는지, 평균을 낼 수 있는지가 달라져요.</p>
+
+      <!-- 다이어그램 -->
+      <div class="chart-wrap">
+        <div class="chart-title">변수 가계도</div>
+        <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+          <rect x="280" y="10" width="160" height="50" rx="8" fill="#1d1d1f"/>
+          <text x="360" y="40" text-anchor="middle" fill="#fff" font-family="Nanum Myeongjo" font-size="18" font-weight="700">변수 Variable</text>
+          <path d="M 330 60 L 170 120" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+          <path d="M 390 60 L 560 120" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+          <defs>
+            <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/>
+            </marker>
+          </defs>
+          <rect x="40" y="130" width="260" height="70" rx="8" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="170" y="158" text-anchor="middle" font-weight="700" font-size="16" fill="#c0392b" font-family="Nanum Myeongjo">범주형 Categorical</text>
+          <text x="170" y="180" text-anchor="middle" font-size="12" fill="#6b6b6b">종류로만 나뉨</text>
+          <rect x="420" y="130" width="260" height="70" rx="8" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="550" y="158" text-anchor="middle" font-weight="700" font-size="16" fill="#1e3a8a" font-family="Nanum Myeongjo">수치형 Numerical</text>
+          <text x="550" y="180" text-anchor="middle" font-size="12" fill="#6b6b6b">크기를 가진 숫자</text>
+          <path d="M 500 200 L 380 280" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arr3)"/>
+          <path d="M 600 200 L 610 280" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arr3)"/>
+          <defs>
+            <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e3a8a"/>
+            </marker>
+          </defs>
+          <rect x="260" y="285" width="240" height="80" rx="8" fill="#fff" stroke="#1e3a8a" stroke-width="1.5"/>
+          <text x="380" y="310" text-anchor="middle" font-weight="700" font-size="14" fill="#1e3a8a">이산 Discrete</text>
+          <text x="380" y="332" text-anchor="middle" font-size="12" fill="#6b6b6b">세어서 얻는 값</text>
+          <text x="380" y="350" text-anchor="middle" font-size="11" fill="#6b6b6b">예: 나이, 학년</text>
+          <rect x="520" y="285" width="170" height="80" rx="8" fill="#fff" stroke="#1e3a8a" stroke-width="1.5"/>
+          <text x="605" y="310" text-anchor="middle" font-weight="700" font-size="14" fill="#1e3a8a">연속 Continuous</text>
+          <text x="605" y="332" text-anchor="middle" font-size="12" fill="#6b6b6b">측정해서 얻는 값</text>
+          <text x="605" y="350" text-anchor="middle" font-size="11" fill="#6b6b6b">예: 키, 몸무게</text>
+        </svg>
+      </div>
+
+      <h3>범주형 변수</h3>
+      <p>값이 종류나 이름으로만 나뉘는 변수예요.
+      "사과"와 "배"는 크기 비교가 안 되잖아요. 이런 게 범주형입니다.</p>
+
+      <div class="callout green">
+        <div class="label">EXAMPLE</div>
+        <p><strong>전공</strong> (경영, 컴공, 디자인), <strong>혈액형</strong>
+        (A, B, O, AB), <strong>국적</strong>, <strong>예/아니오</strong> 응답.</p>
+      </div>
+
+      <h3>수치형 변수</h3>
+      <p>값이 <em>양</em>인 변수. 평균과 덧셈이 가능해요.
+      수치형은 다시 두 종류로 나뉩니다.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>이산 Discrete</h5>
+          <div class="kor-sub">세는 과정</div>
+          <p>하나, 둘, 셋… 딱 떨어지는 값만 나와요.
+          반 친구 수가 32.5명일 순 없잖아요.</p>
+          <ul>
+            <li>나이</li>
+            <li>학년</li>
+            <li>가족 수</li>
+            <li>영화 본 편수</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h5>연속 Continuous</h5>
+          <div class="kor-sub">재는 과정</div>
+          <p>자와 저울로 잰 값. 이론상 소수점 아래로 쪼갤 수 있어요.
+          키가 170.31cm도 가능하죠.</p>
+          <ul>
+            <li>키</li>
+            <li>몸무게</li>
+            <li>시간</li>
+            <li>온도</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <p><strong>간단한 감별법.</strong></p>
+        <p>"이걸 <em>세나요, 재나요?</em>" 세면 이산, 재면 연속.</p>
+        <p>"숫자로 바꿀 수 있나요?" 못 바꾸면 범주형.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        이름이면 범주형. 세면 이산. 재면 연속.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>요약표 — 줄 세우기의 마법</h2>
+      <div class="chap-sub">Summary Table</div>
+
+      <p>은행이 1,000명에게 물었어요. "은행 업무, 어떤 걸 선호하세요?"</p>
+      <p>대답 1,000개가 흩뿌려져 있으면 읽기 어렵죠.</p>
+      <p><strong>요약표</strong>는 종류별로 몇 명이 답했는지 <em>세어 놓은 표</em>예요.</p>
+
+      <div class="definition">
+        <div class="term">Summary Table · 요약표</div>
+        <div class="kor">한 범주형 변수의 빈도표</div>
+        <p>범주마다 <em>몇 개</em>인지(빈도) 또는 <em>몇 %</em>인지(비율)를
+        한 줄씩 적어놓은 표예요. 범주 간 차이를 바로 읽을 수 있어요.</p>
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>은행 고객 1,000명 설문</caption>
+        <thead>
+          <tr><th>선호 방식</th><th>응답 수</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ATM</td><td>160</td></tr>
+          <tr><td>자동/상담 전화</td><td>20</td></tr>
+          <tr><td>드라이브스루</td><td>170</td></tr>
+          <tr><td>지점 방문</td><td class="hi">410</td></tr>
+          <tr><td>인터넷 뱅킹</td><td>240</td></tr>
+          <tr><td><strong>합계</strong></td><td><strong>1,000</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>한눈에 보이죠? 가장 많은 사람이 <strong>지점 방문</strong>(410명).
+      전화는 거의 안 써요(20명). 요약표는 <em>카테고리 간 차이</em>를 바로 보여줘요.</p>
+
+      <h3>퍼센트로 바꾸면 말을 더 잘해요</h3>
+      <p>응답 수를 <strong>비율(%)</strong>로 바꾸면 해석이 쉬워져요.
+      전체가 몇 명이든 100%로 맞추니까요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>같은 표를 백분율로</caption>
+        <thead><tr><th>선호 방식</th><th>비율</th></tr></thead>
+        <tbody>
+          <tr><td>ATM</td><td>16 %</td></tr>
+          <tr><td>자동/상담 전화</td><td>2 %</td></tr>
+          <tr><td>드라이브스루</td><td>17 %</td></tr>
+          <tr><td>지점 방문</td><td class="hi">41 %</td></tr>
+          <tr><td>인터넷 뱅킹</td><td>24 %</td></tr>
+          <tr><td><strong>합계</strong></td><td><strong>100 %</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout">
+        <div class="label">왜 비율일까</div>
+        <p>응답 수는 이 1,000명만의 이야기. 비율은 "전체 고객이 1억 명이어도
+        아마 41%가 지점을 방문할 것"을 짐작하게 해줘요.</p>
+        <p>표본(sample)이라는 창문으로 모집단(population)이라는 방을 들여다보는 거예요.</p>
+      </div>
+
+      <blockquote class="pull">
+        표본은 <em>한 움큼</em>.<br>
+        모집단은 그 움큼이 나온 <em>온 들판</em>.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        종류별로 세어 표에. 그리고 %로 바꾸면 어디든 통해요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>분할표 — 두 질문을 한 눈에</h2>
+      <div class="chap-sub">Contingency Table · 分割表</div>
+
+      <p>요약표는 질문 하나를 다뤄요.</p>
+      <p>분할표는 <strong>두 질문을 동시에</strong> 봅니다.</p>
+      <p>두 범주형 변수 사이에 관계가 있는지 궁금할 때 써요.</p>
+
+      <div class="definition">
+        <div class="term">Contingency Table · 분할표</div>
+        <div class="kor">두 범주형 변수의 교차표</div>
+        <p>두 변수의 응답을 <em>가로 × 세로</em>로 교차시켜,
+        각 조합의 빈도를 한 셀에 적은 표예요.
+        한 변수는 행, 다른 변수는 열에 놓여요.</p>
+      </div>
+
+      <h4>예시 · 송장 400장 검사</h4>
+      <p>송장 400장을 무작위로 뽑아 두 가지를 확인했어요.</p>
+      <ul>
+        <li><strong>변수 1:</strong> 금액 — 소액 / 중액 / 고액</li>
+        <li><strong>변수 2:</strong> 오류 — 있음 / 없음</li>
+      </ul>
+      <p>두 질문을 가로 × 세로로 교차시켜 장수를 적으면 이렇게 돼요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>송장 400장 · 금액 × 오류 (단위: 장)</caption>
+        <thead>
+          <tr><th>금액 / 오류</th><th>오류 없음</th><th>오류 있음</th><th>행 합계</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>소액</td><td>170</td><td>20</td><td><strong>190</strong></td></tr>
+          <tr><td>중액</td><td>100</td><td>40</td><td><strong>140</strong></td></tr>
+          <tr><td>고액</td><td>65</td><td>5</td><td><strong>70</strong></td></tr>
+          <tr><td><strong>열 합계</strong></td><td><strong>335</strong></td><td><strong>65</strong></td><td class="hi"><strong>400</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">표 읽기</div>
+        <p>오른쪽 아래 <strong>400</strong>이 전체. 행 끝은 금액별 합계, 열 끝은 오류별 합계예요.
+        가운데 6개 칸은 각 조합의 장수. "중액 + 오류"는 40장이에요.</p>
+      </div>
+
+      <p>숫자만으로도 많이 보여요.</p>
+      <p>그런데 <strong>비율</strong>로 바꾸면 더 재미있는 이야기가 숨어 있어요.</p>
+      <p>같은 표를 세 가지 렌즈로 볼 수 있거든요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        분할표 = 두 질문의 교차로. 한 칸은 두 답의 <em>공동 빈도</em>예요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 8장 ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>세 가지 정규화</h2>
+      <div class="chap-sub">같은 표, 세 개의 렌즈</div>
+
+      <p>"정규화(normalize)"는 어렵게 들리죠. 사실 간단해요.
+      <strong>무엇을 분모로 삼을까</strong>를 정하는 일이에요.
+      기준이 바뀌면 숫자의 의미도 바뀝니다.</p>
+
+      <!-- ─── ① 전체 기준 ─── -->
+      <h3>① 전체 합계를 분모로</h3>
+      <p>질문이 이런 류라면 이 방법이에요.</p>
+      <ul>
+        <li>전체 중 <em>오류 없는</em> 비율은?</li>
+        <li><em>중액</em>을 뽑을 확률은?</li>
+        <li><em>소액이면서 오류 없는</em> 비율은?</li>
+      </ul>
+
+      <p class="arrow-note">→ 모든 칸을 <strong>전체(400)</strong>로 나눠요.</p>
+
+      <div class="formula">
+        비율 = <span class="frac"><span class="num">해당 칸 빈도</span><span class="den">전체(400)</span></span>
+      </div>
+
+      <div class="data-strip">
+        170 / <strong>400</strong> = 42.50 %<br>
+        100 / <strong>400</strong> = 25.00 %<br>
+        &nbsp;65 / <strong>400</strong> = 16.25 %
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>전체 400을 분모로</caption>
+        <thead><tr><th></th><th>오류 없음</th><th>오류 있음</th><th>행 합계</th></tr></thead>
+        <tbody>
+          <tr><td>소액</td><td>42.50 %</td><td>5.00 %</td><td>47.50 %</td></tr>
+          <tr><td>중액</td><td>25.00 %</td><td>10.00 %</td><td>35.00 %</td></tr>
+          <tr><td>고액</td><td>16.25 %</td><td>1.25 %</td><td>17.50 %</td></tr>
+          <tr><td><strong>열 합계</strong></td><td class="hi"><strong>83.75 %</strong></td><td><strong>16.25 %</strong></td><td><strong>100 %</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">읽어낸 이야기</div>
+        <p>전체의 <strong>83.75%</strong>는 오류 없이 처리. <strong>47.50%</strong>는 소액이었어요.</p>
+      </div>
+
+      <!-- ─── ② 행 기준 ─── -->
+      <h3>② 행 합계를 분모로</h3>
+      <p>질문이 살짝 바뀌어요.</p>
+      <ul>
+        <li><em>중액만 놓고</em> 봤을 때, 오류 없을 확률은?</li>
+        <li><em>소액 중에</em> 오류 있는 비율은?</li>
+      </ul>
+
+      <p>"금액이 어떤지"가 이미 정해진 상황. 그 안에서 오류 비율을 묻는 거예요.
+      분모는 자기 <strong>행의 합계</strong>.</p>
+
+      <p class="arrow-note">→ 각 칸을 <strong>자기 행의 합계</strong>로 나눠요.</p>
+
+      <div class="data-strip">
+        170 / <strong>190</strong> = 89.47 %  ← 소액 행<br>
+        100 / <strong>140</strong> = 71.43 %  ← 중액 행<br>
+        &nbsp;65 / <strong>70</strong>&nbsp; = 92.86 %  ← 고액 행
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>행 합계를 분모로</caption>
+        <thead><tr><th></th><th>오류 없음</th><th>오류 있음</th><th>행 합계</th></tr></thead>
+        <tbody>
+          <tr><td>소액</td><td>89.47 %</td><td>10.53 %</td><td>100 %</td></tr>
+          <tr><td>중액</td><td>71.43 %</td><td class="hi">28.57 %</td><td>100 %</td></tr>
+          <tr><td>고액</td><td>92.86 %</td><td>7.14 %</td><td>100 %</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">새 이야기</div>
+        <p><strong>중액(28.57%)</strong>이 소액(10.53%)이나 고액(7.14%)보다
+        오류가 훨씬 많아요. 첫 표에서는 안 보이던 사실이에요.</p>
+      </div>
+
+      <!-- ─── ③ 열 기준 ─── -->
+      <h3>③ 열 합계를 분모로</h3>
+      <p>이번엔 이런 질문들.</p>
+      <ul>
+        <li><em>오류가 있는</em> 송장 중에 고액일 확률은?</li>
+        <li><em>오류 없는</em> 송장 중에 소액인 비율은?</li>
+      </ul>
+
+      <p class="arrow-note">→ 각 칸을 <strong>자기 열의 합계</strong>로 나눠요.</p>
+
+      <div class="data-strip">
+        170 / <strong>335</strong> = 50.75 %  ← 오류 없음 열<br>
+        &nbsp;20 / <strong>65</strong>&nbsp; = 30.77 %  ← 오류 있음 열
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>열 합계를 분모로</caption>
+        <thead><tr><th></th><th>오류 없음</th><th>오류 있음</th><th>행 합계</th></tr></thead>
+        <tbody>
+          <tr><td>소액</td><td>50.75 %</td><td>30.77 %</td><td>47.50 %</td></tr>
+          <tr><td>중액</td><td>29.85 %</td><td class="hi">61.54 %</td><td>35.00 %</td></tr>
+          <tr><td>고액</td><td>19.40 %</td><td>7.69 %</td><td>17.50 %</td></tr>
+          <tr><td><strong>열 합계</strong></td><td><strong>100 %</strong></td><td><strong>100 %</strong></td><td></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">경영의 힌트</div>
+        <p>오류가 난 송장의 <strong>61.54%</strong>가 중액이에요.
+        "중액 처리 과정에 문제가 있다!"는 단서죠. 표 하나가 경영 결정으로 이어져요.</p>
+      </div>
+
+      <blockquote class="pull">
+        같은 숫자, 다른 분모.<br>
+        <em>기준이 이야기를 바꿔요.</em>
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        전체 · 행 · 열. 분모 셋이 세 가지 다른 답을 준다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 9장 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>도수분포표 — 숫자를 방에 넣자</h2>
+      <div class="chap-sub">Frequency Distribution</div>
+
+      <p>여기까진 범주형 데이터였어요.</p>
+      <p>이제 <em>수치형</em>으로 넘어갑니다.</p>
+      <p>수치형은 값이 다 달라서 그대로 보면 어지러워요.
+      그래서 <strong>구간(class)</strong>이라는 방을 만들고 거기 넣어요.
+      이 방들을 모은 표가 <strong>도수분포표</strong>입니다.</p>
+
+      <div class="definition">
+        <div class="term">Frequency Distribution · 도수분포표</div>
+        <div class="kor">수치형 데이터를 구간으로 묶은 표</div>
+        <p>수치형 변수의 값들을 순서대로 정렬해 동일한 너비의
+        <em>방(class)</em>에 넣고, 방마다 몇 개가 들어갔는지(도수) 센 표예요.
+        "어디에 몰려 있는가"가 한눈에 보여요.</p>
+      </div>
+
+      <h4>좋은 도수분포표의 세 원칙</h4>
+      <ul>
+        <li><strong>적절한 방 개수</strong> — 보통 5~15개.</li>
+        <li><strong>같은 방 너비</strong> — 크기를 일정하게.</li>
+        <li><strong>겹치지 않는 경계</strong> — 한 숫자는 한 방에만.</li>
+      </ul>
+
+      <h3>예시 · 겨울 20일의 최고 기온</h3>
+      <p>단열재 회사가 겨울 20일의 최고 기온(℉)을 기록했어요.</p>
+
+      <div class="data-strip">
+        24, 35, 17, 21, 24, 37, 26, 46, 58, 30, 32, 13, 12, 38, 41, 43, 44, 27, 53, 27
+      </div>
+
+      <p>이대로는 패턴이 안 보여요. 7단계 레시피를 따라가 볼게요.</p>
+
+      <ol class="steps">
+        <li><strong>오름차순 정렬.</strong>
+          <div class="data-strip" style="margin-top:8px">
+            12, 13, 17, 21, 24, 24, 26, 27, 27, 30, 32, 35, 37, 38, 41, 43, 44, 46, 53, 58
+          </div>
+        </li>
+        <li><strong>범위 구하기.</strong> 최고(60) − 최저(10) = 50.</li>
+        <li><strong>방 개수 정하기.</strong> 5개로 해요.</li>
+        <li><strong>방 너비 계산.</strong>
+          <div class="formula">
+            너비 = <span class="frac"><span class="num">50</span><span class="den">5</span></span> = 10
+          </div>
+        </li>
+        <li><strong>방 경계 정하기.</strong>
+          <ul style="margin-top:6px">
+            <li>10 이상 ~ 20 미만</li>
+            <li>20 이상 ~ 30 미만</li>
+            <li>30 이상 ~ 40 미만</li>
+            <li>40 이상 ~ 50 미만</li>
+            <li>50 이상 ~ 60 미만</li>
+          </ul>
+        </li>
+        <li><strong>중간값 기록.</strong> 15, 25, 35, 45, 55</li>
+        <li><strong>데이터를 방에 넣고 세기.</strong></li>
+      </ol>
+
+      <div class="table-scroll">
+      <table class="green-head center">
+        <caption>도수분포표 완성</caption>
+        <thead><tr><th>구간</th><th>중간값</th><th>도수</th></tr></thead>
+        <tbody>
+          <tr><td>10 ≤ x &lt; 20</td><td>15</td><td>3</td></tr>
+          <tr><td>20 ≤ x &lt; 30</td><td>25</td><td class="hi">6</td></tr>
+          <tr><td>30 ≤ x &lt; 40</td><td>35</td><td>5</td></tr>
+          <tr><td>40 ≤ x &lt; 50</td><td>45</td><td>4</td></tr>
+          <tr><td>50 ≤ x &lt; 60</td><td>55</td><td>2</td></tr>
+          <tr><td><strong>합계</strong></td><td></td><td><strong>20</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout">
+        <div class="label">한 줄 결론</div>
+        <p>20일 중 가장 많은 6일이 20~30℉ 사이였어요.
+        원본 숫자 20개를 볼 땐 안 보이던 <em>데이터의 집중점</em>이 한눈에 보여요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        수치형은 방을 만들어 세요. 데이터가 어디 몰렸는지가 보인다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 10장 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>상대도수 · 누적도수</h2>
+      <div class="chap-sub">Relative &amp; Cumulative Frequency</div>
+
+      <h3>상대도수와 백분율</h3>
+      <p>도수만 보면 문제가 하나 있어요.
+      20개짜리 표의 "6개"와 50개짜리 표의 "12개". 어느 게 더 클까요?
+      바로 비교가 안 되죠. 그래서 <strong>비율</strong>을 씁니다.</p>
+
+      <div class="formula">
+        상대도수 = <span class="frac"><span class="num">해당 방의 도수</span><span class="den">전체 개수</span></span>
+        &nbsp;·&nbsp; 백분율 = 상대도수 × 100%
+      </div>
+
+      <div class="table-scroll">
+      <table class="green-head center">
+        <caption>상대도수 · 백분율 추가</caption>
+        <thead>
+          <tr><th>구간</th><th>중간값</th><th>도수</th><th>상대도수</th><th>백분율</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10 ≤ x &lt; 20</td><td>15</td><td>3</td><td>0.15</td><td>15 %</td></tr>
+          <tr><td>20 ≤ x &lt; 30</td><td>25</td><td>6</td><td>0.30</td><td>30 %</td></tr>
+          <tr><td>30 ≤ x &lt; 40</td><td>35</td><td>5</td><td>0.25</td><td>25 %</td></tr>
+          <tr><td>40 ≤ x &lt; 50</td><td>45</td><td>4</td><td>0.20</td><td>20 %</td></tr>
+          <tr><td>50 ≤ x &lt; 60</td><td>55</td><td>2</td><td>0.10</td><td>10 %</td></tr>
+          <tr><td><strong>합계</strong></td><td></td><td><strong>20</strong></td><td><strong>1.00</strong></td><td><strong>100 %</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>누적도수</h3>
+      <p>이번엔 "여기까지 몇 개 쌓였는지"를 봅니다.
+      첫 방부터 차례로 더해 나가요.
+      이게 <strong>누적도수</strong>, 비율로 하면 <strong>누적백분율</strong>이에요.</p>
+
+      <div class="table-scroll">
+      <table class="green-head center">
+        <caption>누적도수까지 완성</caption>
+        <thead>
+          <tr><th>구간</th><th>도수</th><th>누적도수</th><th>%</th><th>누적 %</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10 ≤ x &lt; 20</td><td>3</td><td>3</td><td>15</td><td>15</td></tr>
+          <tr><td>20 ≤ x &lt; 30</td><td>6</td><td>9</td><td>30</td><td>45</td></tr>
+          <tr><td>30 ≤ x &lt; 40</td><td>5</td><td>14</td><td>25</td><td>70</td></tr>
+          <tr><td>40 ≤ x &lt; 50</td><td>4</td><td>18</td><td>20</td><td>90</td></tr>
+          <tr><td>50 ≤ x &lt; 60</td><td>2</td><td class="hi">20</td><td>10</td><td class="hi">100</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">누적은 왜?</div>
+        <p>"30℉ 미만인 날이 몇 %?" 바로 누적 %를 봐요. <strong>45%</strong>.
+        계단 오르듯 차곡차곡 — 특정 값 이하가 얼마인지 한 번에 알려줘요.</p>
+      </div>
+
+      <h3>왜 도수분포표를 쓸까</h3>
+      <div class="cards-2">
+        <div class="card">
+          <h5>① 압축</h5>
+          <p>숫자 20개가 몇 줄로 요약돼요.</p>
+        </div>
+        <div class="card">
+          <h5>② 시각적 해석</h5>
+          <p>어디에 몰렸는지 바로 보여요.</p>
+        </div>
+        <div class="card">
+          <h5>③ 특성 포착</h5>
+          <p>집중·치우침 같은 성격이 드러나요.</p>
+        </div>
+        <div class="card">
+          <h5>④ 비교 가능</h5>
+          <p>크기가 다른 두 집단도 비율로 맞춰 비교해요.</p>
+        </div>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">TIP</div>
+        <p>데이터가 적을수록 경계가 민감해요. 데이터가 많아지면 영향이 줄어듭니다.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        상대도수로 비교, 누적도수로 "∼이하" 읽기. 도수분포표의 두 확장.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 11장 ═══════ -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">CHAPTER 11</div>
+      <h2>범주형 데이터 그리기</h2>
+      <div class="chap-sub">Bar · Pie · Pareto</div>
+
+      <p>표는 정확해요.</p>
+      <p>하지만 "와!" 하는 감이 잘 안 와요.</p>
+      <p>그럴 땐 그림으로 바꿉니다. 범주형 대표 선수는 셋이에요.</p>
+
+      <!-- ─── Bar ─── -->
+      <h3>① 막대 그래프</h3>
+      <p>범주마다 막대 하나. 막대 길이가 크기예요.
+      단순하고 강력하죠.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Bar Chart · 은행 선호도</div>
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <line x1="180" y1="30" x2="180" y2="250" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="180" y1="250" x2="620" y2="250" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="180" y="268">0%</text><text x="260" y="268">10%</text>
+            <text x="340" y="268">20%</text><text x="420" y="268">30%</text>
+            <text x="500" y="268">40%</text><text x="580" y="268">50%</text>
+          </g>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="260" y1="30" x2="260" y2="250"/><line x1="340" y1="30" x2="340" y2="250"/>
+            <line x1="420" y1="30" x2="420" y2="250"/><line x1="500" y1="30" x2="500" y2="250"/>
+            <line x1="580" y1="30" x2="580" y2="250"/>
+          </g>
+          <rect x="180" y="45" width="328" height="28" fill="#2f6d4a"/>
+          <text x="178" y="63" text-anchor="end" font-size="12" fill="#1d1d1f">지점 방문</text>
+          <text x="516" y="63" font-size="11" fill="#1d1d1f" font-weight="700">41%</text>
+          <rect x="180" y="85" width="192" height="28" fill="#2f6d4a"/>
+          <text x="178" y="103" text-anchor="end" font-size="12" fill="#1d1d1f">인터넷</text>
+          <text x="380" y="103" font-size="11" fill="#1d1d1f" font-weight="700">24%</text>
+          <rect x="180" y="125" width="136" height="28" fill="#2f6d4a"/>
+          <text x="178" y="143" text-anchor="end" font-size="12" fill="#1d1d1f">드라이브스루</text>
+          <text x="324" y="143" font-size="11" fill="#1d1d1f" font-weight="700">17%</text>
+          <rect x="180" y="165" width="128" height="28" fill="#2f6d4a"/>
+          <text x="178" y="183" text-anchor="end" font-size="12" fill="#1d1d1f">ATM</text>
+          <text x="316" y="183" font-size="11" fill="#1d1d1f" font-weight="700">16%</text>
+          <rect x="180" y="205" width="16" height="28" fill="#2f6d4a"/>
+          <text x="178" y="223" text-anchor="end" font-size="12" fill="#1d1d1f">전화</text>
+          <text x="204" y="223" font-size="11" fill="#1d1d1f" font-weight="700">2%</text>
+        </svg>
+        <div class="chart-caption">길이 하나로 "지점 방문이 압도적"이 바로 보여요.</div>
+      </div>
+
+      <!-- ─── Pie ─── -->
+      <h3>② 파이 차트</h3>
+      <p>동그란 파이를 조각으로 나눠요. 전체 중 몫을 보여주는 데 최고예요.</p>
+
+      <div class="formula">조각의 중심각 = 비율 × 360°</div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Pie Chart · 은행 선호도</div>
+        <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(160,140)">
+            <path d="M 0 0 L 0 -110 A 110 110 0 0 1 92.88 -59.30 Z" fill="#3b82f6"/>
+            <path d="M 0 0 L 92.88 -59.30 A 110 110 0 0 1 99.56 -46.74 Z" fill="#f97316"/>
+            <path d="M 0 0 L 99.56 -46.74 A 110 110 0 0 1 88.98 64.69 Z" fill="#94a3b8"/>
+            <path d="M 0 0 L 88.98 64.69 A 110 110 0 0 1 -109.78 -6.97 Z" fill="#f59e0b"/>
+            <path d="M 0 0 L -109.78 -6.97 A 110 110 0 0 1 0 -110 Z" fill="#38bdf8"/>
+            <text x="50" y="-70" font-size="12" font-weight="700" fill="#fff">16%</text>
+            <text x="70" y="-40" font-size="10" font-weight="700" fill="#fff">2%</text>
+            <text x="65" y="25" font-size="12" font-weight="700" fill="#fff">17%</text>
+            <text x="-10" y="50" font-size="14" font-weight="700" fill="#fff">41%</text>
+            <text x="-70" y="-50" font-size="12" font-weight="700" fill="#fff">24%</text>
+          </g>
+          <g font-size="12" fill="#1d1d1f">
+            <rect x="330" y="50" width="14" height="14" fill="#3b82f6"/><text x="352" y="62">ATM (16%)</text>
+            <rect x="330" y="75" width="14" height="14" fill="#f97316"/><text x="352" y="87">전화 (2%)</text>
+            <rect x="330" y="100" width="14" height="14" fill="#94a3b8"/><text x="352" y="112">드라이브 (17%)</text>
+            <rect x="330" y="125" width="14" height="14" fill="#f59e0b"/><text x="352" y="137">지점 방문 (41%)</text>
+            <rect x="330" y="150" width="14" height="14" fill="#38bdf8"/><text x="352" y="162">인터넷 (24%)</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- ─── Pareto ─── -->
+      <h3>③ 파레토 차트</h3>
+      <p>빈도가 큰 순서로 막대를 세우고, 위에 <strong>누적선</strong>을 겹쳐요.
+      "소수가 문제의 대부분"을 찾는 도구예요.
+      파레토 법칙(흔히 80:20) 때문에 붙은 이름이에요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Pareto Chart · 은행 선호도</div>
+        <svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+          <line x1="80" y1="30" x2="80" y2="260" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="560" y1="30" x2="560" y2="260" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="80" y1="260" x2="560" y2="260" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="10" fill="#6b6b6b" text-anchor="end">
+            <text x="74" y="264">0%</text><text x="74" y="218">10%</text>
+            <text x="74" y="172">20%</text><text x="74" y="126">30%</text>
+            <text x="74" y="80">40%</text><text x="74" y="34">50%</text>
+          </g>
+          <g font-size="10" fill="#6b6b6b">
+            <text x="568" y="264">0%</text><text x="568" y="218">20%</text>
+            <text x="568" y="172">40%</text><text x="568" y="126">60%</text>
+            <text x="568" y="80">80%</text><text x="568" y="34">100%</text>
+          </g>
+          <rect x="105" y="72" width="70" height="188" fill="#884e74"/>
+          <rect x="200" y="150" width="70" height="110" fill="#884e74"/>
+          <rect x="295" y="182" width="70" height="78" fill="#884e74"/>
+          <rect x="390" y="186" width="70" height="74" fill="#884e74"/>
+          <rect x="485" y="251" width="70" height="9" fill="#884e74"/>
+          <polyline points="140,166 235,110 330,71 425,35 520,30" fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+          <g fill="#1e3a8a">
+            <circle cx="140" cy="166" r="4"/><circle cx="235" cy="110" r="4"/>
+            <circle cx="330" cy="71" r="4"/><circle cx="425" cy="35" r="4"/>
+            <circle cx="520" cy="30" r="4"/>
+          </g>
+          <g font-size="11" fill="#1d1d1f" text-anchor="middle">
+            <text x="140" y="280">지점 방문</text><text x="235" y="280">인터넷</text>
+            <text x="330" y="280">드라이브</text><text x="425" y="280">ATM</text>
+            <text x="520" y="280">전화</text>
+          </g>
+        </svg>
+        <div class="chart-caption">막대 = 각 범주 · 선 = 누적 비율</div>
+      </div>
+
+      <div class="callout">
+        <div class="label">파레토가 알려주는 것</div>
+        <p>상위 2개(지점 + 인터넷)만으로 <strong>65%</strong>. 상위 3개면 82%.
+        은행은 이 "vital few"에 집중하면 효과가 커요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        막대 = 차이 · 파이 = 몫 · 파레토 = 중요한 몇 가지 찾기.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 12장 ═══════ -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">CHAPTER 12</div>
+      <h2>히스토그램</h2>
+      <div class="chap-sub">수치형 데이터의 첫 번째 그림</div>
+
+      <p>이제 수치형 차례예요. 대표는 <strong>히스토그램</strong>.
+      막대 그래프와 닮았지만 중요한 차이가 있어요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>막대 그래프</h5>
+          <div class="kor-sub">범주형용</div>
+          <ul>
+            <li>막대 사이에 <em>틈</em></li>
+            <li>X축은 이름</li>
+            <li>순서 바꿔도 OK</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h5>히스토그램</h5>
+          <div class="kor-sub">수치형용</div>
+          <ul>
+            <li>막대끼리 <em>딱 붙음</em></li>
+            <li>X축은 구간(숫자)</li>
+            <li>순서 고정</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>히스토그램의 규칙은 이래요.</p>
+      <ul>
+        <li>X축 = 구간 경계 또는 중간값</li>
+        <li>Y축 = 도수 · 상대도수 · 백분율 중 하나</li>
+        <li>막대 높이 = 그 구간의 데이터 양</li>
+      </ul>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Histogram · 겨울 20일 최고 기온</div>
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <line x1="80" y1="30" x2="80" y2="270" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="80" y1="270" x2="560" y2="270" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="end">
+            <text x="74" y="275">0</text><text x="74" y="231">2</text>
+            <text x="74" y="187">4</text><text x="74" y="143">6</text>
+            <text x="74" y="99">8</text><text x="74" y="55">10</text>
+          </g>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="80" y1="231" x2="560" y2="231"/>
+            <line x1="80" y1="187" x2="560" y2="187"/>
+            <line x1="80" y1="143" x2="560" y2="143"/>
+            <line x1="80" y1="99" x2="560" y2="99"/>
+            <line x1="80" y1="55" x2="560" y2="55"/>
+          </g>
+          <rect x="100" y="204" width="80" height="66" fill="#2f6d4a" stroke="#1a5c3e"/>
+          <rect x="180" y="138" width="80" height="132" fill="#2f6d4a" stroke="#1a5c3e"/>
+          <rect x="260" y="160" width="80" height="110" fill="#2f6d4a" stroke="#1a5c3e"/>
+          <rect x="340" y="182" width="80" height="88" fill="#2f6d4a" stroke="#1a5c3e"/>
+          <rect x="420" y="226" width="80" height="44" fill="#2f6d4a" stroke="#1a5c3e"/>
+          <g font-size="11" fill="#fff" text-anchor="middle" font-weight="700">
+            <text x="140" y="225">3</text><text x="220" y="159">6</text>
+            <text x="300" y="181">5</text><text x="380" y="203">4</text>
+            <text x="460" y="247">2</text>
+          </g>
+          <g font-size="11" fill="#1d1d1f" text-anchor="middle">
+            <text x="140" y="288">15</text><text x="220" y="288">25</text>
+            <text x="300" y="288">35</text><text x="380" y="288">45</text>
+            <text x="460" y="288">55</text>
+          </g>
+          <text x="320" y="308" font-size="12" fill="#6b6b6b" text-anchor="middle">최고 기온 (℉)</text>
+        </svg>
+        <div class="chart-caption">20~30℉ 근처에 데이터가 가장 많이 몰려요.</div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">분포의 모양</div>
+        <p>막대들의 실루엣이 가운데에서 솟아 양옆으로 낮아져요.
+        이 봉우리 모양을 <strong>분포(distribution)</strong>라고 불러요.
+        분포는 데이터의 성격을 말해줘요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        히스토그램 = 수치형 데이터의 봉우리. 분포를 한눈에.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 13장 ═══════ -->
+    <section class="chapter" id="ch13">
+      <div class="chap-num">CHAPTER 13</div>
+      <h2>산점도 · 시계열 · 폴리곤</h2>
+      <div class="chap-sub">관계와 흐름을 그리기</div>
+
+      <!-- 산점도 -->
+      <h3>① 산점도 Scatter Plot</h3>
+      <p><strong>두 수치형 변수</strong>의 관계를 볼 때 써요.
+      X축에 한 변수, Y축에 다른 변수. 각 개체가 점 하나.</p>
+
+      <p>예: 학생 50명 × 4과목 점수. 점 하나 = (과목1, 과목N) 한 학생의 점수 짝.
+      점이 흩어진 모양에 세 가지 패턴이 있어요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">세 가지 관계 패턴</div>
+        <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(30,10)">
+            <rect x="0" y="0" width="200" height="200" fill="#fff" stroke="#e6e1d4"/>
+            <line x1="0" y1="200" x2="200" y2="200" stroke="#1d1d1f"/>
+            <line x1="0" y1="0" x2="0" y2="200" stroke="#1d1d1f"/>
+            <g fill="#3b82f6" opacity="0.75">
+              <circle cx="40" cy="160" r="4"/><circle cx="55" cy="150" r="4"/><circle cx="60" cy="140" r="4"/>
+              <circle cx="70" cy="135" r="4"/><circle cx="80" cy="120" r="4"/><circle cx="90" cy="130" r="4"/>
+              <circle cx="95" cy="110" r="4"/><circle cx="100" cy="115" r="4"/><circle cx="110" cy="95" r="4"/>
+              <circle cx="120" cy="100" r="4"/><circle cx="125" cy="85" r="4"/><circle cx="135" cy="75" r="4"/>
+              <circle cx="140" cy="90" r="4"/><circle cx="150" cy="60" r="4"/><circle cx="160" cy="50" r="4"/>
+              <circle cx="170" cy="40" r="4"/><circle cx="180" cy="25" r="4"/><circle cx="145" cy="70" r="4"/>
+              <circle cx="85" cy="125" r="4"/><circle cx="115" cy="90" r="4"/>
+            </g>
+            <text x="100" y="-2" text-anchor="middle" font-size="12" font-weight="700">A. 양의 상관</text>
+          </g>
+          <g transform="translate(250,10)">
+            <rect x="0" y="0" width="200" height="200" fill="#fff" stroke="#e6e1d4"/>
+            <line x1="0" y1="200" x2="200" y2="200" stroke="#1d1d1f"/>
+            <line x1="0" y1="0" x2="0" y2="200" stroke="#1d1d1f"/>
+            <g fill="#c0392b" opacity="0.75">
+              <circle cx="40" cy="30" r="4"/><circle cx="50" cy="45" r="4"/><circle cx="60" cy="50" r="4"/>
+              <circle cx="65" cy="70" r="4"/><circle cx="80" cy="60" r="4"/><circle cx="85" cy="80" r="4"/>
+              <circle cx="95" cy="75" r="4"/><circle cx="100" cy="100" r="4"/><circle cx="110" cy="95" r="4"/>
+              <circle cx="120" cy="110" r="4"/><circle cx="125" cy="130" r="4"/><circle cx="135" cy="125" r="4"/>
+              <circle cx="140" cy="150" r="4"/><circle cx="150" cy="140" r="4"/><circle cx="160" cy="160" r="4"/>
+              <circle cx="170" cy="170" r="4"/><circle cx="180" cy="180" r="4"/><circle cx="70" cy="90" r="4"/>
+              <circle cx="115" cy="105" r="4"/><circle cx="145" cy="135" r="4"/>
+            </g>
+            <text x="100" y="-2" text-anchor="middle" font-size="12" font-weight="700">B. 음의 상관</text>
+          </g>
+          <g transform="translate(470,10)">
+            <rect x="0" y="0" width="200" height="200" fill="#fff" stroke="#e6e1d4"/>
+            <line x1="0" y1="200" x2="200" y2="200" stroke="#1d1d1f"/>
+            <line x1="0" y1="0" x2="0" y2="200" stroke="#1d1d1f"/>
+            <g fill="#6b6b6b" opacity="0.75">
+              <circle cx="40" cy="70" r="4"/><circle cx="55" cy="120" r="4"/><circle cx="60" cy="85" r="4"/>
+              <circle cx="70" cy="140" r="4"/><circle cx="85" cy="55" r="4"/><circle cx="95" cy="95" r="4"/>
+              <circle cx="100" cy="130" r="4"/><circle cx="110" cy="70" r="4"/><circle cx="120" cy="105" r="4"/>
+              <circle cx="130" cy="80" r="4"/><circle cx="135" cy="135" r="4"/><circle cx="145" cy="65" r="4"/>
+              <circle cx="155" cy="110" r="4"/><circle cx="165" cy="90" r="4"/><circle cx="175" cy="125" r="4"/>
+              <circle cx="50" cy="100" r="4"/><circle cx="75" cy="75" r="4"/><circle cx="115" cy="150" r="4"/>
+              <circle cx="140" cy="100" r="4"/><circle cx="160" cy="75" r="4"/>
+            </g>
+            <text x="100" y="-2" text-anchor="middle" font-size="12" font-weight="700">C. 관계 없음</text>
+          </g>
+          <text x="350" y="250" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">
+            각 점 = 한 학생의 (과목1, 과목N) 점수 짝
+          </text>
+        </svg>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>A. 양의 상관</h5>
+          <p>오른쪽 위로 올라가요. X↑ → Y↑.
+          "과목1 잘한 사람이 과목2도 잘함."</p>
+        </div>
+        <div class="card">
+          <h5>B. 음의 상관</h5>
+          <p>오른쪽 아래로 내려가요. X↑ → Y↓.
+          "과목1 잘하면 과목3은 못함."</p>
+        </div>
+        <div class="card">
+          <h5>C. 관계 없음</h5>
+          <p>동그란 구름. 연관성이 뚜렷하지 않아요.</p>
+        </div>
+        <div class="card">
+          <h5>주의</h5>
+          <p>상관이 있다고 <em>원인</em>이 되는 건 아니에요.
+          나중에 더 자세히 배울 거예요.</p>
+        </div>
+      </div>
+
+      <!-- 시계열 -->
+      <h3>② 시계열 플롯</h3>
+      <p>X축이 <strong>시간</strong>인 그림이에요.
+      숫자가 시간 따라 어떻게 변하는지를 봅니다.</p>
+      <ul>
+        <li>서울 일별 평균기온</li>
+        <li>원-달러 환율</li>
+        <li>한국 연도별 GDP</li>
+      </ul>
+
+      <div class="chart-wrap">
+        <div class="chart-title">서울 월평균 기온 (2011~2021)</div>
+        <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="20" x2="50" y2="210" stroke="#1d1d1f"/>
+          <line x1="50" y1="210" x2="620" y2="210" stroke="#1d1d1f"/>
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="50" y1="40" x2="620" y2="40"/>
+            <line x1="50" y1="80" x2="620" y2="80"/>
+            <line x1="50" y1="120" x2="620" y2="120"/>
+            <line x1="50" y1="160" x2="620" y2="160"/>
+          </g>
+          <g font-size="10" fill="#6b6b6b" text-anchor="end">
+            <text x="44" y="44">30℃</text><text x="44" y="84">20℃</text>
+            <text x="44" y="124">10℃</text><text x="44" y="164">0℃</text>
+            <text x="44" y="204">-10℃</text>
+          </g>
+          <path d="M 50 180 Q 80 60 110 60 T 170 180 T 230 60 T 290 180 T 350 60 T 410 180 T 470 60 T 530 180 T 590 60 L 620 90"
+                fill="none" stroke="#2f6d4a" stroke-width="2"/>
+          <path d="M 50 160 Q 80 35 110 35 T 170 160 T 230 35 T 290 160 T 350 35 T 410 160 T 470 35 T 530 160 T 590 35 L 620 65"
+                fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.8"/>
+          <path d="M 50 200 Q 80 85 110 85 T 170 200 T 230 85 T 290 200 T 350 85 T 410 200 T 470 85 T 530 200 T 590 85 L 620 115"
+                fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.8"/>
+          <g font-size="10" fill="#6b6b6b" text-anchor="middle">
+            <text x="80" y="228">2011</text><text x="200" y="228">2013</text>
+            <text x="320" y="228">2015</text><text x="440" y="228">2017</text>
+            <text x="560" y="228">2019</text>
+          </g>
+          <g font-size="11">
+            <rect x="380" y="244" width="10" height="3" fill="#3b82f6"/><text x="395" y="248">최저</text>
+            <rect x="470" y="244" width="10" height="3" fill="#2f6d4a"/><text x="485" y="248">평균</text>
+            <rect x="550" y="244" width="10" height="3" fill="#c0392b"/><text x="565" y="248">최고</text>
+          </g>
+        </svg>
+        <div class="chart-caption">여름-겨울 파도가 매년 반복돼요. (출처: 기상청 data.kma.go.kr)</div>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시계열의 힘</div>
+        <p>계절성(매년 반복)·추세(장기 방향)·이상치(튀는 값)를 한 장에 담아요.
+        경제·기후·주가 분석의 출발점이에요.</p>
+      </div>
+
+      <!-- 폴리곤 -->
+      <h3>③ 퍼센트 폴리곤과 오자이브</h3>
+      <p>도수분포표를 선으로 그리는 두 방식이에요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>퍼센트 폴리곤</h5>
+          <p>구간의 중간값을 점으로. 높이는 그 구간 %.
+          점을 선으로 이으면 히스토그램의 스카이라인이 돼요.</p>
+        </div>
+        <div class="card">
+          <h5>오자이브 (누적 폴리곤)</h5>
+          <p>Y축이 <em>누적 %</em>. 0%에서 시작해 100%까지 오르는 선.
+          "이 값 이하가 전체의 몇 %냐"를 한 번에 읽어요.</p>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Polygon (위) · Ogive (아래)</div>
+        <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(0,0)">
+            <line x1="60" y1="20" x2="60" y2="170" stroke="#1d1d1f"/>
+            <line x1="60" y1="170" x2="600" y2="170" stroke="#1d1d1f"/>
+            <g font-size="10" fill="#6b6b6b" text-anchor="end">
+              <text x="54" y="174">0</text><text x="54" y="146">2</text>
+              <text x="54" y="118">3</text><text x="54" y="90">5</text>
+              <text x="54" y="55">6</text>
+            </g>
+            <polyline points="100,170 175,122 250,58 325,90 400,105 475,148 550,170"
+                      fill="#cfe0d7" stroke="#1e3a8a" stroke-width="2"/>
+            <g fill="#1e3a8a">
+              <circle cx="100" cy="170" r="3.5"/><circle cx="175" cy="122" r="3.5"/>
+              <circle cx="250" cy="58" r="3.5"/><circle cx="325" cy="90" r="3.5"/>
+              <circle cx="400" cy="105" r="3.5"/><circle cx="475" cy="148" r="3.5"/>
+              <circle cx="550" cy="170" r="3.5"/>
+            </g>
+            <g font-size="10" fill="#6b6b6b" text-anchor="middle">
+              <text x="100" y="185">5</text><text x="175" y="185">15</text>
+              <text x="250" y="185">25</text><text x="325" y="185">35</text>
+              <text x="400" y="185">45</text><text x="475" y="185">55</text>
+              <text x="550" y="185">65</text>
+            </g>
+            <text x="330" y="10" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">Percentage Polygon</text>
+          </g>
+          <g transform="translate(0,230)">
+            <line x1="60" y1="20" x2="60" y2="170" stroke="#1d1d1f"/>
+            <line x1="60" y1="170" x2="600" y2="170" stroke="#1d1d1f"/>
+            <g font-size="10" fill="#6b6b6b" text-anchor="end">
+              <text x="54" y="174">0</text><text x="54" y="136">25</text>
+              <text x="54" y="98">50</text><text x="54" y="60">75</text>
+              <text x="54" y="24">100</text>
+            </g>
+            <polyline points="100,170 175,147 250,102 325,64 400,34 475,20 550,20"
+                      fill="none" stroke="#c0392b" stroke-width="2"/>
+            <g fill="#c0392b">
+              <circle cx="100" cy="170" r="3.5"/><circle cx="175" cy="147" r="3.5"/>
+              <circle cx="250" cy="102" r="3.5"/><circle cx="325" cy="64" r="3.5"/>
+              <circle cx="400" cy="34" r="3.5"/><circle cx="475" cy="20" r="3.5"/>
+              <circle cx="550" cy="20" r="3.5"/>
+            </g>
+            <g font-size="10" fill="#6b6b6b" text-anchor="middle">
+              <text x="100" y="185">10</text><text x="175" y="185">20</text>
+              <text x="250" y="185">30</text><text x="325" y="185">40</text>
+              <text x="400" y="185">50</text><text x="475" y="185">60</text>
+              <text x="550" y="185">70</text>
+            </g>
+            <text x="330" y="10" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">Cumulative (Ogive)</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="callout">
+        <div class="label">오자이브 활용</div>
+        <p>"40℉ 이하였던 날이 몇 %?" X=40에서 위로 올려 만나는 Y값.
+        위 그림에서 약 <strong>70%</strong>예요. 오자이브는 답을 읽어주는 계산기 같아요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        산점도 = 관계 · 시계열 = 흐름 · 오자이브 = 누적 답변기.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 14장 ═══════ -->
+    <section class="chapter" id="ch14">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글</h2>
+      <div class="chap-sub">오늘 배운 것, 내일 만날 것</div>
+
+      <p class="story">
+        오늘 꽤 먼 길을 걸어왔어요.
+        아침의 "70%" 한 마디에서 시작해서 여기까지요.
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>통계 = 데이터를 정보로 바꾸는 기술</li>
+        <li>형제 둘 — 기술통계 · 추리통계</li>
+        <li>변수: 범주형 / 수치형(이산·연속)</li>
+        <li>요약표 = 한 변수 · 분할표 = 두 변수</li>
+        <li>분할표는 전체·행·열 세 렌즈로 본다</li>
+        <li>수치형은 도수분포표로 정리. 상대·누적도수도 함께</li>
+        <li>범주형 시각화: 막대 · 파이 · 파레토</li>
+        <li>수치형 시각화: 히스토그램 · 산점도 · 시계열 · 폴리곤 · 오자이브</li>
+      </ul>
+
+      <h4>다음 주 예고</h4>
+      <p>오늘은 눈으로 봤어요. 다음 주엔 <strong>숫자로</strong> 요약해요.
+      평균, 중앙값, 표준편차. 분포의 중심과 퍼짐을 정확히 말해주는 친구들이에요.</p>
+
+      <div class="epilogue">
+        <h2>오늘의 마음가짐</h2>
+        <p>통계를 처음 만나는 시간. 낯선 용어는 자연스러운 거예요.</p>
+        <p>중요한 건 <em>세상을 숫자로 읽는 눈</em>을 조금씩 기르는 일이에요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 1강, 마침 —</p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

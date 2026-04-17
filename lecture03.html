@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>3강 · 확률의 세계 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">3강 확률의 세계</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture02.html" aria-label="이전 강의">◀</a>
+    <a href="lecture04.html" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<!-- ═══════ 레이아웃 ═══════ -->
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html" class="active"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">확률은 왜 필요한가</a></li>
+      <li><a href="#ch2">표본공간과 사건</a></li>
+      <li><a href="#ch3">확률의 정의</a></li>
+      <li><a href="#ch4">집합 연산과 벤 다이어그램</a></li>
+      <li><a href="#ch5">확률의 기본 규칙</a></li>
+      <li><a href="#ch6">조건부 확률</a></li>
+      <li><a href="#ch7">곱셈 법칙과 트리</a></li>
+      <li><a href="#ch8">베이즈 정리</a></li>
+      <li><a href="#ch9">독립 사건</a></li>
+      <li><a href="#ch10">Covid 검사 이야기</a></li>
+      <li><a href="#ch11">독립의 시각적 직관</a></li>
+      <li><a href="#ch12">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="03"><!-- populated by app.js --></div>
+  </aside>
+
+  <!-- ─── 본문 ─── -->
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 03<br>Introduction to Probability</div>
+      <h1>확률의 세계
+        <span class="small">— 불확실한 내일을 다루는 언어</span>
+      </h1>
+      <p class="lead">
+        내일 비가 올까요? 복권이 당첨될까요?<br>
+        세상은 "아마도"로 가득해요. 확률은<br>
+        그 "아마도"에 숫자를 붙여주는 기술입니다.
+      </p>
+    </div>
+
+    <!-- ═══════ 여는 글 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · "아마도"에 숫자 붙이기</h2>
+      <div class="chap-sub">확률이라는 낯선 친구</div>
+
+      <p class="story">
+        아침에 집을 나서며 창밖을 봅니다.
+        하늘이 조금 흐려요. 우산을 챙길까, 말까?
+      </p>
+
+      <p class="story">
+        이럴 때 우리는 머릿속으로 계산을 해요.
+        "비 올 가능성, 글쎄 30%쯤?"
+      </p>
+
+      <p class="story">
+        100% 확실한 건 세상에 거의 없어요.
+        대신 우리는 <strong>가능성의 크기</strong>를 재요.
+        그게 <em>확률</em>입니다.
+      </p>
+
+      <div class="callout">
+        <div class="label">오늘 만날 장면들</div>
+        <p>먼저 <em>표본공간과 사건</em>을 배워요.
+        "세상"과 "관심 영역"의 단어죠.</p>
+        <p>다음엔 <em>확률의 기본 규칙</em>.
+        더하기·빼기만 할 줄 알면 충분해요.</p>
+        <p>그리고 <em>조건부 확률</em>과 <em>베이즈 정리</em>.
+        "이미 알고 있는 정보"를 다루는 법이에요.</p>
+        <p>마지막엔 <em>독립</em>을 만나요.
+        두 사건이 서로 영향이 있을까, 없을까?</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        확률은 "아마도"에 숫자를 붙이는 기술. 오늘 그 문법을 배워요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 1장 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>확률은 왜 필요한가</h2>
+      <div class="chap-sub">우리 모두 이미 확률을 쓰고 있어요</div>
+
+      <p>확률이라 하면 수학 문제집을 떠올릴지도 몰라요.
+      하지만 우리는 매일 확률을 쓰고 있어요.
+      의식하지 못할 뿐이에요.</p>
+
+      <div class="callout blue">
+        <div class="label">일상 속 확률의 질문들</div>
+        <p>· 오늘 비가 올 확률은?</p>
+        <p>· 지하철이 3분 안에 도착할 확률은?</p>
+        <p>· 이 손님이 갤럭시를 고를 확률은?</p>
+        <p>· 사고 싶은 아디다스 운동화가 재고에 있을 확률은?</p>
+        <p>· 이번 달 보험금 청구액이 20억 원을 넘을 확률은?</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>일기예보로 비유해 볼까요.</strong></p>
+        <p>"강수 확률 70%"라는 말, 어떻게 나왔을까요?
+        과거의 비슷한 날 수천 번을 모았을 때,
+        그중 70%에서 비가 내렸다는 뜻이에요.</p>
+        <p>확률은 <strong>무수한 경험을 한 숫자로</strong> 줄여주는 마법이에요.</p>
+      </div>
+
+      <h3>세 가지 흥미로운 질문</h3>
+      <p>오늘 수업은 세 가지 이야기로 문을 엽니다.
+      각각 확률의 다른 얼굴을 보여줘요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>홍콩 흡연 통계</h5>
+          <p>"남자 흡연자일 확률?" vs.
+          "남자라면 흡연할 확률?"
+          비슷해 보여도 완전히 달라요.</p>
+        </div>
+        <div class="card">
+          <h5>룰렛의 역사</h5>
+          <p>지난 15번 결과를 봤다면,
+          다음엔 어떤 색에 걸어야 할까요?
+          과거가 미래를 알려줄까요?</p>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">혈액 검사 이야기</div>
+        <p>검사 키트가 XYZ병을 99% 잡아낸대요.
+        그런데 건강한 사람 10%에게도 양성이 나온대요.
+        인구의 1%가 병에 걸렸다면,
+        양성 판정을 받은 사람이 실제 환자일 확률은?</p>
+      </div>
+
+      <blockquote class="pull">
+        확률은 단순한 계산이 아니에요.<br>
+        <em>의사결정의 언어</em>입니다.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        확률 = 불확실한 세상에서 "가능성"에 숫자를 붙이는 기술.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 2장 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>표본공간과 사건</h2>
+      <div class="chap-sub">Sample Space &amp; Event</div>
+
+      <p>확률을 배우려면 먼저 단어 세 개와 친해져야 해요.
+      <strong>결과(outcome)</strong>, <strong>표본공간(sample space)</strong>,
+      <strong>사건(event)</strong>.</p>
+
+      <div class="definition">
+        <div class="term">Outcome · 결과</div>
+        <div class="kor">한 번의 실험에서 나올 수 있는 한 가지 결과</div>
+        <p>동전을 한 번 던지면 "앞면"이나 "뒷면"이 나와요.
+        이 각각이 하나의 결과예요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Sample Space · 표본공간 (Ω)</div>
+        <div class="kor">일어날 수 있는 모든 결과의 집합</div>
+        <p>"이 세계에서 가능한 모든 일"을 한 자루에 담은 거예요.
+        교수님 말로는 "the World" 라고 부르기도 해요.</p>
+        <p>기호로는 그리스 문자 <em>Ω</em> (오메가) 를 자주 써요.
+        "전체 세계"라는 뜻으로 기억해요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Event · 사건</div>
+        <div class="kor">우리가 관심 있는 결과들의 모임</div>
+        <p>표본공간 안에서 "이런 결과들이 나오면 좋겠다"고
+        묶어놓은 집합이에요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>음식 주문으로 비유해 볼까요.</strong></p>
+        <p>식당 메뉴판 전체가 <strong>표본공간</strong>이에요.
+        김치찌개, 된장찌개, 비빔밥… 모든 메뉴가 후보죠.</p>
+        <p>그중 "찌개류"라는 묶음이 <strong>사건</strong>이에요.
+        김치찌개나 된장찌개가 나오면 "찌개 사건"이 일어난 셈.</p>
+      </div>
+
+      <h3>주사위로 보는 예시</h3>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>주사위 던지기의 표본공간</caption>
+        <thead>
+          <tr><th>실험</th><th>표본공간</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>주사위 1개 던지기</td><td>{1, 2, 3, 4, 5, 6}</td></tr>
+          <tr><td>주사위 2개 던지기</td><td>{(1,1), (1,2), …, (6,6)} · 36개</td></tr>
+          <tr><td>주사위 2개의 합</td><td>{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>사건 예시 모음</h3>
+      <p>사건은 표본공간에서 조건에 맞는 결과만 골라내요.</p>
+
+      <div class="callout">
+        <div class="label">EXAMPLES</div>
+        <p>· 주사위 짝수: A = {2, 4, 6}</p>
+        <p>· 두 주사위 합이 10 미만: A = {2, 3, 4, 5, 6, 7, 8, 9}</p>
+        <p>· 두 주사위 같은 눈: A = {(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}</p>
+        <p>· 1부터 6까지 아무 수: A = {1, 2, 3, 4, 5, 6} · 표본공간 전체</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        표본공간 = 전체 세계 · 사건 = 그 안에서 관심 영역.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 3장 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>확률의 정의</h2>
+      <div class="chap-sub">"크기 비율"이라는 단순한 생각</div>
+
+      <p>확률은 사실 아주 단순한 생각에서 출발해요.
+      <strong>사건의 크기 ÷ 표본공간의 크기</strong>.
+      이게 전부예요.</p>
+
+      <div class="formula">
+        P(사건) = <span class="frac"><span class="num">사건의 크기</span><span class="den">표본공간의 크기</span></span>
+      </div>
+
+      <div class="analogy">
+        <p><strong>피자 한 판 나누기로 비유해 볼까요.</strong></p>
+        <p>피자 한 판이 <strong>표본공간</strong>이에요.
+        그중 페퍼로니가 얹힌 조각이 <strong>사건</strong>이라면,
+        그 확률은 "페퍼로니 조각 수 ÷ 전체 조각 수"예요.</p>
+        <p>조각이 많을수록 페퍼로니를 먹을 가능성이 커지죠.</p>
+      </div>
+
+      <h3>(조금) 더 형식적인 정의</h3>
+      <p>어떤 사건 A에 대해, 우리는 0과 1 사이의 숫자 P(A)를 붙여줘요.
+      이 숫자는 두 가지 뜻을 가져요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>의미 ①</h5>
+          <div class="kor-sub">chance</div>
+          <p>"지금 한 번 해보면 A가 일어날 가능성."
+          50%면 반반이라는 느낌이죠.</p>
+        </div>
+        <div class="card">
+          <h5>의미 ②</h5>
+          <div class="kor-sub">long-run proportion</div>
+          <p>"수없이 많이 반복하면 A가 일어나는 비율."
+          동전을 만 번 던지면 약 5천 번 앞면이에요.</p>
+        </div>
+      </div>
+
+      <h3>예시로 풀어보기</h3>
+      <p>주사위 한 번 굴리기. 짝수가 나올 확률은?</p>
+
+      <div class="data-strip">
+        A = {짝수} = {2, 4, 6}<br>
+        표본공간 = {1, 2, 3, 4, 5, 6}<br>
+        <strong>P(A) = 3 / 6 = 0.5 = 50 %</strong>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">확률의 세 가지 얼굴</div>
+        <p><strong>① 고전적(Classical):</strong>
+        주사위·동전처럼 결과가 똑같이 가능한 경우.
+        "경우의 수" 계산.</p>
+        <p><strong>② 경험적(Empirical):</strong>
+        데이터를 모아 비율을 잰 것.
+        일기예보의 "강수 확률 70%"가 이런 종류.</p>
+        <p><strong>③ 주관적(Subjective):</strong>
+        "그 팀이 우승할 것 같아, 80%."
+        개인의 믿음이나 판단.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        확률은 0과 1 사이 숫자. "사건 크기 ÷ 전체 크기"가 본질.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 4장 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>집합 연산과 벤 다이어그램</h2>
+      <div class="chap-sub">여집합 · 합집합 · 교집합</div>
+
+      <p>사건은 집합이에요. 집합끼리는 섞거나 뺄 수 있죠.
+      이때 쓰는 단어가 세 개 있어요.
+      벤 다이어그램으로 보면 한눈에 와닿아요.</p>
+
+      <h3>주사위 예시</h3>
+      <p>설명을 위해 두 사건을 잡아볼게요.</p>
+
+      <div class="data-strip">
+        A = {짝수} = {2, 4, 6}<br>
+        B = {4 미만} = {1, 2, 3}
+      </div>
+
+      <!-- 벤 다이어그램 3종 -->
+      <div class="chart-wrap">
+        <div class="chart-title">A와 B의 관계 · 벤 다이어그램</div>
+        <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- (1) 여집합 -->
+          <g transform="translate(10,10)">
+            <rect x="0" y="0" width="220" height="210" fill="#faf4e1" stroke="#c9b89a"/>
+            <text x="110" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1d1f">① 여집합 Aᶜ</text>
+            <circle cx="110" cy="120" r="65" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+            <text x="110" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">A</text>
+            <text x="40" y="50" font-size="11" fill="#1d1d1f" font-weight="700">Aᶜ</text>
+            <text x="110" y="195" text-anchor="middle" font-size="10" fill="#6b6b6b">A 바깥이 여집합</text>
+          </g>
+          <!-- (2) 합집합 -->
+          <g transform="translate(245,10)">
+            <rect x="0" y="0" width="220" height="210" fill="#faf4e1" stroke="#c9b89a"/>
+            <text x="110" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1d1f">② 합집합 A ∪ B</text>
+            <circle cx="85" cy="120" r="55" fill="#f6d7b4" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+            <circle cx="135" cy="120" r="55" fill="#f6d7b4" stroke="#1e3a8a" stroke-width="2" opacity="0.8"/>
+            <text x="60" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">A</text>
+            <text x="160" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">B</text>
+            <text x="110" y="195" text-anchor="middle" font-size="10" fill="#6b6b6b">A 또는 B (둘 다 포함)</text>
+          </g>
+          <!-- (3) 교집합 -->
+          <g transform="translate(480,10)">
+            <rect x="0" y="0" width="220" height="210" fill="#faf4e1" stroke="#c9b89a"/>
+            <text x="110" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1d1f">③ 교집합 A ∩ B</text>
+            <circle cx="85" cy="120" r="55" fill="none" stroke="#c0392b" stroke-width="2"/>
+            <circle cx="135" cy="120" r="55" fill="none" stroke="#1e3a8a" stroke-width="2"/>
+            <path d="M 110 72 A 55 55 0 0 1 110 168 A 55 55 0 0 1 110 72 Z" fill="#2f6d4a" opacity="0.55"/>
+            <text x="60" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">A</text>
+            <text x="160" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">B</text>
+            <text x="110" y="125" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">A∩B</text>
+            <text x="110" y="195" text-anchor="middle" font-size="10" fill="#6b6b6b">A 와 B 모두</text>
+          </g>
+        </svg>
+        <div class="chart-caption">노란 사각형이 표본공간. 원은 각 사건.</div>
+      </div>
+
+      <div class="definition">
+        <div class="term">Complement · 여집합 Aᶜ</div>
+        <div class="kor">A가 일어나지 <strong>않는</strong> 사건</div>
+        <p>Aᶜ = {홀수} = {1, 3, 5}</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Union · 합집합 A ∪ B</div>
+        <div class="kor">A <strong>또는</strong> B가 일어남</div>
+        <p>A ∪ B = {1, 2, 3, 4, 6}
+        (둘 중 하나라도 속하면 포함)</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Intersection · 교집합 A ∩ B</div>
+        <div class="kor">A <strong>그리고</strong> B가 동시에 일어남</div>
+        <p>A ∩ B = {2}
+        (양쪽 모두에 속해야 포함)</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>교실 비유가 쉬워요.</strong></p>
+        <p>A = 안경 낀 학생 · B = 파란 옷 학생이라고 해봐요.</p>
+        <p>· Aᶜ = 안경 안 낀 학생들</p>
+        <p>· A ∪ B = 안경 썼거나 파란 옷이거나 (둘 중 하나)</p>
+        <p>· A ∩ B = 안경 쓰고 파란 옷인 학생</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        여집합 = 바깥 · 합집합 = 또는 · 교집합 = 그리고.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>확률의 기본 규칙</h2>
+      <div class="chap-sub">딱 세 가지만 기억하면 돼요</div>
+
+      <p>확률에는 지켜야 할 규칙이 있어요.
+      딱 세 가지. 이것만 알면 계산의 반은 끝난 셈이에요.</p>
+
+      <h3>규칙 ① 전체 확률</h3>
+      <p>표본공간 전체의 확률은 1 이에요.
+      "무슨 일이든 하나는 반드시 일어난다" 는 뜻.</p>
+
+      <div class="formula">P(표본공간) = P(Ω) = 1</div>
+
+      <div class="callout">
+        <div class="label">예시</div>
+        <p>주사위를 굴리면 반드시 1~6 중 하나가 나와요.</p>
+        <p>P({1, 2, 3, 4, 5, 6}) = 1 = 100%</p>
+      </div>
+
+      <p>확률은 언제나 <em>0 과 1 사이</em> 값이에요.
+      0 이면 "절대 안 일어남", 1 이면 "반드시 일어남".</p>
+
+      <h3>규칙 ② 여집합 규칙</h3>
+      <p>A가 일어나거나, 일어나지 않거나. 세상엔 둘 뿐이에요.
+      그래서 둘을 더하면 1이죠.</p>
+
+      <div class="formula">P(Aᶜ) = 1 − P(A)</div>
+
+      <div class="analogy">
+        <p><strong>비 올 확률로 비유해 볼까요.</strong></p>
+        <p>"오늘 비 올 확률 30%"라면, "비 안 올 확률 70%"예요.
+        둘을 합치면 100%가 되니까요.</p>
+        <p>한쪽만 알아도 반대쪽은 자동으로 나와요.</p>
+      </div>
+
+      <h3>규칙 ③ 덧셈 규칙</h3>
+      <p>"A 또는 B"의 확률은 더하면 돼요.
+      단, 겹치는 부분(A ∩ B)을 한 번 빼줘야 해요.
+      그렇지 않으면 두 번 세게 되거든요.</p>
+
+      <div class="formula">
+        P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">왜 교집합을 빼야 할까 · 벤 다이어그램</div>
+        <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="540" height="200" fill="#faf4e1" stroke="#c9b89a"/>
+          <circle cx="210" cy="115" r="75" fill="#fbecea" stroke="#c0392b" stroke-width="2" opacity="0.65"/>
+          <circle cx="330" cy="115" r="75" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2" opacity="0.75"/>
+          <path d="M 270 50 A 75 75 0 0 1 270 180 A 75 75 0 0 1 270 50 Z" fill="#2f6d4a" opacity="0.5"/>
+          <text x="180" y="120" text-anchor="middle" font-size="16" font-weight="700" fill="#c0392b">A</text>
+          <text x="365" y="120" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">B</text>
+          <text x="270" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">A∩B</text>
+          <text x="270" y="200" text-anchor="middle" font-size="11" fill="#6b6b6b">겹친 부분은 양쪽 계산에 이미 포함되어 있어요</text>
+        </svg>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">간단한 예</div>
+        <p>주사위에서 A={짝수}, B={4 미만}.</p>
+        <p>P(A) = 3/6, P(B) = 3/6, P(A ∩ B) = P({2}) = 1/6</p>
+        <p>P(A ∪ B) = 3/6 + 3/6 − 1/6 = <strong>5/6</strong></p>
+        <p>실제로 A ∪ B = {1, 2, 3, 4, 6}이니 5개. 맞죠.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        전체=1 · 여집합=1에서 빼기 · 합집합=더하고 겹침은 빼기.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>조건부 확률</h2>
+      <div class="chap-sub">Conditional Probability · 조건부 확률</div>
+
+      <p>"만약 이미 어떤 일이 일어났다면…"
+      이때 계산하는 확률이 <strong>조건부 확률</strong>이에요.</p>
+
+      <p>기호로는 <em>P(A|B)</em> 라고 써요.
+      가운데 막대 "|" 는 "주어졌을 때" 라고 읽어요.
+      즉 "B 가 주어졌을 때 A 의 확률" 이에요.</p>
+
+      <div class="definition">
+        <div class="term">P(A|B) · A given B</div>
+        <div class="kor">B가 일어났다는 조건에서 A의 확률</div>
+        <p>"B 가 일어났다고 알고 있어. 그럼 이제 A 의 가능성은?"</p>
+        <p>순서 주의. <em>P(A|B) 와 P(B|A) 는 다른 값</em>이에요.
+        "남자 중 흡연자" 와 "흡연자 중 남자" 가 다르듯이요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>직관: 세계가 줄어들어요.</strong></p>
+        <p>B가 일어났다는 걸 알면, 원래 넓었던 표본공간이
+        <strong>B 안쪽으로 좁혀져요</strong>. 이제 B가 "새로운 세계"예요.</p>
+        <p>그 좁아진 세계에서 A의 크기 비율이 조건부 확률이에요.</p>
+      </div>
+
+      <div class="formula">
+        P(A|B) = <span class="frac"><span class="num">P(A ∩ B)</span><span class="den">P(B)</span></span>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">조건부 확률의 직관 · 세계가 B로 줄어든다</div>
+        <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Before -->
+          <g transform="translate(10,10)">
+            <rect x="0" y="0" width="280" height="210" fill="#faf4e1" stroke="#c9b89a"/>
+            <text x="140" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1d1f">조건 없음 · P(A)</text>
+            <circle cx="110" cy="120" r="50" fill="#fbecea" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+            <circle cx="170" cy="120" r="50" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2" opacity="0.7"/>
+            <text x="85" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">A</text>
+            <text x="195" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">B</text>
+            <text x="140" y="195" text-anchor="middle" font-size="10" fill="#6b6b6b">전체 사각형이 세계</text>
+          </g>
+          <!-- Arrow -->
+          <g transform="translate(298,115)">
+            <path d="M 0 0 L 20 0" stroke="#1d1d1f" stroke-width="2" marker-end="url(#arrCond)"/>
+            <defs>
+              <marker id="arrCond" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#1d1d1f"/>
+              </marker>
+            </defs>
+          </g>
+          <!-- After -->
+          <g transform="translate(330,10)">
+            <rect x="0" y="0" width="280" height="210" fill="#f1f0ea" stroke="#c9b89a" stroke-dasharray="3 3"/>
+            <text x="140" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#1d1d1f">B가 일어남 · P(A|B)</text>
+            <circle cx="140" cy="120" r="65" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2.5"/>
+            <path d="M 140 55 A 65 65 0 0 1 140 185 A 50 50 0 0 0 105 120 A 50 50 0 0 0 140 55 Z" fill="#c0392b" opacity="0.6" transform="translate(-25,0)"/>
+            <text x="165" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">B</text>
+            <text x="105" y="125" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">A∩B</text>
+            <text x="140" y="195" text-anchor="middle" font-size="10" fill="#6b6b6b">새로운 세계는 B · 안에서 A∩B 비율</text>
+          </g>
+        </svg>
+      </div>
+
+      <h3>주사위 예시로 풀어봐요</h3>
+
+      <div class="callout">
+        <div class="label">세 가지 질문</div>
+        <p><strong>Q1.</strong> 주사위를 굴려서 2가 나올 확률은?
+        → 1/6 (세계가 {1,…,6}, 그중 한 가지)</p>
+        <p><strong>Q2.</strong> 짝수가 나올 확률은?
+        → 3/6 = 1/2</p>
+        <p><strong>Q3.</strong> <em>짝수라는 걸 알 때</em>, 2가 나올 확률은?
+        → 1/3</p>
+      </div>
+
+      <p>왜 Q3에서 1/3일까요?
+      "짝수"라는 사실을 알았으니, 세계가 {2, 4, 6}으로 줄었어요.
+      그중 2는 하나. 그래서 1/3.</p>
+
+      <div class="data-strip">
+        공식으로 확인:<br>
+        P(A ∩ B) = P(2 and 짝수) = 1/6<br>
+        P(B) = P(짝수) = 3/6<br>
+        <strong>P(A|B) = (1/6) / (3/6) = 1/3 ✓</strong>
+      </div>
+
+      <h3>홍콩 흡연 이야기 다시 보기</h3>
+      <p>문을 여는 질문 기억나요? 이제 답을 구할 수 있어요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>홍콩 2008년 흡연 인구 분포</caption>
+        <thead>
+          <tr><th>성별</th><th>흡연</th><th>비흡연</th><th>합계</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>남성</td><td>12 %</td><td>35 %</td><td>47 %</td></tr>
+          <tr><td>여성</td><td>3 %</td><td>50 %</td><td>53 %</td></tr>
+          <tr><td><strong>합계</strong></td><td><strong>15 %</strong></td><td><strong>85 %</strong></td><td><strong>100 %</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">세 질문 완전 구별</div>
+        <p><strong>Q1.</strong> 길에서 본 사람이 <em>남자이면서 흡연자</em>일 확률?</p>
+        <p>→ 표 안 숫자 그대로. <strong>12 %</strong></p>
+        <p><strong>Q2.</strong> <em>남자라면</em> 흡연자일 확률?
+        (세계 = 남자)</p>
+        <p>→ 12 / 47 ≈ <strong>25.5 %</strong></p>
+        <p><strong>Q3.</strong> <em>흡연자를 봤다면</em> 남자일 확률?
+        (세계 = 흡연자)</p>
+        <p>→ 12 / 15 = <strong>80 %</strong></p>
+      </div>
+
+      <p>세 질문의 답이 모두 달라요. "조건"이 무엇인지에 따라
+      세계가 다르게 줄어들기 때문이에요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        조건부 확률 = 좁아진 세계에서 보는 비율. "주어진"이 핵심.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>곱셈 법칙과 트리</h2>
+      <div class="chap-sub">Multiplication Rule</div>
+
+      <p>조건부 확률 공식을 뒤집으면 재미있는 식이 나와요.
+      양변에 P(B)를 곱해주면 끝.</p>
+
+      <div class="formula">
+        P(A ∩ B) = P(A|B) × P(B) = P(B|A) × P(A)
+      </div>
+
+      <p>"A와 B가 둘 다 일어날 확률"을 구할 때 씁니다.
+      두 단계 사건으로 나눠 생각하면 편해요.</p>
+
+      <div class="analogy">
+        <p><strong>비 오는 날 버스 이야기.</strong></p>
+        <p>오늘 비 올 확률 P(비) = 0.4.
+        비 오는 날 버스가 늦을 확률 P(늦음|비) = 0.7.</p>
+        <p>그럼 "비도 오고 버스도 늦을" 확률은?</p>
+        <p>0.4 × 0.7 = 0.28 = <strong>28%</strong></p>
+      </div>
+
+      <h3>확률 트리로 그려볼까요</h3>
+      <p>가지가 갈라지는 나무를 그려요.
+      각 가지에 확률을 적고, 끝까지 곱해 내려가요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">동전 두 번 던지기 · 확률 트리</div>
+        <svg viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg">
+          <!-- Root -->
+          <circle cx="60" cy="160" r="18" fill="#1d1d1f"/>
+          <text x="60" y="165" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">시작</text>
+
+          <!-- Level 1 -->
+          <line x1="80" y1="155" x2="210" y2="75" stroke="#c0392b" stroke-width="2"/>
+          <line x1="80" y1="170" x2="210" y2="245" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="130" y="105" font-size="11" fill="#c0392b" font-weight="700">½</text>
+          <text x="130" y="215" font-size="11" fill="#1e3a8a" font-weight="700">½</text>
+
+          <circle cx="230" cy="75" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="230" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">H</text>
+          <circle cx="230" cy="245" r="22" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="230" y="250" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">T</text>
+
+          <!-- Level 2 from H -->
+          <line x1="250" y1="70" x2="370" y2="30" stroke="#c0392b" stroke-width="2"/>
+          <line x1="250" y1="85" x2="370" y2="120" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="300" y="45" font-size="11" fill="#c0392b" font-weight="700">½</text>
+          <text x="305" y="115" font-size="11" fill="#1e3a8a" font-weight="700">½</text>
+
+          <circle cx="390" cy="30" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="390" y="35" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">H</text>
+          <circle cx="390" cy="120" r="22" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="390" y="125" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">T</text>
+
+          <!-- Level 2 from T -->
+          <line x1="250" y1="240" x2="370" y2="200" stroke="#c0392b" stroke-width="2"/>
+          <line x1="250" y1="255" x2="370" y2="290" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="305" y="215" font-size="11" fill="#c0392b" font-weight="700">½</text>
+          <text x="305" y="285" font-size="11" fill="#1e3a8a" font-weight="700">½</text>
+
+          <circle cx="390" cy="200" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="390" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">H</text>
+          <circle cx="390" cy="290" r="22" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="390" y="295" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">T</text>
+
+          <!-- Results -->
+          <text x="430" y="35" font-size="12" fill="#1d1d1f">HH · ¼</text>
+          <text x="430" y="125" font-size="12" fill="#1d1d1f">HT · ¼</text>
+          <text x="430" y="205" font-size="12" fill="#1d1d1f">TH · ¼</text>
+          <text x="430" y="295" font-size="12" fill="#1d1d1f">TT · ¼</text>
+
+          <text x="310" y="315" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">가지의 확률을 끝까지 곱해요</text>
+        </svg>
+      </div>
+
+      <p>동전을 두 번 던지면 결과는 네 가지.
+      각각의 확률은 ½ × ½ = ¼이에요.
+      네 개 더하면 1이 되죠.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        두 사건이 겹칠 확률 = 한쪽 확률 × 조건부 확률.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 8장 ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>베이즈 정리</h2>
+      <div class="chap-sub">Bayes' Theorem · 확률을 뒤집는 마법</div>
+
+      <p>가끔 우리는 알고 있는 방향과 <strong>반대 방향</strong>의
+      조건부 확률이 궁금해요. 이럴 때 쓰는 게 베이즈 정리예요.</p>
+
+      <div class="analogy">
+        <p><strong>예를 들어볼까요.</strong></p>
+        <p>"환자라면 양성 판정 확률"은 알고 있어요 (P(양성|환자)).</p>
+        <p>그런데 진짜 궁금한 건 반대예요.
+        "양성이라면 진짜 환자일 확률" (P(환자|양성))</p>
+        <p>베이즈 정리는 이 둘을 이어주는 다리예요.</p>
+      </div>
+
+      <h3>전체 확률 공식 (Law of Total Probability)</h3>
+      <p>먼저 알아둘 게 있어요. 사건 A가 일어나는 경로는 두 가지.
+      B가 일어날 때 A가 일어나거나, B가 안 일어날 때 A가 일어나거나.</p>
+
+      <div class="formula">
+        P(A) = P(A ∩ B) + P(A ∩ Bᶜ)
+      </div>
+      <div class="formula">
+        = P(A|B) × P(B) + P(A|Bᶜ) × P(Bᶜ)
+      </div>
+
+      <h3>베이즈 공식</h3>
+      <p>이제 조건부 확률의 정의를 대입하면 베이즈 정리가 나와요.</p>
+
+      <div class="formula">
+        P(B|A) = <span class="frac"><span class="num">P(A|B) × P(B)</span><span class="den">P(A|B) × P(B) + P(A|Bᶜ) × P(Bᶜ)</span></span>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">한 줄 요약</div>
+        <p>이미 아는 방향의 조건부 확률들을 재료로,
+        <strong>반대 방향의 조건부 확률</strong>을 만들어내는 공식.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>탐정 비유가 딱이에요.</strong></p>
+        <p>범인이면 현장에 흔적을 남길 확률은 쉽게 알 수 있어요.
+        하지만 탐정이 진짜 궁금한 건 반대예요.</p>
+        <p>"이 흔적이 발견됐을 때, 저 사람이 범인일 확률."
+        베이즈는 이걸 계산해주는 도구입니다.</p>
+      </div>
+
+      <h3>공식을 다시 천천히</h3>
+      <p>기호가 많아 어렵게 느껴져요. 한 줄씩 읽어봐요.</p>
+
+      <div class="callout">
+        <div class="label">베이즈 공식 해부</div>
+        <p><strong>분자</strong>: P(A|B) × P(B)
+        — "B 부터 시작해 A 로 가는 경로" 의 확률.</p>
+        <p><strong>분모</strong>: P(A)
+        = P(A|B)·P(B) + P(A|Bᶜ)·P(Bᶜ)
+        — "A 에 도달하는 모든 경로" 의 합.</p>
+        <p><strong>결과</strong>: 전체 A 경로 중
+        B 를 거친 비율 → 그게 P(B|A).</p>
+      </div>
+
+      <p>다음 장의 Covid 검사 예제에서 이 공식을 숫자로 실감하게 됩니다.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        베이즈 정리 = 원인과 결과의 방향을 뒤집는 공식.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 9장 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>독립 사건</h2>
+      <div class="chap-sub">Independence · 서로 영향 없음</div>
+
+      <p>두 사건이 <strong>서로의 확률에 영향을 안 주면</strong>
+      그 둘은 독립이에요. 말은 어렵지만 느낌은 단순해요.</p>
+
+      <h3>질문으로 시작해요</h3>
+
+      <div class="callout">
+        <div class="label">동전 두 번 던지기</div>
+        <p>Q1. 두 번째 동전이 앞면일 확률은?</p>
+        <p>Q2. 첫 번째가 앞면이었어요. 이제 두 번째도 앞면일 확률은?</p>
+        <p>Q3. 두 답은 같을까, 다를까?</p>
+      </div>
+
+      <p>답은 "같다"예요. 모두 1/2.
+      첫 번째 결과가 두 번째 동전의 "기억"에 남지 않거든요.
+      동전은 과거를 모릅니다.</p>
+
+      <div class="analogy">
+        <p><strong>룰렛의 함정을 기억해요.</strong></p>
+        <p>문을 열 때 물었던 질문 - "지난 15번 중 빨강이 많이 나왔으니
+        다음엔 검정에 걸어야 할까?"</p>
+        <p>답은 <strong>아니오</strong>예요. 룰렛 한 번 한 번은 서로 독립.
+        과거 기록은 미래에 아무 정보도 주지 못해요.</p>
+        <p>이런 착각을 <em>도박사의 오류(Gambler's Fallacy)</em>라고 해요.</p>
+      </div>
+
+      <h3>독립의 두 가지 정의</h3>
+      <p>수학적으로는 두 방식으로 쓸 수 있어요. 같은 말이에요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>정의 ①</h5>
+          <p>조건부 확률로 표현해요.</p>
+          <div class="formula" style="margin:8px 0;">P(A|B) = P(A)</div>
+          <p style="margin:0;">"B를 알아도 A의 확률은 안 변해요."</p>
+        </div>
+        <div class="card">
+          <h5>정의 ②</h5>
+          <p>교집합 확률로 표현해요.</p>
+          <div class="formula" style="margin:8px 0;">P(A ∩ B) = P(A) × P(B)</div>
+          <p style="margin:0;">"함께 일어날 확률이 그냥 곱이에요."</p>
+        </div>
+      </div>
+
+      <blockquote class="pull">
+        독립이란,<br>
+        <em>사건 A가 사건 B에 대해 어떤 정보도 담지 않는 것.</em>
+      </blockquote>
+
+      <h3>독립 vs. 비독립 · 두 학생의 위치</h3>
+      <p>학생 A와 B가 각각 도서관(L), 집(H), 식당(R) 세 곳 중 하나에 있어요.
+      두 학생의 위치가 독립일 수도, 아닐 수도 있어요.</p>
+
+      <!-- Case 1 (독립) -->
+      <div class="chart-wrap">
+        <div class="chart-title">Case 1 · 두 위치가 독립인 경우</div>
+        <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+          <!-- axes -->
+          <line x1="50" y1="160" x2="450" y2="160" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="250" y1="30" x2="250" y2="300" stroke="#1d1d1f" stroke-width="1.5"/>
+          <text x="445" y="178" font-size="12" fill="#1d1d1f" font-weight="700">A</text>
+          <text x="258" y="40" font-size="12" fill="#1d1d1f" font-weight="700">B</text>
+          <text x="120" y="178" font-size="10" fill="#6b6b6b" text-anchor="middle">−1</text>
+          <text x="380" y="178" font-size="10" fill="#6b6b6b" text-anchor="middle">1</text>
+          <text x="240" y="85" font-size="10" fill="#6b6b6b" text-anchor="end">1</text>
+          <text x="240" y="240" font-size="10" fill="#6b6b6b" text-anchor="end">−1</text>
+          <!-- 4 dots at LL, LR, RL, RR -->
+          <circle cx="120" cy="80" r="22" fill="#e8eefc" stroke="#2f6d4a" stroke-width="2"/>
+          <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">LR</text>
+          <circle cx="380" cy="80" r="22" fill="#e8eefc" stroke="#2f6d4a" stroke-width="2"/>
+          <text x="380" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">RR</text>
+          <circle cx="120" cy="240" r="22" fill="#e8eefc" stroke="#2f6d4a" stroke-width="2"/>
+          <text x="120" y="245" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">LL</text>
+          <circle cx="380" cy="240" r="22" fill="#e8eefc" stroke="#2f6d4a" stroke-width="2"/>
+          <text x="380" y="245" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">RL</text>
+          <text x="250" y="315" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">네 경우가 동등 확률 · A의 위치가 B에 정보 안 줌</text>
+        </svg>
+      </div>
+
+      <div class="callout green">
+        <div class="label">Case 1 해석</div>
+        <p>P(B가 R) = 50%, P(B가 R | A가 R) = 50%.</p>
+        <p>A를 알아도 B의 확률은 그대로. 두 위치는 <strong>독립</strong>이에요.</p>
+      </div>
+
+      <!-- Case 2 (비독립) -->
+      <div class="chart-wrap">
+        <div class="chart-title">Case 2 · 두 위치가 독립이 아닌 경우</div>
+        <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="160" x2="450" y2="160" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="250" y1="30" x2="250" y2="300" stroke="#1d1d1f" stroke-width="1.5"/>
+          <text x="445" y="178" font-size="12" fill="#1d1d1f" font-weight="700">A</text>
+          <text x="258" y="40" font-size="12" fill="#1d1d1f" font-weight="700">B</text>
+          <!-- 4 dots at 축 위 (A가 R일 때 B는 무조건 H 같은 구조) -->
+          <circle cx="250" cy="80" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="250" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">HR</text>
+          <circle cx="250" cy="240" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="250" y="245" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">HL</text>
+          <circle cx="120" cy="160" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="120" y="165" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">LH</text>
+          <circle cx="380" cy="160" r="22" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="380" y="165" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">RH</text>
+          <text x="250" y="315" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">A가 R일 때 B는 항상 H · 위치가 얽혀 있어요</text>
+        </svg>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">Case 2 해석</div>
+        <p>이번엔 네 결과의 조합이 달라요.
+        LH, HL, HR, RH 만 가능한 구조죠.</p>
+        <p>P(B 가 R | A 가 R) 을 따져 보면 0%.
+        A 가 R 에 있으면 B 는 R 에 없어야 하거든요.</p>
+        <p>A 를 알면 B 의 확률이 <em>확 바뀌어요</em>.
+        두 위치는 <strong>독립이 아니에요</strong>.</p>
+      </div>
+
+      <p>다음 장에서 이 독립·종속의 차이를
+      <strong>격자 그림</strong>으로 더 선명하게 볼 거예요.
+      면적의 곱이 교집합이 되는 순간이 곧 독립이에요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        독립 = 한쪽이 다른 쪽에 아무 정보도 주지 않는 것.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 10장 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>Covid 검사 이야기</h2>
+      <div class="chap-sub">조건부 확률이 세상을 바꿀 때</div>
+
+      <p>이 장은 조건부 확률이 실제 세상에서
+      얼마나 중요한지 보여주는 사례예요.
+      코로나 검사 키트를 예로 들어봐요.</p>
+
+      <h3>두 가지 정확도 개념</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>Sensitivity · 민감도</h5>
+          <div class="kor-sub">PPA · 양성 일치율</div>
+          <p>실제 <em>환자</em>일 때
+          검사가 양성이라 맞출 확률.</p>
+          <p style="margin:6px 0 0; font-size:12px;">P(양성 | 환자)</p>
+        </div>
+        <div class="card">
+          <h5>Specificity · 특이도</h5>
+          <div class="kor-sub">NPA · 음성 일치율</div>
+          <p>실제 <em>건강</em>할 때
+          검사가 음성이라 맞출 확률.</p>
+          <p style="margin:6px 0 0; font-size:12px;">P(음성 | 건강)</p>
+        </div>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>PPV · 양성 예측도</h5>
+          <div class="kor-sub">Positive Predictive Value</div>
+          <p>양성 판정을 받았을 때
+          진짜 환자일 확률.</p>
+          <p style="margin:6px 0 0; font-size:12px;">P(환자 | 양성)</p>
+        </div>
+        <div class="card">
+          <h5>NPV · 음성 예측도</h5>
+          <div class="kor-sub">Negative Predictive Value</div>
+          <p>음성 판정을 받았을 때
+          진짜 건강할 확률.</p>
+          <p style="margin:6px 0 0; font-size:12px;">P(건강 | 음성)</p>
+        </div>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">방향 구분이 핵심</div>
+        <p>민감도·특이도는 "<em>실제 상태</em>가 주어졌을 때"의 확률.</p>
+        <p>PPV·NPV는 "<em>검사 결과</em>가 주어졌을 때"의 확률.</p>
+        <p>베이즈 정리가 둘 사이를 이어줘요.</p>
+      </div>
+
+      <h3>문제 속으로 · XYZ 검사 키트</h3>
+      <p>수업 앞부분에서 나왔던 이야기예요.</p>
+
+      <div class="data-strip">
+        · 병 보유율: 1 % (<em>P(환자) = 0.01</em>)<br>
+        · 민감도: 99 % (<em>환자면 양성 확률 99%</em>)<br>
+        · 건강한 사람 중 10%는 양성 (<em>위양성 10%</em>)
+      </div>
+
+      <p>물음: "양성이 나왔어요. 진짜 환자일 확률은?"
+      직관적으론 99% 같죠. 하지만 아니에요.</p>
+
+      <h3>2×2 분할표로 풀어볼까요</h3>
+      <p>10,000명이 검사를 받았다고 상상해요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">10,000명 가상 검사 결과 · 분할표</div>
+        <svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- grid -->
+          <rect x="20" y="40" width="580" height="200" fill="#fff" stroke="#c9b89a"/>
+          <line x1="220" y1="40" x2="220" y2="240" stroke="#c9b89a"/>
+          <line x1="410" y1="40" x2="410" y2="240" stroke="#c9b89a"/>
+          <line x1="20" y1="90" x2="600" y2="90" stroke="#c9b89a"/>
+          <line x1="20" y1="165" x2="600" y2="165" stroke="#c9b89a"/>
+
+          <!-- headers -->
+          <rect x="20" y="40" width="200" height="50" fill="#f1f0ea"/>
+          <rect x="220" y="40" width="190" height="50" fill="#e8eefc"/>
+          <rect x="410" y="40" width="190" height="50" fill="#e8eefc"/>
+          <text x="120" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#1d1d1f">상태 ＼ 검사</text>
+          <text x="315" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">양성</text>
+          <text x="505" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">음성</text>
+
+          <!-- rows -->
+          <rect x="20" y="90" width="200" height="75" fill="#fbecea"/>
+          <text x="120" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">환자 (100명)</text>
+          <text x="120" y="145" text-anchor="middle" font-size="11" fill="#6b6b6b">= 10000 × 1%</text>
+
+          <rect x="20" y="165" width="200" height="75" fill="#e8f5e9"/>
+          <text x="120" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#2f6d4a">건강 (9,900명)</text>
+          <text x="120" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#6b6b6b">= 10000 × 99%</text>
+
+          <!-- cells -->
+          <text x="315" y="120" text-anchor="middle" font-size="16" font-weight="700" fill="#c0392b">99</text>
+          <text x="315" y="142" text-anchor="middle" font-size="10" fill="#6b6b6b">100 × 99%</text>
+
+          <text x="505" y="120" text-anchor="middle" font-size="16" font-weight="700" fill="#1d1d1f">1</text>
+          <text x="505" y="142" text-anchor="middle" font-size="10" fill="#6b6b6b">100 × 1%</text>
+
+          <text x="315" y="195" text-anchor="middle" font-size="16" font-weight="700" fill="#c0392b">990</text>
+          <text x="315" y="217" text-anchor="middle" font-size="10" fill="#6b6b6b">9900 × 10%</text>
+
+          <text x="505" y="195" text-anchor="middle" font-size="16" font-weight="700" fill="#2f6d4a">8,910</text>
+          <text x="505" y="217" text-anchor="middle" font-size="10" fill="#6b6b6b">9900 × 90%</text>
+
+          <text x="310" y="265" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">양성 총합: 99 + 990 = 1,089명 · 그중 진짜 환자는 99명</text>
+        </svg>
+      </div>
+
+      <div class="callout green">
+        <div class="label">답은 놀랍게도…</div>
+        <p>P(환자 | 양성) = 99 / 1,089 ≈ <strong>9.1 %</strong></p>
+        <p>양성이 나와도 실제 환자일 확률은 10%에 불과해요.
+        90%는 건강한데 억울하게 양성이 나온 사람(위양성).</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>왜 이런 결과가 나올까요?</strong></p>
+        <p>병이 <em>드물기</em> 때문이에요. 100명 중 1명만 환자니까,
+        건강한 9,900명 중 10%(990명)가 위양성이라도
+        숫자상으로 압도적이에요.</p>
+        <p>드문 병은 검사가 아무리 좋아도 양성을 100% 믿기 어려워요.
+        보통 2차 검사를 하는 이유죠.</p>
+      </div>
+
+      <h3>한 번 더 · 셋 중 한 명</h3>
+      <p>양성 판정을 받은 사람 세 명이 있어요.
+      그중 적어도 한 명이 진짜 환자일 확률은?</p>
+
+      <div class="data-strip">
+        셋 다 환자 아닐 확률 = (1 − 0.091)³ ≈ 0.751<br>
+        적어도 한 명은 환자일 확률 = 1 − 0.751<br>
+        <strong>≈ 24.9 %</strong>
+      </div>
+
+      <p>여집합 규칙을 활용했어요. "적어도 하나"는
+      "하나도 없음"의 반대니까요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        드문 병의 검사: 정확도 99%라도 양성 = 환자일 확률은 10% 남짓.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 11장 · 독립의 시각적 직관 (신규) ═══════ -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">CHAPTER 11</div>
+      <h2>독립의 시각적 직관</h2>
+      <div class="chap-sub">Joint Locations · 겹침 비율로 읽는 독립</div>
+
+      <p>앞 장에서 <em>독립</em>을 배웠어요.
+      식 <strong>P(A∩B) = P(A)·P(B)</strong> 가 핵심이었죠.</p>
+
+      <p>이번엔 같은 이야기를 <em>그림</em>으로 봅니다.
+      확률 공간을 격자로 나누고, 사건 A 와 B 의
+      <strong>겹친 면적 비율</strong>이 어떻게 보이는지 비교해요.</p>
+
+      <div class="analogy">
+        <p><strong>핵심 아이디어 한 줄.</strong></p>
+        <p>전체 격자에서 A 가 차지하는 띠와,
+        B 가 차지하는 띠가 있어요.
+        두 띠가 <strong>교차하는 작은 사각형</strong>이 A∩B 예요.</p>
+        <p>그 작은 사각형 넓이가
+        <em>두 띠의 넓이를 그냥 곱한 값</em>과 같으면 독립.
+        다르면 종속이에요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Joint Location · 결합 위치</div>
+        <div class="kor">두 사건 A 와 B 가 표본공간에서 동시에 차지하는 영역</div>
+        <p>"A 안에 있으면서 동시에 B 안에도 있는" 결과들의 모임이
+        A∩B 예요. 이 영역의 크기가 곧 <em>P(A∩B)</em>.</p>
+      </div>
+
+      <h3>Case 1 · 독립 (Independent)</h3>
+      <p>먼저 독립인 경우를 봐요.
+      전체를 가로 세로 격자로 나눕니다.
+      가로는 A 의 영역 (파란 띠),
+      세로는 B 의 영역 (빨간 띠).</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Case 1 · A 와 B 가 독립 · 곱셈이 맞는 그림</div>
+        <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- 전체 표본공간 -->
+          <rect x="20" y="20" width="320" height="220" fill="#faf4e1" stroke="#c9b89a" stroke-width="1.5"/>
+
+          <!-- A 의 띠 (가로 방향으로 40% 차지 - 파란) -->
+          <rect x="20" y="20" width="128" height="220" fill="#e8eefc" opacity="0.75"/>
+          <!-- B 의 띠 (세로 방향으로 50% 차지 - 빨간) -->
+          <rect x="20" y="20" width="320" height="110" fill="#fbecea" opacity="0.65"/>
+          <!-- 교집합 A∩B (왼쪽 위 작은 사각형) -->
+          <rect x="20" y="20" width="128" height="110" fill="#2f6d4a" opacity="0.55"/>
+
+          <!-- 경계선 -->
+          <line x1="148" y1="20" x2="148" y2="240" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="20" y1="130" x2="340" y2="130" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+
+          <!-- 레이블 -->
+          <text x="84" y="75" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">A ∩ B</text>
+          <text x="84" y="95" text-anchor="middle" font-size="10" fill="#fff">= 0.4 × 0.5</text>
+          <text x="84" y="110" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">= 0.20</text>
+
+          <text x="244" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">B \ A</text>
+          <text x="244" y="100" text-anchor="middle" font-size="10" fill="#c0392b">0.30</text>
+
+          <text x="84" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">A \ B</text>
+          <text x="84" y="210" text-anchor="middle" font-size="10" fill="#1e3a8a">0.20</text>
+
+          <text x="244" y="195" text-anchor="middle" font-size="11" fill="#6b6b6b">밖</text>
+          <text x="244" y="210" text-anchor="middle" font-size="10" fill="#6b6b6b">0.30</text>
+
+          <!-- 축 레이블 -->
+          <text x="20" y="260" font-size="10" font-weight="700" fill="#1e3a8a">A = 0.4 (왼쪽 40%)</text>
+          <text x="340" y="260" text-anchor="end" font-size="10" font-weight="700" fill="#c0392b">B = 0.5 (위쪽 50%)</text>
+        </svg>
+        <div class="chart-caption">두 띠의 곱이 교집합. P(A)·P(B) = 0.4 × 0.5 = 0.20 = P(A∩B).</div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">Case 1 · 숫자로 확인</div>
+        <p>P(A) = 0.40, &nbsp; P(B) = 0.50</p>
+        <p>그림에서 읽은 교집합 면적: <strong>0.20</strong></p>
+        <p>공식으로 계산: P(A)·P(B) = 0.40 × 0.50 = <strong>0.20</strong> ✓</p>
+        <p>두 값이 <em>똑같아요</em>. 그래서 A 와 B 는 <strong>독립</strong>이에요.</p>
+      </div>
+
+      <p>독립일 땐 격자가 <em>깔끔하게 가로×세로</em>로 나뉘어요.
+      A 의 세로띠와 B 의 가로띠가 만나는 작은 사각형이
+      자동으로 "두 비율의 곱"이 됩니다.</p>
+
+      <h3>Case 2 · 종속 (Not Independent)</h3>
+      <p>이번엔 같은 P(A) = 0.40, P(B) = 0.50 인데,
+      교집합이 <em>곱과 다른</em> 경우예요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Case 2 · A 와 B 가 종속 · 겹침이 어긋나요</div>
+        <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- 전체 표본공간 -->
+          <rect x="20" y="20" width="320" height="220" fill="#faf4e1" stroke="#c9b89a" stroke-width="1.5"/>
+
+          <!-- A 영역: 파란 L 자 모양 (면적 = 128*220 인데 형태가 다름, 여기선 왼쪽 40%만 있는 셈) -->
+          <rect x="20" y="20" width="128" height="220" fill="#e8eefc" opacity="0.75"/>
+          <!-- B 영역: 빨간 띠 위쪽 50% -->
+          <rect x="20" y="20" width="320" height="110" fill="#fbecea" opacity="0.65"/>
+          <!-- 실제 교집합은 훨씬 큼 - A 의 거의 전체가 B 안에 들어와 있음 -->
+          <rect x="20" y="20" width="128" height="95" fill="#c0392b" opacity="0.75"/>
+
+          <line x1="148" y1="20" x2="148" y2="240" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="20" y1="130" x2="340" y2="130" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+          <!-- 실제 교집합 경계 (예상과 다름 표시) -->
+          <line x1="20" y1="115" x2="148" y2="115" stroke="#1d1d1f" stroke-width="2"/>
+
+          <text x="84" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">A ∩ B</text>
+          <text x="84" y="78" text-anchor="middle" font-size="10" fill="#fff">실제 = 0.35</text>
+          <text x="84" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">≠ 0.20!</text>
+
+          <text x="244" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">B \ A</text>
+          <text x="244" y="100" text-anchor="middle" font-size="10" fill="#c0392b">0.15</text>
+
+          <text x="84" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">A \ B</text>
+          <text x="84" y="195" text-anchor="middle" font-size="10" fill="#1e3a8a">0.05</text>
+
+          <text x="244" y="195" text-anchor="middle" font-size="11" fill="#6b6b6b">밖</text>
+          <text x="244" y="210" text-anchor="middle" font-size="10" fill="#6b6b6b">0.45</text>
+
+          <text x="20" y="260" font-size="10" font-weight="700" fill="#1e3a8a">A = 0.4</text>
+          <text x="340" y="260" text-anchor="end" font-size="10" font-weight="700" fill="#c0392b">B = 0.5</text>
+        </svg>
+        <div class="chart-caption">같은 P(A), P(B) 인데 교집합이 0.35. 곱 0.20 과 <em>다름</em>.</div>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">Case 2 · 숫자로 확인</div>
+        <p>P(A) = 0.40, &nbsp; P(B) = 0.50 (같음)</p>
+        <p>그림에서 읽은 교집합 면적: <strong>0.35</strong></p>
+        <p>공식으로 계산: P(A)·P(B) = 0.40 × 0.50 = <strong>0.20</strong></p>
+        <p>0.35 ≠ 0.20. 두 값이 <em>달라요</em>.
+        그래서 A 와 B 는 <strong>독립이 아니에요</strong>.</p>
+      </div>
+
+      <p>Case 2 에서는 A 가 주로 B 안에 몰려 있어요.
+      "A 에 속하면 B 일 가능성이 특히 크다" 는 뜻.
+      A 가 B 에 대해 <em>정보를 흘리고 있는</em> 거죠.</p>
+
+      <h3>기하로 보는 공식의 의미</h3>
+      <p>교과서의 식 <strong>P(A∩B) = P(A)·P(B)</strong> 가 낯설게 느껴질 수 있어요.
+      하지만 그림으로 보면 당연해 보입니다.</p>
+
+      <div class="callout blue">
+        <div class="label">기하적 해석</div>
+        <p>전체 넓이를 1 로 놓고 A 가 가로 40%,
+        B 가 세로 50% 를 차지한다고 해봐요.</p>
+        <p>두 띠가 <em>서로 상관없이</em> 겹치면,
+        교차하는 사각형 넓이는 자동으로
+        <strong>0.4 × 0.5 = 0.20</strong>.</p>
+        <p>이게 바로 "두 비율의 곱"이에요.
+        공식이 그림을 따라가는 거죠.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>천에 붓질 비유.</strong></p>
+        <p>흰 천 위에 파란 붓을 가로로 40% 칠하고,
+        빨간 붓을 세로로 50% 칠해요. 두 붓이
+        <em>서로 눈치 안 보고</em> 칠했다면,
+        보라색이 나온 영역은 0.4 × 0.5 = 20%.</p>
+        <p>반대로 빨간 붓이 <em>파란 칠 위만</em> 노리고 칠했다면,
+        보라색 영역이 더 커지거나 작아져요.
+        그게 종속이에요.</p>
+      </div>
+
+      <h3>독립·종속 · 한눈에 비교</h3>
+
+      <div class="table-scroll">
+      <table class="compact center">
+        <caption>같은 P(A), P(B) 두 가지 시나리오</caption>
+        <thead>
+          <tr><th>항목</th><th>Case 1 · 독립</th><th>Case 2 · 종속</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>P(A)</td><td>0.40</td><td>0.40</td></tr>
+          <tr><td>P(B)</td><td>0.50</td><td>0.50</td></tr>
+          <tr><td>P(A)·P(B)</td><td>0.20</td><td>0.20</td></tr>
+          <tr><td>실제 P(A∩B)</td><td><strong>0.20</strong></td><td><strong>0.35</strong></td></tr>
+          <tr><td>곱과 일치?</td><td>예 (독립)</td><td>아니오 (종속)</td></tr>
+          <tr><td>P(B | A)</td><td>0.50 = P(B)</td><td>0.875 ≠ P(B)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>표의 마지막 줄이 특히 중요해요.
+      독립이면 조건부 확률이 원래 확률과 같아요.
+      종속이면 확 달라져요. A 를 알았을 때
+      B 의 확률이 바뀌는 정도가 <em>종속의 강도</em>예요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        독립 = 격자의 곱. 종속 = 겹침이 곱과 어긋남.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 12장 · 맺는 글 (구 ch11) ═══════ -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글</h2>
+      <div class="chap-sub">오늘 배운 것, 내일 만날 것</div>
+
+      <p class="story">
+        확률의 세계에 첫 발을 디뎠어요.
+        처음엔 낯설었지만, 이제 조금은 친숙하죠?
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>확률 = "가능성"에 0~1 사이 숫자를 붙이기</li>
+        <li>표본공간 = 전체 세계 · 사건 = 관심 집합</li>
+        <li>기본 규칙 셋: 전체=1 · 여집합 · 덧셈</li>
+        <li>합집합 계산 시 교집합은 한 번만</li>
+        <li>조건부 확률 = 좁아진 세계의 비율</li>
+        <li>곱셈 법칙: P(A∩B) = P(A|B)·P(B)</li>
+        <li>베이즈: 원인과 결과의 방향을 뒤집는 공식</li>
+        <li>독립 = 서로 정보를 주지 않음</li>
+        <li>Covid 검사: 드문 병은 양성이어도 안심 못 해요</li>
+        <li>독립의 그림: 격자의 곱이 곧 교집합 넓이</li>
+      </ul>
+
+      <h4>다음 주 예고</h4>
+      <p>오늘은 확률의 기본 문법을 배웠어요.
+      다음 주엔 <strong>이산 확률분포</strong>를 만나요.</p>
+      <p>주사위, 동전 같은 "딱 떨어지는" 사건들의 세계.
+      기댓값, 분산, 그리고 이항분포까지 함께해요.</p>
+
+      <div class="epilogue">
+        <h2>오늘의 마음가짐</h2>
+        <p>확률은 수학이 아니라 <em>세상을 읽는 언어</em>예요.</p>
+        <p>"아마도"에 숫자를 붙이는 순간, 세상이 조금 더 선명해져요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 3강, 마침 —</p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

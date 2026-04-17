@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>7강 · 신뢰구간 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">7강 신뢰구간</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture06.html" aria-label="이전 강의">◀</a>
+    <a class="disabled" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<!-- ═══════ 레이아웃 ═══════ -->
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html" class="active"><span class="num">07</span>신뢰구간</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">점 추정의 한계</a></li>
+      <li><a href="#ch2">CLT 복습</a></li>
+      <li><a href="#ch3">신뢰구간이란</a></li>
+      <li><a href="#ch4">σ 아는 경우의 CI</a></li>
+      <li><a href="#ch5">신뢰수준 90·95·99%</a></li>
+      <li><a href="#ch6">σ 모를 때 · t 등장</a></li>
+      <li><a href="#ch7">t-분포의 성격</a></li>
+      <li><a href="#ch8">t 기반 CI</a></li>
+      <li><a href="#ch9">n과 구간 폭</a></li>
+      <li><a href="#ch10">모비율의 CI</a></li>
+      <li><a href="#ch11">실전 예시</a></li>
+      <li><a href="#ch12">두 평균 비교 · 독립 표본</a></li>
+      <li><a href="#ch13">두 비율 차이의 CI</a></li>
+      <li><a href="#ch14">짝 표본 Paired Samples</a></li>
+      <li><a href="#ch15">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="07"><!-- populated by app.js --></div>
+  </aside>
+
+  <!-- ─── 본문 ─── -->
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 07<br>Confidence Interval Estimation</div>
+      <h1>신뢰구간
+        <span class="small">— 한 점이 아니라 한 띠로 말하기</span>
+      </h1>
+      <p class="lead">
+        점 하나로 결정을 내리기엔 세상이 너무 넓어요.<br>
+        통계는 "이쯤에서 저쯤 사이"라는 <em>띠</em>를 답으로 줍니다.<br>
+        이 띠의 이름이 바로 <strong>신뢰구간</strong>이에요.
+      </p>
+    </div>
+
+    <!-- ═══════ 여는 글 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · 한 숫자는 너무 외로워</h2>
+      <div class="chap-sub">점 추정에서 구간 추정으로</div>
+
+      <p class="story">
+        지난 강의까지 우리는 <strong>표본평균</strong>이 모평균에 가까워진다는
+        이야기를 들었어요. CLT가 길을 열어 줬죠.
+      </p>
+
+      <p class="story">
+        그런데 한 번의 실험에서 얻은 X̄ = 172.3. 이 <em>숫자 하나</em>로
+        "대한민국 성인 남성 평균 키는 172.3cm다"라고 선언해도 될까요?
+      </p>
+
+      <p class="story">
+        솔직히 불안해요. 다음 날 다시 뽑으면 171.8일 수도, 173.1일 수도 있거든요.
+        그래서 통계학자는 <em>숫자 하나 대신 구간</em>을 말하기로 했어요.
+      </p>
+
+      <div class="callout">
+        <div class="label">이 강의에서 배우는 것</div>
+        <p><strong>① 신뢰구간(CI)이란 무엇인가.</strong> 왜 필요한가.</p>
+        <p><strong>② σ를 아는 경우</strong>와 <strong>모르는 경우</strong>의 계산법.</p>
+        <p><strong>③ 모비율 p</strong>에 대한 신뢰구간까지 함께 완성해요.</p>
+      </div>
+
+    </section>
+
+    <!-- ═══════ 1장 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>점 추정 — 한 숫자는 너무 외로워</h2>
+      <div class="chap-sub">Point Estimate vs. Interval Estimate</div>
+
+      <p>추정(estimation)에는 두 가지 방식이 있어요.
+      하나는 <strong>점 추정</strong>, 다른 하나는 <strong>구간 추정</strong>이에요.</p>
+
+      <div class="definition">
+        <div class="term">Point Estimate · 점 추정</div>
+        <div class="kor">한 숫자로 모수를 콕 집기</div>
+        <p>표본평균 <strong>X̄</strong> (표본에서 계산한 평균)
+        하나로 <strong>모평균 μ</strong> (진짜 전체 평균)를 추정하는 방식.</p>
+        <p>간단해서 좋지만 "정확히 얼마나 가까운지"는 말해 주지 않아요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Interval Estimate · 구간 추정</div>
+        <div class="kor">범위로 모수를 감싸기</div>
+        <p>"모평균은 170cm와 174cm 사이에 있을 겁니다"처럼 <em>상한과 하한</em>을
+        묶어 주는 방식. 불확실성을 숫자에 녹여 넣은 거예요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>과녁과 손전등.</strong></p>
+        <p>점 추정은 어두운 방에서 <em>화살 한 발</em>을 쏘는 일이에요.
+        맞았는지 빗나갔는지 알 수가 없죠.</p>
+        <p>구간 추정은 <em>손전등</em>을 비추는 일이에요. 빛이 닿는 원 안에
+        과녁이 들어오면 돼요. 너비가 있으니 훨씬 든든해요.</p>
+      </div>
+
+      <!-- 점 추정 vs 구간 추정 다이어그램 -->
+      <div class="chart-wrap">
+        <div class="chart-title">점 하나 vs 구간 하나</div>
+        <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- 위: 점 추정 -->
+          <text x="340" y="24" text-anchor="middle" font-family="Nanum Myeongjo" font-size="14" font-weight="700" fill="#c0392b">① 점 추정 — 한 점만</text>
+          <line x1="60" y1="60" x2="620" y2="60" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="150" y="85">168</text><text x="260" y="85">170</text>
+            <text x="340" y="85">172</text><text x="420" y="85">174</text><text x="530" y="85">176</text>
+          </g>
+          <circle cx="340" cy="60" r="7" fill="#c0392b"/>
+          <text x="340" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">X̄ = 172.3</text>
+          <text x="340" y="110" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">"딱 여기!"… 근데 진짜 맞을까?</text>
+
+          <!-- 아래: 구간 추정 -->
+          <text x="340" y="150" text-anchor="middle" font-family="Nanum Myeongjo" font-size="14" font-weight="700" fill="#1e3a8a">② 구간 추정 — 띠로</text>
+          <line x1="60" y1="190" x2="620" y2="190" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="150" y="215">168</text><text x="260" y="215">170</text>
+            <text x="340" y="215">172</text><text x="420" y="215">174</text><text x="530" y="215">176</text>
+          </g>
+          <rect x="270" y="183" width="140" height="14" fill="#1e3a8a" opacity="0.25"/>
+          <line x1="270" y1="183" x2="270" y2="197" stroke="#1e3a8a" stroke-width="2.5"/>
+          <line x1="410" y1="183" x2="410" y2="197" stroke="#1e3a8a" stroke-width="2.5"/>
+          <circle cx="340" cy="190" r="4" fill="#1e3a8a"/>
+          <text x="270" y="240" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">170.3</text>
+          <text x="410" y="240" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">174.3</text>
+          <text x="340" y="255" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">"이 사이일 거예요." — 손전등처럼 감싸기</text>
+        </svg>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        점은 편하지만 외로워요. 구간은 조금 넓어도 든든합니다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 2장 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>잠깐, CLT 복습</h2>
+      <div class="chap-sub">표본평균의 분포 — 모든 이야기의 토대</div>
+
+      <p>신뢰구간을 만들려면 <strong>표본평균이 어떻게 흔들리는가</strong>를
+      알아야 해요. 지난 6강의 핵심 세 줄을 다시 꺼내 볼게요.</p>
+
+      <div class="callout blue">
+        <div class="label">중심극한정리 (CLT) 한 장 요약</div>
+        <p><strong>①</strong> 표본 크기 n이 충분히 크면(보통 n ≥ 30),
+        표본평균 X̄의 분포는 <em>정규분포</em>에 가까워져요.</p>
+        <p><strong>②</strong> X̄의 평균은 모평균 <strong>μ</strong> 그대로.</p>
+        <p><strong>③</strong> X̄의 표준오차는 <strong>σ/√n</strong>. n이 커질수록 좁아져요.</p>
+      </div>
+
+      <div class="formula">
+        X̄ ~ N( μ , &nbsp; (σ/√n)<sup>2</sup> )
+      </div>
+
+      <p>즉, X̄은 평균 <strong>μ</strong> (모집단 평균),
+      표준편차 <strong>σ/√n</strong> 인 정규분포를 따른다는 뜻이에요.</p>
+
+      <p>쉽게 말해 X̄은 μ 근처에 <em>종 모양</em>으로 쌓여요.
+      퍼짐의 폭은 σ/√n.</p>
+
+      <p>이 σ/√n 을 <strong>표준오차 (Standard Error, SE)</strong>라고 불러요.
+      "표본평균이 평균적으로 얼마나 흔들리는지"의 크기예요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">표본평균 X̄의 분포</div>
+        <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="200" x2="620" y2="200" stroke="#1d1d1f" stroke-width="1.5"/>
+          <!-- bell curve -->
+          <path d="M 60 200 C 220 200, 280 60, 340 60 C 400 60, 460 200, 620 200"
+                fill="#cfe0d7" stroke="#2f6d4a" stroke-width="2.5"/>
+          <line x1="340" y1="60" x2="340" y2="200" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="340" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b" font-family="Nanum Myeongjo">μ</text>
+          <text x="340" y="220" text-anchor="middle" font-size="11" fill="#6b6b6b">X̄의 평균 = μ</text>
+          <!-- SE 표시 -->
+          <line x1="280" y1="165" x2="400" y2="165" stroke="#1e3a8a" stroke-width="2"/>
+          <line x1="280" y1="160" x2="280" y2="170" stroke="#1e3a8a" stroke-width="2"/>
+          <line x1="400" y1="160" x2="400" y2="170" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="340" y="157" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">σ / √n</text>
+          <text x="600" y="245" text-anchor="end" font-size="11" fill="#6b6b6b" font-style="italic">n이 커지면 폭은 좁아져요.</text>
+        </svg>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        X̄은 μ 근처 종 모양. 폭은 σ/√n. 이게 신뢰구간의 출발선이에요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 3장 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>신뢰구간 — 띠로 답하는 법</h2>
+      <div class="chap-sub">Confidence Interval · 95%의 진짜 의미</div>
+
+      <div class="definition">
+        <div class="term">Confidence Interval · 신뢰구간</div>
+        <div class="kor">모수가 들어있을 법한 범위</div>
+        <p>표본으로 만든 <em>하한과 상한의 쌍</em>. "이 구간이 진짜 모수를
+        포함하고 있을 것이다"라고 주장할 때 쓰는 답 형식이에요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Confidence Level · 신뢰수준</div>
+        <div class="kor">(1 − α) × 100%</div>
+        <p>얼마나 많이 맞힐 수 있는지의 목표치. 보통 90%, 95%, 99%를 써요.
+        나머지 α는 놓칠 각오를 한 <em>유의수준</em>이에요.</p>
+      </div>
+
+      <h3>95% 신뢰의 흔한 오해</h3>
+
+      <p>"95% 신뢰구간"이라고 하면 많은 사람이 이렇게 생각해요.</p>
+
+      <blockquote class="pull">
+        "모수가 이 구간 안에 있을 확률이 95%다."
+      </blockquote>
+
+      <p>사실은 조금 다르게 읽어야 해요. 진짜 뜻은 이렇거든요.</p>
+
+      <div class="callout yellow">
+        <div class="label">올바른 해석</div>
+        <p>똑같은 방식으로 표본을 <strong>100번 뽑아 100개의 구간</strong>을
+        만들면, 그 중 <strong>약 95개</strong>가 진짜 모수를 품고 있을 거예요.</p>
+        <p>나머지 5개는 빗나간 구간이에요. 운이 나빴을 뿐이죠.</p>
+      </div>
+
+      <!-- 여러 표본의 CI 띠 -->
+      <div class="chart-wrap">
+        <div class="chart-title">100번 샘플링했을 때의 신뢰구간들</div>
+        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+          <!-- μ 수직선 -->
+          <line x1="320" y1="20" x2="320" y2="340" stroke="#c0392b" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="320" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b" font-family="Nanum Myeongjo">μ (진짜 모평균)</text>
+
+          <!-- 20개 샘플 CI 바 - 대부분은 μ를 포함, 몇 개만 빗나감 -->
+          <g stroke-width="2">
+            <!-- 포함하는 구간 (초록) -->
+            <line x1="245" y1="35" x2="365" y2="35" stroke="#2f6d4a"/><circle cx="305" cy="35" r="2.5" fill="#2f6d4a"/>
+            <line x1="270" y1="50" x2="380" y2="50" stroke="#2f6d4a"/><circle cx="325" cy="50" r="2.5" fill="#2f6d4a"/>
+            <line x1="260" y1="65" x2="370" y2="65" stroke="#2f6d4a"/><circle cx="315" cy="65" r="2.5" fill="#2f6d4a"/>
+            <line x1="280" y1="80" x2="390" y2="80" stroke="#2f6d4a"/><circle cx="335" cy="80" r="2.5" fill="#2f6d4a"/>
+            <!-- 빗나간 구간 (빨강) -->
+            <line x1="175" y1="95" x2="285" y2="95" stroke="#c0392b"/><circle cx="230" cy="95" r="2.5" fill="#c0392b"/>
+            <!-- 포함 -->
+            <line x1="250" y1="110" x2="360" y2="110" stroke="#2f6d4a"/><circle cx="305" cy="110" r="2.5" fill="#2f6d4a"/>
+            <line x1="275" y1="125" x2="385" y2="125" stroke="#2f6d4a"/><circle cx="330" cy="125" r="2.5" fill="#2f6d4a"/>
+            <line x1="260" y1="140" x2="380" y2="140" stroke="#2f6d4a"/><circle cx="320" cy="140" r="2.5" fill="#2f6d4a"/>
+            <line x1="240" y1="155" x2="360" y2="155" stroke="#2f6d4a"/><circle cx="300" cy="155" r="2.5" fill="#2f6d4a"/>
+            <line x1="275" y1="170" x2="390" y2="170" stroke="#2f6d4a"/><circle cx="332" cy="170" r="2.5" fill="#2f6d4a"/>
+            <line x1="265" y1="185" x2="375" y2="185" stroke="#2f6d4a"/><circle cx="320" cy="185" r="2.5" fill="#2f6d4a"/>
+            <line x1="250" y1="200" x2="370" y2="200" stroke="#2f6d4a"/><circle cx="310" cy="200" r="2.5" fill="#2f6d4a"/>
+            <line x1="280" y1="215" x2="395" y2="215" stroke="#2f6d4a"/><circle cx="338" cy="215" r="2.5" fill="#2f6d4a"/>
+            <!-- 빗나간 구간 -->
+            <line x1="340" y1="230" x2="460" y2="230" stroke="#c0392b"/><circle cx="400" cy="230" r="2.5" fill="#c0392b"/>
+            <!-- 포함 -->
+            <line x1="260" y1="245" x2="375" y2="245" stroke="#2f6d4a"/><circle cx="317" cy="245" r="2.5" fill="#2f6d4a"/>
+            <line x1="270" y1="260" x2="380" y2="260" stroke="#2f6d4a"/><circle cx="325" cy="260" r="2.5" fill="#2f6d4a"/>
+            <line x1="245" y1="275" x2="365" y2="275" stroke="#2f6d4a"/><circle cx="305" cy="275" r="2.5" fill="#2f6d4a"/>
+            <line x1="285" y1="290" x2="395" y2="290" stroke="#2f6d4a"/><circle cx="340" cy="290" r="2.5" fill="#2f6d4a"/>
+            <line x1="260" y1="305" x2="370" y2="305" stroke="#2f6d4a"/><circle cx="315" cy="305" r="2.5" fill="#2f6d4a"/>
+            <line x1="250" y1="320" x2="370" y2="320" stroke="#2f6d4a"/><circle cx="310" cy="320" r="2.5" fill="#2f6d4a"/>
+          </g>
+
+          <!-- 범례 -->
+          <g font-size="11">
+            <line x1="490" y1="335" x2="510" y2="335" stroke="#2f6d4a" stroke-width="2.5"/>
+            <text x="516" y="339" fill="#1d1d1f">μ 포함 (95개)</text>
+            <line x1="490" y1="352" x2="510" y2="352" stroke="#c0392b" stroke-width="2.5"/>
+            <text x="516" y="356" fill="#1d1d1f">빗나감 (5개)</text>
+          </g>
+        </svg>
+        <div class="chart-caption">20개만 그렸지만 의미는 같아요 — 대부분은 μ를 품고, 몇 개만 빗나가요.</div>
+      </div>
+
+      <div class="analogy">
+        <p><strong>일기예보의 "내일 기온 15~18℃".</strong></p>
+        <p>방송국이 "18.4℃"라고 콕 찍어주면 멋있겠지만, 대신 <em>띠</em>를
+        말해줘요. 매일 맞힐 자신은 없어도, <strong>100일 중 95일은 이 범위 안</strong>이라는
+        약속이에요. 신뢰구간이 바로 그런 태도예요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        "95% 신뢰" = 같은 방식을 반복하면 95%의 구간이 모수를 품는다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 4장 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>σ를 아는 경우 — Z로 만드는 CI</h2>
+      <div class="chap-sub">Confidence Interval for μ (σ known)</div>
+
+      <p>먼저 가장 간단한 상황부터. 교과서에 자주 나오는 <strong>이상적인 경우</strong>예요.
+      모집단의 표준편차 <strong>σ</strong>가 이미 알려져 있다고 가정해요.</p>
+
+      <div class="callout">
+        <div class="label">가정 세 가지</div>
+        <p>① 모집단 표준편차 <strong>σ를 안다</strong>.</p>
+        <p>② 모집단이 정규분포를 따르거나, <strong>n이 충분히 크다</strong>(n ≥ 30).</p>
+        <p>③ 표본은 무작위 추출이다.</p>
+      </div>
+
+      <h3>신뢰구간의 공식</h3>
+
+      <div class="formula">
+        X̄ ± Z<sub>α/2</sub> · <span class="frac"><span class="num">σ</span><span class="den">√n</span></span>
+      </div>
+
+      <p>즉, <em>표본평균을 가운데 놓고</em> 양옆으로
+      "Z × σ/√n" 만큼 펼친 게 신뢰구간이에요.</p>
+
+      <p>식을 뜯어보면 세 조각이 보여요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>X̄ · 점 추정</h5>
+          <div class="kor-sub">띠의 중심</div>
+          <p>표본으로 구한 평균. 우리가 가진 가장 좋은 <em>한 점</em>이에요.</p>
+        </div>
+        <div class="card">
+          <h5>Z<sub>α/2</sub> · 임계값</h5>
+          <div class="kor-sub">신뢰 수준의 번역</div>
+          <p>표준정규분포에서 양쪽 꼬리 α/2를 잘라내는 값. 신뢰가 클수록 커져요.</p>
+        </div>
+        <div class="card">
+          <h5>σ/√n · 표준오차</h5>
+          <div class="kor-sub">흔들림의 크기</div>
+          <p>X̄이 평균적으로 μ에서 얼마나 떨어지는지를 말해요.</p>
+        </div>
+        <div class="card">
+          <h5>전체 · 오차범위</h5>
+          <div class="kor-sub">Margin of Error</div>
+          <p>Z · σ/√n 을 묶어 <strong>ME</strong>라고 불러요. 띠의 <em>반지름</em>.</p>
+        </div>
+      </div>
+
+      <div class="definition">
+        <div class="term">Margin of Error · 오차범위 (ME)</div>
+        <div class="kor">띠의 반지름</div>
+        <p>ME = Z<sub>α/2</sub> · σ/√n. CI는 "X̄ ± ME" 형태로 써요.
+        ME가 작을수록 구간이 좁고, 정보가 날카로워요.</p>
+      </div>
+
+      <p class="arrow-note">→ 신뢰구간 = X̄ − ME &nbsp;~&nbsp; X̄ + ME</p>
+
+    </section>
+
+    <!-- ═══════ 5장 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>90 · 95 · 99% — 신뢰의 값어치</h2>
+      <div class="chap-sub">Z<sub>α/2</sub> 값과 구간 폭</div>
+
+      <p>신뢰수준을 높이면 구간은 어떻게 변할까요?
+      직관적으로는 "더 많이 맞히려면 더 넓은 그물"이 필요해요.</p>
+
+      <h3>신뢰수준별 Z 임계값</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>자주 쓰는 Z<sub>α/2</sub> 값</caption>
+        <thead>
+          <tr><th>신뢰수준</th><th>α</th><th>α/2</th><th>Z<sub>α/2</sub></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>90 %</td><td>0.10</td><td>0.05</td><td>1.645</td></tr>
+          <tr><td class="hi">95 %</td><td class="hi">0.05</td><td class="hi">0.025</td><td class="hi">1.96</td></tr>
+          <tr><td>99 %</td><td>0.01</td><td>0.005</td><td>2.576</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>숫자가 커지는 게 보이죠? 99%를 원하면 Z가 2.576까지 뛰어올라요.
+      그만큼 구간도 넓어진답니다.</p>
+
+      <!-- 표준정규 곡선 + 꼬리 시각화 -->
+      <div class="chart-wrap">
+        <div class="chart-title">양쪽 꼬리와 임계값</div>
+        <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="200" x2="620" y2="200" stroke="#1d1d1f" stroke-width="1.5"/>
+          <!-- 곡선 -->
+          <path d="M 40 200 C 200 200, 260 50, 330 50 C 400 50, 460 200, 620 200"
+                fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <!-- 95% 구간 경계 -->
+          <line x1="200" y1="200" x2="200" y2="85" stroke="#c0392b" stroke-width="2"/>
+          <line x1="460" y1="200" x2="460" y2="85" stroke="#c0392b" stroke-width="2"/>
+          <!-- 꼬리 색칠 -->
+          <path d="M 40 200 L 200 200 C 170 180, 140 130, 100 108 L 40 200 Z" fill="#c0392b" opacity="0.15"/>
+          <path d="M 620 200 L 460 200 C 490 180, 520 130, 560 108 L 620 200 Z" fill="#c0392b" opacity="0.15"/>
+          <text x="330" y="135" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">95%</text>
+          <text x="120" y="230" text-anchor="middle" font-size="11" fill="#c0392b">α/2 = 2.5%</text>
+          <text x="540" y="230" text-anchor="middle" font-size="11" fill="#c0392b">α/2 = 2.5%</text>
+          <text x="200" y="220" text-anchor="middle" font-size="11" fill="#1d1d1f">−Z = −1.96</text>
+          <text x="460" y="220" text-anchor="middle" font-size="11" fill="#1d1d1f">+Z = +1.96</text>
+          <text x="330" y="220" text-anchor="middle" font-size="11" fill="#6b6b6b">0</text>
+        </svg>
+      </div>
+
+      <h3>같은 데이터, 세 가지 띠</h3>
+
+      <p>예를 들어 X̄ = 50, σ = 10, n = 25일 때 CI를 세 가지로 만들어 볼게요.
+      표준오차는 σ/√n = 10/5 = <strong>2</strong>이에요.</p>
+
+      <div class="data-strip">
+        90% → 50 ± 1.645 × 2 = 50 ± 3.29 → (46.71, 53.29)<br>
+        95% → 50 ± 1.96 × 2&nbsp; = 50 ± 3.92 → (46.08, 53.92)<br>
+        99% → 50 ± 2.576 × 2 = 50 ± 5.15 → (44.85, 55.15)
+      </div>
+
+      <!-- 세 구간 비교 -->
+      <div class="chart-wrap">
+        <div class="chart-title">신뢰수준별 구간 폭</div>
+        <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="180" x2="620" y2="180" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="120" y="200">44</text><text x="220" y="200">47</text>
+            <text x="340" y="200">50</text><text x="460" y="200">53</text><text x="560" y="200">56</text>
+          </g>
+          <line x1="340" y1="40" x2="340" y2="180" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="340" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">X̄ = 50</text>
+
+          <!-- 90% -->
+          <rect x="230" y="50" width="220" height="18" fill="#2f6d4a" opacity="0.4"/>
+          <line x1="230" y1="50" x2="230" y2="68" stroke="#2f6d4a" stroke-width="2"/>
+          <line x1="450" y1="50" x2="450" y2="68" stroke="#2f6d4a" stroke-width="2"/>
+          <text x="70" y="64" font-size="11" font-weight="700" fill="#2f6d4a">90%</text>
+          <text x="460" y="64" font-size="10" fill="#2f6d4a">± 3.29</text>
+
+          <!-- 95% -->
+          <rect x="218" y="85" width="244" height="18" fill="#1e3a8a" opacity="0.4"/>
+          <line x1="218" y1="85" x2="218" y2="103" stroke="#1e3a8a" stroke-width="2"/>
+          <line x1="462" y1="85" x2="462" y2="103" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="70" y="99" font-size="11" font-weight="700" fill="#1e3a8a">95%</text>
+          <text x="470" y="99" font-size="10" fill="#1e3a8a">± 3.92</text>
+
+          <!-- 99% -->
+          <rect x="190" y="120" width="300" height="18" fill="#884e74" opacity="0.4"/>
+          <line x1="190" y1="120" x2="190" y2="138" stroke="#884e74" stroke-width="2"/>
+          <line x1="490" y1="120" x2="490" y2="138" stroke="#884e74" stroke-width="2"/>
+          <text x="70" y="134" font-size="11" font-weight="700" fill="#884e74">99%</text>
+          <text x="498" y="134" font-size="10" fill="#884e74">± 5.15</text>
+        </svg>
+        <div class="chart-caption">신뢰수준이 높을수록 구간이 넓어져요 — 안전하지만 덜 구체적.</div>
+      </div>
+
+      <blockquote class="pull">
+        좁은 구간은 <em>날카로움</em>.<br>
+        넓은 구간은 <em>안전함</em>.
+      </blockquote>
+
+      <div class="callout green">
+        <div class="label">트레이드오프</div>
+        <p>"구간을 좁히면서 신뢰도 높이기"는 공짜로 안 돼요. 답은 <strong>n을 늘리는 것</strong>.
+        이건 9장에서 다시 만날 거예요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        신뢰를 올리려면 그물을 넓혀야 해요. 95%에서는 Z = 1.96, 기억!
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>σ를 모르면? — t-분포 등장</h2>
+      <div class="chap-sub">Student's t Distribution</div>
+
+      <p>여기서 솔직한 질문 하나. "모표준편차 σ를 진짜로 아는 경우가 얼마나 있어?"</p>
+
+      <p>거의 없어요. 모평균조차 모르는 마당에 모표준편차를 안다는 건
+      <em>동화 속 이야기</em>죠. 현실에서는 표본 표준편차 <strong>s</strong>를 써요.</p>
+
+      <div class="callout yellow">
+        <div class="label">작은 대체가 큰 변화를 만들어요</div>
+        <p>σ 자리에 s를 그냥 대입하면 될까요? 안 돼요.
+        s는 <em>추정치</em>라서 값 자체가 흔들려요. 그 흔들림을
+        반영한 새 분포가 필요한데, 그게 바로 <strong>t-분포</strong>예요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Student's t Distribution · t-분포</div>
+        <div class="kor">σ 대신 s를 쓸 때의 분포</div>
+        <p>모양은 정규분포와 비슷한 종 모양. 하지만 <em>꼬리가 더 두꺼워요</em>.
+        s로 인한 추가 흔들림을 담아낸 거예요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Degrees of Freedom · 자유도 (df)</div>
+        <div class="kor">n − 1</div>
+        <p>t-분포는 자유도에 따라 모양이 조금씩 달라져요.
+        표본평균을 이미 계산에 썼기 때문에, 자유롭게 변할 수 있는 값은
+        <strong>n − 1</strong>개로 줄어든다는 의미예요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>과자 10개의 자유도.</strong></p>
+        <p>과자 10개의 <em>평균</em>을 이미 안다고 해볼게요. 9개 과자의 무게를
+        알면 10번째는 자동으로 정해져요. 자유롭게 변할 수 있었던 건 9개.
+        이게 자유도 n − 1 = 9의 정체예요.</p>
+      </div>
+
+      <p>역사적 메모. 이 분포는 1908년 <em>William Gosset</em>이 기네스 맥주 회사에서
+      일하면서 만들었어요.</p>
+
+      <p>회사 규정상 실명을 못 써서 필명 "Student"로 논문을 냈죠.
+      그래서 지금도 <strong>Student's t</strong>라고 부른답니다.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        σ 모르면 s 쓰고, 대신 분포를 정규 → t 로 교체.
+        df = n − 1.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>t-분포의 성격 — 정규보다 조금 두꺼운 꼬리</h2>
+      <div class="chap-sub">꼬리가 왜 두꺼운가, 자유도가 커지면 왜 좁아지는가</div>
+
+      <p>t-분포와 표준정규를 겹쳐 그려 보면 차이가 한눈에 들어와요.</p>
+
+      <!-- t vs 정규 비교 -->
+      <div class="chart-wrap">
+        <div class="chart-title">t-분포(빨강) vs 표준정규(파랑)</div>
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="220" x2="620" y2="220" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="130" y="240">−3</text><text x="230" y="240">−2</text>
+            <text x="330" y="240">0</text><text x="430" y="240">+2</text><text x="530" y="240">+3</text>
+          </g>
+
+          <!-- 정규 곡선 (Z) -->
+          <path d="M 40 220 C 190 220, 270 45, 330 45 C 390 45, 470 220, 620 220"
+                fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+          <!-- t 곡선 (df=3 — 꼬리 두꺼움) -->
+          <path d="M 40 215 C 170 210, 260 75, 330 75 C 400 75, 490 210, 620 215"
+                fill="none" stroke="#c0392b" stroke-width="2.5"/>
+
+          <!-- 꼬리 확대 표시 -->
+          <circle cx="120" cy="208" r="18" fill="none" stroke="#c0392b" stroke-dasharray="3 2"/>
+          <text x="120" y="185" text-anchor="middle" font-size="10" fill="#c0392b">여기!</text>
+
+          <!-- 범례 -->
+          <g font-size="11">
+            <line x1="420" y1="68" x2="450" y2="68" stroke="#1e3a8a" stroke-width="2.5"/>
+            <text x="456" y="72" fill="#1d1d1f">표준정규 Z</text>
+            <line x1="420" y1="90" x2="450" y2="90" stroke="#c0392b" stroke-width="2.5"/>
+            <text x="456" y="94" fill="#1d1d1f">t-분포 (df 작음)</text>
+          </g>
+
+          <line x1="330" y1="45" x2="330" y2="220" stroke="#1d1d1f" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="chart-caption">가운데는 비슷하지만 <em>양 끝의 두께</em>가 달라요.</div>
+      </div>
+
+      <h3>세 가지 성질</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>① 종 모양</h5>
+          <p>정규와 똑같이 0을 중심으로 좌우 대칭이에요.</p>
+        </div>
+        <div class="card">
+          <h5>② 꼬리가 두껍다</h5>
+          <p>극단값이 나올 가능성을 더 열어둬요. s의 흔들림을 담은 대가예요.</p>
+        </div>
+        <div class="card">
+          <h5>③ df에 따라 변함</h5>
+          <p>df가 작을수록 꼬리가 두꺼워요. <em>n=3</em>이면 상당히 뚱뚱해요.</p>
+        </div>
+        <div class="card">
+          <h5>④ 정규에 수렴</h5>
+          <p>df → ∞이면 표준정규와 일치해요. 실전에선 n ≥ 30부터 거의 같다고 봐요.</p>
+        </div>
+      </div>
+
+      <!-- df가 커지면 정규에 수렴 -->
+      <div class="chart-wrap">
+        <div class="chart-title">자유도가 커지면 정규에 수렴</div>
+        <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="210" x2="620" y2="210" stroke="#1d1d1f" stroke-width="1.5"/>
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="330" y="230">0</text>
+          </g>
+          <!-- 정규 -->
+          <path d="M 40 210 C 190 210, 270 40, 330 40 C 390 40, 470 210, 620 210"
+                fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+          <!-- df=30 (거의 같음) -->
+          <path d="M 40 210 C 190 208, 270 45, 330 45 C 390 45, 470 208, 620 210"
+                fill="none" stroke="#2f6d4a" stroke-width="2" stroke-dasharray="5 3"/>
+          <!-- df=10 -->
+          <path d="M 40 210 C 185 206, 265 60, 330 60 C 395 60, 475 206, 620 210"
+                fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 3"/>
+          <!-- df=3 -->
+          <path d="M 40 200 C 170 200, 260 80, 330 80 C 400 80, 490 200, 620 200"
+                fill="none" stroke="#c0392b" stroke-width="2"/>
+
+          <g font-size="11">
+            <line x1="460" y1="50" x2="490" y2="50" stroke="#1e3a8a" stroke-width="2.5"/>
+            <text x="496" y="54" fill="#1d1d1f">정규 (df=∞)</text>
+            <line x1="460" y1="70" x2="490" y2="70" stroke="#2f6d4a" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="496" y="74" fill="#1d1d1f">t, df = 30</text>
+            <line x1="460" y1="90" x2="490" y2="90" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="496" y="94" fill="#1d1d1f">t, df = 10</text>
+            <line x1="460" y1="110" x2="490" y2="110" stroke="#c0392b" stroke-width="2"/>
+            <text x="496" y="114" fill="#1d1d1f">t, df = 3</text>
+          </g>
+        </svg>
+        <div class="chart-caption">df가 3 → 10 → 30으로 커질수록 정규와 같아져요.</div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        t는 정규의 사촌. 꼬리가 두껍고, df가 커지면 결국 닮아요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 8장 ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>t 기반 신뢰구간</h2>
+      <div class="chap-sub">Confidence Interval for μ (σ unknown)</div>
+
+      <p>이제 실전용 공식이에요. σ를 모를 때(거의 모든 경우!) 이렇게 써요.</p>
+
+      <div class="formula">
+        X̄ ± t<sub>α/2, n−1</sub> · <span class="frac"><span class="num">s</span><span class="den">√n</span></span>
+      </div>
+
+      <p>즉, <em>표본평균</em> 중심으로 양옆 "t × s/√n" 만큼 펼친 구간이에요.
+      4장 공식과 비교하면 <strong>σ 자리에 s, Z 자리에 t</strong>가 들어갔을 뿐이에요.</p>
+
+      <p>구조는 완전히 같으니 겁먹지 마세요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>X̄</h5>
+          <p>표본평균. 달라진 건 없어요.</p>
+        </div>
+        <div class="card">
+          <h5>t<sub>α/2, n−1</sub></h5>
+          <p>t 표에서 찾는 임계값. 자유도 n−1과 α/2를 넣어요.</p>
+        </div>
+        <div class="card">
+          <h5>s</h5>
+          <p>표본 표준편차. 모집단이 아니라 <em>우리 데이터</em>에서 계산.</p>
+        </div>
+        <div class="card">
+          <h5>s / √n</h5>
+          <p>표본 기반 표준오차. 모집단 SE의 근사치예요.</p>
+        </div>
+      </div>
+
+      <h3>예시 · 스마트폰 배터리 수명</h3>
+
+      <p>어떤 스마트폰 25대의 배터리 수명(시간)을 측정했어요.</p>
+
+      <div class="data-strip">
+        n = 25, &nbsp; X̄ = 10.5 시간, &nbsp; s = 1.2 시간
+      </div>
+
+      <p>95% 신뢰구간을 만들어 볼게요.</p>
+
+      <ol class="steps">
+        <li><strong>자유도.</strong> df = n − 1 = 24.</li>
+        <li><strong>임계값.</strong> t<sub>0.025, 24</sub> ≈ <strong>2.064</strong> (t 표에서).</li>
+        <li><strong>표준오차.</strong> s/√n = 1.2/5 = 0.24.</li>
+        <li><strong>오차범위.</strong> ME = 2.064 × 0.24 ≈ 0.495.</li>
+        <li><strong>CI.</strong> 10.5 ± 0.495 → <strong>(10.005, 10.995)</strong> 시간.</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="label">해석</div>
+        <p>"이 기종의 평균 배터리 수명은 약 <strong>10~11시간</strong> 사이일 것이다"라고
+        95% 신뢰로 말할 수 있어요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">주의</div>
+        <p>n이 작고(보통 n &lt; 30) 모집단이 정규에서 많이 벗어나면
+        t-CI도 흔들려요. 분포 모양을 먼저 확인하고 써야 해요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        σ를 모르면 s와 t. 자유도 n−1 챙기기.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 9장 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>표본 크기 n의 힘</h2>
+      <div class="chap-sub">n이 커지면 구간이 좁아진다</div>
+
+      <p>여러 번 말했지만 다시 한 번. 표준오차는 <strong>σ/√n</strong>이에요.
+      분모에 n이 있다는 사실. 별 거 아닌 것 같지만 <em>엄청난 의미</em>예요.</p>
+
+      <div class="analogy">
+        <p><strong>요리사의 간 보기.</strong></p>
+        <p>국 한 숟갈로 간을 보면 짤지 싱거울지 감이 안 와요.
+        세 숟갈쯤 맛보면 감이 잡히죠. 열 숟갈이면 거의 확신이에요.
+        표본이 많을수록 <em>흔들림</em>이 줄어들어요.</p>
+      </div>
+
+      <h3>n이 4배 되면 폭은 반으로</h3>
+
+      <p>√n이 분모이기 때문에 n을 4배로 키우면 표준오차는 √4 = 2배만큼 작아져요.
+      즉 <strong>구간 폭이 절반</strong>이 돼요.</p>
+
+      <div class="data-strip">
+        n = 25&nbsp; → SE = σ/5<br>
+        n = 100 → SE = σ/10&nbsp; <em>(폭 50%)</em><br>
+        n = 400 → SE = σ/20&nbsp; <em>(폭 25%)</em>
+      </div>
+
+      <!-- n 증가에 따른 CI 폭 감소 그래프 -->
+      <div class="chart-wrap">
+        <div class="chart-title">표본 크기와 CI 폭</div>
+        <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+          <line x1="80" y1="240" x2="620" y2="240" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="80" y1="30" x2="80" y2="240" stroke="#1d1d1f" stroke-width="1.5"/>
+
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="140" y="258">n=10</text><text x="230" y="258">n=25</text>
+            <text x="330" y="258">n=50</text><text x="430" y="258">n=100</text>
+            <text x="530" y="258">n=200</text>
+          </g>
+
+          <g font-size="11" fill="#6b6b6b" text-anchor="end">
+            <text x="74" y="244">0</text><text x="74" y="200">2</text>
+            <text x="74" y="156">4</text><text x="74" y="112">6</text><text x="74" y="68">8</text>
+          </g>
+
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="80" y1="200" x2="620" y2="200"/>
+            <line x1="80" y1="156" x2="620" y2="156"/>
+            <line x1="80" y1="112" x2="620" y2="112"/>
+            <line x1="80" y1="68" x2="620" y2="68"/>
+          </g>
+
+          <!-- 곡선: ME = 1.96 * σ / √n (σ=10) -->
+          <!-- n=10 → 6.20 / n=25 → 3.92 / n=50 → 2.77 / n=100 → 1.96 / n=200 → 1.39 -->
+          <path d="M 140 104 Q 200 140, 230 154 Q 300 180, 330 180 Q 380 195, 430 197 Q 490 207, 530 213"
+                fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+
+          <g fill="#1e3a8a">
+            <circle cx="140" cy="104" r="5"/><circle cx="230" cy="154" r="5"/>
+            <circle cx="330" cy="180" r="5"/><circle cx="430" cy="197" r="5"/>
+            <circle cx="530" cy="213" r="5"/>
+          </g>
+
+          <g font-size="10" fill="#1e3a8a" text-anchor="middle">
+            <text x="140" y="94">6.20</text><text x="230" y="144">3.92</text>
+            <text x="330" y="170">2.77</text><text x="430" y="187">1.96</text>
+            <text x="530" y="203">1.39</text>
+          </g>
+
+          <text x="20" y="140" font-size="11" fill="#6b6b6b" transform="rotate(-90, 20, 140)">오차범위 ME</text>
+          <text x="350" y="285" text-anchor="middle" font-size="11" fill="#6b6b6b">표본 크기 n</text>
+        </svg>
+        <div class="chart-caption">빠르게 줄어들다가 점점 느려져요 — 수확체감.</div>
+      </div>
+
+      <h3>필요한 n 거꾸로 구하기</h3>
+
+      <p>"ME를 ±E 이하로 만들고 싶다"면 공식에서 n을 풀어낼 수 있어요.</p>
+
+      <div class="formula">
+        n = <span class="frac"><span class="num">Z<sup>2</sup> · σ<sup>2</sup></span><span class="den">E<sup>2</sup></span></span>
+      </div>
+
+      <p>즉, ME = Z·σ/√n 에서 양변을 n에 대해 풀면 나와요.
+      <em>원하는 정밀도 E가 작을수록</em>, <em>σ가 클수록</em> n이 더 커져야 한다는 뜻이에요.</p>
+
+      <p>예: σ = 10, 95% 신뢰로 ME ≤ 2로 만들고 싶다면</p>
+
+      <div class="data-strip">
+        n = (1.96)<sup>2</sup> × (10)<sup>2</sup> / 2<sup>2</sup>
+        = 3.8416 × 100 / 4 ≈ <strong>96.04</strong> → n = 97 (반올림 ↑)
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">왜 올림일까</div>
+        <p>96.04를 96으로 내려 버리면 약속한 정밀도를 못 지켜요.
+        표본 크기는 <em>항상 올림</em>합니다. 안 지키면 너무 넓어져요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        n ↑ → SE ↓ → CI 좁아짐. 단, 수확체감이 있다.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 10장 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>모비율 p의 신뢰구간</h2>
+      <div class="chap-sub">Confidence Interval for Proportion</div>
+
+      <p>지금까지는 <em>평균</em>의 이야기였어요. 이번엔 <em>비율</em>이에요.
+      "전체 유권자 중 후보 A 지지율은 몇 %일까?" 이런 질문이죠.</p>
+
+      <div class="definition">
+        <div class="term">Sample Proportion · 표본비율</div>
+        <div class="kor">p̂ (p-hat)</div>
+        <p>표본에서 해당 특성을 가진 비율.
+        설문 1000명 중 A를 지지한 350명이면 p̂ = 0.35예요.</p>
+      </div>
+
+      <h3>공식</h3>
+
+      <div class="formula">
+        p̂ ± Z<sub>α/2</sub> · √( p̂(1 − p̂) / n )
+      </div>
+
+      <p>즉, 표본비율 p̂ 중심으로 양옆 "Z × √(p̂(1−p̂)/n)" 만큼 펼치면 끝.</p>
+
+      <p>제곱근 안쪽 <strong>p̂(1 − p̂)</strong>이 분산 역할을 해요.
+      비율에서는 이 값이 σ<sup>2</sup> 자리를 대신하는 거죠.</p>
+
+      <div class="analogy">
+        <p><strong>동전 던지기의 흔들림.</strong></p>
+        <p>앞면 나올 확률 p 인 동전을 n 번 던져요.
+        앞면 비율 p̂의 흔들림은 p 가 0.5 일 때 가장 커요 (0.5·0.5 = 0.25).
+        p 가 0 이나 1 에 가까우면 결과가 뻔해서 흔들림이 작아져요.</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">사용 조건</div>
+        <p>표본이 충분히 커야 해요. 흔한 기준은 <strong>n p̂ ≥ 5</strong>
+        <strong>그리고 n(1 − p̂) ≥ 5</strong>. 성공 횟수·실패 횟수 모두 5 이상.</p>
+      </div>
+
+      <h3>예시 · 후보 지지율 조사</h3>
+
+      <div class="data-strip">
+        n = 1000명, 후보 A 지지 = 420명 &nbsp;→&nbsp; p̂ = 0.42
+      </div>
+
+      <ol class="steps">
+        <li><strong>조건 확인.</strong> np̂ = 420, n(1−p̂) = 580. 둘 다 넉넉.</li>
+        <li><strong>표준오차.</strong>
+          <div class="formula">
+            SE = √(0.42 × 0.58 / 1000) ≈ √0.0002436 ≈ 0.0156
+          </div>
+        </li>
+        <li><strong>ME (95%).</strong> 1.96 × 0.0156 ≈ 0.0306.</li>
+        <li><strong>CI.</strong> 0.42 ± 0.0306 → <strong>(0.389, 0.451)</strong>.</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="label">현실의 한 줄</div>
+        <p>"후보 A의 진짜 지지율은 95% 신뢰로 <strong>38.9% ~ 45.1%</strong>
+        사이일 것이다." 뉴스에서 자주 보는 "오차범위 ±3.1%p"가 이거예요.</p>
+      </div>
+
+      <h3>비율 조사에 필요한 n</h3>
+
+      <p>평균처럼 n도 거꾸로 풀 수 있어요. 다만 여기선 p를 모르니
+      <strong>p = 0.5</strong>로 두는 게 가장 보수적이에요. 분산이 최대니까요.</p>
+
+      <div class="formula">
+        n = <span class="frac"><span class="num">Z<sup>2</sup> · p(1 − p)</span><span class="den">E<sup>2</sup></span></span>
+      </div>
+
+      <p>예: ME ≤ 3%p, 95% 신뢰 → n ≈ (1.96)<sup>2</sup> × 0.25 / (0.03)<sup>2</sup>
+      ≈ <strong>1068명</strong>. 여론조사가 1000명 언저리인 이유예요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        비율도 CI가 있다. 뉴스의 "±3.1%p"가 바로 오차범위.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 11장 ═══════ -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">CHAPTER 11</div>
+      <h2>실전 예시 — 세 장면</h2>
+      <div class="chap-sub">교재 예제 · 실제 상황 적용</div>
+
+      <h3>장면 ① · 택배 도착 시간</h3>
+
+      <p>어떤 택배 회사가 30건의 배송 시간을 기록했어요.</p>
+
+      <div class="data-strip">
+        n = 30, &nbsp; X̄ = 2.1일, &nbsp; s = 0.5일, &nbsp; 신뢰수준 95%
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>계산 단계</caption>
+        <thead><tr><th>항목</th><th>값</th></tr></thead>
+        <tbody>
+          <tr><td>df</td><td>29</td></tr>
+          <tr><td>t<sub>0.025, 29</sub></td><td>2.045</td></tr>
+          <tr><td>SE = s/√n</td><td>0.5 / √30 ≈ 0.0913</td></tr>
+          <tr><td>ME = t · SE</td><td>2.045 × 0.0913 ≈ 0.187</td></tr>
+          <tr><td class="hi">95% CI</td><td class="hi">(1.913, 2.287) 일</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>→ "평균 배송 시간은 약 <strong>1.9~2.3일</strong>" 이라고 말할 수 있어요.</p>
+
+      <h3>장면 ② · 학생 통학 시간</h3>
+
+      <p>학교 학생 100명의 통학 시간을 조사했어요. 과거 기록에서
+      σ = 15분이 알려져 있어요.</p>
+
+      <div class="data-strip">
+        n = 100, &nbsp; X̄ = 42분, &nbsp; σ = 15분 (기지), &nbsp; 99% 신뢰
+      </div>
+
+      <p>σ가 알려졌으니 Z를 써요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>Z 기반 계산</caption>
+        <thead><tr><th>항목</th><th>값</th></tr></thead>
+        <tbody>
+          <tr><td>Z<sub>0.005</sub></td><td>2.576</td></tr>
+          <tr><td>SE = σ/√n</td><td>15 / 10 = 1.5</td></tr>
+          <tr><td>ME</td><td>2.576 × 1.5 ≈ 3.864</td></tr>
+          <tr><td class="hi">99% CI</td><td class="hi">(38.14, 45.86) 분</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>→ "전교생 평균 통학 시간은 99% 신뢰로 <strong>약 38~46분</strong>."</p>
+
+      <h3>장면 ③ · 품질 검사 불량률</h3>
+
+      <p>공장에서 500개 제품을 검사해 <strong>15개</strong>가 불량이었어요. 95% 신뢰로 불량률은?</p>
+
+      <div class="data-strip">
+        p̂ = 15/500 = 0.03
+      </div>
+
+      <ol class="steps">
+        <li>조건 확인: np̂ = 15, n(1−p̂) = 485. 살짝 아슬하지만 OK.</li>
+        <li>SE = √(0.03 × 0.97 / 500) ≈ √0.0000582 ≈ 0.00763.</li>
+        <li>ME = 1.96 × 0.00763 ≈ 0.01495.</li>
+        <li>CI = 0.03 ± 0.015 → <strong>(0.015, 0.045)</strong> = (1.5%, 4.5%).</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="label">경영의 힌트</div>
+        <p>"불량률은 <strong>1.5% ~ 4.5%</strong> 사이일 거예요." 5% 목표치보다
+        낮은 쪽에 있을 가능성이 크지만, 5% 위험도 완전히 배제할 수는 없어요.</p>
+      </div>
+
+      <blockquote class="pull">
+        숫자 하나가 아니라 <em>이야기 한 줄</em>.<br>
+        신뢰구간은 답을 문장으로 바꿔줘요.
+      </blockquote>
+
+    </section>
+
+    <!-- ═══════ 12장 ═══════ -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">CHAPTER 12</div>
+      <h2>두 평균 비교 — 독립 표본</h2>
+      <div class="chap-sub">Comparing Two Means · Independent Samples</div>
+
+      <p>이제 이야기를 한 단계 넓혀 볼게요.
+      지금까지는 <strong>한 모집단</strong>의 평균 μ를 추정했죠.</p>
+
+      <p>하지만 현실의 질문은 보통 이렇게 생겨요.
+      "서울 체류 시간과 도쿄 체류 시간 중 <em>어느 쪽이 더 길까?</em>"</p>
+
+      <p>두 모집단을 비교해야 하는 상황이에요.
+      모평균을 <strong>μ<sub>S</sub></strong> (서울), <strong>μ<sub>T</sub></strong> (도쿄)라고 두고,
+      우리가 알고 싶은 건 <em>둘의 차이</em> μ<sub>S</sub> − μ<sub>T</sub> 예요.</p>
+
+      <div class="definition">
+        <div class="term">Independent Samples · 독립 표본</div>
+        <div class="kor">서로 다른 두 모집단에서 따로따로 뽑기</div>
+        <p>서울 사람 n<sub>S</sub>명, 도쿄 사람 n<sub>T</sub>명을 <em>독립적으로</em> 뽑은 상황.
+        한쪽 표본의 결과가 다른 쪽에 영향을 주지 않아요.</p>
+      </div>
+
+      <h3>자연스러운 추정량</h3>
+
+      <p>직관부터 시작해요. 서울 표본평균 X̄<sub>S</sub>, 도쿄 표본평균 X̄<sub>T</sub>가 있잖아요?</p>
+
+      <p>두 모평균의 차이를 추정하려면
+      <strong>두 표본평균의 차이</strong>를 쓰면 되겠죠.</p>
+
+      <div class="formula">
+        추정량: X̄<sub>S</sub> − X̄<sub>T</sub>
+      </div>
+
+      <p>즉, 서울 평균에서 도쿄 평균을 뺀 숫자를
+      μ<sub>S</sub> − μ<sub>T</sub>의 <em>좋은 추측</em>으로 삼겠다는 거예요.</p>
+
+      <div class="callout yellow">
+        <div class="label">진짜 써도 될까?</div>
+        <p>좋은 추정량이 되려면 세 가지를 체크해야 해요.
+        ① 평균이 맞는가 (기댓값) ② 퍼짐을 알 수 있는가 (분산) ③ 어떤 분포인가 (형태).</p>
+      </div>
+
+      <h3>3단계 유도</h3>
+
+      <ol class="steps">
+        <li><strong>기댓값 (Expectation).</strong>
+          기댓값의 선형성으로 바로 풀려요.
+          <div class="formula">
+            E[X̄<sub>S</sub> − X̄<sub>T</sub>] = E[X̄<sub>S</sub>] − E[X̄<sub>T</sub>]
+          </div>
+          <div class="formula">
+            = μ<sub>S</sub> − μ<sub>T</sub>
+          </div>
+          즉, 우리의 추정량은 <em>평균적으로 정답과 일치</em>해요. 편향 없음. OK.
+        </li>
+        <li><strong>분산 (Variance).</strong>
+          두 표본이 <em>독립</em>이라는 게 핵심이에요.
+          독립이면 분산은 그냥 더해지거든요.
+          <div class="formula">
+            Var[X̄<sub>S</sub> − X̄<sub>T</sub>]
+          </div>
+          <div class="formula">
+            = <span class="frac"><span class="num">σ<sub>S</sub><sup>2</sup></span><span class="den">n<sub>S</sub></span></span>
+            + <span class="frac"><span class="num">σ<sub>T</sub><sup>2</sup></span><span class="den">n<sub>T</sub></span></span>
+          </div>
+          즉, 각 표본평균의 분산(σ²/n 꼴)을 그냥 합치면 돼요.
+          공분산은 0이라 빠져요.
+        </li>
+        <li><strong>분포 (Distribution).</strong>
+          n<sub>S</sub>, n<sub>T</sub>가 충분히 크면 <strong>CLT</strong>에 의해
+          각 표본평균이 정규분포에 가까워지고,
+          <em>정규끼리의 차</em>도 여전히 정규예요.
+          <div class="formula">
+            X̄<sub>S</sub> − X̄<sub>T</sub> ≈ N( μ<sub>S</sub>−μ<sub>T</sub>, &nbsp; SE² )
+          </div>
+          즉, 이 차이값은 "진짜 차이 μ<sub>S</sub>−μ<sub>T</sub>" 근처에 종 모양으로 쌓여요.
+        </li>
+      </ol>
+
+      <div class="definition">
+        <div class="term">표준오차 (SE)</div>
+        <div class="kor">두 표본평균 차이의 흔들림</div>
+        <div class="formula">
+          SE = √( <span class="frac"><span class="num">σ<sub>S</sub><sup>2</sup></span><span class="den">n<sub>S</sub></span></span>
+          + <span class="frac"><span class="num">σ<sub>T</sub><sup>2</sup></span><span class="den">n<sub>T</sub></span></span> )
+        </div>
+        <p>두 표준오차 제곱을 더한 뒤 √을 씌우는 거예요.
+        각자의 흔들림이 합쳐진 총 흔들림이라고 보시면 돼요.</p>
+      </div>
+
+      <h3>95% 신뢰구간 공식</h3>
+
+      <p>이제 6강·7강에서 본 패턴과 똑같이 조립하면 끝.
+      "추정량 ± 1.96 · SE" 공식이에요.</p>
+
+      <div class="formula">
+        (X̄<sub>S</sub> − X̄<sub>T</sub>) ± 1.96 · SE
+      </div>
+
+      <p>풀어서 쓰면 이렇게 돼요.</p>
+
+      <div class="formula wide">
+        (X̄<sub>S</sub> − X̄<sub>T</sub>) ± 1.96 · √( σ<sub>S</sub><sup>2</sup>/n<sub>S</sub> + σ<sub>T</sub><sup>2</sup>/n<sub>T</sub> )
+      </div>
+
+      <p>즉, <em>두 표본평균의 차이</em>를 중심에 놓고,
+      양옆으로 1.96·SE 만큼 펼치면 95% 신뢰구간이 나와요.</p>
+
+      <div class="callout blue">
+        <div class="label">σ를 모를 때</div>
+        <p>σ<sub>S</sub>, σ<sub>T</sub>를 모르면 (거의 항상 모르죠)
+        표본 분산 <strong>S<sub>S</sub><sup>2</sup></strong>, <strong>S<sub>T</sub><sup>2</sup></strong>로 바꿔 넣어요.</p>
+        <div class="formula wide">
+          (X̄<sub>S</sub> − X̄<sub>T</sub>) ± 1.96 · √( S<sub>S</sub><sup>2</sup>/n<sub>S</sub> + S<sub>T</sub><sup>2</sup>/n<sub>T</sub> )
+        </div>
+        <p>n이 충분히 크면 이 근사로 충분해요.</p>
+      </div>
+
+      <h3>예시 · 서울 vs 도쿄 체류 시간</h3>
+
+      <p>외국인 관광객의 평균 체류 시간(일)을 조사했다고 해볼게요.</p>
+
+      <div class="data-strip">
+        서울: n<sub>S</sub> = 50, &nbsp; X̄<sub>S</sub> = 4.2, &nbsp; S<sub>S</sub> = 1.5<br>
+        도쿄: n<sub>T</sub> = 40, &nbsp; X̄<sub>T</sub> = 3.6, &nbsp; S<sub>T</sub> = 1.2
+      </div>
+
+      <ol class="steps">
+        <li><strong>차이.</strong> X̄<sub>S</sub> − X̄<sub>T</sub> = 4.2 − 3.6 = <strong>0.6일</strong>.</li>
+        <li><strong>표준오차.</strong>
+          <div class="formula">
+            SE = √(1.5²/50 + 1.2²/40)
+          </div>
+          <div class="formula">
+            = √(0.045 + 0.036) = √0.081 ≈ <strong>0.285</strong>
+          </div>
+        </li>
+        <li><strong>오차범위.</strong> ME = 1.96 × 0.285 ≈ 0.558.</li>
+        <li><strong>95% CI.</strong> 0.6 ± 0.558 → <strong>(0.042, 1.158)</strong> 일.</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="label">해석</div>
+        <p>"서울이 도쿄보다 <strong>평균 0.04 ~ 1.16일</strong> 더 오래 머문다"라고
+        95% 신뢰로 말할 수 있어요.
+        구간이 전부 <em>양수</em>니까 "서울이 더 길다"는 결론도 가능해요.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">구간에 0이 들어 있으면?</div>
+        <p>CI가 예를 들어 (−0.2, 0.8)처럼 <em>0을 포함</em>하면
+        "두 도시의 체류 시간에 차이가 있다"고 단언할 수 없어요.
+        차이가 0일 가능성도 남아 있거든요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>두 저울의 결과 비교.</strong></p>
+        <p>서울 저울과 도쿄 저울이 각자 흔들려요.
+        <em>두 저울의 흔들림이 합쳐져서</em> 차이의 흔들림이 커지죠.
+        그래서 SE 안쪽에 두 분산을 모두 담는 거예요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        두 평균 차이의 CI는 (X̄<sub>S</sub>−X̄<sub>T</sub>) ± 1.96·√(σ²<sub>S</sub>/n<sub>S</sub> + σ²<sub>T</sub>/n<sub>T</sub>).
+        σ 모르면 S로.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 13장 ═══════ -->
+    <section class="chapter" id="ch13">
+      <div class="chap-num">CHAPTER 13</div>
+      <h2>두 비율 차이의 신뢰구간</h2>
+      <div class="chap-sub">C.I. for p<sub>S</sub> − p<sub>T</sub></div>
+
+      <p>이번엔 평균이 아니라 <em>비율</em>의 비교예요.
+      "정당 A 지지율은 서울과 부산 중 어디가 더 높을까?"</p>
+
+      <p>모비율 <strong>p<sub>S</sub></strong>와 <strong>p<sub>T</sub></strong>가 있고,
+      우리는 <em>차이</em> p<sub>S</sub> − p<sub>T</sub>를 추정하고 싶어요.</p>
+
+      <h3>평균 때와 똑같은 뼈대</h3>
+
+      <p>12장의 논리를 그대로 복붙해요.
+      평균 자리에 <em>비율</em>만 바꿔 넣으면 끝이에요.</p>
+
+      <ol class="steps">
+        <li><strong>추정량.</strong> p̂<sub>S</sub> − p̂<sub>T</sub>.
+          각 표본에서 구한 비율의 차이예요.</li>
+        <li><strong>기댓값.</strong> E[p̂<sub>S</sub> − p̂<sub>T</sub>] = p<sub>S</sub> − p<sub>T</sub>.
+          편향 없음.</li>
+        <li><strong>분산.</strong>
+          독립이니까 각 분산을 더해요.
+          <div class="formula wide">
+            Var = p<sub>S</sub>(1−p<sub>S</sub>)/n<sub>S</sub> + p<sub>T</sub>(1−p<sub>T</sub>)/n<sub>T</sub>
+          </div>
+          p̂의 분산이 <em>p(1−p)/n</em>이었던 거 기억하죠?
+        </li>
+        <li><strong>분포.</strong> n이 충분히 크면 정규 근사 OK.</li>
+      </ol>
+
+      <h3>95% 신뢰구간 공식</h3>
+
+      <div class="formula wide">
+        (p̂<sub>S</sub> − p̂<sub>T</sub>) ± 1.96 · √( p<sub>S</sub>(1−p<sub>S</sub>)/n<sub>S</sub> + p<sub>T</sub>(1−p<sub>T</sub>)/n<sub>T</sub> )
+      </div>
+
+      <p>즉, 두 표본비율의 차이에 ± 1.96·SE를 붙이는 거예요.</p>
+
+      <div class="callout blue">
+        <div class="label">실제로는 p̂로 근사</div>
+        <p>진짜 p<sub>S</sub>, p<sub>T</sub>를 모르니까
+        <strong>표본비율 p̂</strong>로 대체해서 계산해요.</p>
+        <div class="formula wide">
+          (p̂<sub>S</sub> − p̂<sub>T</sub>) ± 1.96 · √( p̂<sub>S</sub>(1−p̂<sub>S</sub>)/n<sub>S</sub> + p̂<sub>T</sub>(1−p̂<sub>T</sub>)/n<sub>T</sub> )
+        </div>
+        <p>n이 크면 이 근사가 충분히 정확해요.</p>
+      </div>
+
+      <h3>예시 · 정당 A 지지율 비교</h3>
+
+      <p>서울과 부산에서 각각 여론조사를 했어요.</p>
+
+      <div class="data-strip">
+        서울: n<sub>S</sub> = 500, &nbsp; A 지지 220명 → p̂<sub>S</sub> = 0.44<br>
+        부산: n<sub>T</sub> = 500, &nbsp; A 지지 180명 → p̂<sub>T</sub> = 0.36
+      </div>
+
+      <ol class="steps">
+        <li><strong>차이.</strong> p̂<sub>S</sub> − p̂<sub>T</sub> = 0.44 − 0.36 = <strong>0.08</strong>
+          (서울이 8%p 높음).</li>
+        <li><strong>분산.</strong>
+          <div class="formula">
+            0.44·0.56/500 + 0.36·0.64/500
+          </div>
+          <div class="formula">
+            = 0.000493 + 0.000461 ≈ 0.000954
+          </div>
+        </li>
+        <li><strong>SE.</strong> √0.000954 ≈ <strong>0.0309</strong>.</li>
+        <li><strong>ME.</strong> 1.96 × 0.0309 ≈ 0.0606.</li>
+        <li><strong>95% CI.</strong> 0.08 ± 0.0606 → <strong>(0.019, 0.141)</strong>.</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="label">해석</div>
+        <p>"서울이 부산보다 A 지지율이 <strong>1.9%p ~ 14.1%p</strong> 더 높다"라고
+        95% 신뢰로 말할 수 있어요.
+        구간이 전부 양수 → "서울이 진짜로 더 높다"는 근거가 돼요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>두 지역 여론조사의 오차.</strong></p>
+        <p>뉴스에서 "서울 오차 ±4.4%p, 부산 오차 ±4.2%p" 이런 식으로 따로 발표하죠?
+        <em>두 오차가 합쳐진</em> 오차가 두 지역의 <strong>차이</strong>의 오차예요.
+        그래서 차이의 오차가 더 커져요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        평균의 논리와 동일. σ²/n 자리에 p(1−p)/n만 끼워 넣기.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 14장 ═══════ -->
+    <section class="chapter" id="ch14">
+      <div class="chap-num">CHAPTER 14</div>
+      <h2>짝 표본 — Paired Samples</h2>
+      <div class="chap-sub">한 사람에서 두 번 재기</div>
+
+      <p>12장에서는 <em>독립</em> 표본이었어요.
+      서울 사람은 서울 사람끼리, 도쿄 사람은 도쿄 사람끼리.</p>
+
+      <p>이번엔 상황이 달라요.
+      <strong>같은 사람</strong>에게서 두 개의 숫자를 받는 경우예요.</p>
+
+      <div class="definition">
+        <div class="term">Paired Samples · 짝 표본</div>
+        <div class="kor">한 대상에서 두 측정값이 나오는 표본</div>
+        <p>학생 1명에게서 (수학 점수, 통계 점수)를 함께 받는 식.
+        각 학생이 <em>한 쌍의 숫자</em> (X<sub>i</sub>, Y<sub>i</sub>)를 내요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>쌍둥이의 키.</strong></p>
+        <p>형제 50쌍의 키를 잰다고 해봐요.
+        형의 키와 동생의 키는 <em>같은 유전자</em>를 공유하니까
+        서로 <strong>관련</strong>이 있어요. 완전히 독립이 아니죠.
+        짝 표본에서는 이런 <em>연관성</em>이 항상 있어요.</p>
+      </div>
+
+      <h3>문제 · 공분산이 끼어든다</h3>
+
+      <p>독립 표본처럼 X̄ − Ȳ 를 써서 μ<sub>X</sub> − μ<sub>Y</sub>를 추정하려 하면…
+      분산을 구할 때 꼬여요.</p>
+
+      <div class="formula wide">
+        Var[X̄ − Ȳ] = σ<sub>X</sub>²/n + σ<sub>Y</sub>²/n + 2·Cov[X̄, Ȳ]
+      </div>
+
+      <p>즉, 뒤에 <strong>공분산 2·Cov[X̄, Ȳ]</strong>가 달라붙어요.
+      독립이었으면 이게 0이어서 깔끔했는데,
+      여기선 같은 사람에서 나온 숫자라 <em>연관</em>돼 있어 0이 아니에요.</p>
+
+      <div class="callout yellow">
+        <div class="label">왜 문제인가</div>
+        <p>공분산 Cov[X̄, Ȳ]를 <em>어떻게 추정하지?</em> 까다로워요.
+        그래서 다른 길을 찾아야 해요. 다행히 아주 예쁜 트릭이 있어요.</p>
+      </div>
+
+      <h3>트릭 · D<sub>i</sub> := X<sub>i</sub> − Y<sub>i</sub> 변환</h3>
+
+      <p>발상의 전환. 두 숫자를 <em>각각</em> 보지 말고,
+      <strong>학생마다 차이 하나</strong>를 만들어요.</p>
+
+      <div class="formula">
+        D<sub>i</sub> := X<sub>i</sub> − Y<sub>i</sub>
+      </div>
+
+      <p>즉, 학생 i 의 수학 점수에서 통계 점수를 뺀 값이 D<sub>i</sub>.
+      이제 학생마다 <em>숫자 하나</em>만 남아요.
+      <strong>두 개짜리 표본이 한 개짜리 표본으로 변신</strong>한 거예요!</p>
+
+      <div class="callout blue">
+        <div class="label">핵심 관찰</div>
+        <p>D<sub>i</sub>의 표본평균 D̄는 그냥 차이들의 평균이에요.
+        그런데 수학적으로 D̄ = X̄ − Ȳ 와 똑같아요.
+        "먼저 빼고 평균" = "먼저 평균 내고 뺌"</p>
+      </div>
+
+      <h3>D<sub>i</sub>에 대한 분석 (아주 간단해짐)</h3>
+
+      <ol class="steps">
+        <li><strong>기댓값.</strong>
+          <div class="formula">
+            E[D̄] = E[X̄ − Ȳ] = μ<sub>X</sub> − μ<sub>Y</sub>
+          </div>
+          즉, D̄ 역시 μ<sub>X</sub> − μ<sub>Y</sub>에 대한 좋은 추정량이에요.
+        </li>
+        <li><strong>분산.</strong> 이제 D는 <em>하나의 변수</em>니까 공분산 없이 깔끔해요.
+          <div class="formula">
+            Var[D̄] = <span class="frac"><span class="num">σ<sub>D</sub>²</span><span class="den">n</span></span>
+          </div>
+          모르면 표본으로 근사.
+          <div class="formula">
+            ≈ <span class="frac"><span class="num">S<sub>D</sub>²</span><span class="den">n</span></span>
+          </div>
+          즉, D값들의 표본분산만 구하면 끝이에요.
+        </li>
+        <li><strong>분포.</strong> n이 충분히 크면 CLT에 의해 D̄ ≈ 정규.
+          정규분포 이야기로 복귀.
+        </li>
+      </ol>
+
+      <h3>95% 신뢰구간 공식</h3>
+
+      <p>이제 한 표본 CI 공식 그대로.</p>
+
+      <div class="formula">
+        D̄ ± 1.96 · <span class="frac"><span class="num">S<sub>D</sub></span><span class="den">√n</span></span>
+      </div>
+
+      <p>즉, <em>차이값 D<sub>i</sub>들의 평균</em>을 중심으로,
+      <em>차이값들의 표준편차</em>를 √n으로 나눈 만큼 펼치면 돼요.
+      μ<sub>X</sub> − μ<sub>Y</sub>의 95% CI 완성.</p>
+
+      <div class="callout green">
+        <div class="label">핵심 요약</div>
+        <p>짝 표본 → D<sub>i</sub>로 변환 → <strong>한 표본 문제</strong>로 환원 → 8장 t-CI 그대로.</p>
+        <p>작은 n이면 Z 대신 <strong>t<sub>α/2, n−1</sub></strong>을 써서 더 안전하게.</p>
+      </div>
+
+      <h3>예시 · 수학 vs 통계 점수</h3>
+
+      <p>학생 10명에게서 수학 점수와 통계 점수를 받았다고 해볼게요.
+      각 학생마다 차이 D<sub>i</sub> = 수학 − 통계 를 계산했어요.</p>
+
+      <div class="data-strip">
+        n = 10, &nbsp; D̄ = 5점 (수학이 평균 5점 높음), &nbsp; S<sub>D</sub> = 6점
+      </div>
+
+      <ol class="steps">
+        <li><strong>자유도.</strong> df = n − 1 = 9.</li>
+        <li><strong>임계값.</strong> t<sub>0.025, 9</sub> ≈ <strong>2.262</strong>.</li>
+        <li><strong>표준오차.</strong> S<sub>D</sub>/√n = 6/√10 ≈ 1.897.</li>
+        <li><strong>오차범위.</strong> ME = 2.262 × 1.897 ≈ 4.29.</li>
+        <li><strong>95% CI.</strong> 5 ± 4.29 → <strong>(0.71, 9.29)</strong> 점.</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="label">해석</div>
+        <p>"이 학생들에게서 수학 점수가 통계보다 <strong>평균 0.7 ~ 9.3점</strong>
+        더 높다"라고 95% 신뢰로 말할 수 있어요.
+        구간이 전부 <em>양수</em>라 "수학이 더 높다"는 결론 가능.</p>
+      </div>
+
+      <h3>독립 vs 짝 — 언제 뭘 쓰나?</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>독립 표본 (12장)</h5>
+          <div class="kor-sub">서로 다른 두 집단</div>
+          <p>서울 사람 vs 도쿄 사람.
+          한쪽에서 뽑은 것이 다른 쪽과 관계 없어요.
+          분산 공식에 <em>공분산 없음</em>.</p>
+        </div>
+        <div class="card">
+          <h5>짝 표본 (14장)</h5>
+          <div class="kor-sub">같은 대상의 두 측정</div>
+          <p>같은 학생의 수학·통계, 다이어트 전·후 체중.
+          두 숫자가 <em>연관</em>돼 있어요.
+          D = X − Y 변환으로 해결.</p>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <p><strong>신약 효과 측정.</strong></p>
+        <p>방법 ①: 환자 100명을 두 그룹으로 나눠 한 쪽만 신약. (독립)<br>
+        방법 ②: 같은 환자의 <em>복용 전·후</em> 혈압을 잼. (짝 표본)<br>
+        방법 ②가 개인차를 빼니까 보통 더 <strong>민감하게</strong> 차이를 잡아내요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        짝 표본은 D<sub>i</sub> = X<sub>i</sub> − Y<sub>i</sub> 변환으로 한 표본 문제가 돼요.
+        D̄ ± 1.96·S<sub>D</sub>/√n.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 15장 (에필로그) ═══════ -->
+    <section class="chapter" id="ch15">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글 · 한 학기를 닫으며</h2>
+      <div class="chap-sub">오늘 배운 것, 그리고 다음 걸음</div>
+
+      <p class="story">
+        이렇게 7강을 끝까지 왔어요. 1강에서 "통계는 세상을 읽는 눈"이라고 말했죠.
+        오늘 드디어 그 눈으로 <em>모르는 것을 짐작하는 법</em>을 배웠어요.
+      </p>
+
+      <p class="story">
+        점 하나가 아니라 <strong>띠</strong>로 답하는 태도.
+        모르는 불확실성을 숫자에 녹여 넣는 용기.
+        이건 과학의 태도이기도 해요.
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>점 추정의 외로움 → 구간 추정의 따뜻함</li>
+        <li>CLT 덕분에 X̄이 정규가 됐어요 (n 크면)</li>
+        <li>CI = 점 추정 ± 임계값 × 표준오차</li>
+        <li>σ 알면 Z, 모르면 t (df = n − 1)</li>
+        <li>t는 정규의 사촌 — 꼬리가 두껍고 df 커지면 수렴</li>
+        <li>신뢰 높을수록 구간 넓어요 — Z 1.645 / 1.96 / 2.576</li>
+        <li>n 4배 → 폭 절반. n 결정 공식도 배웠어요</li>
+        <li>모비율 CI: p̂ ± Z · √(p̂(1−p̂)/n)</li>
+        <li>"95% 신뢰"의 올바른 해석 — 100번 중 95번</li>
+        <li><strong>두 평균 차이</strong>: (X̄<sub>S</sub>−X̄<sub>T</sub>) ± 1.96·√(σ²/n 합)</li>
+        <li><strong>두 비율 차이</strong>: (p̂<sub>S</sub>−p̂<sub>T</sub>) ± 1.96·√(p(1−p)/n 합)</li>
+        <li><strong>짝 표본</strong>: D<sub>i</sub> = X<sub>i</sub> − Y<sub>i</sub> 변환 → 한 표본 문제로 환원</li>
+      </ul>
+
+      <h4>이번 학기 수록 강의의 마지막!</h4>
+      <p>이 노트에는 여기까지가 담겼어요. 하지만 여러분의 통계 여행은 막 시작이에요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>가설 검정</h5>
+          <p>"두 집단은 진짜 다른가?"를 판정해요. CI와 사촌 관계예요.</p>
+        </div>
+        <div class="card">
+          <h5>두 표본 검정</h5>
+          <p>오늘 배운 두 평균·두 비율 차이의 CI를 <em>가설 검정</em>으로 확장해요.
+          "두 집단이 진짜 다른가?"를 판정.</p>
+        </div>
+        <div class="card">
+          <h5>회귀분석</h5>
+          <p>변수들 사이의 <em>관계식</em>을 찾아요. 예측의 시작.</p>
+        </div>
+        <div class="card">
+          <h5>분산분석 (ANOVA)</h5>
+          <p>세 집단 이상을 한 번에 비교해요.</p>
+        </div>
+      </div>
+
+      <p>앞으로 이 친구들을 만날 때, 오늘 배운 <strong>Z · t · SE · CI</strong>가
+      길잡이 역할을 할 거예요. 모든 추리통계는 같은 뿌리에서 자라나거든요.</p>
+
+      <div class="epilogue">
+        <h2>마지막 마음가짐</h2>
+        <p>세상은 불확실해요. 통계는 그 불확실성을 부정하지 않아요.</p>
+        <p>오히려 숫자로 <em>담담하게 인정</em>해요. 그래서 더 믿음직스럽죠.</p>
+        <p>점 하나로 단언하지 않는 태도 — 그게 오늘의 선물이에요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 7강, 그리고 이번 학기의 마침 —</p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

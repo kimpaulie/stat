@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>6강 · 표본분포와 CLT | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">6강 표본분포와 CLT</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture05.html" aria-label="이전 강의">◀</a>
+    <a href="lecture07.html" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<!-- ═══════ 레이아웃 ═══════ -->
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html" class="active"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">표본을 왜 뽑나</a></li>
+      <li><a href="#ch2">표본평균 X̄</a></li>
+      <li><a href="#ch3">표본은 왜 랜덤인가</a></li>
+      <li><a href="#ch4">표본추출 방법</a></li>
+      <li><a href="#ch5">X̄의 평균과 분산</a></li>
+      <li><a href="#ch6">표준오차 SE</a></li>
+      <li><a href="#ch7">중심극한정리 CLT</a></li>
+      <li><a href="#ch8">CLT 시각 시연</a></li>
+      <li><a href="#ch9">CLT 응용</a></li>
+      <li><a href="#ch10">모비율 p̂</a></li>
+      <li><a href="#ch11">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="06"><!-- populated by app.js --></div>
+  </aside>
+
+  <!-- ─── 본문 ─── -->
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 06<br>Sampling and Sampling Distribution</div>
+      <h1>표본분포와 CLT
+        <span class="small">— 한 움큼으로 온 들판을 읽는 기술</span>
+      </h1>
+      <p class="lead">
+        1,000명에게 물어보면 1억 명의 마음을 알 수 있을까요?<br>
+        놀랍게도, 통계는 "그렇다"고 답해줍니다.<br>
+        그 비밀의 이름이 바로 <strong>중심극한정리</strong>예요.
+      </p>
+    </div>
+
+    <!-- ═══════ 여는 글 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · Curio의 고민</h2>
+      <div class="chap-sub">작은 설문으로 큰 결정을 내리는 법</div>
+
+      <p class="story">
+        모바일 게임 회사 <strong>Curio</strong>가 신작을 만들었어요.
+        출시 전에 테스터 1,000명을 모아 물었죠.
+        "이 게임 마음에 드세요?"
+      </p>
+
+      <p class="story">
+        결과는 <strong>535명 좋다, 465명 싫다</strong>.
+        회사는 이제 중대한 결정을 앞두고 있어요.
+        정식 출시를 할까, 말까.
+      </p>
+
+      <div class="table-scroll">
+      <table class="green-head center">
+        <caption>Curio의 테스트 설문 결과</caption>
+        <thead>
+          <tr><th>테스터 수</th><th>좋다 (Like)</th><th>싫다 (Dislike)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1,000</td><td class="hi">535</td><td>465</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p class="story">
+        그런데 1,000명은 진짜 사용자 중 아주 일부예요.
+        전체 사용자는 수천만 명일 수도 있잖아요.
+        "1,000명의 53.5%"가 정말 "전 국민의 53.5%"와 같을까요?
+      </p>
+
+      <div class="callout">
+        <div class="label">오늘의 질문</div>
+        <p>작은 표본 하나로 거대한 모집단의 진짜 비율을 얼마나 믿을 수 있나?
+        정답이 완벽하지 않다면, 그 오차는 얼마나 될까?</p>
+      </div>
+
+      <blockquote class="pull">
+        한 숟갈의 수프로<br>
+        <em>큰 냄비의 맛</em>을 판단하는 이야기.
+      </blockquote>
+
+    </section>
+
+    <!-- ═══════ 1장 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>표본을 왜 뽑나</h2>
+      <div class="chap-sub">전수조사의 불가능함</div>
+
+      <p>세상 전체를 조사하면 가장 정확해요.
+      하지만 현실에선 불가능한 경우가 대부분이에요.
+      돈도 시간도 감당이 안 되거든요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>전수조사 Census</h5>
+          <p>모집단 전체를 조사. 가장 정확하지만,
+          거의 불가능해요. 10년에 한 번 인구조사 정도.</p>
+        </div>
+        <div class="card">
+          <h5>표본조사 Sampling</h5>
+          <p>일부만 뽑아서 조사. 빠르고 저렴해요.
+          대신 오차가 생겨요. 그 오차를 다루는 게 통계.</p>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <p><strong>블라인드 테스트 이야기.</strong></p>
+        <p>새로 나온 콜라 맛을 테스트하고 싶어요. 전 국민에게 한 잔씩
+        먹여볼 수는 없죠. 대신 <em>300명을 무작위로</em> 뽑아 맛을 보게 해요.</p>
+        <p>300명의 반응이 곧 <strong>표본(sample)</strong>.
+        전 국민은 <strong>모집단(population)</strong>이에요.
+        한 잔의 맛으로 냄비 전체의 맛을 짐작하듯, 표본으로 모집단을 짐작해요.</p>
+      </div>
+
+      <!-- 표본추출 다이어그램 -->
+      <div class="chart-wrap">
+        <div class="chart-title">모집단에서 표본으로</div>
+        <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- 큰 원: 모집단 -->
+          <circle cx="180" cy="140" r="110" fill="#e8eefc" stroke="#1e3a8a" stroke-width="2"/>
+          <text x="180" y="50" text-anchor="middle" font-weight="700" font-size="15" fill="#1e3a8a" font-family="Nanum Myeongjo">모집단 Population</text>
+          <text x="180" y="250" text-anchor="middle" font-size="12" fill="#6b6b6b">전체 수천만 명</text>
+          <!-- 모집단 속 수많은 점 -->
+          <g fill="#1e3a8a" opacity="0.55">
+            <circle cx="130" cy="100" r="3"/><circle cx="160" cy="90" r="3"/>
+            <circle cx="200" cy="95" r="3"/><circle cx="230" cy="110" r="3"/>
+            <circle cx="115" cy="130" r="3"/><circle cx="145" cy="140" r="3"/>
+            <circle cx="180" cy="130" r="3"/><circle cx="215" cy="145" r="3"/>
+            <circle cx="240" cy="160" r="3"/><circle cx="130" cy="170" r="3"/>
+            <circle cx="165" cy="180" r="3"/><circle cx="195" cy="175" r="3"/>
+            <circle cx="225" cy="190" r="3"/><circle cx="150" cy="200" r="3"/>
+            <circle cx="190" cy="210" r="3"/><circle cx="110" cy="155" r="3"/>
+            <circle cx="250" cy="130" r="3"/><circle cx="135" cy="115" r="3"/>
+          </g>
+          <!-- 화살표 -->
+          <path d="M 300 140 L 440 140" stroke="#c0392b" stroke-width="2.5" fill="none" marker-end="url(#arr6)"/>
+          <defs>
+            <marker id="arr6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/>
+            </marker>
+          </defs>
+          <text x="370" y="130" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="700">무작위 추출</text>
+          <text x="370" y="160" text-anchor="middle" font-size="11" fill="#6b6b6b">Random Sampling</text>
+          <!-- 작은 원: 표본 -->
+          <circle cx="560" cy="140" r="70" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <text x="560" y="50" text-anchor="middle" font-weight="700" font-size="15" fill="#c0392b" font-family="Nanum Myeongjo">표본 Sample</text>
+          <text x="560" y="250" text-anchor="middle" font-size="12" fill="#6b6b6b">n = 1,000명</text>
+          <g fill="#c0392b">
+            <circle cx="540" cy="120" r="3.5"/><circle cx="570" cy="115" r="3.5"/>
+            <circle cx="585" cy="135" r="3.5"/><circle cx="545" cy="150" r="3.5"/>
+            <circle cx="575" cy="160" r="3.5"/><circle cx="555" cy="170" r="3.5"/>
+            <circle cx="530" cy="140" r="3.5"/><circle cx="590" cy="155" r="3.5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        전체는 못 물어봐요. 그래서 표본을 뽑아 짐작해요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 2장 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>표본평균 X̄</h2>
+      <div class="chap-sub">The Sample Mean · 표본 평균</div>
+
+      <p>2강에서 <em>모평균 μ</em>를 배웠죠.
+      모집단 전체의 평균이요. 그런데 모집단을 다 모르면
+      μ를 알 길이 없어요. 그래서 표본을 쓰는 거예요.</p>
+
+      <div class="definition">
+        <div class="term">Sample Mean · 표본평균 X̄</div>
+        <div class="kor">표본에서 구한 평균</div>
+        <p>표본 n개의 값 <em>X₁, X₂, …, Xₙ</em>을 모두 더해
+        n으로 나눈 값. <strong>X-bar</strong>라고 읽어요.</p>
+      </div>
+
+      <div class="formula">
+        X̄ = <span class="frac"><span class="num">X₁ + X₂ + ⋯ + Xₙ</span><span class="den">n</span></span>
+      </div>
+
+      <p>기호에 익숙해지는 게 중요해요.
+      <strong>μ(뮤)</strong>는 모집단, <strong>X̄(엑스바)</strong>는 표본.
+      이 둘을 헷갈리면 안 돼요.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>모집단 vs 표본 — 기호 정리</caption>
+        <thead>
+          <tr><th>개념</th><th>모집단</th><th>표본</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>평균</td><td>μ (모평균)</td><td>X̄ (표본평균)</td></tr>
+          <tr><td>분산</td><td>σ²</td><td>s²</td></tr>
+          <tr><td>표준편차</td><td>σ</td><td>s</td></tr>
+          <tr><td>비율</td><td>p</td><td>p̂</td></tr>
+          <tr><td>크기</td><td>N (아주 큼)</td><td>n (작음)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">Curio의 경우</div>
+        <p>"좋다"를 1, "싫다"를 0으로 적어요.
+        1,000명의 평균을 내면 535/1000 = <strong>0.535</strong>.
+        이게 Curio의 <strong>표본평균 X̄</strong>예요.
+        전 국민의 진짜 비율 μ를 짐작하는 도구죠.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        μ는 모르는 진실. X̄는 내가 측정한 추정치.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 3장 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>표본은 왜 랜덤인가</h2>
+      <div class="chap-sub">X̄는 고정된 숫자가 아니에요</div>
+
+      <p>여기서 머리를 한 번 돌려봐야 해요.
+      Curio가 1,000명을 <em>또 다른 1,000명</em>으로 바꿔 뽑으면
+      결과가 같을까요? 아니에요. 달라요.</p>
+
+      <div class="analogy">
+        <p><strong>항아리에 구슬 뽑기.</strong></p>
+        <p>빨간 구슬 5개, 파란 구슬 5개가 섞인 항아리.
+        3개를 뽑으면? 빨-빨-파일 수도, 파-빨-파일 수도,
+        파-파-파일 수도 있어요.</p>
+        <p>같은 항아리에서 같은 방식으로 뽑아도 <em>매번 결과가 다르죠</em>.
+        표본이 바로 이렇게 움직여요.</p>
+      </div>
+
+      <p>표본에 누가 뽑히느냐에 따라 X̄가 달라져요.
+      그래서 <strong>X̄는 숫자가 아니라 확률변수</strong>예요.
+      주사위처럼 값이 여러 개 나올 수 있는 거죠.</p>
+
+      <div class="callout yellow">
+        <div class="label">중요한 깨달음</div>
+        <p>μ는 <em>고정된 진실</em>. 어디 있는지 모를 뿐.</p>
+        <p>X̄는 <em>매번 달라지는 확률변수</em>. 값이 춤춰요.</p>
+        <p>그런데 이 "춤추는 X̄"로 "고정된 μ"를 맞추려 해요. 괜찮을까요?</p>
+      </div>
+
+      <blockquote class="pull">
+        X̄는 <em>움직이는 과녁</em>.<br>
+        그래도 잘 조준할 수 있어요.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        표본이 바뀌면 X̄도 바뀐다. X̄는 <em>확률변수</em>예요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 4장 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>표본추출 방법</h2>
+      <div class="chap-sub">복원추출 · 독립성의 비밀</div>
+
+      <p>표본을 "어떻게" 뽑느냐도 중요해요.
+      잘못 뽑으면 수학이 무너져요.
+      강의에서는 <strong>복원추출(with replacement)</strong>을 가정해요.</p>
+
+      <div class="definition">
+        <div class="term">With Replacement · 복원추출</div>
+        <div class="kor">뽑은 공을 다시 넣기</div>
+        <p>항아리에서 공을 하나 뽑고,
+        다시 <em>넣은 뒤</em> 두 번째 공을 뽑아요.
+        같은 공이 두 번 나올 수도 있어요.</p>
+      </div>
+
+      <p>왜 이렇게 할까요? 핵심은 <strong>독립성</strong>이에요.
+      복원추출이면 각 뽑힘이 서로 영향을 주지 않아요.
+      첫 뽑기 결과가 둘째 뽑기에 정보를 주지 않는다는 뜻.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>복원 With Replacement</h5>
+          <div class="kor-sub">뽑고 넣고</div>
+          <p>각 관측값이 <strong>독립</strong>이에요.
+          수학 공식이 깨끗하게 적용돼요.</p>
+          <ul>
+            <li>X₁과 X₂가 서로 영향 없음</li>
+            <li>공분산 Cov(X₁, X₂) = 0</li>
+            <li>분산 계산이 단순해짐</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h5>비복원 Without Replacement</h5>
+          <div class="kor-sub">뽑고 그대로</div>
+          <p>관측값이 <strong>약간 의존</strong>해요.
+          첫 번째가 두 번째의 확률을 바꿔요.</p>
+          <ul>
+            <li>N이 아주 크면 거의 같음</li>
+            <li>현실에선 이게 더 흔해요</li>
+            <li>대신 계산이 복잡해짐</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="label">실무의 지혜</div>
+        <p>모집단 N이 표본 n보다 훨씬 크면 (보통 N &gt; 20n)
+        복원과 비복원은 거의 차이가 없어요.
+        1억 명 중 1,000명을 뽑을 때, 같은 사람이 또 나올 확률은 거의 0이거든요.</p>
+      </div>
+
+      <h3>다른 표본추출 방법들</h3>
+      <p>강의 범위를 살짝 벗어나지만, 실무에서 자주 쓰이는 방법들이에요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>대표적 표본추출 방법</caption>
+        <thead>
+          <tr><th>방법</th><th>설명</th><th>예시</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>단순무작위</td><td>완전히 랜덤 추출</td><td>추첨식 설문</td></tr>
+          <tr><td>층화추출</td><td>그룹별로 나눠 추출</td><td>지역별 여론조사</td></tr>
+          <tr><td>체계적추출</td><td>일정 간격으로 추출</td><td>100명마다 1명</td></tr>
+          <tr><td>군집추출</td><td>덩어리로 묶어 추출</td><td>학교 단위 추출</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        복원추출 = 독립 보장. 이 독립성이 나중에 CLT를 떠받쳐요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>X̄의 평균과 분산</h2>
+      <div class="chap-sub">춤추는 X̄의 중심과 흔들림</div>
+
+      <p>X̄가 확률변수라면, X̄에도 <em>평균</em>과 <em>분산</em>이 있어야 해요.
+      이게 오늘 이야기의 뼈대예요.</p>
+
+      <h3>X̄의 평균 — 진실에 정확히 맞춰요</h3>
+      <p>기대값의 성질을 떠올려봐요. E[X+Y] = E[X] + E[Y].
+      각 관측값 Xᵢ의 평균은 μ니까…</p>
+
+      <div class="formula">
+        E[X̄] = <span class="frac"><span class="num">E[X₁] + E[X₂] + ⋯ + E[Xₙ]</span><span class="den">n</span></span>
+        = <span class="frac"><span class="num">μ + μ + ⋯ + μ</span><span class="den">n</span></span>
+        = <span class="frac"><span class="num">nμ</span><span class="den">n</span></span>
+        = μ
+      </div>
+
+      <div class="callout green">
+        <div class="label">놀라운 결과</div>
+        <p><strong>E[X̄] = μ</strong>. 즉 표본평균의 평균은 모평균!</p>
+        <p>X̄가 매번 춤춰도, <em>평균적으론</em> 정확해요.
+        이런 추정량을 "불편(unbiased)"하다고 해요.</p>
+      </div>
+
+      <h3>X̄의 분산 — 흔들림의 크기</h3>
+      <p>평균이 맞아도 값이 너무 흔들리면 못 써요.</p>
+      <p>그래서 분산을 봐야 해요.</p>
+      <p>여기서는 두 가지 사실이 결정적이에요.</p>
+
+      <div class="callout">
+        <div class="label">유도에 쓰는 두 성질</div>
+        <p><strong>① 상수 배 성질</strong>: Var[aX] = a²·Var[X].
+        그래서 1/n을 뽑으면 밖에서 1/n²으로 나와요.</p>
+        <p><strong>② 독립이면 분산은 덧셈</strong>:
+        Var[X+Y] = Var[X] + Var[Y] (공분산 항이 0이라서).
+        복원추출 덕분에 모든 Cov(Xᵢ, Xⱼ) = 0이에요.</p>
+      </div>
+
+      <div class="formula">
+        Var[X̄] = <span class="frac"><span class="num">Var[X₁ + X₂ + ⋯ + Xₙ]</span><span class="den">n²</span></span>
+        = <span class="frac"><span class="num">σ² + σ² + ⋯ + σ²</span><span class="den">n²</span></span>
+        = <span class="frac"><span class="num">nσ²</span><span class="den">n²</span></span>
+        = <span class="frac"><span class="num">σ²</span><span class="den">n</span></span>
+      </div>
+
+      <p>즉 독립성 가정이 깨지면 이 깔끔한 결과가 깨져요.
+      앞서 복원추출을 강조한 이유가 이거예요.</p>
+
+      <div class="callout blue">
+        <div class="label">또 하나의 놀라움</div>
+        <p><strong>Var[X̄] = σ²/n</strong>. 표본 크기 n으로 나눠져요!</p>
+        <p>즉 n이 커지면 분산이 <em>줄어들어요</em>.
+        n=100이면 원래의 1/100, n=10,000이면 1/10,000.</p>
+      </div>
+
+      <!-- X̄ vs X 비교 -->
+      <div class="chart-wrap">
+        <div class="chart-title">개별 관측 X vs 표본평균 X̄의 분포</div>
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- 기준선 -->
+          <line x1="50" y1="220" x2="610" y2="220" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="330" y1="20" x2="330" y2="230" stroke="#c0392b" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="330" y="245" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="700">μ</text>
+
+          <!-- 개별 X의 분포 (넓고 낮은 종) -->
+          <path d="M 60 220 Q 195 40 330 40 Q 465 40 600 220"
+                fill="#fbecea" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+          <!-- 표본평균 X̄의 분포 (좁고 높은 종, 같은 면적이지만 분산이 작음) -->
+          <path d="M 210 220 Q 270 -5 330 -5 Q 390 -5 450 220"
+                fill="#e8eefc" stroke="#1e3a8a" stroke-width="2.5" opacity="0.85"/>
+
+          <!-- 범례 -->
+          <g font-size="12">
+            <rect x="430" y="30" width="14" height="4" fill="#c0392b"/>
+            <text x="450" y="35" fill="#c0392b">개별 관측 X ~ σ²</text>
+            <rect x="430" y="55" width="14" height="4" fill="#1e3a8a"/>
+            <text x="450" y="60" fill="#1e3a8a">표본평균 X̄ ~ σ²/n</text>
+          </g>
+
+          <text x="90" y="200" font-size="11" fill="#6b6b6b">넓게 퍼진 분포</text>
+          <text x="330" y="15" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">좁게 모인 분포</text>
+        </svg>
+        <div class="chart-caption">중심은 같지만, 표본평균은 훨씬 좁게 모여요. n이 클수록 더.</div>
+      </div>
+
+      <div class="analogy">
+        <p><strong>여론조사 이야기.</strong></p>
+        <p>100명에게 물어 얻은 지지율. 1,000명에게 물어 얻은 지지율.
+        어느 쪽이 더 안정적일까요? 당연히 1,000명 쪽이에요.</p>
+        <p>표본이 커질수록 X̄는 μ에 <em>더 꽉 붙어</em> 움직여요.
+        이게 Var[X̄] = σ²/n의 의미예요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        E[X̄] = μ · Var[X̄] = σ²/n. 중심은 정확, 흔들림은 1/n.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>표준오차 SE</h2>
+      <div class="chap-sub">Standard Error — X̄의 표준편차</div>
+
+      <p>분산 대신 <em>표준편차</em>를 쓰는 게 직관적이에요.
+      단위가 원래 변수랑 같아지거든요.
+      X̄의 표준편차에는 특별한 이름이 있어요.</p>
+
+      <div class="definition">
+        <div class="term">Standard Error · 표준오차 SE</div>
+        <div class="kor">표본평균의 표준편차</div>
+        <p>표본평균 X̄가 <em>얼마나 흔들리는지</em>를 나타내는 값.
+        추정의 불확실성 척도예요. 줄여서 SE라고 불러요.</p>
+      </div>
+
+      <div class="formula">
+        SE = √<span class="frac"><span class="num">σ²</span><span class="den">n</span></span>
+        = <span class="frac"><span class="num">σ</span><span class="den">√n</span></span>
+      </div>
+
+      <p>SE가 크면? 표본을 다시 뽑을 때마다 X̄가 <em>휙휙 바뀌어요</em>.
+      μ를 맞추기 어려운 상태죠.
+      SE가 작으면? X̄들이 μ 근처에 <em>얌전히 모여요</em>.</p>
+
+      <!-- SE와 n의 관계 -->
+      <div class="chart-wrap">
+        <div class="chart-title">표본 크기 n과 표준오차 SE의 관계</div>
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="230" x2="610" y2="230" stroke="#1d1d1f"/>
+          <line x1="60" y1="30" x2="60" y2="230" stroke="#1d1d1f"/>
+          <!-- y축 라벨 -->
+          <text x="55" y="232" text-anchor="end" font-size="11" fill="#6b6b6b">0</text>
+          <text x="55" y="180" text-anchor="end" font-size="11" fill="#6b6b6b">σ/5</text>
+          <text x="55" y="130" text-anchor="end" font-size="11" fill="#6b6b6b">σ/2</text>
+          <text x="55" y="80" text-anchor="end" font-size="11" fill="#6b6b6b">σ</text>
+          <text x="30" y="130" text-anchor="middle" font-size="11" fill="#6b6b6b" transform="rotate(-90 30 130)">SE = σ/√n</text>
+
+          <!-- 보조선 -->
+          <g stroke="#e6e1d4" stroke-dasharray="2 3">
+            <line x1="60" y1="80" x2="610" y2="80"/>
+            <line x1="60" y1="130" x2="610" y2="130"/>
+            <line x1="60" y1="180" x2="610" y2="180"/>
+          </g>
+
+          <!-- 곡선 y = σ/√n -->
+          <path d="M 80 50 Q 130 130 200 170 Q 300 200 400 215 Q 500 223 600 227"
+                fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+
+          <!-- 막대 표시 지점 -->
+          <g>
+            <circle cx="100" cy="77" r="4" fill="#c0392b"/>
+            <text x="100" y="250" text-anchor="middle" font-size="11">n=1</text>
+            <circle cx="160" cy="131" r="4" fill="#c0392b"/>
+            <text x="160" y="250" text-anchor="middle" font-size="11">n=4</text>
+            <circle cx="250" cy="167" r="4" fill="#c0392b"/>
+            <text x="250" y="250" text-anchor="middle" font-size="11">n=16</text>
+            <circle cx="380" cy="197" r="4" fill="#c0392b"/>
+            <text x="380" y="250" text-anchor="middle" font-size="11">n=100</text>
+            <circle cx="550" cy="218" r="4" fill="#c0392b"/>
+            <text x="550" y="250" text-anchor="middle" font-size="11">n=1000</text>
+          </g>
+
+          <text x="340" y="270" text-anchor="middle" font-size="11" fill="#6b6b6b">표본 크기 n →</text>
+        </svg>
+        <div class="chart-caption">n이 커지면 SE가 급격히 줄지만, 점점 완만해져요. 100→400은 2배 줄이고, 100→10,000이 돼야 10배가 줄어요.</div>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">√n의 법칙</div>
+        <p>SE는 n이 아니라 <strong>√n</strong>으로 줄어요.
+        n을 4배로 늘려야 SE가 반으로 줄어요.
+        n을 100배로 늘려야 SE가 10배로 줄어요.</p>
+        <p>그래서 "표본을 두 배 늘린다"고 정확도가 두 배가 되진 않아요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        SE = σ/√n. 정확도는 돈이 많이 드는 일이에요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>중심극한정리 CLT</h2>
+      <div class="chap-sub">Central Limit Theorem · 통계학의 핵심</div>
+
+      <p>지금까지 우리는 X̄의 <em>평균과 분산</em>만 알았어요.
+      하지만 진짜 궁금한 건 X̄의 <strong>분포 모양</strong>이에요.
+      이 분포를 알아야 "X̄가 이 값 이상일 확률"을 계산할 수 있거든요.</p>
+
+      <div class="callout blue">
+        <div class="label">문제</div>
+        <p>모집단이 어떤 모양인지 몰라요. 치우쳐 있을 수도 있고,
+        이봉우리일 수도 있고, 마구잡이일 수도 있어요.
+        그럼 X̄의 분포는 어떻게 생겼을까요?</p>
+      </div>
+
+      <p>놀랍게도, 답은 <strong>거의 항상 정규분포</strong>예요.
+      이게 바로 통계학의 기적, <em>중심극한정리</em>입니다.</p>
+
+      <div class="definition">
+        <div class="term">Central Limit Theorem (CLT) · 중심극한정리</div>
+        <div class="kor">필수 암기!</div>
+        <p>표본 X₁, X₂, …, Xₙ이 <strong>(a) 서로 독립</strong>이고
+        <strong>(b) 같은 분포</strong>(평균 μ, 분산 σ²)를 따를 때,
+        n이 충분히 크면 표본평균 X̄의 분포는 <em>정규분포에 가까워요</em>.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">CLT가 작동하는 3가지 조건</div>
+        <p><strong>① 독립 (Independent)</strong> —
+        각 관측값이 서로 영향 주지 않음. 복원추출이나 충분히 큰 모집단에서 보장.</p>
+        <p><strong>② 동일분포 (Identically Distributed)</strong> —
+        모든 Xᵢ가 같은 평균 μ와 같은 분산 σ²를 가진 모집단에서 나옴.</p>
+        <p><strong>③ 충분한 n (Large Enough)</strong> —
+        경험적으로 n ≥ 30이면 안전. 모집단이 이미 종 모양이면 더 작아도 OK.</p>
+      </div>
+
+      <div class="formula">
+        X̄ ≈ N<span style="font-size:1.3em">(</span>
+        μ, <span class="frac"><span class="num">σ²</span><span class="den">n</span></span>
+        <span style="font-size:1.3em">)</span>
+        &nbsp;&nbsp;(n이 충분히 크면)
+      </div>
+
+      <p>혹은 합계로 표현하면:</p>
+
+      <div class="formula">
+        X₁ + X₂ + ⋯ + Xₙ ≈ N(nμ, nσ²)
+      </div>
+
+      <div class="callout green">
+        <div class="label">왜 기적인가</div>
+        <p>모집단이 <strong>어떻게 생겼든</strong> 상관없어요.
+        울퉁불퉁해도, 한쪽으로 치우쳤어도, 두 봉우리여도.</p>
+        <p>n만 충분히 크면 X̄는 반드시 <em>종 모양 정규분포</em>가 돼요.
+        마법이에요. 이유가 없어요. 수학이 그렇대요.</p>
+      </div>
+
+      <h3>"충분히 크다"는 얼마예요?</h3>
+      <p>경험적으로 <strong>n ≥ 30</strong>이면 안전해요.
+      모집단이 이미 정규에 가까우면 n=10도 괜찮아요.
+      많이 찌그러진 분포면 n=50 이상이 좋아요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>n 기준 — 경험 법칙</caption>
+        <thead>
+          <tr><th>모집단 모양</th><th>권장 n</th><th>메모</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>이미 정규분포</td><td>n ≥ 1</td><td>X̄도 정확한 정규</td></tr>
+          <tr><td>대칭이지만 봉우리 있음</td><td>n ≥ 15</td><td>보통 빠르게 수렴</td></tr>
+          <tr><td>한쪽으로 치우침</td><td>n ≥ 30</td><td>표준 경계선</td></tr>
+          <tr><td>심하게 찌그러짐</td><td>n ≥ 50</td><td>안전 기준</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <blockquote class="pull">
+        모집단은 어떻게 생겼어도 좋아요.<br>
+        <em>X̄는 정규</em>가 됩니다.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        CLT — 통계학의 허브. 이걸 알면 모든 추론이 열려요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 8장 ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>CLT 시각 시연</h2>
+      <div class="chap-sub">눈으로 보는 마법</div>
+
+      <p>말로만 들으면 믿기 어렵죠. 그림으로 보여드릴게요.
+      일부러 <strong>심하게 치우친 모집단</strong>을 하나 만들어 볼게요.
+      그리고 n을 점점 키우면서 X̄의 분포가 어떻게 변하는지 봐요.</p>
+
+      <!-- CLT 시연 다이어그램 -->
+      <div class="chart-wrap">
+        <div class="chart-title">모집단이 비대칭이어도 X̄는 정규가 돼요</div>
+        <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+          <!-- Panel 1: 모집단 (왼쪽 위) -->
+          <g transform="translate(0, 0)">
+            <line x1="50" y1="110" x2="340" y2="110" stroke="#1d1d1f"/>
+            <line x1="50" y1="20" x2="50" y2="110" stroke="#1d1d1f"/>
+            <!-- 심한 오른쪽 꼬리 분포 -->
+            <path d="M 50 110 L 60 30 L 80 25 L 100 40 L 130 60 L 170 80 L 220 95 L 270 103 L 320 108 L 340 110 Z"
+                  fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+            <text x="195" y="15" text-anchor="middle" font-weight="700" font-size="13" fill="#c0392b" font-family="Nanum Myeongjo">① 모집단 분포 (비대칭)</text>
+            <text x="195" y="128" text-anchor="middle" font-size="11" fill="#6b6b6b">오른쪽으로 긴 꼬리. 결코 정규가 아님</text>
+          </g>
+
+          <!-- Panel 2: n=2 표본평균 분포 (오른쪽 위) -->
+          <g transform="translate(380, 0)">
+            <line x1="0" y1="110" x2="290" y2="110" stroke="#1d1d1f"/>
+            <line x1="0" y1="20" x2="0" y2="110" stroke="#1d1d1f"/>
+            <path d="M 0 110 L 20 55 L 45 40 L 75 35 L 110 45 L 150 60 L 200 85 L 250 102 L 290 108 L 290 110 Z"
+                  fill="#fff3d1" stroke="#d19910" stroke-width="2"/>
+            <text x="145" y="15" text-anchor="middle" font-weight="700" font-size="13" fill="#d19910" font-family="Nanum Myeongjo">② X̄ 분포 (n=2)</text>
+            <text x="145" y="128" text-anchor="middle" font-size="11" fill="#6b6b6b">조금 덜 치우침. 아직 정규는 아님</text>
+          </g>
+
+          <!-- Panel 3: n=10 (왼쪽 아래) -->
+          <g transform="translate(0, 170)">
+            <line x1="50" y1="110" x2="340" y2="110" stroke="#1d1d1f"/>
+            <line x1="50" y1="20" x2="50" y2="110" stroke="#1d1d1f"/>
+            <!-- 거의 대칭 종 모양 -->
+            <path d="M 50 110 L 80 90 L 120 70 L 160 45 L 195 35 L 230 45 L 270 70 L 310 95 L 340 110 Z"
+                  fill="#d7ead9" stroke="#2f6d4a" stroke-width="2"/>
+            <text x="195" y="15" text-anchor="middle" font-weight="700" font-size="13" fill="#2f6d4a" font-family="Nanum Myeongjo">③ X̄ 분포 (n=10)</text>
+            <text x="195" y="128" text-anchor="middle" font-size="11" fill="#6b6b6b">거의 종 모양! 빠르게 정규에 수렴</text>
+          </g>
+
+          <!-- Panel 4: n=30 (오른쪽 아래) -->
+          <g transform="translate(380, 170)">
+            <line x1="0" y1="110" x2="290" y2="110" stroke="#1d1d1f"/>
+            <line x1="0" y1="20" x2="0" y2="110" stroke="#1d1d1f"/>
+            <path d="M 0 110 L 30 105 L 60 95 L 90 75 L 120 50 L 145 32 L 170 50 L 200 75 L 230 95 L 260 105 L 290 110 Z"
+                  fill="#e8eefc" stroke="#1e3a8a" stroke-width="2.5"/>
+            <text x="145" y="15" text-anchor="middle" font-weight="700" font-size="13" fill="#1e3a8a" font-family="Nanum Myeongjo">④ X̄ 분포 (n=30)</text>
+            <text x="145" y="128" text-anchor="middle" font-size="11" fill="#6b6b6b">완벽한 정규. 훨씬 좁아짐</text>
+          </g>
+
+          <!-- 화살표 -->
+          <g>
+            <path d="M 345 60 L 380 60" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arrCLT)"/>
+            <path d="M 195 145 L 195 175" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arrCLT)"/>
+            <path d="M 345 225 L 380 225" stroke="#c0392b" stroke-width="2" fill="none" marker-end="url(#arrCLT)"/>
+          </g>
+          <defs>
+            <marker id="arrCLT" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/>
+            </marker>
+          </defs>
+
+          <!-- 하단 설명 -->
+          <g transform="translate(50, 380)">
+            <rect x="0" y="0" width="620" height="80" rx="8" fill="#fffdf3" stroke="#d19910" stroke-width="1.5"/>
+            <text x="310" y="25" text-anchor="middle" font-weight="700" font-size="14" fill="#1e3a8a">관찰 포인트</text>
+            <text x="310" y="47" text-anchor="middle" font-size="12" fill="#1d1d1f">① 모집단이 심하게 치우쳐 있어도 → ② n이 커질수록 X̄ 분포가 대칭이 돼요</text>
+            <text x="310" y="65" text-anchor="middle" font-size="12" fill="#1d1d1f">③ n=10~30쯤엔 이미 종 모양 → ④ 중심은 μ, 분산은 σ²/n으로 좁아져요</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="analogy">
+        <p><strong>다이스 실험 이야기.</strong></p>
+        <p>주사위 1개를 굴리면 결과는 1~6이 균등하게 나와요. 평평한 분포죠.</p>
+        <p>주사위 2개를 굴려 평균을 내봐요. 2~6 근처가 나오기 쉽고, 1이나 6은 잘 안 나와요. 슬슬 종 모양이 보여요.</p>
+        <p>주사위 30개 평균? 거의 완벽한 <em>종 모양</em>이에요. CLT가 작동한 거예요.</p>
+      </div>
+
+      <!-- 표본 크기에 따른 X̄ 분포 -->
+      <div class="chart-wrap">
+        <div class="chart-title">같은 모집단, n이 커지면 X̄의 폭이 좁아져요</div>
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="230" x2="610" y2="230" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="330" y1="20" x2="330" y2="240" stroke="#c0392b" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="330" y="255" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="700">μ</text>
+
+          <!-- n=10 (제일 넓은 종) -->
+          <path d="M 80 230 Q 205 60 330 60 Q 455 60 580 230"
+                fill="none" stroke="#d19910" stroke-width="2"/>
+          <!-- n=30 -->
+          <path d="M 160 230 Q 245 35 330 35 Q 415 35 500 230"
+                fill="none" stroke="#2f6d4a" stroke-width="2"/>
+          <!-- n=100 (제일 좁고 높은 종) -->
+          <path d="M 240 230 Q 285 5 330 5 Q 375 5 420 230"
+                fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
+
+          <!-- 범례 -->
+          <g font-size="12">
+            <rect x="460" y="50" width="14" height="3" fill="#d19910"/>
+            <text x="480" y="54" fill="#d19910">n = 10</text>
+            <rect x="460" y="72" width="14" height="3" fill="#2f6d4a"/>
+            <text x="480" y="76" fill="#2f6d4a">n = 30</text>
+            <rect x="460" y="94" width="14" height="3" fill="#1e3a8a"/>
+            <text x="480" y="98" fill="#1e3a8a">n = 100</text>
+          </g>
+
+          <text x="100" y="220" font-size="11" fill="#d19910">평평</text>
+          <text x="330" y="0" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">뾰족</text>
+        </svg>
+        <div class="chart-caption">표본이 크면 X̄들이 μ 근처에 꽉 모여요. 정확도↑</div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        모집단 모양과 상관없이 n이 커지면 X̄는 종 모양이 돼요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 9장 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>CLT 응용</h2>
+      <div class="chap-sub">이제 확률을 계산할 수 있어요</div>
+
+      <p>CLT의 진짜 힘은 여기서 나와요.
+      X̄가 정규분포를 따른다는 걸 알면,
+      <strong>정규분포표(5강)</strong>를 그대로 써서 확률을 구할 수 있거든요.</p>
+
+      <div class="callout">
+        <div class="label">예제 설정</div>
+        <p>표본 크기 <strong>n = 100</strong>.
+        모평균 <strong>μ = 1200</strong>.
+        모표준편차 <strong>σ = 300</strong>.</p>
+        <p>CLT에 따라 X̄ ≈ N(1200, 300²/100) = N(1200, 900).
+        표준오차 SE = 300/√100 = <strong>30</strong>.</p>
+      </div>
+
+      <h3>표준화 Z-변환</h3>
+      <p>5강에서 배운 Z변환을 X̄에 적용해요.
+      평균을 빼고 표준오차로 나눠요.</p>
+
+      <div class="formula">
+        Z = <span class="frac"><span class="num">X̄ − μ</span><span class="den">σ/√n</span></span>
+        &nbsp;&nbsp;~&nbsp;&nbsp;N(0, 1)
+      </div>
+
+      <ol class="steps">
+        <li><strong>P(X̄ &gt; 1500)?</strong> — Z = (1500−1200)/30 = 10. 거의 0에 가까움.</li>
+        <li><strong>P(|X̄ − 1200| &lt; 450)?</strong> — Z = ±450/30 = ±15. 거의 100%.</li>
+        <li><strong>P(X̄ &lt; 600)?</strong> — Z = (600−1200)/30 = −20. 또 거의 0.</li>
+      </ol>
+
+      <div class="callout blue">
+        <div class="label">뭐가 재미있어요?</div>
+        <p>n=100인데도 표본평균이 1200 근처에서 크게 벗어날 확률은
+        거의 없어요. 1500이나 600은 <em>천문학적으로 희박</em>해요.</p>
+        <p>이게 "n이 100이면 대부분의 경우 추정이 꽤 정확"하다는 뜻이에요.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>활쏘기 비유.</strong></p>
+        <p>과녁의 중심이 μ. 내 화살이 X̄.
+        SE는 화살이 퍼지는 반경이에요.</p>
+        <p>n이 크면 활이 좋아져요. 화살들이 중심 근처에 똘똘 모이죠.
+        10점(중심) 맞을 확률이 쭉 올라가요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        X̄ → Z변환 → 정규분포표. 확률 계산의 정석.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 10장 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>모비율 p̂</h2>
+      <div class="chap-sub">비율도 결국 평균이에요</div>
+
+      <p>서두에 Curio의 질문이 떠오르나요?</p>
+      <p>"전 국민의 몇 %가 이 게임을 좋아해?"</p>
+      <p>이게 <strong>모비율 p</strong>를 묻는 질문이에요.</p>
+
+      <div class="definition">
+        <div class="term">Population Proportion · 모비율 p</div>
+        <div class="kor">예/아니오 중 예의 비율</div>
+        <p>"예"를 1, "아니오"를 0으로 코딩하면,
+        모집단의 평균 μ가 곧 비율 p가 돼요.
+        둘은 <em>같은 것</em>이에요.</p>
+      </div>
+
+      <div class="formula">
+        p = <span class="frac"><span class="num">좋다고 한 사람 수</span><span class="den">전체 모집단</span></span>
+        &nbsp;=&nbsp;
+        <span class="frac"><span class="num">x₁ + x₂ + ⋯ + x<sub>N</sub></span><span class="den">N</span></span>
+        &nbsp;=&nbsp; μ
+      </div>
+
+      <p class="arrow-note">→ 비율 추정 = 1/0 답변의 평균 추정. 그러니까 앞서 배운 게 그대로 적용돼요.</p>
+
+      <h3>Bernoulli 분포의 특별한 성질</h3>
+      <p>값이 0 또는 1뿐이면 분산 공식이 아주 깔끔해져요.</p>
+      <p>한 줄 결론: <strong>σ² = p(1−p)</strong>. 이 결과는 베르누이(4강)에서 왔어요.</p>
+
+      <h4>σ² = p(1−p) 유도</h4>
+      <p>값이 0/1밖에 없으니 xᵢ² = xᵢ라는 사실이 핵심이에요.
+      그래서 제곱 평균이 그냥 원래 평균과 같아져요.</p>
+
+      <div class="formula">
+        σ² = <span class="frac"><span class="num">1</span><span class="den">N</span></span>
+        Σ(xᵢ − μ)² =
+        <span class="frac"><span class="num">1</span><span class="den">N</span></span>
+        Σxᵢ² − μ²
+      </div>
+
+      <p>그런데 xᵢ는 0 또는 1이므로 xᵢ² = xᵢ.
+      즉 Σxᵢ² = Σxᵢ = Nμ. 대입하면:</p>
+
+      <div class="formula">
+        σ² = <span class="frac"><span class="num">Nμ</span><span class="den">N</span></span> − μ²
+        = μ − μ² = p − p² = p(1 − p)
+      </div>
+
+      <p>0/1 변수의 분산은 <em>평균 × (1 − 평균)</em>으로 뚝 떨어져요.</p>
+
+      <h3>모비율 추정 · Estimating Population Proportion</h3>
+      <p>모비율 p는 <em>1/0 응답의 모평균 μ</em>예요.</p>
+      <p>따라서 p를 추정하는 일은 그대로 <em>μ를 추정하는 일</em>과 같아요.</p>
+      <p>X̄의 역할을 이제 <strong>표본비율 p̂</strong>이 맡아요.</p>
+
+      <div class="formula">
+        p̂ = <span class="frac"><span class="num">좋다고 답한 수</span><span class="den">n</span></span>
+      </div>
+
+      <p>Curio의 경우 p̂ = 535/1000 = 0.535. 이게 p의 추정값이에요.</p>
+
+      <h3>표본비율 p̂의 분포</h3>
+      <p>표본평균 X̄에 대응하는 게 <strong>표본비율 p̂</strong>예요.</p>
+      <p>CLT를 그대로 적용하면:</p>
+
+      <div class="formula">
+        p̂ ≈ N<span style="font-size:1.3em">(</span>
+        p, <span class="frac"><span class="num">p(1 − p)</span><span class="den">n</span></span>
+        <span style="font-size:1.3em">)</span>
+      </div>
+
+      <div class="formula">
+        SE(p̂) = √<span class="frac"><span class="num">p(1 − p)</span><span class="den">n</span></span>
+      </div>
+
+      <div class="callout green">
+        <div class="label">Curio 사례로 돌아가기</div>
+        <p>n=1,000, p̂ = 0.535. 만약 진짜 p=0.5라면,
+        SE = √(0.5×0.5/1000) = √0.00025 ≈ <strong>0.0158</strong>.</p>
+        <p>그러면 p̂가 0.535에 이르려면 Z = (0.535−0.5)/0.0158 ≈ 2.2.
+        우연히 그 이상 나올 확률은 약 1.4%. 꽤 드물어요.</p>
+        <p>즉 "진짜 p=0.5"라는 가설은 의심스러워져요. <em>다음 강(7강 신뢰구간)</em>의 단서예요.</p>
+      </div>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>평균과 비율 — 평행 공식 대조</caption>
+        <thead>
+          <tr><th>대상</th><th>중심</th><th>분산</th><th>표준오차</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>표본평균 X̄</td><td>μ</td><td>σ² / n</td><td>σ / √n</td></tr>
+          <tr><td>표본비율 p̂</td><td>p</td><td>p(1−p) / n</td><td>√(p(1−p)/n)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        비율도 평균의 특별한 경우. CLT가 그대로 먹혀요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 11장 ═══════ -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글</h2>
+      <div class="chap-sub">CLT라는 거대한 다리를 건너</div>
+
+      <p class="story">
+        오늘 우리는 통계학의 <em>허브</em>를 지나왔어요.
+        1,000명에게 물어 1억 명의 마음을 추정하는 방법.
+        그 이론적 근거가 <strong>CLT</strong>예요.
+      </p>
+
+      <p class="story">
+        6강은 기술통계(1~2강)에서 추리통계(7강~)로 넘어가는 <em>다리</em>입니다.
+        이 다리를 건너지 않고는 남은 강의가 열리지 않아요.
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>모집단은 못 봐요. 표본만 봐요.</li>
+        <li>표본평균 X̄는 확률변수예요.</li>
+        <li>E[X̄] = μ. X̄는 평균적으로 정확.</li>
+        <li>Var[X̄] = σ²/n. 표본이 크면 흔들림이 작아져요.</li>
+        <li>표준오차 SE = σ/√n. 추정의 불확실성.</li>
+        <li>CLT — n이 크면 X̄는 무조건 정규분포.</li>
+        <li>p̂도 같은 원리. 비율은 1/0 평균의 특수형.</li>
+      </ul>
+
+      <h4>다음 강 예고 · 7강 신뢰구간</h4>
+      <p>오늘은 "X̄가 얼마나 정확해요?"까지 답했어요.
+      7강은 이걸 한 단계 더 밀고 나가요.</p>
+      <p>"진짜 μ는 어디쯤일까?" 답은 <strong>구간</strong>으로 표현돼요.
+      "μ는 0.50과 0.57 사이에 95% 확률로 있어요." 같은 식이에요.
+      오늘 배운 SE와 정규분포가 그 재료가 됩니다.</p>
+
+      <blockquote class="pull">
+        "1,000명에게 물어, 1억 명을 읽는다."<br>
+        <em>CLT가 가능하게 해준 기적</em>이에요.
+      </blockquote>
+
+      <div class="epilogue">
+        <h2>오늘의 마음가짐</h2>
+        <p>CLT는 한 번에 와닿지 않아요. 자연스러운 일이에요.</p>
+        <p>"모집단이 뭐든 X̄는 정규다"라는 <em>단 한 문장</em>만 남겨두세요.</p>
+        <p>7강에서 그 문장이 어떻게 꽃피는지 직접 보게 될 거예요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 6강, 마침 —</p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
