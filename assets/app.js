@@ -176,21 +176,8 @@
     }
   }
 
-  // ──────────── 4. IntersectionObserver ────────────
+  // ──────────── 4. IntersectionObserver (활성 챕터 트래킹) ────────────
   if (chapters.length > 0 && 'IntersectionObserver' in window) {
-    const chapterObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -20% 0px'
-    });
-
-    chapters.forEach((ch) => chapterObserver.observe(ch));
-
     // 활성 챕터 감지 (뷰포트 상단 근처의 챕터)
     const activeObserver = new IntersectionObserver((entries) => {
       let topMost = null;

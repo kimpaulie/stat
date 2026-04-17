@@ -412,16 +412,7 @@ section.chapter {
   margin-bottom: 72px;
   /* 노치 안전 영역까지 고려해서 앵커 점프 위치 보정 */
   scroll-margin-top: calc(var(--topbar-h) + env(safe-area-inset-top, 0px) + 16px);
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-section.chapter.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  section.chapter { opacity: 1; transform: none; transition: none; }
+  /* 등장 애니메이션 제거 — 처음부터 항상 보이게 */
 }
 
 .chap-num {
@@ -480,6 +471,20 @@ em {
   font-style: normal;
   font-weight: 700;
   color: var(--blue);
+}
+
+/* ─── 어두운 배경 위 강조 색 보정 ─── */
+/* take-away (검정 bg), epilogue (검정 bg), table th (검정 bg) 에선
+   파란 em / 빨간 strong 이 어두워서 잘 안 보이므로 밝은 톤으로 */
+.take-away em,
+.epilogue em,
+table th em {
+  color: #a8c3ff; /* 밝은 파랑 */
+}
+.take-away strong,
+.epilogue strong,
+table th strong {
+  color: #ffb4a8; /* 밝은 산호 */
 }
 
 ul, ol { padding-left: 22px; margin-bottom: 16px; }
@@ -1295,8 +1300,8 @@ blockquote.pull {
 
 /* ═══════════════ 인쇄용 ═══════════════ */
 @media print {
-  .topbar, .sidebar, .reading-progress, .drawer-backdrop { display: none !important; }
-  .layout { display: block; padding-top: 0; }
+  .topbar, .sidebar, .reading-progress, .drawer-backdrop, .next-lecture { display: none !important; }
+  .layout { display: block; padding-top: 0; padding-left: 0; }
   main { max-width: none; padding: 0; }
-  section.chapter { opacity: 1; transform: none; page-break-inside: avoid; }
+  section.chapter { page-break-inside: avoid; }
 }
