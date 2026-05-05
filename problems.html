@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>연습문제 1 · 풀이 노트 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">연습문제 1</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture07.html" aria-label="7강으로">◀</a>
+    <a class="disabled" aria-label="다음">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<!-- ═══════ 레이아웃 ═══════ -->
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="problems.html" class="active"><span class="num">★</span>연습문제 1</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 풀이 목차</div>
+    <ol class="chap-list">
+      <li><a href="#intro">시작하며</a></li>
+      <li><a href="#ch4">4장 · 베이즈 정리</a></li>
+      <li><a href="#ch5a">5장 a · 독립 판정</a></li>
+      <li><a href="#ch5b">5장 b · 평균과 분산</a></li>
+      <li><a href="#ch5c">5장 c · 공분산·상관계수</a></li>
+      <li><a href="#ch5d">5장 d · 총 수요</a></li>
+      <li><a href="#ch6q1">6장 Q1 · 식사비 정규</a></li>
+      <li><a href="#ch6q2">6장 Q2 · 거꾸로 x 찾기</a></li>
+      <li><a href="#ch6q3">6장 Q3 · X − 2Y</a></li>
+      <li><a href="#ch6q4">6장 Q4 · 합집합 ∪</a></li>
+      <li><a href="#ch7q1">7장 Q1 · 표본평균</a></li>
+      <li><a href="#ch7q2">7장 Q2 · 표본비율</a></li>
+      <li><a href="#wrap">맺으며</a></li>
+    </ol>
+
+    <div class="side-footer">
+      🌟 시험 출제 예고편<br>
+      교수님이 시험에 많이 나온다고 강조한 문제들이에요.
+    </div>
+  </aside>
+
+  <!-- ─── 본문 ─── -->
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Practice Problems · Set 1<br>BIT500 · Management Statistical Analysis</div>
+      <h1>연습문제 1 풀이 노트
+        <span class="small">— 시험에 나온다고 강조하신 그 문제들</span>
+      </h1>
+      <p class="lead">
+        교수님께서 직접 내신 연습문제 1번을, 강의 흐름 그대로 풀어볼게요.<br>
+        4 ~ 7장을 한 번에 복습할 수 있는 <em>총정리 코너</em>예요.<br>
+        한 문제 한 문제, 식과 직관을 함께 따라가 봐요.
+      </p>
+    </div>
+
+    <!-- ═══════ 시작하며 ═══════ -->
+    <section class="chapter" id="intro">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>시작하며 · 이 페이지를 활용하는 법</h2>
+      <div class="chap-sub">시험 답안까지 한 호흡으로</div>
+
+      <p class="story">
+        이 페이지는 강의 PDF의 <strong>“연습문제 1 (배포용)”</strong>을 풀이하는 곳이에요.
+        교수님이 “이걸 토대로 시험 문제도 많이 낸다”고 말씀하신 만큼,
+        한 문제도 빠뜨리지 않고 차근차근 풀어볼 거예요.
+      </p>
+
+      <div class="callout">
+        <div class="label">이 페이지에서 만나는 문제</div>
+        <p><strong>4장 · 베이즈 정리</strong> — 스마트폰 터치스크린 부품 추론 문제</p>
+        <p><strong>5장 · 결합분포</strong> — 코로나 vs 삿포로 맥주 (a·b·c·d 4문제)</p>
+        <p><strong>6장 · 정규분포</strong> — 식사비, 두 지역 학생 지출 (Q1~Q4)</p>
+        <p><strong>7장 · 표본분포 & CLT</strong> — 표본평균과 표본비율 (Q1·Q2)</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">읽는 순서 추천</div>
+        <p><strong>① 문제</strong>를 먼저 한번 읽고,<br>
+        <strong>② 풀이 단계</strong>를 따라가며 손으로 적어보고,<br>
+        <strong>③ 시험 답안</strong> 박스에서 깔끔하게 정리하기.</p>
+      </div>
+
+      <blockquote class="pull">
+        <em>외우지 말고</em>, 한 줄씩 따라가 보세요.<br>
+        그러면 시험장에서 똑같이 풀 수 있어요.
+      </blockquote>
+
+    </section>
+
+    <!-- ═══════ 4장 베이즈 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04 — Bayes Theorem</div>
+      <h2>스마트폰 터치스크린이 누구 부품일까</h2>
+      <div class="chap-sub">베이즈 정리 — 결과를 보고 원인을 거꾸로 추론하기</div>
+
+      <div class="callout yellow">
+        <div class="label">문제 (배포용 PDF · Chapter 4)</div>
+        <p>ABC 전자의 스마트폰 모델 Z는 터치 스크린을 외부에서 공급받아요.
+        부품의 <strong>20%</strong>는 업체 X, <strong>80%</strong>는 업체 Y에서 옵니다.</p>
+        <p>X 부품을 쓴 폰은 1년 후 <strong>80%</strong>가 고장 나고, Y 부품은 <strong>10%</strong>만 고장 나요.</p>
+        <p>당신이 1년 넘게 쓴 폰의 <em>터치가 오늘 안 된다는 걸 알았다고</em> 할 때,
+        그 부품은 X와 Y 중 어느 쪽일 가능성이 더 높을까요?</p>
+      </div>
+
+      <h3>한 문장으로 본질 잡기</h3>
+
+      <p class="story">
+        베이즈 정리는 한마디로 이래요.
+        <strong>“겉으로 드러난 결과(메시지)를 보고, 숨어 있는 진짜 원인(진실)을 거꾸로 추론하는 방법.”</strong>
+      </p>
+
+      <div class="definition">
+        <div class="term">진실 vs 메시지</div>
+        <div class="kor">교수님이 강조하신 두 단어</div>
+        <p><strong>진실(원인)</strong> — 실제로 어느 업체 부품이었는가. 우리는 모름.</p>
+        <p><strong>메시지(결과)</strong> — 고장이 났다는 관찰. 우리는 이것만 알아요.</p>
+        <p>메시지 ⟶ 진실. 이게 바로 베이즈가 하는 일이에요.</p>
+      </div>
+
+      <h3>1단계 · 기호부터 정리</h3>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>이 문제의 기호</caption>
+        <thead><tr><th>기호</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td>X</td><td>X 업체 부품을 사용함</td></tr>
+          <tr><td>Y</td><td>Y 업체 부품을 사용함</td></tr>
+          <tr><td>U</td><td>고장이 났다 (Unable to work)</td></tr>
+          <tr><td>P(X), P(Y)</td><td>해당 부품을 쓸 사전 확률</td></tr>
+          <tr><td>P(U|X)</td><td>X 부품일 때 고장 날 확률 — <em>주어진 값</em></td></tr>
+          <tr><td class="hi">P(X|U)</td><td class="hi">고장 났을 때 X 부품일 확률 — <em>구할 값</em></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout">
+        <div class="label">방향이 반대!</div>
+        <p>문제는 <strong>P(U|X)</strong>를 줘요. ("X면 고장")<br>
+        우리는 <strong>P(X|U)</strong>를 알고 싶어요. ("고장이면 X")<br>
+        화살표가 거꾸로 돌아간 셈이라, 베이즈 공식이 필요한 거예요.</p>
+      </div>
+
+      <h3>2단계 · 주어진 값 정리</h3>
+
+      <div class="data-strip">
+        P(X) = 0.20 &nbsp; · &nbsp; P(Y) = 0.80<br>
+        P(U|X) = 0.80 &nbsp; · &nbsp; P(U|Y) = 0.10
+      </div>
+
+      <h3>3단계 · 교집합 P(U ∩ X) 만들기</h3>
+
+      <p>"X 부품인 동시에 고장도 난" 경우의 확률은 곱셈으로 풀려요.</p>
+
+      <div class="formula">
+        P(U ∩ X) = P(X) · P(U | X) = 0.20 × 0.80 = <strong>0.16</strong>
+      </div>
+
+      <p>같은 식으로 Y쪽도 구하면:</p>
+
+      <div class="formula">
+        P(U ∩ Y) = P(Y) · P(U | Y) = 0.80 × 0.10 = <strong>0.08</strong>
+      </div>
+
+      <h3>4단계 · 전체 고장 확률 P(U)</h3>
+
+      <p>고장 나는 길은 두 가지뿐이에요. 둘을 더하면 끝.</p>
+
+      <div class="formula">
+        P(U) = P(U ∩ X) + P(U ∩ Y) = 0.16 + 0.08 = <strong>0.24</strong>
+      </div>
+
+      <h3>5단계 · 베이즈로 답 구하기</h3>
+
+      <div class="formula">
+        P(X | U) = <span class="frac"><span class="num">P(U ∩ X)</span><span class="den">P(U)</span></span>
+        = <span class="frac"><span class="num">0.16</span><span class="den">0.24</span></span> ≈ <strong>0.6667</strong>
+      </div>
+
+      <p>나머지 Y쪽도 계산해 보면:</p>
+
+      <div class="formula">
+        P(Y | U) = 0.08 / 0.24 ≈ <strong>0.3333</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">최종 결론</div>
+        <p>고장이 났다면 <strong>X 부품일 확률 ≈ 66.7%</strong>,
+        <strong>Y 부품일 확률 ≈ 33.3%</strong>.</p>
+        <p>즉, <em>X 업체 부품일 가능성이 더 높아요.</em></p>
+      </div>
+
+      <h3>100대로 다시 보면 (직관 체크)</h3>
+
+      <p>혹시 식이 어색하면 100대로 상상해 봐요.</p>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>전체 100대 시뮬레이션</caption>
+        <thead><tr><th>구분</th><th>대수</th><th>고장률</th><th>고장난 대수</th></tr></thead>
+        <tbody>
+          <tr><td>X 부품</td><td>20대</td><td>80%</td><td>16대</td></tr>
+          <tr><td>Y 부품</td><td>80대</td><td>10%</td><td>8대</td></tr>
+          <tr><td class="hi">합계</td><td class="hi">100대</td><td class="hi">—</td><td class="hi">24대 고장</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>고장난 24대 중 X 부품은 16대 → 16/24 ≈ <strong>66.7%</strong>. 똑같죠!</p>
+
+      <div class="analogy">
+        <p><strong>코로나 검사 키트와 똑같아요.</strong></p>
+        <p>"검사 결과가 양성"이라는 메시지를 보고, 진짜 감염 여부를 추론하는 일이 베이즈예요.
+        양성이라고 해서 무조건 감염은 아니지만, 양성일 때 감염일 확률이 얼마인지를 계산할 수 있어요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험 답안 깔끔하게</div>
+        <p>X = X 부품 사용 사건, U = 고장 사건이라 하자. 주어진 값:</p>
+        <p>P(X) = 0.2, P(Y) = 0.8, P(U|X) = 0.8, P(U|Y) = 0.1</p>
+        <p>베이즈 정리에 의해</p>
+        <p>P(X|U) = P(U∩X) / P(U)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;= P(X)P(U|X) / [P(X)P(U|X) + P(Y)P(U|Y)]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;= (0.2·0.8) / (0.2·0.8 + 0.8·0.1)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;= 0.16 / 0.24 ≈ 0.667</p>
+        <p>따라서 <strong>X 부품일 확률(≈66.7%)이 Y 부품일 확률(≈33.3%)보다 크다.</strong></p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        베이즈 = "결과(메시지) → 원인(진실)"의 거꾸로 추론.
+        분자엔 P(원인)·P(결과|원인), 분모엔 모든 원인의 합.
+      </div>
+    </section>
+
+    <!-- ═══════ 5장 a 독립 ═══════ -->
+    <section class="chapter" id="ch5a">
+      <div class="chap-num">CHAPTER 05a — Joint Distribution</div>
+      <h2>코로나와 삿포로는 독립일까</h2>
+      <div class="chap-sub">결합분포 · 독립의 두 가지 판정법</div>
+
+      <div class="callout yellow">
+        <div class="label">문제 (배포용 PDF · Chapter 5a)</div>
+        <p>한 상점이 코로나 맥주(X)와 삿포로 맥주(Y)를 팝니다. 두 수요의 결합분포가 아래 표예요.</p>
+      </div>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>결합분포표 (행=삿포로 Y, 열=코로나 X)</caption>
+        <thead>
+          <tr><th>Y \ X</th><th>0</th><th>1</th><th>2</th><th>3</th><th>P(Y)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>0.01</td><td>0.03</td><td>0.06</td><td>0.09</td><td class="hi">0.19</td></tr>
+          <tr><td>1</td><td>0.02</td><td>0.06</td><td>0.12</td><td>0.09</td><td class="hi">0.29</td></tr>
+          <tr><td>2</td><td>0.03</td><td>0.12</td><td>0.06</td><td>0.09</td><td class="hi">0.30</td></tr>
+          <tr><td>3</td><td>0.04</td><td>0.09</td><td>0.06</td><td>0.03</td><td class="hi">0.22</td></tr>
+          <tr><td>P(X)</td><td class="hi">0.10</td><td class="hi">0.30</td><td class="hi">0.30</td><td class="hi">0.30</td><td>1.00</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>독립이란?</h3>
+
+      <div class="definition">
+        <div class="term">독립 · Independent</div>
+        <div class="kor">한쪽 정보가 다른 쪽 확률을 바꾸지 않는 관계</div>
+        <p>"코로나가 1개 팔렸다는 사실을 알아도, 삿포로가 3개 팔릴 확률이 그대로면" 독립.
+        반대로 그 확률이 바뀌면 독립이 아니에요.</p>
+      </div>
+
+      <h3>판정법 ① — 조건부 확률 방식</h3>
+
+      <p>독립이라면 다음이 성립해야 해요.</p>
+
+      <div class="formula">
+        P(Y = y | X = x) = P(Y = y) &nbsp; (모든 x, y에 대해)
+      </div>
+
+      <p>교수님이 칠판에서 직접 확인하신 값: <strong>P(Y=3 | X=1)</strong>.</p>
+
+      <div class="data-strip">
+        P(X=1, Y=3) = 0.09 &nbsp; · &nbsp; P(X=1) = 0.30
+      </div>
+
+      <div class="formula">
+        P(Y=3 | X=1) = 0.09 / 0.30 = <strong>0.30</strong>
+      </div>
+
+      <p>그런데 주변확률은 P(Y=3) = <strong>0.22</strong>예요. 두 값이 다르죠?</p>
+
+      <div class="callout">
+        <div class="label">결론 ①</div>
+        <p>0.30 ≠ 0.22 이므로 P(Y=3 | X=1) ≠ P(Y=3).<br>
+        <strong>X와 Y는 독립이 아니에요.</strong></p>
+      </div>
+
+      <h3>판정법 ② — 곱셈 공식 방식</h3>
+
+      <p>독립이면 또 다른 방식으로도 확인할 수 있어요.</p>
+
+      <div class="formula">
+        P(X = x, Y = y) = P(X = x) · P(Y = y)
+      </div>
+
+      <p>교수님이 보신 칸: <strong>X = 2, Y = 2</strong>.</p>
+
+      <div class="data-strip">
+        실제값: P(X=2, Y=2) = 0.06<br>
+        독립이면: P(X=2) × P(Y=2) = 0.30 × 0.30 = 0.09
+      </div>
+
+      <div class="callout">
+        <div class="label">결론 ②</div>
+        <p>0.06 ≠ 0.09 이므로 곱셈 공식 위배.<br>
+        역시 <strong>독립이 아니에요.</strong></p>
+      </div>
+
+      <h3>두 판정법은 사실 같은 말</h3>
+
+      <p>조건부 확률 정의:</p>
+
+      <div class="formula">
+        P(Y | X) = <span class="frac"><span class="num">P(X ∩ Y)</span><span class="den">P(X)</span></span>
+      </div>
+
+      <p>독립이면 P(Y|X) = P(Y) 이므로 양변에 P(X)를 곱하면 P(X∩Y) = P(X)P(Y).
+      두 식이 자연스럽게 변환돼요.</p>
+
+      <div class="analogy">
+        <p><strong>"모두가 숙제를 했다"의 반례.</strong></p>
+        <p>"전원이 했다"를 부정하려면 안 한 사람 한 명만 찾으면 끝이죠.
+        독립도 그래요. <em>16개 칸 중 한 칸만 어긋나도</em> "독립이 아님" 결론이 가능해요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험 답안 (방법 1)</div>
+        <p>X = 코로나 수요, Y = 삿포로 수요로 두자.<br>
+        독립이면 P(Y=3 | X=1) = P(Y=3)이어야 한다.<br>
+        P(X=1, Y=3) = 0.09, P(X=1) = 0.30 이므로<br>
+        P(Y=3 | X=1) = 0.09/0.30 = 0.30.<br>
+        반면 P(Y=3) = 0.22.<br>
+        ∴ 0.30 ≠ 0.22이므로 X, Y는 독립이 아니다.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        독립 판정 = "한 칸이라도 P(x,y) ≠ P(x)P(y)면 끝." 가장 의심스러운 칸 한 개 골라 확인하면 충분.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 b ═══════ -->
+    <section class="chapter" id="ch5b">
+      <div class="chap-num">CHAPTER 05b</div>
+      <h2>두 맥주의 평균과 분산</h2>
+      <div class="chap-sub">E[X], Var[X], E[Y], Var[Y] 한 번에</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>코로나(X)와 삿포로(Y) 수요 각각의 <strong>평균과 분산</strong>을 구하시오.</p>
+      </div>
+
+      <h3>주변확률만 있으면 끝</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>코로나 X</h5>
+          <div class="kor-sub">표 아래쪽 주변</div>
+          <p>P(X=0) = 0.10, P(X=1) = 0.30,<br>
+          P(X=2) = 0.30, P(X=3) = 0.30</p>
+        </div>
+        <div class="card">
+          <h5>삿포로 Y</h5>
+          <div class="kor-sub">표 오른쪽 주변</div>
+          <p>P(Y=0) = 0.19, P(Y=1) = 0.29,<br>
+          P(Y=2) = 0.30, P(Y=3) = 0.22</p>
+        </div>
+      </div>
+
+      <h3>평균 E[X], E[Y]</h3>
+
+      <div class="formula">
+        E[X] = 0(0.10) + 1(0.30) + 2(0.30) + 3(0.30) = <strong>1.80</strong>
+      </div>
+
+      <div class="formula">
+        E[Y] = 0(0.19) + 1(0.29) + 2(0.30) + 3(0.22) = <strong>1.55</strong>
+      </div>
+
+      <h3>분산 — 두 가지 방법</h3>
+
+      <p>교수님이 두 가지 방식을 모두 보여주셨어요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>방법 ① 정의식</h5>
+          <p>Var[X] = E[(X − E[X])²]<br>
+          → 분산의 <em>의미</em>가 잘 보이는 식이에요. "평균에서 떨어진 거리의 제곱의 평균."</p>
+        </div>
+        <div class="card">
+          <h5>방법 ② 빠른 공식</h5>
+          <p>Var[X] = E[X²] − (E[X])²<br>
+          → <em>계산이 빨라서</em> 시험에서는 보통 이 식을 써요.</p>
+        </div>
+      </div>
+
+      <h3>코로나 X 분산 (방법 ②)</h3>
+
+      <div class="formula">
+        E[X²] = 0²(0.10) + 1²(0.30) + 2²(0.30) + 3²(0.30) = <strong>4.20</strong>
+      </div>
+
+      <div class="formula">
+        Var[X] = E[X²] − (E[X])² = 4.20 − (1.80)² = 4.20 − 3.24 = <strong>0.96</strong>
+      </div>
+
+      <h3>삿포로 Y 분산 (방법 ②)</h3>
+
+      <div class="formula">
+        E[Y²] = 0²(0.19) + 1²(0.29) + 2²(0.30) + 3²(0.22) = <strong>3.47</strong>
+      </div>
+
+      <div class="formula">
+        Var[Y] = 3.47 − (1.55)² = 3.47 − 2.4025 = <strong>1.0675</strong>
+      </div>
+
+      <h3>방법 ①로 검산해보기 (Y)</h3>
+
+      <p>의심 많은 분을 위해 정의식으로도 같은 결과 나오는지 확인.</p>
+
+      <div class="data-strip">
+        (0−1.55)² × 0.19 = 0.456475<br>
+        (1−1.55)² × 0.29 = 0.087725<br>
+        (2−1.55)² × 0.30 = 0.060750<br>
+        (3−1.55)² × 0.22 = 0.462550<br>
+        합계 = <strong>1.0675</strong> ✓
+      </div>
+
+      <h3>최종 답</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>5b 결과</caption>
+        <thead><tr><th>변수</th><th>평균 E</th><th>분산 Var</th></tr></thead>
+        <tbody>
+          <tr><td>코로나 X</td><td class="hi">1.80</td><td class="hi">0.96</td></tr>
+          <tr><td>삿포로 Y</td><td class="hi">1.55</td><td class="hi">1.0675</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        시험에선 <strong>Var = E[X²] − (E[X])²</strong>가 정답.
+        두 번 곱하고 한 번 빼면 끝.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 c ═══════ -->
+    <section class="chapter" id="ch5c">
+      <div class="chap-num">CHAPTER 05c</div>
+      <h2>공분산과 상관계수</h2>
+      <div class="chap-sub">두 수요가 같이 움직이는가, 반대로 움직이는가</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>코로나와 삿포로 수요 사이의 <strong>공분산과 상관계수</strong>는?</p>
+      </div>
+
+      <h3>공분산이 뭐였더라</h3>
+
+      <div class="definition">
+        <div class="term">Covariance · 공분산</div>
+        <div class="kor">두 변수가 같은 방향으로 움직이는 정도</div>
+        <p><strong>+</strong>면 같이 오르고 같이 내림. <strong>−</strong>면 반대로 움직임.
+        <strong>0 근처</strong>면 직선적 관계가 약함.</p>
+      </div>
+
+      <h3>두 가지 공식</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>① 정의식</h5>
+          <p>Cov[X,Y] = E[(X − E[X])(Y − E[Y])]</p>
+        </div>
+        <div class="card">
+          <h5>② 빠른 공식</h5>
+          <p>Cov[X,Y] = E[XY] − E[X]·E[Y]</p>
+        </div>
+      </div>
+
+      <h3>E[XY] 계산하기</h3>
+
+      <p>16칸을 일일이 계산해서 더해요. 다행히 Y=0 행은 모두 0이라 빼고 시작.</p>
+
+      <div class="data-strip">
+        Y=1 행: 0·1·0.02 + 1·1·0.06 + 2·1·0.12 + 3·1·0.09 = 0 + 0.06 + 0.24 + 0.27 = 0.57<br>
+        Y=2 행: 0 + 0.24 + 0.24 + 0.54 = 1.02<br>
+        Y=3 행: 0 + 0.27 + 0.36 + 0.27 = 0.90<br>
+        <strong>E[XY] = 0 + 0.57 + 1.02 + 0.90 = 2.49</strong>
+      </div>
+
+      <h3>공분산 계산</h3>
+
+      <div class="formula">
+        Cov[X,Y] = E[XY] − E[X]E[Y] = 2.49 − (1.80 × 1.55) = 2.49 − 2.79 = <strong>−0.30</strong>
+      </div>
+
+      <div class="callout">
+        <div class="label">해석</div>
+        <p>공분산이 <strong>음수</strong>예요. 코로나가 많이 팔릴 때 삿포로는 조금 덜 팔리는 경향.
+        (재미있게 비유하자면, "한 사람당 맥주 예산은 한정돼 있어서 한쪽이 많아지면 다른 쪽이 줄어드는" 그림.)</p>
+      </div>
+
+      <h3>상관계수 ρ</h3>
+
+      <p>공분산은 단위에 따라 크기가 들쭉날쭉해서, 단위 영향을 없앤 <em>표준화 버전</em>이 상관계수예요.</p>
+
+      <div class="formula">
+        ρ = <span class="frac"><span class="num">Cov[X, Y]</span><span class="den">σ<sub>X</sub> · σ<sub>Y</sub></span></span>
+      </div>
+
+      <div class="data-strip">
+        σ<sub>X</sub> = √0.96 ≈ 0.9798<br>
+        σ<sub>Y</sub> = √1.0675 ≈ 1.0332<br>
+        분모 = 0.9798 × 1.0332 ≈ 1.0124
+      </div>
+
+      <div class="formula">
+        ρ = −0.30 / 1.0124 ≈ <strong>−0.296</strong>
+      </div>
+
+      <h3>해석</h3>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>상관계수 읽는 법</caption>
+        <thead><tr><th>ρ</th><th>해석</th></tr></thead>
+        <tbody>
+          <tr><td>+1에 가까움</td><td>강한 양의 직선 관계</td></tr>
+          <tr><td>0 근처</td><td>관계가 약함</td></tr>
+          <tr><td class="hi">우리 결과 ≈ −0.30</td><td class="hi">약한 음의 관계</td></tr>
+          <tr><td>−1에 가까움</td><td>강한 음의 직선 관계</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>그러니까 <strong>"살짝 반대로 움직이는 두 맥주"</strong>라고 보면 돼요. 강하진 않아요.</p>
+
+      <div class="callout blue">
+        <div class="label">시험 답안</div>
+        <p>E[XY] = ΣΣ xy P(x,y) = 2.49<br>
+        Cov[X,Y] = E[XY] − E[X]E[Y] = 2.49 − (1.80)(1.55) = −0.30<br>
+        σ<sub>X</sub> = √0.96, σ<sub>Y</sub> = √1.0675<br>
+        ρ = Cov[X,Y] / (σ<sub>X</sub>σ<sub>Y</sub>) = −0.30 / (√0.96·√1.0675) ≈ <strong>−0.296</strong></p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Cov는 방향, ρ는 단위 없는 강도. 두 식을 함께 외우면 만점.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 5장 d ═══════ -->
+    <section class="chapter" id="ch5d">
+      <div class="chap-num">CHAPTER 05d</div>
+      <h2>총 수요 X+Y의 평균과 분산</h2>
+      <div class="chap-sub">앞 결과를 활용해서 한 줄로 끝내기</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>코로나와 삿포로의 <strong>총 수요 X + Y</strong>의 평균과 분산은?</p>
+      </div>
+
+      <h3>평균은 그냥 더하기</h3>
+
+      <div class="formula">
+        E[X + Y] = E[X] + E[Y] = 1.80 + 1.55 = <strong>3.35</strong>
+      </div>
+
+      <p class="story">
+        평균은 <em>독립이든 아니든</em> 항상 더하기 OK예요.
+        "기댓값의 선형성"이라고 부르는 성질이죠.
+      </p>
+
+      <h3>분산은 공분산을 잊지 마세요</h3>
+
+      <p>분산은 단순히 더하면 안 돼요. 공분산이 살아 있거든요.</p>
+
+      <div class="formula">
+        Var[X + Y] = Var[X] + Var[Y] + 2 · Cov[X, Y]
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">자주 하는 실수</div>
+        <p>독립이라면 Cov = 0이어서 단순 합 OK. 하지만 이번엔 <strong>Cov = −0.30</strong>이라 0이 아니에요.</p>
+      </div>
+
+      <h3>숫자 대입</h3>
+
+      <div class="formula">
+        Var[X + Y] = 0.96 + 1.0675 + 2 × (−0.30)
+      </div>
+
+      <div class="formula">
+        = 2.0275 − 0.60 = <strong>1.4275</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">왜 분산이 줄었지?</div>
+        <p>공분산이 음수라서요. 한쪽이 많으면 다른 쪽이 적은 <em>상쇄 효과</em>가 생겨서,
+        "총합"은 둘을 따로 본 것보다 덜 흔들려요.</p>
+      </div>
+
+      <h3>최종 답</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>5d 결과</caption>
+        <thead><tr><th>항목</th><th>값</th></tr></thead>
+        <tbody>
+          <tr><td>총 수요 평균 E[X+Y]</td><td class="hi">3.35</td></tr>
+          <tr><td>총 수요 분산 Var[X+Y]</td><td class="hi">1.4275</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험 답안</div>
+        <p>E[X+Y] = E[X] + E[Y] = 1.80 + 1.55 = <strong>3.35</strong></p>
+        <p>Var[X+Y] = Var[X] + Var[Y] + 2Cov[X,Y]<br>
+        &nbsp;&nbsp;= 0.96 + 1.0675 + 2(−0.30)<br>
+        &nbsp;&nbsp;= <strong>1.4275</strong></p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        평균은 더하기, 분산은 공분산까지. 음의 공분산은 총 분산을 줄여줘요.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 Q1 ═══════ -->
+    <section class="chapter" id="ch6q1">
+      <div class="chap-num">CHAPTER 06 · Q1 — Normal Distribution</div>
+      <h2>식사비 20,000원 미만의 비율</h2>
+      <div class="chap-sub">금액 → Z값 → 확률</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>서울 대학생 주간 식사비가 평균 30,000원, 표준편차 6,000원의 정규분포라고 하자.
+        <strong>20,000원 미만</strong> 학생의 비율은?</p>
+      </div>
+
+      <h3>1단계 · 분포 정리</h3>
+
+      <div class="data-strip">
+        X = 한 학생의 주간 식사비<br>
+        X ~ N(30000, 6000²) &nbsp; · &nbsp; 평균 30000, 표준편차 6000
+      </div>
+
+      <h3>2단계 · 표준화</h3>
+
+      <p>정규분포 표는 표준정규 Z(평균 0, 분산 1)에 대해서만 알려줘요. 그래서 X를 Z로 바꿔요.</p>
+
+      <div class="formula">
+        Z = <span class="frac"><span class="num">X − 30000</span><span class="den">6000</span></span>
+      </div>
+
+      <p>20,000원에 해당하는 z값을 찾아요.</p>
+
+      <div class="formula">
+        z = (20000 − 30000) / 6000 = −10000/6000 ≈ <strong>−1.67</strong>
+      </div>
+
+      <h3>3단계 · 표 보기</h3>
+
+      <p>표준정규분포표에서:</p>
+
+      <div class="formula">
+        P(Z &lt; −1.67) ≈ <strong>0.0475</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">최종 답</div>
+        <p>P(X &lt; 20000) ≈ <strong>0.0475</strong> ≈ 약 4.75%</p>
+        <p>주간 식사비 20,000원 미만은 <em>대학생 100명 중 약 5명</em>이라는 뜻.</p>
+      </div>
+
+      <h3>왜 이렇게 작은가?</h3>
+
+      <p>20,000원은 평균 30,000원에서 10,000원 아래.
+      표준편차 단위로 보면 <strong>−1.67 표준편차</strong>예요. 꽤 왼쪽 꼬리라 비율이 작은 거죠.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        정규분포 문제 푸는 법: ① 표준화 → ② 표 찾기. 끝.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 Q2 ═══════ -->
+    <section class="chapter" id="ch6q2">
+      <div class="chap-num">CHAPTER 06 · Q2</div>
+      <h2>하위 40% 지점의 식사비는?</h2>
+      <div class="chap-sub">확률 → Z값 → 금액 (Q1과 정반대 방향)</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>식사비 x원 미만인 학생이 전체의 <strong>40%</strong>일 때, x는 얼마인가?</p>
+      </div>
+
+      <h3>Q1과 Q2의 차이</h3>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>방향이 반대!</caption>
+        <thead><tr><th>구분</th><th>Q1</th><th>Q2</th></tr></thead>
+        <tbody>
+          <tr><td>주어진 것</td><td>금액 20,000원</td><td>확률 40%</td></tr>
+          <tr><td>구할 것</td><td>비율 (확률)</td><td>금액 x</td></tr>
+          <tr><td>흐름</td><td>X → z → P</td><td>P → z → X</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>40%가 어디인지 직관 잡기</h3>
+
+      <p>평균 왼쪽이 50%니까, 40%는 평균보다 살짝 왼쪽이에요. → x &lt; 30,000.</p>
+
+      <h3>Z값 거꾸로 찾기</h3>
+
+      <p>왼쪽 면적 0.40을 만드는 z값을 표준정규분포표에서 찾으면…</p>
+
+      <div class="formula">
+        z ≈ <strong>−0.25</strong> &nbsp; (정확히는 −0.253)
+      </div>
+
+      <h3>금액 x 풀기</h3>
+
+      <div class="formula">
+        (x − 30000) / 6000 = −0.25
+      </div>
+
+      <div class="formula">
+        x = 30000 + (−0.25)(6000) = 30000 − 1500 = <strong>28,500원</strong>
+      </div>
+
+      <div class="callout">
+        <div class="label">정밀하게 풀면?</div>
+        <p>z = −0.253 사용 → x ≈ 30000 − 1518 ≈ <strong>28,480원</strong>.
+        교수님 판서 기준으로 답안에는 <strong>약 28,500원</strong>으로 쓰면 돼요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험 답안</div>
+        <p>P(X &lt; x) = 0.40 ⇒ 표준정규분포표에서 왼쪽 면적이 0.40이 되는 z ≈ −0.25.</p>
+        <p>(x − 30000)/6000 = −0.25 ⇒ x = 30000 − 0.25(6000) = <strong>28,500원</strong></p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Q2처럼 "확률이 주어지고 X 찾기"는 표를 거꾸로. z 먼저 찾고, 식 풀기.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 Q3 ═══════ -->
+    <section class="chapter" id="ch6q3">
+      <div class="chap-num">CHAPTER 06 · Q3</div>
+      <h2>"A 학생 지출이 B의 2배 이상일 확률"</h2>
+      <div class="chap-sub">D = X − 2Y 변환의 트릭</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>A 지역 학생 일일 지출 X ~ N(9000, 1500²),
+        B 지역 학생 일일 지출 Y ~ N(8000, 2500²). 두 학생은 독립.</p>
+        <p><strong>P(X ≥ 2Y) = ?</strong></p>
+      </div>
+
+      <h3>식 다시 쓰기</h3>
+
+      <p>"X ≥ 2Y"는 양변에서 2Y를 빼면 X − 2Y ≥ 0. 새 변수 D를 만들어요.</p>
+
+      <div class="formula">
+        D = X − 2Y &nbsp; ⇒ &nbsp; P(X ≥ 2Y) = P(D ≥ 0)
+      </div>
+
+      <p class="story">
+        정규분포의 <em>선형결합</em>도 정규분포라는 사실이 결정적이에요.
+        그래서 D 자체가 정규분포를 따른다는 보장이 있어요.
+      </p>
+
+      <h3>D의 평균</h3>
+
+      <div class="formula">
+        E[D] = E[X] − 2E[Y] = 9000 − 2(8000) = <strong>−7000</strong>
+      </div>
+
+      <p>평균이 음수라는 건, "보통은 X가 2Y에 못 미친다"는 사실을 의미해요.
+      그럼에도 <em>흔들림으로 0 위로 갈 확률</em>을 묻는 거죠.</p>
+
+      <h3>D의 분산 (독립이라 깔끔)</h3>
+
+      <p>중요한 두 규칙.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>① 상수 곱</h5>
+          <p>Var[aY] = a² Var[Y]<br>
+          → Var[2Y] = 4 Var[Y]</p>
+        </div>
+        <div class="card">
+          <h5>② 독립이면 합</h5>
+          <p>Var[X − 2Y] = Var[X] + Var[2Y]<br>
+          → 부호가 −여도 분산은 더해요.</p>
+        </div>
+      </div>
+
+      <div class="formula">
+        Var[D] = 1500² + 4(2500²) = 2,250,000 + 25,000,000 = <strong>27,250,000</strong>
+      </div>
+
+      <div class="formula">
+        σ<sub>D</sub> = √27,250,000 ≈ <strong>5,220</strong>
+      </div>
+
+      <h3>표준화 후 표 찾기</h3>
+
+      <div class="formula">
+        z = (0 − (−7000)) / 5220 ≈ <strong>1.34</strong>
+      </div>
+
+      <div class="formula">
+        P(D ≥ 0) = P(Z ≥ 1.34) = 1 − P(Z &lt; 1.34) = 1 − 0.9099 = <strong>0.0901</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">최종 답</div>
+        <p>P(X ≥ 2Y) ≈ <strong>0.0901</strong> ≈ 약 9%</p>
+        <p>A 평균(9,000)은 B 평균의 2배(16,000)보다 한참 작으니, 2배 넘기는 일은 흔치 않아요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험 답안</div>
+        <p>D = X − 2Y로 두면 P(X ≥ 2Y) = P(D ≥ 0).<br>
+        E[D] = 9000 − 2(8000) = −7000.<br>
+        독립이므로 Var[D] = Var[X] + 4Var[Y] = 1500² + 4(2500²) = 27,250,000.<br>
+        σ<sub>D</sub> ≈ 5220.<br>
+        z = (0 − (−7000))/5220 ≈ 1.34.<br>
+        P(D ≥ 0) = P(Z ≥ 1.34) = 1 − 0.9099 ≈ <strong>0.0901</strong>.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        두 정규변수의 비교 → 새 변수 D 만들고 P(D ≥ 0) 또는 P(D ≤ 0).
+        독립이면 분산은 가법, 상수 곱은 제곱.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 6장 Q4 ═══════ -->
+    <section class="chapter" id="ch6q4">
+      <div class="chap-num">CHAPTER 06 · Q4</div>
+      <h2>합집합 확률 P(X ≥ 9000 ∪ Y &lt; 8000)</h2>
+      <div class="chap-sub">정규분포 + 또는(∪) 공식</div>
+
+      <div class="callout yellow">
+        <div class="label">문제 (Q3 변수 그대로)</div>
+        <p>X ~ N(9000, 1500²), Y ~ N(8000, 2500²), 독립.<br>
+        <strong>P(X ≥ 9000 ∪ Y &lt; 8000) = ?</strong></p>
+      </div>
+
+      <h3>"또는" 공식 ①</h3>
+
+      <div class="formula">
+        P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+      </div>
+
+      <p>왜 빼냐고요? <em>A와 B가 동시에 일어난 부분이 두 번 더해졌기</em> 때문에 한 번 빼주는 거예요.</p>
+
+      <h3>각 사건의 확률</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>A = {X ≥ 9000}</h5>
+          <p>X의 평균이 정확히 9000 → 정규분포 좌우 대칭<br>
+          → <strong>P(A) = 0.5</strong></p>
+        </div>
+        <div class="card">
+          <h5>B = {Y &lt; 8000}</h5>
+          <p>Y의 평균이 정확히 8000 → 좌우 대칭<br>
+          → <strong>P(B) = 0.5</strong></p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="label">왜 0.5?</div>
+        <p>경계값이 그 변수의 <em>평균</em>이라서요. 평균을 기준으로 좌우 면적이 정확히 50:50.</p>
+      </div>
+
+      <h3>교집합 (독립 ⇒ 곱)</h3>
+
+      <div class="formula">
+        P(A ∩ B) = P(A) · P(B) = 0.5 × 0.5 = <strong>0.25</strong>
+      </div>
+
+      <h3>합집합 계산</h3>
+
+      <div class="formula">
+        P(A ∪ B) = 0.5 + 0.5 − 0.25 = <strong>0.75</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">최종 답</div>
+        <p>P(X ≥ 9000 ∪ Y &lt; 8000) = <strong>0.75</strong> = 75%</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>1 − P(둘 다 아닌 경우)로도 풀 수 있어요.</strong></p>
+        <p>둘 다 안 일어난 사건 = (X &lt; 9000 ∩ Y ≥ 8000), 그 확률 = 0.5 × 0.5 = 0.25.<br>
+        그래서 P(A ∪ B) = 1 − 0.25 = 0.75. 같은 답!</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">시험 답안</div>
+        <p>A = {X ≥ 9000}, B = {Y &lt; 8000}. P(A) = P(B) = 0.5 (평균 기준 대칭).<br>
+        독립이므로 P(A ∩ B) = 0.5 × 0.5 = 0.25.<br>
+        P(A ∪ B) = P(A) + P(B) − P(A ∩ B) = 0.5 + 0.5 − 0.25 = <strong>0.75</strong>.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        ∪는 단순 더하기 아님. 교집합 한 번 빼야. 평균이 경계면 0.5 즉시 사용.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 Q1 ═══════ -->
+    <section class="chapter" id="ch7q1">
+      <div class="chap-num">CHAPTER 07 · Q1 — Sampling and CLT</div>
+      <h2>표본평균의 분포</h2>
+      <div class="chap-sub">μ = 100, σ = 20, n = 100인 경우</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>X<sub>1</sub>, …, X<sub>100</sub>이 μ=100, σ=20인 모집단에서 무작위 추출. X̄가 표본평균.</p>
+        <p><strong>(a)</strong> X̄의 기대값과 표준편차<br>
+        <strong>(b)</strong> 표준오차는?<br>
+        <strong>(c)</strong> P(X̄ &lt; 95)와 P(95 &lt; X̄ &lt; 105)</p>
+      </div>
+
+      <h3>표본평균의 두 핵심 공식</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>E[X̄] = μ</h5>
+          <p>표본평균의 평균은 <em>모평균과 같다</em>. 편향 없음.</p>
+        </div>
+        <div class="card">
+          <h5>SD[X̄] = σ/√n</h5>
+          <p>표본 크기 n이 커지면 흔들림이 √n 비율로 줄어요.</p>
+        </div>
+      </div>
+
+      <h3>(a) 답</h3>
+
+      <div class="data-strip">
+        E[X̄] = μ = <strong>100</strong><br>
+        SD[X̄] = σ/√n = 20/√100 = 20/10 = <strong>2</strong><br>
+        Var[X̄] = (20)²/100 = <strong>4</strong>
+      </div>
+
+      <div class="callout">
+        <div class="label">왜 표준편차가 20에서 2로 줄었지?</div>
+        <p>한 사람의 키는 들쭉날쭉하지만, 100명 평균의 키는 안정적이에요.
+        <em>"여러 명의 평균은 덜 흔들린다"</em>는 자연스러운 직관.</p>
+      </div>
+
+      <h3>(b) 표준오차</h3>
+
+      <p>표준오차(Standard Error, SE)는 <em>표본평균의 표준편차</em>예요. (a)에서 이미 구했어요.</p>
+
+      <div class="formula">
+        SE = σ/√n = <strong>2</strong>
+      </div>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>표준편차와 표준오차의 차이</caption>
+        <thead><tr><th>이름</th><th>의미</th><th>이 문제 값</th></tr></thead>
+        <tbody>
+          <tr><td>표준편차 σ</td><td>개별 X의 흔들림</td><td>20</td></tr>
+          <tr><td class="hi">표준오차 SE</td><td class="hi">표본평균 X̄의 흔들림</td><td class="hi">2</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>(c) 두 확률 계산</h3>
+
+      <p>n = 100이라 CLT 적용. X̄ ≈ N(100, 2²). 표준화하면 Z = (X̄ − 100)/2.</p>
+
+      <h4>① P(X̄ &lt; 95)</h4>
+
+      <div class="formula">
+        z = (95 − 100)/2 = <strong>−2.5</strong>
+      </div>
+
+      <div class="formula">
+        P(X̄ &lt; 95) = P(Z &lt; −2.5) ≈ <strong>0.0062</strong>
+      </div>
+
+      <h4>② P(95 &lt; X̄ &lt; 105)</h4>
+
+      <div class="formula">
+        z<sub>1</sub> = −2.5, &nbsp; z<sub>2</sub> = 2.5
+      </div>
+
+      <div class="formula">
+        P(−2.5 &lt; Z &lt; 2.5) = 0.9938 − 0.0062 = <strong>0.9876</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">최종 답</div>
+        <p>(a) E[X̄] = 100, SD[X̄] = 2<br>
+        (b) SE = 2<br>
+        (c) P(X̄ &lt; 95) ≈ <strong>0.62%</strong>, &nbsp; P(95 &lt; X̄ &lt; 105) ≈ <strong>98.76%</strong></p>
+      </div>
+
+      <p class="story">
+        해석. 모평균이 100인 세상에서, 100명 평균이 95~105 안에 들어올 확률이 무려 98.76%.
+        반대로 95 미만으로 떨어질 확률은 1%도 안 돼요. <strong>"표본이 모평균을 정말 잘 대표한다"</strong>는 신호예요.
+      </p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        E[X̄] = μ, SD[X̄] = σ/√n. n이 커지면 √n으로 폭이 좁아지는 게 핵심.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 7장 Q2 ═══════ -->
+    <section class="chapter" id="ch7q2">
+      <div class="chap-num">CHAPTER 07 · Q2</div>
+      <h2>표본비율 p̄ — 같은 n인데 왜 표준오차가 다를까</h2>
+      <div class="chap-sub">교수님이 시험에 잘 낸다고 강조하신 그 문제</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>k-shop.com 방문 → 구매 확률 p. 100회 방문에서 구매 비율을 p̄라 하자.</p>
+        <p><strong>(a)</strong> p = 0.45일 때 E[p̄], SD[p̄]<br>
+        <strong>(b)</strong> p = 0.15일 때 E[p̄], SD[p̄]<br>
+        <strong>(c)</strong> 같은 n인데 왜 표준오차가 다른가?</p>
+      </div>
+
+      <h3>표본비율의 공식</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>E[p̄] = p</h5>
+          <p>표본비율의 평균은 모비율과 같다.</p>
+        </div>
+        <div class="card">
+          <h5>SD[p̄] = √[ p(1−p)/n ]</h5>
+          <p>"베르누이의 분산 p(1−p)"를 n으로 나눠 √.</p>
+        </div>
+      </div>
+
+      <h3>(a) p = 0.45, n = 100</h3>
+
+      <div class="formula">
+        E[p̄] = 0.45
+      </div>
+
+      <div class="data-strip">
+        Var[p̄] = 0.45 × 0.55 / 100 = 0.2475 / 100 = 0.002475<br>
+        SD[p̄] = √0.002475 ≈ <strong>0.0497</strong>
+      </div>
+
+      <h3>(b) p = 0.15, n = 100</h3>
+
+      <div class="formula">
+        E[p̄] = 0.15
+      </div>
+
+      <div class="data-strip">
+        Var[p̄] = 0.15 × 0.85 / 100 = 0.1275 / 100 = 0.001275<br>
+        SD[p̄] = √0.001275 ≈ <strong>0.0357</strong>
+      </div>
+
+      <h3>(c) 같은 n인데 왜 다르지?</h3>
+
+      <p>식을 다시 보면 답이 보여요.</p>
+
+      <div class="formula">
+        SD[p̄] = √( p(1−p) / n )
+      </div>
+
+      <p>n은 같으니, 차이는 <strong>p(1−p)</strong>에서 옵니다.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>p에 따른 p(1−p)</caption>
+        <thead><tr><th>p</th><th>1−p</th><th>p(1−p)</th></tr></thead>
+        <tbody>
+          <tr><td>0.10</td><td>0.90</td><td>0.0900</td></tr>
+          <tr><td>0.15</td><td>0.85</td><td>0.1275</td></tr>
+          <tr><td>0.45</td><td>0.55</td><td>0.2475</td></tr>
+          <tr><td class="hi">0.50</td><td class="hi">0.50</td><td class="hi">0.2500 ← 최대</td></tr>
+          <tr><td>0.90</td><td>0.10</td><td>0.0900</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout">
+        <div class="label">교수님 강조 포인트</div>
+        <p><strong>p(1−p)는 p = 0.5에서 최대.</strong></p>
+        <p>즉 "p가 클수록 표준오차가 크다"가 아니라,
+        <strong>"p가 0.5에 가까울수록 표준오차가 크다"</strong>가 정확한 표현.</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>동전 던지기 직관.</strong></p>
+        <p>p = 0.5 (앞·뒤 반반) — 결과 예측이 가장 어렵다 → 흔들림 최대.<br>
+        p = 0.9 (거의 앞면) — 결과가 거의 정해져 있다 → 흔들림 작음.<br>
+        p = 0.1 (거의 뒷면) — 마찬가지로 흔들림 작음.</p>
+      </div>
+
+      <p>이 문제에서 0.45는 0.5에 매우 가깝고, 0.15는 멀어요. 그래서 (a)가 (b)보다 표준오차가 커요.</p>
+
+      <div class="callout blue">
+        <div class="label">시험 답안 (c)</div>
+        <p>표본 크기 n이 같아도 표준오차는 √[p(1−p)/n]에서 p의 영향을 받는다.
+        p(1−p)는 p = 0.5에서 최대이므로, p가 0.5에 가까울수록 표준오차가 커진다.</p>
+        <p>여기서 p = 0.45는 p = 0.15보다 0.5에 더 가까워, p(1−p)가 크다(0.2475 vs 0.1275).
+        따라서 (a)의 표준오차가 (b)보다 크다.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        SD[p̄] = √(p(1−p)/n). 분자의 p(1−p)는 0.5에서 최대.
+        "p가 0.5에 가까울수록 더 흔들린다"는 한 문장이면 (c)는 만점.
+      </div>
+
+    </section>
+
+    <!-- ═══════ 맺으며 ═══════ -->
+    <section class="chapter" id="wrap">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺으며 · 한 페이지 총정리</h2>
+      <div class="chap-sub">시험 직전에 다시 펼쳐볼 카드</div>
+
+      <h3>10가지 문제, 한 줄씩 다시 보기</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>핵심 답 카드</caption>
+        <thead>
+          <tr><th>문제</th><th>핵심 식</th><th>최종 답</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>4장 베이즈</td><td>P(X|U) = P(X)P(U|X) / P(U)</td><td class="hi">≈ 0.667 (X가 더 높음)</td></tr>
+          <tr><td>5a 독립</td><td>P(X∩Y) ?= P(X)P(Y)</td><td class="hi">독립 아님</td></tr>
+          <tr><td>5b 평균·분산</td><td>Var = E[X²] − (E[X])²</td><td class="hi">E=1.80,1.55 / Var=0.96,1.0675</td></tr>
+          <tr><td>5c 공분산·ρ</td><td>Cov = E[XY] − E[X]E[Y]</td><td class="hi">Cov = −0.30, ρ ≈ −0.296</td></tr>
+          <tr><td>5d 총수요</td><td>Var[X+Y] = V<sub>X</sub>+V<sub>Y</sub>+2Cov</td><td class="hi">E = 3.35, Var = 1.4275</td></tr>
+          <tr><td>6 Q1</td><td>z = (X−μ)/σ</td><td class="hi">≈ 4.75%</td></tr>
+          <tr><td>6 Q2</td><td>P → z → x</td><td class="hi">≈ 28,500원</td></tr>
+          <tr><td>6 Q3</td><td>D = X − 2Y</td><td class="hi">≈ 0.0901</td></tr>
+          <tr><td>6 Q4</td><td>P(A∪B) = P(A)+P(B)−P(A∩B)</td><td class="hi">0.75</td></tr>
+          <tr><td>7 Q1</td><td>SD[X̄] = σ/√n</td><td class="hi">SE=2, 0.62%, 98.76%</td></tr>
+          <tr><td>7 Q2</td><td>SD[p̄] = √(p(1−p)/n)</td><td class="hi">0.0497 / 0.0357</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>5가지 절대 잊지 말 공식</h3>
+
+      <ol class="steps">
+        <li><strong>베이즈:</strong> P(원인|결과) = P(원인)·P(결과|원인) / P(결과)</li>
+        <li><strong>분산 단축식:</strong> Var[X] = E[X²] − (E[X])²</li>
+        <li><strong>두 변수 분산:</strong> Var[X+Y] = Var[X] + Var[Y] + 2Cov[X,Y]</li>
+        <li><strong>표본평균:</strong> E[X̄] = μ, SD[X̄] = σ/√n</li>
+        <li><strong>표본비율:</strong> E[p̄] = p, SD[p̄] = √(p(1−p)/n)</li>
+      </ol>
+
+      <blockquote class="pull">
+        식을 외우는 게 아니라 <em>식이 말하는 풍경</em>을 외우세요.<br>
+        "표본 크기가 늘면 폭이 좁아진다"는 한 줄이, 다섯 식을 다 살려요.
+      </blockquote>
+
+      <div class="callout green">
+        <div class="label">시험 직전 마인드</div>
+        <p>1. 변수에 이름 붙이기 (X, Y, D 같은 것).<br>
+        2. 어떤 분포인지 적기 (정규? 결합? 이산?).<br>
+        3. 평균·분산·표준편차 줄긋기.<br>
+        4. 표준화 → 표 → 답.</p>
+      </div>
+
+      <div class="epilogue">
+        <h2>마지막 마음가짐</h2>
+        <p>이 연습문제 1번을 끝까지 따라왔다면, 4 ~ 7장 핵심을 손에 다 쥔 거예요.</p>
+        <p>시험장에서는 <em>식보다 그림</em>, <em>그림보다 의미</em>를 떠올려 보세요.</p>
+        <p>"평균에서 얼마나 떨어졌나?", "둘이 같이 움직이나, 따로 움직이나?",
+        "표본은 모집단을 얼마나 정확히 따라갈까?" — 답은 모두 식 안에 있어요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 연습문제 1, 풀이 끝 —</p>
+      </div>
+
+    </section>
+
+    <nav class="next-lecture final">
+      <a href="lecture07.html" aria-label="7강으로 돌아가기">
+        <span>
+          <span class="lec-hint">한 번 더 복습</span>
+          <span class="lec-title">7강 · 신뢰구간으로 돌아가기</span>
+        </span>
+        <span class="lec-arrow">📘</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
