@@ -524,6 +524,116 @@ ul li, ol li { margin-bottom: 10px; line-height: var(--lh-read); }
 .callout.yellow .label { color: #8a6d00; }
 .callout p:last-child { margin-bottom: 0; }
 
+/* ─── 학습 지도 / 흐름 카드 ─── */
+.study-map {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin: 24px 0;
+}
+.study-map .label,
+.mini-flow .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-label);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.study-map .map-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 12px;
+}
+.study-map .map-row div {
+  border-left: 3px solid var(--rule);
+  padding-left: 12px;
+}
+.study-map strong,
+.study-map span {
+  display: block;
+}
+.study-map span {
+  color: var(--muted);
+  font-size: var(--t-caption);
+  line-height: var(--lh-snug);
+  margin-top: 4px;
+}
+.mini-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: stretch;
+  margin: 24px 0;
+}
+.mini-flow > div:not(.arrow) {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.mini-flow strong {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: var(--t-lead);
+  line-height: var(--lh-tight);
+}
+.mini-flow p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--t-caption);
+  line-height: var(--lh-snug);
+}
+.mini-flow .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 24px;
+}
+
+/* ─── 정규분포 감각 눈금 ─── */
+.normal-ruler {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(84px, 1fr));
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.normal-ruler .tick {
+  min-width: 84px;
+  padding: 14px 10px;
+  text-align: center;
+  border-right: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-caption);
+  line-height: 1.4;
+}
+.normal-ruler .tick:last-child { border-right: none; }
+.normal-ruler .tick span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.normal-ruler .tick.center {
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 700;
+}
+.normal-ruler .tick.hi {
+  background: var(--yellow-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+.normal-ruler .tick.muted { color: var(--muted); }
+
 /* ─── 비유 박스 ─── */
 .analogy {
   background: #fff;
@@ -1224,6 +1334,20 @@ blockquote.pull {
 
   .cards-2 { grid-template-columns: 1fr; gap: 14px; }
   .card { padding: 18px 20px; }
+
+  .study-map .map-row { grid-template-columns: 1fr; }
+  .mini-flow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .mini-flow .arrow {
+    min-height: 20px;
+    transform: rotate(90deg);
+  }
+  .mini-flow .arrow.no-rotate {
+    transform: none;
+    font-size: 13px;
+  }
 
   .callout { padding: 16px 20px; margin: 20px 0; }
   .analogy { padding: 18px 20px; margin: 20px 0; }

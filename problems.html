@@ -116,6 +116,24 @@
         <strong>③ 시험 답안</strong> 박스에서 깔끔하게 정리하기.</p>
       </div>
 
+      <div class="study-map">
+        <div class="label">공부할 때 머릿속 지도</div>
+        <div class="map-row">
+          <div>
+            <strong>상황 번역</strong>
+            <span>문장을 X, Y, U 같은 사건으로 바꾸기</span>
+          </div>
+          <div>
+            <strong>공식 선택</strong>
+            <span>베이즈인지, 정규표준화인지, 표본분포인지 구분하기</span>
+          </div>
+          <div>
+            <strong>숫자 대입</strong>
+            <span>계산은 마지막. 의미를 먼저 잡으면 실수가 줄어요</span>
+          </div>
+        </div>
+      </div>
+
       <blockquote class="pull">
         <em>외우지 말고</em>, 한 줄씩 따라가 보세요.<br>
         그러면 시험장에서 똑같이 풀 수 있어요.
@@ -151,6 +169,20 @@
         <p><strong>진실(원인)</strong> — 실제로 어느 업체 부품이었는가. 우리는 모름.</p>
         <p><strong>메시지(결과)</strong> — 고장이 났다는 관찰. 우리는 이것만 알아요.</p>
         <p>메시지 ⟶ 진실. 이게 바로 베이즈가 하는 일이에요.</p>
+      </div>
+
+      <div class="mini-flow">
+        <div>
+          <span class="tag">문제가 준 방향</span>
+          <strong>부품 X → 고장 U</strong>
+          <p>P(U|X): X 부품이면 고장 날 확률</p>
+        </div>
+        <div class="arrow">→</div>
+        <div>
+          <span class="tag">우리가 원하는 방향</span>
+          <strong>고장 U → 부품 X?</strong>
+          <p>P(X|U): 고장났다면 X 부품일 확률</p>
+        </div>
       </div>
 
       <h3>1단계 · 기호부터 정리</h3>
@@ -244,6 +276,41 @@
 
       <p>고장난 24대 중 X 부품은 16대 → 16/24 ≈ <strong>66.7%</strong>. 똑같죠!</p>
 
+      <h3>여집합까지 보면 더 선명해져요</h3>
+
+      <p>
+        <code>ques.md</code>에서 정리한 것처럼, 이 문제는 <strong>고장났을 때</strong>뿐 아니라
+        <strong>고장나지 않았을 때</strong>를 같이 보면 베이즈 감각이 훨씬 좋아져요.
+        고장이 나지 않았다는 메시지는 X보다 Y 쪽으로 강하게 기울어지거든요.
+      </p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>X의 여집합</h5>
+          <p>부품 업체가 X와 Y뿐이라면 X<sup>c</sup>는 곧 Y예요.</p>
+          <p>P(X<sup>c</sup>) = P(Y) = 0.80</p>
+        </div>
+        <div class="card">
+          <h5>U의 여집합</h5>
+          <p>U가 고장이라면 U<sup>c</sup>는 고장나지 않음이에요.</p>
+          <p>P(U<sup>c</sup>|X)=0.20, P(U<sup>c</sup>|Y)=0.90</p>
+        </div>
+      </div>
+
+      <div class="formula">
+        P(X | U<sup>c</sup>) =
+        <span class="frac"><span class="num">0.20 × 0.20</span><span class="den">0.20 × 0.20 + 0.80 × 0.90</span></span>
+        =
+        <span class="frac"><span class="num">0.04</span><span class="den">0.76</span></span>
+        ≈ <strong>0.0526</strong>
+      </div>
+
+      <div class="callout green">
+        <div class="label">반대 메시지의 힘</div>
+        <p>고장났다면 X일 확률은 약 66.7%였지만, 고장나지 않았다면 X일 확률은 약 5.26%까지 내려가요.
+        같은 부품 정보라도 <em>관찰한 메시지</em>가 바뀌면 결론이 완전히 달라지는 게 베이즈의 핵심입니다.</p>
+      </div>
+
       <div class="analogy">
         <p><strong>코로나 검사 키트와 똑같아요.</strong></p>
         <p>"검사 결과가 양성"이라는 메시지를 보고, 진짜 감염 여부를 추론하는 일이 베이즈예요.
@@ -294,6 +361,14 @@
           <tr><td>P(X)</td><td class="hi">0.10</td><td class="hi">0.30</td><td class="hi">0.30</td><td class="hi">0.30</td><td>1.00</td></tr>
         </tbody>
       </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">표를 읽는 법</div>
+        <p>표 안쪽 숫자는 <strong>두 일이 동시에 일어날 확률</strong>이에요.
+        예를 들어 P(X=1, Y=3)=0.09는 “코로나 1개, 삿포로 3개가 같이 팔릴 확률이 9%”라는 뜻입니다.</p>
+        <p>표의 아래쪽 P(X)는 코로나만 따로 본 확률, 오른쪽 P(Y)는 삿포로만 따로 본 확률이에요.
+        그래서 이름이 <em>주변확률</em>입니다. 표의 가장자리, 즉 주변에 있죠.</p>
       </div>
 
       <h3>독립이란?</h3>
@@ -441,6 +516,13 @@
         </div>
       </div>
 
+      <div class="callout blue">
+        <div class="label">대괄호 표기 겁먹지 않기</div>
+        <p>E[X]는 “X의 평균을 구하라”, Var[X]는 “X의 분산을 구하라”는 뜻이에요.
+        E[Y²]는 “Y를 먼저 제곱한 뒤, 그 값들의 평균을 구하라”는 뜻입니다.</p>
+        <p>즉 대괄호는 새로운 마법 기호가 아니라, <em>무엇의 평균/분산을 구하는지 감싸 보여주는 표시</em>예요.</p>
+      </div>
+
       <h3>코로나 X 분산 (방법 ②)</h3>
 
       <div class="formula">
@@ -449,6 +531,19 @@
 
       <div class="formula">
         Var[X] = E[X²] − (E[X])² = 4.20 − (1.80)² = 4.20 − 3.24 = <strong>0.96</strong>
+      </div>
+
+      <h3>정의식으로도 한 번 느껴보기 (X)</h3>
+
+      <p>계산은 빠른 공식이 편하지만, 분산의 뜻은 정의식에서 더 잘 보여요.
+      X의 평균 1.80에서 각 값이 얼마나 떨어져 있는지 제곱해서 확률로 가중평균합니다.</p>
+
+      <div class="data-strip">
+        (0−1.80)² × 0.10 = 0.324<br>
+        (1−1.80)² × 0.30 = 0.192<br>
+        (2−1.80)² × 0.30 = 0.012<br>
+        (3−1.80)² × 0.30 = 0.432<br>
+        합계 = <strong>0.96</strong>
       </div>
 
       <h3>삿포로 Y 분산 (방법 ②)</h3>
@@ -530,6 +625,14 @@
       <h3>E[XY] 계산하기</h3>
 
       <p>16칸을 일일이 계산해서 더해요. 다행히 Y=0 행은 모두 0이라 빼고 시작.</p>
+
+      <div class="callout blue">
+        <div class="label">왜 x·y·P(x,y)를 더할까?</div>
+        <p>E[X]가 x값에 P(X=x)를 곱해 더하는 것처럼, E[XY]는
+        <strong>두 수요를 곱한 값 xy</strong>에 그 조합이 나올 확률 P(x,y)를 곱해 더합니다.</p>
+        <p>예를 들어 X=2, Y=3이면 그날 두 수요의 곱은 6이고, 이 조합의 확률은 0.09라서
+        E[XY]에 6×0.09만큼 기여해요.</p>
+      </div>
 
       <div class="data-strip">
         Y=1 행: 0·1·0.02 + 1·1·0.06 + 2·1·0.12 + 3·1·0.09 = 0 + 0.06 + 0.24 + 0.27 = 0.57<br>
@@ -698,6 +801,20 @@
         X ~ N(30000, 6000²) &nbsp; · &nbsp; 평균 30000, 표준편차 6000
       </div>
 
+      <div class="normal-ruler">
+        <div class="tick muted">18,000<br><span>−2σ</span></div>
+        <div class="tick hi">20,000<br><span>약 −1.67σ</span></div>
+        <div class="tick">24,000<br><span>−1σ</span></div>
+        <div class="tick center">30,000<br><span>평균</span></div>
+        <div class="tick">36,000<br><span>+1σ</span></div>
+        <div class="tick muted">42,000<br><span>+2σ</span></div>
+      </div>
+
+      <p>
+        표준편차 6,000원은 “평균에서 보통 흔들리는 한 칸”이라고 보면 돼요.
+        20,000원은 평균보다 10,000원 낮으니, 6,000원짜리 한 칸보다 더 왼쪽에 있습니다.
+      </p>
+
       <h3>2단계 · 표준화</h3>
 
       <p>정규분포 표는 표준정규 Z(평균 0, 분산 1)에 대해서만 알려줘요. 그래서 X를 Z로 바꿔요.</p>
@@ -767,6 +884,13 @@
 
       <p>평균 왼쪽이 50%니까, 40%는 평균보다 살짝 왼쪽이에요. → x &lt; 30,000.</p>
 
+      <div class="callout blue">
+        <div class="label">이건 분위수 문제</div>
+        <p>Q1은 “20,000원이 주어졌을 때 왼쪽 면적이 얼마냐?”였고,
+        Q2는 “왼쪽 면적이 40%가 되려면 금액이 얼마냐?”예요.</p>
+        <p>그래서 표를 <em>앞에서 읽는 문제</em>가 아니라, 확률 0.40을 먼저 찾고 z값을 거꾸로 읽는 문제입니다.</p>
+      </div>
+
       <h3>Z값 거꾸로 찾기</h3>
 
       <p>왼쪽 면적 0.40을 만드는 z값을 표준정규분포표에서 찾으면…</p>
@@ -829,6 +953,14 @@
         정규분포의 <em>선형결합</em>도 정규분포라는 사실이 결정적이에요.
         그래서 D 자체가 정규분포를 따른다는 보장이 있어요.
       </p>
+
+      <div class="callout blue">
+        <div class="label">왜 굳이 D를 만들까?</div>
+        <p>X와 Y를 따로 보면 “A가 B의 2배 이상”이라는 문장이 계속 불편해요.
+        D = X − 2Y라고 이름을 붙이면 문제는 딱 하나로 줄어요.</p>
+        <p><strong>D가 0보다 크면 성공, 0보다 작으면 실패.</strong>
+        이제는 평범한 정규분포 꼬리 확률 문제가 됩니다.</p>
+      </div>
 
       <h3>D의 평균</h3>
 
@@ -918,6 +1050,20 @@
 
       <p>왜 빼냐고요? <em>A와 B가 동시에 일어난 부분이 두 번 더해졌기</em> 때문에 한 번 빼주는 거예요.</p>
 
+      <div class="mini-flow">
+        <div>
+          <span class="tag">A</span>
+          <strong>X ≥ 9000</strong>
+          <p>A 학생 지출이 평균 이상</p>
+        </div>
+        <div class="arrow no-rotate">또는</div>
+        <div>
+          <span class="tag">B</span>
+          <strong>Y &lt; 8000</strong>
+          <p>B 학생 지출이 평균 미만</p>
+        </div>
+      </div>
+
       <h3>각 사건의 확률</h3>
 
       <div class="cards-2">
@@ -1000,6 +1146,14 @@
           <h5>SD[X̄] = σ/√n</h5>
           <p>표본 크기 n이 커지면 흔들림이 √n 비율로 줄어요.</p>
         </div>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">X̄도 확률변수예요</div>
+        <p>한 번 100개를 뽑아 평균을 내면 X̄가 하나 나옵니다.
+        그런데 표본을 다시 뽑으면 평균이 98일 수도, 102일 수도 있어요.</p>
+        <p>그래서 X̄는 고정된 숫자가 아니라 <strong>표본을 뽑을 때마다 달라지는 평균</strong>이고,
+        그 평균들이 어떤 분포로 흩어지는지를 보는 게 7장의 핵심입니다.</p>
       </div>
 
       <h3>(a) 답</h3>
@@ -1093,6 +1247,17 @@
       </div>
 
       <h3>표본비율의 공식</h3>
+
+      <div class="table-scroll">
+      <table class="center">
+        <caption>p와 p̄ 구분하기</caption>
+        <thead><tr><th>기호</th><th>뜻</th><th>예시</th></tr></thead>
+        <tbody>
+          <tr><td>p</td><td>진짜 구매 확률, 모비율</td><td>실제 구매 확률 45%</td></tr>
+          <tr><td class="hi">p̄</td><td class="hi">100번 방문에서 관찰된 구매 비율</td><td class="hi">100번 중 47번 구매 → 0.47</td></tr>
+        </tbody>
+      </table>
+      </div>
 
       <div class="cards-2">
         <div class="card">
