@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>9강 · 회귀분석 I | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ═══════ 상단 앱바 ═══════ -->
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">9강 회귀분석 I</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture08.html" aria-label="이전 강의">◀</a>
+    <a href="lecture10.html" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <!-- ─── 사이드바 ─── -->
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>가설 검정</a></li>
+      <li><a href="lecture09.html" class="active"><span class="num">09</span>회귀분석 I</a></li>
+      <li><a href="lecture10.html"><span class="num">10</span>회귀분석 II</a></li>
+      <li><a href="problems.html"><span class="num">★</span>연습문제 1</a></li>
+      <li><a href="problems2.html"><span class="num">★</span>연습문제 2</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">회귀가 풀려는 3가지</a></li>
+      <li><a href="#ch2">회귀 모델식</a></li>
+      <li><a href="#ch3">단순선형회귀</a></li>
+      <li><a href="#ch4">잔차 (residual)</a></li>
+      <li><a href="#ch5">좋은 선이란? · SSE</a></li>
+      <li><a href="#ch6">왜 가격이 다 다른가</a></li>
+      <li><a href="#ch7">SST = SSR + SSE</a></li>
+      <li><a href="#ch8">R² 결정계수</a></li>
+      <li><a href="#ch9">회귀 출력 읽기</a></li>
+      <li><a href="#ch10">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="09"><!-- populated by app.js --></div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 09<br>Linear Regression · Part I</div>
+      <h1>회귀분석 I
+        <span class="small">— 점들 사이를 가장 잘 가로지르는 한 줄</span>
+      </h1>
+      <p class="lead">
+        세상의 데이터는 점으로 흩어져 있어요.<br>
+        그 점들 사이에 <em>관계</em>가 숨어 있다면,<br>
+        한 줄로 그 관계를 그려낼 수 있어요. 그게 회귀분석이에요.
+      </p>
+    </div>
+
+    <!-- ═══════ 여는 글 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · 점 두 개의 이야기</h2>
+      <div class="chap-sub">관계라는 것</div>
+
+      <p class="story">
+        키와 몸무게. 광고비와 매출. 공부 시간과 시험 점수.<br>
+        세상엔 <strong>한 변수가 다른 변수에 영향을 주는</strong> 관계가 셀 수 없이 많아요.
+      </p>
+
+      <p class="story">
+        통계학자는 이 관계를 <em>식 하나</em>로 적고 싶어해요.<br>
+        예를 들어 "공부 시간이 1시간 늘면 점수가 평균 5점 오른다"처럼요.<br>
+        이 식을 데이터에서 뽑아내는 방법이 <strong>회귀분석</strong>이에요.
+      </p>
+
+      <div class="callout">
+        <div class="label">이 강의에서 배우는 것</div>
+        <p><strong>① 회귀 모델식</strong> — Y와 X들을 연결하는 한 줄.</p>
+        <p><strong>② "좋은 선"의 기준</strong> — 점들에서 평균적으로 가까운 선.</p>
+        <p><strong>③ R²</strong> — 그 선이 데이터를 얼마나 잘 설명하는가의 점수.</p>
+      </div>
+
+      <blockquote class="pull">
+        회귀는 "점들 사이를 가장 부드럽게 지나가는 한 줄을 긋는 일"이에요.
+      </blockquote>
+    </section>
+
+    <!-- ═══════ 1장 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>회귀가 풀고 싶은 세 가지 문제</h2>
+      <div class="chap-sub">관계 파악 · 유의성 · 예측</div>
+
+      <p>회귀분석은 단순히 식 하나를 만드는 게 아니에요. 세 가지 큰 목표가 있어요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>① 관계를 묘사하기</h5>
+          <div class="kor-sub">두 변수가 어떻게 움직이는지</div>
+          <p>"교육 수준이 높을수록 연봉이 오른다."<br>
+          "광고비가 늘면 매출이 늘어난다."<br>
+          이런 <em>경향성</em>을 식으로 적어요.</p>
+        </div>
+        <div class="card">
+          <h5>② 유의성 확인</h5>
+          <div class="kor-sub">정말 의미 있는 관계인가?</div>
+          <p>"교육 수준이 진짜 연봉에 영향을 주나? 아니면 우연일 뿐인가?"<br>
+          이걸 <strong>가설 검정</strong>으로 확인해요. (10강에서!)</p>
+        </div>
+        <div class="card">
+          <h5>③ 예측</h5>
+          <div class="kor-sub">미래를 미리 그려보기</div>
+          <p>"올해 광고비를 50% 늘리면 매출이 얼마나 늘까?"<br>
+          식이 있으면 새로운 X값에 대해 Y를 <em>추정</em>할 수 있어요.</p>
+        </div>
+      </div>
+
+      <h3>실제 예시</h3>
+
+      <p>이 강의에서 우리는 <strong>아파트 가격</strong>을 예시로 쓸 거예요.</p>
+
+      <div class="callout">
+        <div class="label">서울 아파트 데이터셋</div>
+        <p>가격 · 평수 · 층수 · 위치 · 방 개수 · 연식 등 여러 변수가 모여 있어요.</p>
+        <p>관심사: "가격은 어떤 변수들의 영향을 받을까?"</p>
+        <p>특히 단순화해서 "<strong>가격 vs 연식</strong>"부터 봐요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        회귀의 세 가지 목표: 관계 묘사 → 유의성 확인 → 예측.
+      </div>
+    </section>
+
+    <!-- ═══════ 2장 · 모델식 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>회귀 모델식 — Y를 만드는 레시피</h2>
+      <div class="chap-sub">Y = β₀ + β₁X₁ + ... + βₖXₖ + e</div>
+
+      <p>회귀의 기본 모양은 한 줄짜리 식이에요.</p>
+
+      <div class="formula wide">
+        Y = β<sub>0</sub> + β<sub>1</sub>X<sub>1</sub> + β<sub>2</sub>X<sub>2</sub> + ⋯ + β<sub>k</sub>X<sub>k</sub> + e
+      </div>
+
+      <p>처음 보면 좀 복잡한데, <em>레시피</em>라고 생각하면 쉬워요.</p>
+
+      <h3>각 부품 뜯어보기</h3>
+
+      <div class="definition">
+        <div class="term">Y · Dependent Variable · 종속변수</div>
+        <div class="kor">"우리가 설명하고 싶은 결과값"</div>
+        <p>예: 아파트 가격. Y는 다른 변수들에 <em>의존</em>해서 결정돼요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">X₁, X₂, ..., Xₖ · Explanatory Variables · 설명변수</div>
+        <div class="kor">"Y를 설명하는 재료들"</div>
+        <p>예: 평수, 층수, 방 개수, 연식 등. k개 있다고 적었어요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">β₀, β₁, ..., βₖ · 계수 (coefficients)</div>
+        <div class="kor">"각 재료의 무게(영향력)"</div>
+        <p>β₀ = 절편(intercept). X들이 다 0일 때 Y의 기본값.<br>
+        β₁ = X₁이 1 단위 늘면 Y가 평균 얼마 변하는지.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">e · Error · 오차</div>
+        <div class="kor">"식이 잡지 못한 나머지"</div>
+        <p>현실의 Y는 식만으로 딱 맞아떨어지지 않아요. 우리가 모르는 다른 요인들,
+        측정 노이즈 같은 게 다 e 안에 들어가요.</p>
+      </div>
+
+      <h3>요리 레시피 비유</h3>
+
+      <div class="analogy">
+        <p><strong>케이크 만들기 비유.</strong></p>
+        <p><strong>Y</strong> = 케이크 맛 점수.<br>
+        <strong>X₁</strong> = 밀가루 g, <strong>X₂</strong> = 설탕 g, <strong>X₃</strong> = 굽는 시간 분.<br>
+        <strong>β들</strong> = 각 재료가 맛 점수에 미치는 영향력 (밀가루 1g이 점수에 얼마 기여하나).<br>
+        <strong>β₀</strong> = 재료가 다 0일 때의 기본 점수 (그냥 0이겠죠).<br>
+        <strong>e</strong> = 오븐 컨디션, 그날 기분 같은 측정 안 되는 요인.</p>
+      </div>
+
+      <h3>회귀의 큰 목표 세 가지</h3>
+
+      <p>모델식만 쓰고 끝나는 게 아니에요. 이 식을 갖고 우리가 하고 싶은 일은:</p>
+
+      <ol>
+        <li><strong>β들을 추정해요.</strong> 데이터로부터 어떤 숫자가 들어가야 가장 자연스러운지 찾아요.</li>
+        <li><strong>중요한 변수와 안 중요한 변수를 구분해요.</strong> 어떤 X가 Y에 진짜 영향을 주는가.</li>
+        <li><strong>각 X의 영향력을 수치화해요.</strong> "평수가 1평 늘면 가격이 평균 ◯만원 오른다"는 식으로.</li>
+      </ol>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Y = β들이 X들에 곱해진 합 + 오차 e. 회귀는 이 β들을 데이터에서 찾는 일.
+      </div>
+    </section>
+
+    <!-- ═══════ 3장 · 단순선형회귀 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>단순선형회귀 — X가 딱 하나일 때</h2>
+      <div class="chap-sub">눈으로 보는 회귀</div>
+
+      <p>X가 여러 개면 머릿속으로 그리기 힘들어요. 그래서 우선 X가 <strong>하나일 때</strong>부터 시작해요.
+      이걸 <strong>단순선형회귀(Simple Linear Regression)</strong>라고 해요.</p>
+
+      <div class="formula wide">
+        Y = β<sub>0</sub> + β<sub>1</sub>X + e
+      </div>
+
+      <p>중학교 때 배운 직선의 방정식 <strong>y = ax + b</strong>랑 똑같죠? 그저 이름이 바뀌었을 뿐이에요.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>중학수학 ↔ 회귀의 용어 번역</caption>
+        <thead><tr><th>중학수학</th><th>회귀</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td>x, y</td><td>X, Y</td><td>변수 두 개</td></tr>
+          <tr><td>b</td><td>β₀</td><td>절편(상수항)</td></tr>
+          <tr><td>a</td><td>β₁</td><td>기울기(=한 단위당 변화)</td></tr>
+          <tr><td>(없음)</td><td>e</td><td>오차 — 직선이 못 잡는 나머지</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>아파트 가격 vs 연식 — 한 장의 그림</h3>
+
+      <p>아파트 200채 데이터로 산점도를 그렸어요. X축 = 연식, Y축 = 가격(천만원).</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">House Value vs Age (산점도 + 회귀선)</div>
+        <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+          <!-- 축 -->
+          <line x1="60" y1="320" x2="640" y2="320" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="60" y1="40" x2="60" y2="320" stroke="#1d1d1f" stroke-width="1.5"/>
+          <!-- X축 라벨 -->
+          <g font-size="11" fill="#6b6b6b" text-anchor="middle">
+            <text x="60" y="338">0</text>
+            <text x="178" y="338">20</text>
+            <text x="294" y="338">40</text>
+            <text x="410" y="338">60</text>
+            <text x="526" y="338">80</text>
+            <text x="640" y="338">100</text>
+          </g>
+          <text x="350" y="354" text-anchor="middle" font-size="12" fill="#1d1d1f">Age (years)</text>
+          <!-- Y축 라벨 -->
+          <g font-size="11" fill="#6b6b6b" text-anchor="end">
+            <text x="55" y="324">100</text>
+            <text x="55" y="268">150</text>
+            <text x="55" y="212">200</text>
+            <text x="55" y="156">250</text>
+            <text x="55" y="100">300</text>
+            <text x="55" y="44">350</text>
+          </g>
+          <text x="20" y="180" font-size="12" fill="#1d1d1f" transform="rotate(-90, 20, 180)" text-anchor="middle">House Value (천)</text>
+
+          <!-- 산점들 -->
+          <g fill="#1e3a8a" opacity="0.7">
+            <circle cx="100" cy="180" r="3"/><circle cx="115" cy="135" r="3"/>
+            <circle cx="125" cy="220" r="3"/><circle cx="135" cy="160" r="3"/>
+            <circle cx="145" cy="200" r="3"/><circle cx="160" cy="110" r="3"/>
+            <circle cx="175" cy="175" r="3"/><circle cx="190" cy="145" r="3"/>
+            <circle cx="205" cy="100" r="3"/><circle cx="220" cy="190" r="3"/>
+            <circle cx="235" cy="125" r="3"/><circle cx="250" cy="165" r="3"/>
+            <circle cx="265" cy="220" r="3"/><circle cx="280" cy="140" r="3"/>
+            <circle cx="295" cy="200" r="3"/><circle cx="310" cy="175" r="3"/>
+            <circle cx="325" cy="240" r="3"/><circle cx="340" cy="195" r="3"/>
+            <circle cx="355" cy="170" r="3"/><circle cx="370" cy="215" r="3"/>
+            <circle cx="385" cy="190" r="3"/><circle cx="400" cy="245" r="3"/>
+            <circle cx="420" cy="225" r="3"/><circle cx="440" cy="205" r="3"/>
+            <circle cx="460" cy="270" r="3"/><circle cx="480" cy="240" r="3"/>
+            <circle cx="500" cy="285" r="3"/><circle cx="520" cy="255" r="3"/>
+            <circle cx="540" cy="260" r="3"/><circle cx="560" cy="290" r="3"/>
+            <circle cx="580" cy="275" r="3"/><circle cx="600" cy="295" r="3"/>
+          </g>
+          <!-- 회귀선 -->
+          <line x1="70" y1="115" x2="640" y2="285" stroke="#c0392b" stroke-width="2.5"/>
+          <text x="500" y="160" fill="#c0392b" font-size="12" font-weight="700">Ŷ = β₀ + β₁X</text>
+        </svg>
+        <div class="chart-caption">연식이 늘수록 가격이 떨어지는 경향. 빨간 선이 그 경향을 잡아낸 회귀선이에요.</div>
+      </div>
+
+      <p>점들이 빈틈없이 직선 위에 놓이진 않아요. 하지만 <strong>전체적인 흐름</strong>은
+      "연식 ↑ → 가격 ↓"이라는 게 보이죠? 빨간 회귀선이 그 흐름을 한 줄로 정리한 거예요.</p>
+
+      <div class="callout blue">
+        <div class="label">단순선형회귀의 좋은 점</div>
+        <p>그래프로 한 눈에 볼 수 있다는 것! "이 관계가 정말 직선 같은가?"를 시각적으로
+        먼저 확인할 수 있어요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        단순선형회귀 = 산점도 위에 가장 잘 어울리는 직선 한 줄 긋기.
+      </div>
+    </section>
+
+    <!-- ═══════ 4장 · 잔차 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>잔차 — 직선이 못 잡은 부분</h2>
+      <div class="chap-sub">Residual · eᵢ = Yᵢ − Ŷᵢ</div>
+
+      <p>회귀선은 점들에 정확히 다 닿진 않아요. 각 점은 직선에서 살짝 떨어져 있죠.
+      그 거리를 <strong>잔차(residual)</strong>라고 해요.</p>
+
+      <h3>예측값 vs 실제값</h3>
+
+      <p>i번째 아파트의 연식이 X<sub>i</sub>예요. 회귀선이 <strong>예측</strong>하는 가격은:</p>
+
+      <div class="formula wide">
+        Ŷ<sub>i</sub> = β<sub>0</sub> + β<sub>1</sub>X<sub>i</sub>
+      </div>
+
+      <p>"Ŷ" 위에 모자(^) 표시는 "추정"이라는 뜻이에요. <strong>실제로 관측한 가격</strong>은
+      Y<sub>i</sub>라고 적어요. 둘은 다르죠.</p>
+
+      <div class="definition">
+        <div class="term">Residual · 잔차</div>
+        <div class="kor">"실제값 − 예측값"</div>
+        <p>e<sub>i</sub> = Y<sub>i</sub> − Ŷ<sub>i</sub></p>
+        <p>"이 점이 회귀선에서 위로(혹은 아래로) 얼마나 떨어졌나"의 거리예요.
+        양수면 점이 선 위, 음수면 선 아래.</p>
+      </div>
+
+      <h3>그림으로 보는 잔차</h3>
+
+      <div class="chart-wrap">
+        <div class="chart-title">실제값 - 예측값 = 잔차</div>
+        <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="280" x2="640" y2="280" stroke="#1d1d1f"/>
+          <line x1="60" y1="40" x2="60" y2="280" stroke="#1d1d1f"/>
+          <text x="50" y="46" text-anchor="end" font-size="11" fill="#6b6b6b">Y</text>
+          <text x="650" y="296" font-size="11" fill="#6b6b6b">X</text>
+
+          <!-- 회귀선 -->
+          <line x1="80" y1="220" x2="620" y2="80" stroke="#c0392b" stroke-width="2"/>
+          <text x="600" y="65" fill="#c0392b" font-size="11" font-weight="700">회귀선 Ŷ</text>
+
+          <!-- 점들과 잔차선 -->
+          <!-- 점 1: 실제값이 위 -->
+          <line x1="180" y1="110" x2="180" y2="180" stroke="#2f6d4a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="180" cy="110" r="5" fill="#1e3a8a"/>
+          <circle cx="180" cy="180" r="3" fill="#c0392b"/>
+          <text x="195" y="148" font-size="11" fill="#2f6d4a" font-weight="700">e &gt; 0</text>
+
+          <!-- 점 2: 실제값이 아래 -->
+          <line x1="320" y1="170" x2="320" y2="155" stroke="#2f6d4a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="320" cy="170" r="5" fill="#1e3a8a"/>
+          <circle cx="320" cy="155" r="3" fill="#c0392b"/>
+          <text x="335" y="165" font-size="11" fill="#2f6d4a" font-weight="700">e &lt; 0</text>
+
+          <!-- 점 3 -->
+          <line x1="460" y1="80" x2="460" y2="130" stroke="#2f6d4a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="460" cy="80" r="5" fill="#1e3a8a"/>
+          <circle cx="460" cy="130" r="3" fill="#c0392b"/>
+          <text x="475" y="108" font-size="11" fill="#2f6d4a" font-weight="700">e &gt; 0</text>
+
+          <!-- 점 4 -->
+          <line x1="560" y1="125" x2="560" y2="105" stroke="#2f6d4a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <circle cx="560" cy="125" r="5" fill="#1e3a8a"/>
+          <circle cx="560" cy="105" r="3" fill="#c0392b"/>
+
+          <!-- 범례 -->
+          <circle cx="80" cy="305" r="5" fill="#1e3a8a"/>
+          <text x="92" y="309" font-size="11">실제값 Yᵢ</text>
+          <circle cx="200" cy="305" r="3" fill="#c0392b"/>
+          <text x="212" y="309" font-size="11">예측값 Ŷᵢ</text>
+          <line x1="335" y1="305" x2="365" y2="305" stroke="#2f6d4a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="372" y="309" font-size="11">잔차 eᵢ</text>
+        </svg>
+      </div>
+
+      <p>잔차는 회귀선이 <strong>설명하지 못한 부분</strong>이에요. "이 아파트는 우리 식으로는 설명이 안 되는 5만원어치 비밀이 있다"는 식이죠.</p>
+
+      <h3>좋은 회귀선의 기준 — 다음 장 예고</h3>
+
+      <p>이제 자연스러운 질문이 떠올라요. <em>"수많은 가능한 직선 중에 어느 게 가장 좋은 선이지?"</em></p>
+
+      <p>답: <strong>잔차를 가장 작게 만드는 선</strong>이에요. 그 정확한 정의가 다음 장의 주인공.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        잔차 e = 실제값 − 예측값. 회귀선이 설명하지 못한 부분. 작을수록 좋은 선.
+      </div>
+    </section>
+
+    <!-- ═══════ 5장 · SSE 최소화 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>좋은 선 — SSE를 최소화</h2>
+      <div class="chap-sub">Sum of Squared Errors · 잔차 제곱의 합</div>
+
+      <p>점이 200개면 잔차도 200개. 어떤 점은 위로 5만원, 어떤 점은 아래로 3만원 떨어졌어요.
+      이걸 <strong>한 숫자로 모아서</strong> "선이 얼마나 나쁜가"를 평가하고 싶어요.</p>
+
+      <h3>그냥 더하면 안 되나요?</h3>
+
+      <p>잔차들을 그냥 더하면 양수와 음수가 상쇄돼서 거의 0이 되어 버려요. (어떤 선이든 그래요.)
+      그래서 <em>제곱</em>한 후에 더해요. 부호가 사라지고 큰 잔차는 더 크게 패널티!</p>
+
+      <div class="definition">
+        <div class="term">SSE · Sum of Squared Errors · 잔차 제곱의 합</div>
+        <div class="kor">"선이 얼마나 데이터에서 멀리 떨어졌나"의 총점</div>
+        <p>SSE = Σ (Y<sub>i</sub> − Ŷ<sub>i</sub>)² = Σ (Y<sub>i</sub> − β<sub>0</sub> − β<sub>1</sub>X<sub>i</sub>)²</p>
+        <p>"i=1부터 n까지 다 더한다"는 뜻이에요. 잔차를 제곱해서 모두 합한 값.</p>
+      </div>
+
+      <div class="formula wide">
+        SSE = ∑<sub>i=1</sub><sup>n</sup> ( Y<sub>i</sub> − Ŷ<sub>i</sub> )<sup>2</sup>
+      </div>
+
+      <h3>회귀가 하는 일</h3>
+
+      <blockquote class="pull">
+        <strong>SSE를 가장 작게 만드는 β₀, β₁을 찾는다.</strong><br>
+        그게 회귀선의 정의예요.
+      </blockquote>
+
+      <p>이걸 영어로는 <strong>OLS (Ordinary Least Squares · 최소제곱법)</strong>라고 불러요.
+      "제곱 합을 최소로" 한다는 뜻이에요. 통계 소프트웨어(엑셀·파이썬·R)가 자동으로 이 계산을 해줘요.</p>
+
+      <div class="analogy">
+        <p><strong>"가장 안 흔들리는 평균선" 비유.</strong></p>
+        <p>점들 사이로 자(직선)를 대고 이리저리 움직여보면, 어느 위치에서 점들과의 거리 제곱 합이
+        제일 작아지는 자리가 있어요. 그 자리가 회귀선이에요.</p>
+      </div>
+
+      <h3>왜 제곱을 써요? 절댓값이면 안 되나요?</h3>
+
+      <div class="callout">
+        <div class="label">제곱 vs 절댓값</div>
+        <p>① 제곱은 <strong>큰 오차에 더 큰 패널티</strong>를 줘요. 이상치(outlier)에 민감해지지만,
+        대신 한쪽으로 크게 벗어난 점을 가까이 끌어와요.</p>
+        <p>② 절댓값보다 <strong>미분하기 쉬워요</strong>. 그래서 β₀, β₁의 최적값을 깔끔한 공식으로 풀 수 있어요.</p>
+        <p>③ 통계 이론과 잘 어울려요 (정규분포·표준편차·분산 모두 제곱 위에서 정의돼요).</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        회귀선 = SSE(잔차 제곱의 합)를 가장 작게 만드는 직선.
+      </div>
+    </section>
+
+    <!-- ═══════ 6장 · 적합도 직관 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>"왜 가격이 다 다르지?" — 적합도의 직관</h2>
+      <div class="chap-sub">설명변수가 진짜 설명하고 있는가</div>
+
+      <p>회귀선을 그렸어요. 근데 그 선이 정말로 데이터를 <strong>잘 설명</strong>하고 있는 걸까요?
+      "잘 맞춘다(fit)"의 의미를 따져봐요.</p>
+
+      <h3>핵심 질문</h3>
+
+      <blockquote class="pull">
+        "왜 우리 데이터의 아파트 가격은 서로 다르지?"
+      </blockquote>
+
+      <p>가격이 다른 이유는 두 가지로 나눌 수 있어요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>① 연식이 다르니까 (X가 다름)</h5>
+          <p>"연식이 1년 늘면 가격이 평균 ◯만원 변한다"는 우리 회귀선이 설명하는 부분.<br>
+          <strong>설명변수의 차이</strong>가 만든 가격 차이.</p>
+        </div>
+        <div class="card">
+          <h5>② 다른 이유 (X로 설명 안 됨)</h5>
+          <p>같은 연식인데도 가격이 다 다르잖아요? 위치, 층수, 인테리어… 회귀선이 잡지 못한 모든 차이.<br>
+          <strong>오차(잔차)</strong>가 만든 가격 차이.</p>
+        </div>
+      </div>
+
+      <h3>좋은 회귀의 모습</h3>
+
+      <p>만약 가격 차이의 <em>대부분</em>이 ①(연식)으로 설명된다면 → <strong>연식이 가격을 잘 설명한다</strong>는 뜻.
+      회귀선이 데이터에 잘 맞는다고 할 수 있어요.</p>
+
+      <p>반대로 가격 차이의 대부분이 ②(나머지)에서 온다면 → 연식만으로는 가격을 설명할 수 없어요.
+      다른 변수를 끌어와야 할 시점이에요.</p>
+
+      <div class="callout blue">
+        <div class="label">잘 맞는 회귀선의 모습</div>
+        <p>① 가격 변동의 큰 부분이 회귀선으로 설명돼요.</p>
+        <p>② 잔차들이 비교적 작아요.</p>
+        <p>③ 점들이 회귀선 주위에 빽빽하게 모여 있어요.</p>
+      </div>
+
+      <h3>이걸 어떻게 수치로 표현하지?</h3>
+
+      <p>"변동의 얼마나 많은 부분이 회귀선으로 설명되는가?" — 이걸 숫자로 만들고 싶어요.
+      그러려면 <strong>변동(variability)</strong>을 분해해야 해요. 다음 장의 핵심 개념이에요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Y가 흔들리는 이유 = ① X가 흔들려서 + ② 그 외 잡것들. 회귀가 잘 잡으면 ①이 커요.
+      </div>
+    </section>
+
+    <!-- ═══════ 7장 · SST = SSR + SSE ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>분산 분해 — SST = SSR + SSE</h2>
+      <div class="chap-sub">변동을 세 조각으로 나누기</div>
+
+      <p>변동을 세 가지로 나눠요. 각각의 뜻이 정확하니, 한 번에 짚어볼게요.</p>
+
+      <h3>세 가지 제곱합</h3>
+
+      <div class="definition">
+        <div class="term">SST · Total Sum of Squares · 총변동</div>
+        <div class="kor">"Y가 평균에서 얼마나 흔들리는가" 전체</div>
+        <p>SST = Σ (Y<sub>i</sub> − Ȳ)²</p>
+        <p>각 Y가 평균 Ȳ에서 떨어진 정도를 제곱해서 더한 값. <strong>Y의 총 변동</strong>이에요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">SSR · Regression Sum of Squares · 회귀변동</div>
+        <div class="kor">"회귀선이 설명한 변동"</div>
+        <p>SSR = Σ (Ŷ<sub>i</sub> − Ȳ)²</p>
+        <p>예측값 Ŷ이 평균 Ȳ에서 떨어진 정도. 즉 "회귀선이 만들어낸" 변동이에요.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">SSE · Error Sum of Squares · 잔차변동</div>
+        <div class="kor">"회귀선이 설명하지 못한 변동"</div>
+        <p>SSE = Σ (Y<sub>i</sub> − Ŷ<sub>i</sub>)²</p>
+        <p>5장에서 본 그 SSE랑 같아요. 잔차 제곱의 합.</p>
+      </div>
+
+      <h3>핵심 등식</h3>
+
+      <div class="formula wide">
+        SST &nbsp;=&nbsp; SSR &nbsp;+&nbsp; SSE
+      </div>
+
+      <p>이게 정말 신기한 등식이에요. Y의 총 변동(SST)은 <strong>회귀선이 잡은 부분(SSR)</strong>과
+      <strong>잡지 못한 부분(SSE)</strong>의 합으로 깔끔하게 쪼개져요.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">한 점의 변동 = SSR 조각 + SSE 조각</div>
+        <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="240" x2="640" y2="240" stroke="#1d1d1f"/>
+          <line x1="60" y1="20" x2="60" y2="240" stroke="#1d1d1f"/>
+
+          <!-- 평균선 (Ȳ) -->
+          <line x1="60" y1="150" x2="640" y2="150" stroke="#6b6b6b" stroke-dasharray="4 3" stroke-width="1.5"/>
+          <text x="630" y="146" text-anchor="end" font-size="11" fill="#6b6b6b">Ȳ (평균)</text>
+
+          <!-- 회귀선 -->
+          <line x1="80" y1="200" x2="620" y2="70" stroke="#c0392b" stroke-width="2"/>
+          <text x="600" y="60" font-size="11" fill="#c0392b" font-weight="700">Ŷ (회귀선)</text>
+
+          <!-- 한 점 예시 -->
+          <circle cx="400" cy="50" r="6" fill="#1e3a8a"/>
+          <text x="415" y="48" font-size="12" fill="#1e3a8a" font-weight="700">Y (실제값)</text>
+
+          <!-- 예측값 위치 -->
+          <circle cx="400" cy="115" r="4" fill="#c0392b"/>
+          <text x="415" y="118" font-size="11" fill="#c0392b">Ŷ (예측)</text>
+
+          <!-- 평균 위치 -->
+          <circle cx="400" cy="150" r="4" fill="#6b6b6b"/>
+
+          <!-- SST: Y → Ȳ -->
+          <line x1="380" y1="50" x2="380" y2="150" stroke="#1e3a8a" stroke-width="2.5"/>
+          <text x="305" y="105" font-size="11" fill="#1e3a8a" font-weight="700">SST 조각 (Y−Ȳ)</text>
+
+          <!-- SSE: Y → Ŷ -->
+          <line x1="430" y1="50" x2="430" y2="115" stroke="#2f6d4a" stroke-width="2.5"/>
+          <text x="438" y="85" font-size="11" fill="#2f6d4a" font-weight="700">SSE 조각 (Y−Ŷ)</text>
+
+          <!-- SSR: Ŷ → Ȳ -->
+          <line x1="430" y1="115" x2="430" y2="150" stroke="#c0392b" stroke-width="2.5"/>
+          <text x="442" y="135" font-size="11" fill="#c0392b" font-weight="700">SSR 조각 (Ŷ−Ȳ)</text>
+
+          <text x="350" y="265" text-anchor="middle" font-size="12" fill="#1d1d1f">
+            (Y − Ȳ) = (Y − Ŷ) + (Ŷ − Ȳ)
+          </text>
+        </svg>
+        <div class="chart-caption">한 점의 변동(파랑)이 잔차 부분(초록)과 회귀 부분(빨강)으로 쪼개져요. 제곱해서 다 더하면 SST = SSR + SSE.</div>
+      </div>
+
+      <h3>왜 의미가 있어요?</h3>
+
+      <p>이 분해 덕분에 우리는 이렇게 말할 수 있어요:</p>
+
+      <div class="callout green">
+        <div class="label">SST = SSR + SSE의 의미</div>
+        <p><strong>SSR 비율이 크다 → 회귀선이 잘 설명함</strong> → 변수 X가 Y를 잘 잡고 있음.</p>
+        <p><strong>SSE 비율이 크다 → 회귀선이 설명 못 함</strong> → X 말고 다른 변수가 필요함.</p>
+      </div>
+
+      <p>그래서 자연스럽게 다음 질문이 나와요. <em>"SSR 비율을 한 숫자로 어떻게 표현?"</em>
+      답이 다음 장의 <strong>R²</strong>예요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        SST(전체) = SSR(설명됨) + SSE(설명 안 됨). 깔끔한 변동 분해.
+      </div>
+    </section>
+
+    <!-- ═══════ 8장 · R² ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>R² — 회귀의 시험 점수</h2>
+      <div class="chap-sub">Coefficient of Determination · 결정계수</div>
+
+      <p>이제 회귀의 성적표 같은 숫자가 등장해요. <strong>R²</strong> (R-Square, 알스퀘어).</p>
+
+      <div class="definition">
+        <div class="term">R² · Coefficient of Determination · 결정계수</div>
+        <div class="kor">"Y의 변동 중 몇 %가 회귀선으로 설명되는가"</div>
+        <p>R² = SSR / SST = (설명된 변동) / (전체 변동)</p>
+      </div>
+
+      <div class="formula wide">
+        R<sup>2</sup> &nbsp;=&nbsp; <span class="frac"><span class="num">SSR</span><span class="den">SST</span></span>
+        &nbsp;=&nbsp; 1 − <span class="frac"><span class="num">SSE</span><span class="den">SST</span></span>
+      </div>
+
+      <h3>0과 1 사이의 숫자</h3>
+
+      <p>R²는 항상 0과 1 사이예요. (비율이니까.)</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>R² 값이 의미하는 것</caption>
+        <thead><tr><th>R²</th><th>해석</th><th>회귀의 상태</th></tr></thead>
+        <tbody>
+          <tr><td>1.0</td><td>100% 설명</td><td>완벽 (현실에선 거의 없음)</td></tr>
+          <tr><td>0.9</td><td>90% 설명</td><td>아주 좋음</td></tr>
+          <tr><td class="hi">0.5</td><td class="hi">50% 설명</td><td class="hi">절반은 잡음</td></tr>
+          <tr><td>0.2</td><td>20% 설명</td><td>설명력 부족</td></tr>
+          <tr><td>0.0</td><td>전혀 설명 못 함</td><td>X가 Y와 무관</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>R²의 직관</h3>
+
+      <div class="analogy">
+        <p><strong>"퍼즐 맞추기" 비유.</strong></p>
+        <p>Y라는 그림 퍼즐 1000조각이 있어요. 우리 회귀선은 그 중 몇 조각을 맞췄을까요?<br>
+        <strong>R² = 0.7이면 700조각 맞춤. 300조각은 안 맞춰진 상태.</strong></p>
+        <p>점수가 높을수록 그림이 더 명확하게 드러나요.</p>
+      </div>
+
+      <h3>R = √R² (Multiple R)</h3>
+
+      <p>R²의 제곱근을 그냥 <strong>R</strong>이라고 불러요. 회귀 출력에는 <em>"Multiple R"</em>로 나와요.</p>
+
+      <div class="callout">
+        <div class="label">R의 의미</div>
+        <p>R은 <strong>실제값 Y와 예측값 Ŷ 사이의 상관계수</strong>예요.</p>
+        <p>"우리 회귀선이 데이터와 얼마나 같은 방향으로 흐르는가"의 정도. 1에 가까울수록 좋아요.</p>
+      </div>
+
+      <h3>주의 — R² 함정</h3>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ R²가 높다고 다 좋은 건 아니에요</div>
+        <p>① <strong>변수만 늘리면 R²는 무조건 올라가요</strong>. 쓸데없는 변수를 추가해도! (그래서 10강에서 Adjusted R² 등장.)</p>
+        <p>② <strong>인과관계의 증거가 아니에요</strong>. R²가 높아도 "X가 Y의 원인이다"라는 뜻이 아니에요. 둘 다 같은 제3 변수의 영향일 수도.</p>
+        <p>③ R²가 낮다고 모델이 무용지물도 아니에요. 분야에 따라 0.2도 의미 있을 수 있어요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        R² = SSR/SST. 0에 가까우면 설명 못 함, 1에 가까우면 잘 설명함.
+      </div>
+    </section>
+
+    <!-- ═══════ 9장 · 회귀 출력 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>회귀 출력 읽기 — 엑셀의 표를 해석해보자</h2>
+      <div class="chap-sub">Sample Regression Output</div>
+
+      <p>엑셀이나 R, 파이썬으로 회귀를 돌리면 <strong>표 한 장</strong>이 튀어나와요. 처음 보면 숫자 폭격이지만,
+      구역별로 차근차근 보면 쉬워요.</p>
+
+      <h3>① 회귀 통계량 (Regression Statistics) 박스</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>Regression Statistics 예시</caption>
+        <thead><tr><th>항목</th><th>값</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td>Multiple R</td><td>0.94</td><td>실제값과 예측값의 상관계수</td></tr>
+          <tr><td class="hi">R Square</td><td class="hi">0.89</td><td class="hi">결정계수 — 89%의 변동 설명</td></tr>
+          <tr><td>Adjusted R Square</td><td>0.88</td><td>변수 개수 보정한 R² (10강)</td></tr>
+          <tr><td>Standard Error</td><td>5.06</td><td>잔차의 표준편차 추정치</td></tr>
+          <tr><td>Observations</td><td>36</td><td>표본 개수 n</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>먼저 보는 곳: <strong>R Square</strong>. 0.89면 "Y의 변동의 89%를 우리 회귀선이 설명함"이라는 뜻.</p>
+
+      <h3>② ANOVA 박스 (분산 분석)</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>ANOVA 예시</caption>
+        <thead><tr><th></th><th>df</th><th>SS</th><th>MS</th><th>F</th><th>Significance F</th></tr></thead>
+        <tbody>
+          <tr><td>Regression</td><td>2</td><td>6926.62</td><td>3463.31</td><td>135.28</td><td>0.00</td></tr>
+          <tr><td>Residual</td><td>33</td><td>844.82</td><td>25.60</td><td></td><td></td></tr>
+          <tr><td><strong>Total</strong></td><td>35</td><td>7771.44</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>이 표에 우리가 7장에서 본 <strong>SSR · SSE · SST</strong>가 그대로 있어요.</p>
+
+      <ul>
+        <li>Regression의 SS = <strong>SSR</strong> = 6926.62</li>
+        <li>Residual의 SS = <strong>SSE</strong> = 844.82</li>
+        <li>Total의 SS = <strong>SST</strong> = 7771.44</li>
+        <li>확인: 6926.62 + 844.82 = 7771.44 ✓</li>
+        <li>R² = 6926.62 / 7771.44 ≈ 0.89 ✓</li>
+      </ul>
+
+      <p>나머지(df, MS, F)는 10강에서 다뤄요. 자유도와 표준오차 같은 개념이에요.</p>
+
+      <h3>③ 계수 표 — 핵심 결과</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>Coefficients 예시</caption>
+        <thead><tr><th></th><th>Coefficients</th><th>Standard Error</th><th>t Stat</th><th>P-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
+        <tbody>
+          <tr><td>Intercept</td><td>−0.57</td><td>3.09</td><td>−0.18</td><td>0.86</td><td>−6.86</td><td>5.73</td></tr>
+          <tr><td>Rooms</td><td>−1.62</td><td>2.06</td><td>−0.79</td><td>0.44</td><td>−5.82</td><td>2.57</td></tr>
+          <tr><td class="hi">Volume</td><td class="hi">0.06</td><td class="hi">0.01</td><td class="hi">6.64</td><td class="hi">0.00</td><td class="hi">0.04</td><td class="hi">0.07</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>이 표에서 <strong>Coefficients 열</strong>이 바로 β들이에요. 그러면 회귀식이 이렇게 완성돼요:</p>
+
+      <div class="formula wide">
+        Ŷ &nbsp;=&nbsp; −0.57 &nbsp;−&nbsp; 1.62 × Rooms &nbsp;+&nbsp; 0.06 × Volume
+      </div>
+
+      <h3>각 열의 의미 (간단히)</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>계수 표 각 열 해설</caption>
+        <thead><tr><th>열</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td>Coefficients</td><td>추정된 β 값 (회귀식의 계수)</td></tr>
+          <tr><td>Standard Error</td><td>β 추정값의 흔들림 크기</td></tr>
+          <tr><td>t Stat</td><td>"이 β가 0인지" 검정의 통계량</td></tr>
+          <tr><td>P-value</td><td>"이 β = 0"이라는 H₀의 p-값 (8강에서 본 그것!)</td></tr>
+          <tr><td>Lower / Upper 95%</td><td>β의 95% 신뢰구간 (7강)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">10강 예고</div>
+        <p>이 표의 t Stat / P-value / 신뢰구간이 어떻게 만들어지는지, 그리고 그걸 보고
+        "Rooms는 의미 있나? Volume은 의미 있나?"를 어떻게 판단하는지 — 모두 10강에서!</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        엑셀 출력 = 3구역 (Regression Statistics · ANOVA · 계수표). R²와 Coefficients부터 봐요.
+      </div>
+    </section>
+
+    <!-- ═══════ 에필로그 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글 · 점들 사이에 놓은 한 줄</h2>
+      <div class="chap-sub">이번 강의의 한 장면</div>
+
+      <p class="story">
+        오늘 우리는 점들 사이에 <strong>한 줄</strong>을 놓는 법을 배웠어요.
+        그 줄은 잔차 제곱의 합(SSE)을 최소로 만드는 선이었어요.
+      </p>
+
+      <p class="story">
+        그리고 그 선이 데이터를 <em>얼마나 잘</em> 설명하는지 측정하는 점수,
+        <strong>R²</strong>도 손에 넣었죠. SSR / SST.
+      </p>
+
+      <p class="story">
+        하지만 아직 답하지 못한 질문이 있어요. <em>"이 회귀선이 진짜 의미 있는가?"</em><br>
+        β들이 0이 아니라는 걸 어떻게 통계적으로 증명할까요? 그게 10강 주제예요.
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>회귀의 세 목표: 관계 묘사 · 유의성 · 예측</li>
+        <li>모델식: Y = β₀ + β₁X₁ + ⋯ + βₖXₖ + e</li>
+        <li>단순선형회귀는 산점도 위의 직선</li>
+        <li>잔차 eᵢ = Yᵢ − Ŷᵢ — 선이 못 잡은 거리</li>
+        <li>좋은 선 = SSE를 최소화하는 선 (OLS)</li>
+        <li>SST = SSR + SSE — 변동의 분해</li>
+        <li>R² = SSR/SST — 회귀의 시험 점수</li>
+        <li>Multiple R = √R²</li>
+        <li>엑셀 출력 = Statistics · ANOVA · Coefficients 3구역</li>
+      </ul>
+
+      <h4>10강 예고</h4>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>계수의 가설 검정</h5>
+          <p>"이 변수 β가 정말 0이 아닌가?" — 8강의 H.T.를 회귀에 적용해요.</p>
+        </div>
+        <div class="card">
+          <h5>변수 선택</h5>
+          <p>Adjusted R²와 p-값을 보고 "필요 없는 변수"를 골라내요.</p>
+        </div>
+        <div class="card">
+          <h5>예측</h5>
+          <p>새 데이터의 Y를 추정하고 신뢰구간으로 감싸요.</p>
+        </div>
+        <div class="card">
+          <h5>자유도와 표준오차</h5>
+          <p>"왜 n − k − 1로 나누지?" 마지막 퍼즐.</p>
+        </div>
+      </div>
+
+      <div class="epilogue">
+        <h2>마지막 마음가짐</h2>
+        <p>회귀는 점들의 노이즈 속에서 <em>경향</em>을 끄집어내는 일이에요.</p>
+        <p>완벽한 선은 없어요. 다만 "가장 덜 틀린" 선이 있을 뿐이죠.</p>
+        <p>그게 통계의 정직함이고, 동시에 매력이에요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 9강, 끝 —</p>
+      </div>
+    </section>
+
+    <nav class="next-lecture">
+      <a href="lecture10.html" aria-label="10강으로">
+        <span>
+          <span class="lec-hint">다음 강의</span>
+          <span class="lec-title">10강 · 회귀분석 II 보러 가기</span>
+        </span>
+        <span class="lec-arrow">→</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

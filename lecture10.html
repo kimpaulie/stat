@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>10강 · 회귀분석 II | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">10강 회귀분석 II</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture09.html" aria-label="이전 강의">◀</a>
+    <a href="problems2.html" aria-label="연습문제 2">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>가설 검정</a></li>
+      <li><a href="lecture09.html"><span class="num">09</span>회귀분석 I</a></li>
+      <li><a href="lecture10.html" class="active"><span class="num">10</span>회귀분석 II</a></li>
+      <li><a href="problems.html"><span class="num">★</span>연습문제 1</a></li>
+      <li><a href="problems2.html"><span class="num">★</span>연습문제 2</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">9강 한장 복습</a></li>
+      <li><a href="#ch2">β̂는 확률변수</a></li>
+      <li><a href="#ch3">계수 H.T. — p-값 방식</a></li>
+      <li><a href="#ch4">계수 H.T. — CI 방식</a></li>
+      <li><a href="#ch5">실제 예시 해석</a></li>
+      <li><a href="#ch6">자유도(df)</a></li>
+      <li><a href="#ch7">MSR · MSE · Sₑ</a></li>
+      <li><a href="#ch8">변수 선택 · Adjusted R²</a></li>
+      <li><a href="#ch9">한 개씩 빼는 예시</a></li>
+      <li><a href="#ch10">예측</a></li>
+      <li><a href="#ch11">맺는 글</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="10"><!-- populated by app.js --></div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 10<br>Linear Regression · Part II</div>
+      <h1>회귀분석 II
+        <span class="small">— 계수에 의심을 던지고, 미래를 예측해보기</span>
+      </h1>
+      <p class="lead">
+        9강에서 회귀선을 그렸어요.<br>
+        오늘은 그 선의 <em>계수 하나하나</em>가 정말 의미 있는지 따져보고,<br>
+        새로운 데이터의 미래값까지 예측해 봐요.
+      </p>
+    </div>
+
+    <!-- 여는 글 -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · 계수에 던지는 질문</h2>
+      <div class="chap-sub">9강의 자연스러운 다음 단계</div>
+
+      <p class="story">
+        9강 끝에서 우리는 회귀 출력 표를 봤어요. 계수가 −1.62라느니, 0.06이라느니
+        숫자들이 잔뜩 있었죠. 그런데 이 숫자들, <strong>정말 0이 아니라고 자신 있게 말할 수 있을까요?</strong>
+      </p>
+
+      <p class="story">
+        다른 데이터를 뽑으면 −1.62가 −1.5가 될 수도, 0.3이 될 수도 있어요.
+        <em>그래서 진짜 효과가 있는 변수인지, 아니면 우연이 만든 환상인지</em> 판단해야 해요.
+        이게 오늘 강의의 핵심이에요.
+      </p>
+
+      <div class="callout">
+        <div class="label">이 강의에서 배우는 것</div>
+        <p><strong>① 회귀계수의 가설 검정</strong> — "이 변수, 진짜 효과가 있어?"</p>
+        <p><strong>② 자유도와 MSE</strong> — 표준오차가 어디서 오는지</p>
+        <p><strong>③ 변수 선택</strong> — 쓸데없는 변수 골라내기 (Adjusted R²)</p>
+        <p><strong>④ 예측</strong> — 새 데이터의 Y를 추정하고 신뢰구간 만들기</p>
+      </div>
+
+      <blockquote class="pull">
+        "이 변수가 정말 Y를 설명하나?"<br>
+        그 답을 8강의 <strong>가설 검정</strong>이 또 한 번 해줘요.
+      </blockquote>
+    </section>
+
+    <!-- 1장 · 9강 복습 -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>9강 한 장 복습</h2>
+      <div class="chap-sub">출발선을 다시 한번</div>
+
+      <p>오늘 이야기를 시작하기 전에, 9강의 핵심 세 줄을 다시 꺼내요.</p>
+
+      <div class="callout blue">
+        <div class="label">9강의 세 줄 요약</div>
+        <p><strong>① 회귀선</strong>은 SSE(잔차 제곱의 합)를 최소화하는 직선.</p>
+        <p><strong>② SST = SSR + SSE</strong>. Y의 전체 변동이 회귀로 설명된 부분과 안 된 부분으로 나뉘어요.</p>
+        <p><strong>③ R² = SSR / SST</strong>. 회귀의 설명력 점수.</p>
+      </div>
+
+      <h3>그래도 남는 질문</h3>
+
+      <p>R²가 0.89로 좋아 보였어요. 하지만 R²만 봐서는 알 수 없는 게 있어요.</p>
+
+      <ul>
+        <li>각 변수(Rooms, Volume 등)가 <em>개별적으로</em> 의미 있는가?</li>
+        <li>R²가 높다고 모든 변수가 다 좋은 건가? 쓸데없이 끼어든 변수도 있는 게 아닐까?</li>
+        <li>이 식으로 새 아파트 가격을 예측하면 얼마나 정확할까?</li>
+      </ul>
+
+      <p>이 질문들에 답하려면 회귀 출력의 <strong>"Coefficients 표"</strong>를 본격적으로 읽어야 해요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        9강 = 회귀선 그리기. 10강 = 그 선의 계수가 의미 있는지 따지기 + 예측.
+      </div>
+    </section>
+
+    <!-- 2장 · β̂는 확률변수 -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>β̂은 확률변수 — 표본이 바뀌면 계수도 바뀌어요</h2>
+      <div class="chap-sub">9강의 가장 중요한 깨달음</div>
+
+      <p>우리는 회귀선의 계수 β₀, β₁을 데이터로부터 <strong>추정</strong>했어요. 추정값에는 모자(^)를 씌워
+      <strong>β̂₀, β̂₁</strong>이라고 적어요.</p>
+
+      <h3>다른 데이터, 다른 β̂</h3>
+
+      <p>같은 모집단에서 다른 표본을 뽑으면 어떻게 될까요? 다른 β̂이 나와요. β̂은 표본에 따라
+      흔들리는 <strong>확률변수</strong>인 거예요.</p>
+
+      <div class="analogy">
+        <p><strong>"오늘 잰 키와 내일 잰 키" 비유.</strong></p>
+        <p>같은 사람이라도 측정할 때마다 키가 미세하게 다르게 나오죠. 측정 자체에 흔들림이 있으니까요.<br>
+        β̂도 똑같아요. 같은 회귀 분석이라도 표본이 다르면 살짝 다른 β̂이 나와요.</p>
+      </div>
+
+      <h3>β̂의 분포</h3>
+
+      <div class="callout">
+        <div class="label">중요한 사실</div>
+        <p>잔차 e<sub>i</sub>들이 정규분포를 따른다고 가정하면, β̂도 <strong>t-분포</strong>를 따라요.</p>
+        <p>표본이 충분히 크면 t-분포는 정규분포에 거의 같아져요. (자유도가 커지니까!)</p>
+        <p>그래서 β̂에 대해서도 <strong>"평균(=진짜 β)", "표준오차", "분포"</strong>를 다 정의할 수 있어요. → 가설 검정과 신뢰구간을 만들 수 있어요!</p>
+      </div>
+
+      <h3>오늘의 핵심 질문</h3>
+
+      <blockquote class="pull">
+        <strong>"β₁이 0이라는 H₀를 우리는 기각할 수 있는가?"</strong><br>
+        β₁ = 0이라는 건 "X₁이 Y에 영향을 주지 않는다"는 뜻이에요.<br>
+        이걸 기각할 증거를 찾으면 "X₁이 Y에 영향을 준다"고 결론지을 수 있죠.
+      </blockquote>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        β̂은 확률변수예요. 진짜 β의 추정값이고, 표본마다 흔들려요. 그래서 가설 검정이 가능해요.
+      </div>
+    </section>
+
+    <!-- 3장 · p-value 방식 -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>계수의 가설 검정 (방법 1) — p-값으로</h2>
+      <div class="chap-sub">8강의 H.T. 그대로 적용</div>
+
+      <p>각 회귀계수 β<sub>i</sub>에 대해 똑같은 검정을 해요. 예시로 β₁(연식의 계수)을 따져봐요.</p>
+
+      <h3>가설 세우기</h3>
+
+      <div class="formula wide">
+        H<sub>0</sub> : β<sub>1</sub> = 0 &nbsp; vs &nbsp; H<sub>1</sub> : β<sub>1</sub> ≠ 0
+      </div>
+
+      <div class="callout">
+        <div class="label">H₀의 의미</div>
+        <p>"X₁(연식)은 Y(가격)와 아무 관계 없다." 계수가 0이면 X₁ 항이 식에서 사라지니까요.</p>
+        <p>이걸 기각하면 → "X₁은 Y에 의미 있는 영향을 준다"는 결론!</p>
+      </div>
+
+      <h3>t-통계량</h3>
+
+      <p>8강의 z = (X̄ − μ₀)/SE와 똑같은 모양이에요. 평균 대신 β̂, 가정값 0과 비교.</p>
+
+      <div class="formula wide">
+        t-Stat &nbsp;=&nbsp; <span class="frac"><span class="num">β̂<sub>1</sub> − 0</span><span class="den">Std Err of β̂<sub>1</sub></span></span>
+      </div>
+
+      <p>분자 = "관측된 계수와 0의 거리". 분모 = "그 계수의 흔들림 크기".</p>
+
+      <h3>p-값과 결론</h3>
+
+      <p>t-통계량으로 t-분포에서 p-값을 읽어요. 결론은 똑같아요.</p>
+
+      <div class="callout blue">
+        <div class="label">기각 규칙</div>
+        <p><strong>p-값 &lt; α</strong> → H₀ 기각. "β₁ ≠ 0이라는 증거 있음." 즉 X₁은 의미 있는 변수.</p>
+        <p><strong>p-값 ≥ α</strong> → Fail to reject. "β₁ = 0일 가능성을 부정할 수 없음." X₁의 효과를 입증 못 함.</p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">엑셀 출력에서 어디 봐요?</div>
+        <p>회귀 출력 계수 표의 <strong>P-value</strong> 열을 보면 끝이에요. 컴퓨터가 다 계산해 줘요.</p>
+        <p>0.05보다 작으면 ✅ 의미 있음. 크면 ❌ 의미 없음 (보통 α = 5% 기준).</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        β의 H.T. = 8강의 평균 H.T.와 똑같은 구조. p-값 &lt; α면 그 변수가 의미 있음.
+      </div>
+    </section>
+
+    <!-- 4장 · CI 방식 -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>계수의 가설 검정 (방법 2) — 신뢰구간으로</h2>
+      <div class="chap-sub">CI에 0이 들어 있나?</div>
+
+      <p>방법 1(p-값)과 똑같은 결론을 <strong>신뢰구간</strong>으로도 낼 수 있어요. 사실 엑셀 출력에 둘 다 나와 있어서
+      편한 쪽을 보면 돼요.</p>
+
+      <h3>핵심 규칙</h3>
+
+      <div class="callout blue">
+        <div class="label">CI 기반 판정 규칙 (α = 5% 기준)</div>
+        <p><strong>95% CI가 0을 포함</strong> → Fail to reject H₀. "β = 0 가능성을 못 버린다."</p>
+        <p><strong>95% CI가 0을 포함하지 않음</strong> → Reject H₀. "β ≠ 0이라는 증거 있음."</p>
+      </div>
+
+      <h3>왜 이렇게 되나요?</h3>
+
+      <p>7강에서 신뢰구간이 무엇이었는지 떠올려요. <strong>"진짜 β가 95% 확률로 들어 있을 범위"</strong>예요.</p>
+
+      <p>그 범위에 0이 들어 있다면 → "β = 0이 가능한 값"이라는 뜻 → H₀를 못 버려요.<br>
+      그 범위에 0이 안 들어 있다면 → "β = 0이 절대 가능하지 않다"는 뜻 → H₀를 버려요.</p>
+
+      <div class="analogy">
+        <p><strong>"의심 지대" 비유.</strong></p>
+        <p>95% CI는 "용의자의 위치를 95% 확률로 포함하는 영역"이에요.<br>
+        그 영역에 "0(=무죄)"가 들어 있으면 무죄 가능성을 못 빼요. 판결 보류.<br>
+        영역에 "0"이 없으면 무죄 가능성이 사실상 없다는 거. 유죄!</p>
+      </div>
+
+      <h3>두 방법은 항상 같은 결론</h3>
+
+      <div class="callout green">
+        <div class="label">중요한 사실</div>
+        <p>방법 1(p-값 &lt; α)과 방법 2(CI에 0 없음)는 <strong>완전히 동일한 결론</strong>을 내요.</p>
+        <p>같은 5% 유의수준 기준이라면, 둘은 사실 같은 검정의 두 표현이에요. 어느 쪽으로 결론지어도 OK.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        CI에 0이 있으면 → 변수 의미 없음. 0이 없으면 → 변수 의미 있음.
+      </div>
+    </section>
+
+    <!-- 5장 · 실제 예시 -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>실제 예시 — Rooms vs Volume</h2>
+      <div class="chap-sub">엑셀 출력 한 장으로 결론 내리기</div>
+
+      <p>9강에서 본 회귀 출력의 계수표를 다시 가져와요.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>회귀 계수표 (Hours ~ Rooms + Volume)</caption>
+        <thead><tr><th></th><th>Coefficients</th><th>Std Err</th><th>t Stat</th><th>P-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
+        <tbody>
+          <tr><td>Intercept</td><td>−0.57</td><td>3.09</td><td>−0.18</td><td>0.86</td><td>−6.86</td><td>5.73</td></tr>
+          <tr><td>Rooms</td><td>−1.62</td><td>2.06</td><td>−0.79</td><td><strong>0.44</strong></td><td><strong>−5.82</strong></td><td><strong>2.57</strong></td></tr>
+          <tr><td>Volume</td><td>0.06</td><td>0.01</td><td>6.64</td><td><strong>0.00</strong></td><td><strong>0.04</strong></td><td><strong>0.07</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Rooms 변수 판정 (α = 5%)</h3>
+
+      <div class="callout yellow">
+        <div class="label">Rooms는 의미 있는 변수?</div>
+        <p><strong>방법 1 (p-값):</strong> p = 0.44 &gt; 0.05 = α → <strong>Fail to reject H₀</strong>.</p>
+        <p><strong>방법 2 (CI):</strong> 95% CI = [−5.82, 2.57]. 0이 <em>포함</em>됨 → <strong>Fail to reject H₀</strong>.</p>
+        <p>결론: Rooms의 계수가 0일 가능성을 배제할 수 없어요. → <strong>Rooms는 통계적으로 유의하지 않음.</strong></p>
+      </div>
+
+      <h3>Volume 변수 판정 (α = 5%)</h3>
+
+      <div class="callout green">
+        <div class="label">Volume은 의미 있는 변수?</div>
+        <p><strong>방법 1 (p-값):</strong> p = 0.00 &lt; 0.05 = α → <strong>Reject H₀</strong>.</p>
+        <p><strong>방법 2 (CI):</strong> 95% CI = [0.04, 0.07]. 0이 <em>포함되지 않음</em> → <strong>Reject H₀</strong>.</p>
+        <p>결론: Volume의 계수가 0이 아니라는 강한 증거. → <strong>Volume은 통계적으로 유의함.</strong></p>
+      </div>
+
+      <h3>해석 정리</h3>
+
+      <p>두 방법 다 같은 답을 줘요.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>Rooms — 의미 없음</h5>
+          <p>이 데이터로는 Rooms가 Hours에 의미 있는 영향을 준다고 결론 못 내요.<br>
+          → 다음 분석에서 빼는 걸 고려.</p>
+        </div>
+        <div class="card">
+          <h5>Volume — 강한 의미</h5>
+          <p>Volume이 1 단위 늘면 Hours가 평균 0.06 늘어나요. 통계적으로 매우 강한 효과.</p>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        엑셀 출력의 P-value와 CI만 보면 변수 의미 여부 판단 끝. 두 방법 결론 동일.
+      </div>
+    </section>
+
+    <!-- 6장 · 자유도 -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>자유도(df) — "추정마다 한 칸씩 잃어요"</h2>
+      <div class="chap-sub">Degrees of Freedom</div>
+
+      <p>ANOVA 표에서 "df"라는 열을 봤죠? 이게 <strong>자유도(degrees of freedom)</strong>예요.
+      살짝 추상적인 개념이지만, 직관은 단순해요.</p>
+
+      <div class="definition">
+        <div class="term">Degrees of Freedom · 자유도</div>
+        <div class="kor">"자유롭게 움직일 수 있는 정보의 개수"</div>
+        <p>원래 정보(데이터 점)는 n개예요. 그런데 우리가 평균이나 회귀계수를 추정할 때마다
+        <strong>정보 하나씩 묶여요</strong>. 그래서 "남은 자유도" = n − (묶인 개수).</p>
+      </div>
+
+      <h3>표본분산의 n − 1을 떠올려보세요</h3>
+
+      <p>2강에서 표본분산 S² = Σ(X<sub>i</sub> − X̄)² / (n − 1)이었죠. 왜 n − 1로 나눴을까요?
+      X̄을 추정하느라 자유도 1을 잃어서요.</p>
+
+      <div class="formula wide">
+        X̄ = (1/n) Σ X<sub>i</sub> &nbsp;←&nbsp; 자유도 n (그대로)<br>
+        S<sup>2</sup> = (1/(n−1)) Σ(X<sub>i</sub> − X̄)<sup>2</sup> &nbsp;←&nbsp; X̄을 추정하느라 1 잃음 → 자유도 n−1
+      </div>
+
+      <h3>회귀에서의 자유도</h3>
+
+      <p>회귀에선 β들을 추정해요. 절편 β₀ + 계수 β₁, ..., β<sub>k</sub> 해서 총 <strong>k + 1개</strong>를 추정해요.
+      그래서 자유도가 (k + 1)만큼 깎여요.</p>
+
+      <div class="callout blue">
+        <div class="label">회귀의 자유도 공식</div>
+        <p><strong>Total df = n − 1</strong> (Y의 평균 Ȳ을 추정하느라 1 잃음)</p>
+        <p><strong>Regression df = k</strong> (k개의 X 변수)</p>
+        <p><strong>Residual df = n − k − 1</strong> (n에서 β₀ 포함 k+1개 잃음)</p>
+        <p>확인: Regression df + Residual df = k + (n−k−1) = n−1 = Total df ✓</p>
+      </div>
+
+      <h3>9강 출력 예시</h3>
+
+      <p>n = 36, 변수 2개 (Rooms, Volume). k = 2.</p>
+
+      <ul>
+        <li>Total df = 36 − 1 = 35 ✓ (출력의 Total 행과 일치)</li>
+        <li>Regression df = 2 ✓</li>
+        <li>Residual df = 36 − 2 − 1 = 33 ✓</li>
+      </ul>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        df = n − (추정 개수). 회귀에선 Residual df = n − k − 1. β들을 추정할 때마다 깎임.
+      </div>
+    </section>
+
+    <!-- 7장 · MSR/MSE -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>MSR · MSE · 표준오차 Sₑ</h2>
+      <div class="chap-sub">제곱합을 자유도로 나누면 "평균 제곱"</div>
+
+      <p>9강에서 본 SSR, SSE는 그냥 합이에요. 이걸 각자의 자유도로 나누면 <strong>"평균 제곱"</strong>이 돼요.</p>
+
+      <h3>두 가지 평균 제곱</h3>
+
+      <div class="definition">
+        <div class="term">MSR · Mean Square for Regression · 회귀 평균제곱</div>
+        <p>MSR = SSR / Regression df = SSR / k</p>
+        <p>"변수 한 개당 평균적으로 얼마나 설명하는가"의 크기.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">MSE · Mean Square Error · 평균제곱오차</div>
+        <p>MSE = SSE / Residual df = SSE / (n − k − 1)</p>
+        <p>"잔차들의 분산 추정치". 이게 핵심 — 잔차들이 얼마나 흔들리는지의 분산이에요.</p>
+      </div>
+
+      <h3>표준오차 Sₑ</h3>
+
+      <div class="definition">
+        <div class="term">Standard Error of Estimate · Sₑ</div>
+        <p>S<sub>e</sub> = √MSE</p>
+        <p>잔차들의 표준편차 추정치. <em>"우리 회귀선이 평균적으로 데이터에서 얼마나 떨어져 있나"</em>의 크기.</p>
+      </div>
+
+      <h3>9강 예시로 확인</h3>
+
+      <p>n = 36, k = 2, SSE = 844.82.</p>
+
+      <ul>
+        <li>MSE = 844.82 / (36 − 2 − 1) = 844.82 / 33 ≈ <strong>25.60</strong> ✓ (출력의 MS Residual)</li>
+        <li>Sₑ = √25.60 ≈ <strong>5.06</strong> ✓ (출력의 Standard Error)</li>
+      </ul>
+
+      <div class="callout blue">
+        <div class="label">Sₑ의 직관적 의미</div>
+        <p>"우리 회귀선의 예측값은 실제값에서 평균적으로 ±5.06 단위쯤 떨어져 있다"는 거예요.</p>
+        <p>Sₑ가 작을수록 예측이 정확해요. 잠시 후 <strong>예측 신뢰구간</strong>의 핵심이 돼요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        MSE = SSE / (n − k − 1). Sₑ = √MSE = 잔차의 표준편차 추정. 작을수록 예측 정확.
+      </div>
+    </section>
+
+    <!-- 8장 · 변수 선택 -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>변수 선택 — Adjusted R²의 등장</h2>
+      <div class="chap-sub">"필요 없는 변수"를 골라내는 법</div>
+
+      <p>9강에서 짧게 경고했죠. <strong>"R²는 변수만 늘리면 무조건 올라가요"</strong>. 왜?</p>
+
+      <h3>R²의 함정</h3>
+
+      <p>변수를 하나 더 추가하면 SSE는 어떻게 될까요? <strong>줄거나 같아요.</strong> 새 변수가 쓸데없어도
+      적어도 다른 변수들 옆에서 SSE를 더 늘리진 않으니까요.</p>
+
+      <p>SSE가 줄면 → R² = 1 − SSE/SST 가 올라가요. 그래서 R²만 보면 "변수 많을수록 좋다"는 잘못된 결론이 나와요.</p>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ R²의 약점</div>
+        <p>"이 변수, 진짜로 필요해? 아니면 그냥 통계적 화장이야?"를 R² 혼자선 판단 못 해요.</p>
+      </div>
+
+      <h3>Adjusted R² — 변수 개수에 페널티</h3>
+
+      <p>그래서 <strong>변수 개수가 늘면 R²를 깎아내리는 보정 버전</strong>이 만들어졌어요.</p>
+
+      <div class="formula wide">
+        Adjusted R<sup>2</sup> &nbsp;=&nbsp; 1 − <span class="frac"><span class="num">SSE / (n − k − 1)</span><span class="den">SST / (n − 1)</span></span>
+      </div>
+
+      <p>R²에서는 SSE / SST를 썼는데, 여기선 자유도로 나눈 비율이에요. 변수를 늘리면 분자(MSE) 쪽이
+      덜 줄어들면서 페널티가 작동해요.</p>
+
+      <div class="callout">
+        <div class="label">Adjusted R²의 특징</div>
+        <p><strong>① 의미 없는 변수를 추가하면 오히려 떨어져요</strong>. (R²와 다른 점!)</p>
+        <p><strong>② 의미 있는 변수를 추가하면 올라가요</strong>.</p>
+        <p><strong>③ R²보다는 항상 작거나 같아요</strong>. (페널티 때문)</p>
+      </div>
+
+      <h3>변수 선택 절차 (한 개씩 빼기)</h3>
+
+      <p>실무에서 자주 쓰는 간단한 방법이에요.</p>
+
+      <div class="study-map">
+        <div class="label">한 개씩 빼는 변수 선택</div>
+        <div class="map-row">
+          <div>
+            <strong>① 일단 다 넣기</strong>
+            <span>가능한 모든 변수를 회귀 모델에 다 넣어요.</span>
+          </div>
+          <div>
+            <strong>② 가장 무의미한 변수 찾기</strong>
+            <span>p-값이 α보다 크고, 그 중에서도 가장 큰 변수.</span>
+          </div>
+          <div>
+            <strong>③ 그 변수 빼기</strong>
+            <span>회귀를 다시 돌려요.</span>
+          </div>
+          <div>
+            <strong>④ 반복</strong>
+            <span>남은 변수들이 다 유의해질 때까지.</span>
+          </div>
+          <div>
+            <strong>⑤ R² ≈ Adjusted R² 확인</strong>
+            <span>둘이 비슷하면 변수 개수가 적절하다는 신호.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        R²는 변수 늘리면 무조건 ↑. Adjusted R²가 진짜 성적표. p-값 큰 변수부터 한 개씩 빼는 게 정석.
+      </div>
+    </section>
+
+    <!-- 9장 · 변수 선택 예시 -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>변수 선택 — 실제로 해보기</h2>
+      <div class="chap-sub">아파트 가격 회귀의 8변수 모델</div>
+
+      <p>PDF 예시를 보면서 절차를 한 번에 따라가요.</p>
+
+      <h3>1차 — 모든 변수 다 넣기</h3>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>전체 변수 회귀 (n = 228)</caption>
+        <thead><tr><th>변수</th><th>Coeff</th><th>p-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
+        <tbody>
+          <tr><td>Intercept</td><td>78.74</td><td>0.000</td><td>58.01</td><td>99.46</td></tr>
+          <tr><td><strong>LOTSZ</strong></td><td>0.68</td><td><strong>0.068</strong></td><td>−0.05</td><td>1.41</td></tr>
+          <tr><td><strong>BDRM</strong></td><td>−3.69</td><td><strong>0.099</strong></td><td>−8.07</td><td>0.70</td></tr>
+          <tr><td>BATH</td><td>19.00</td><td>0.000</td><td>13.48</td><td>24.53</td></tr>
+          <tr><td>ROOMS</td><td>8.48</td><td>0.000</td><td>5.55</td><td>11.42</td></tr>
+          <tr><td>AGE</td><td>−0.35</td><td>0.004</td><td>−0.58</td><td>−0.11</td></tr>
+          <tr><td><strong>GARG</strong></td><td>4.01</td><td><strong>0.087</strong></td><td>−0.59</td><td>8.62</td></tr>
+          <tr><td>EMEADW</td><td>57.08</td><td>0.000</td><td>49.25</td><td>64.91</td></tr>
+          <tr><td>LVTTWN</td><td>24.42</td><td>0.000</td><td>16.76</td><td>32.08</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>요약: <strong>R² = 0.708, Adjusted R² = 0.697</strong>.</p>
+
+      <p>α = 5% 기준으로 p-값이 0.05보다 큰 변수가 셋 있어요. <strong>LOTSZ (0.068), BDRM (0.099), GARG (0.087)</strong>.</p>
+
+      <h3>2차 — 의미 없는 셋을 동시에 빼기</h3>
+
+      <p>PDF에서는 한 번에 빼서 다시 돌렸어요. 결과:</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>축소된 회귀 (5변수)</caption>
+        <thead><tr><th>변수</th><th>Coeff</th><th>p-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
+        <tbody>
+          <tr><td>Intercept</td><td>80.57</td><td>0.000</td><td>61.27</td><td>99.87</td></tr>
+          <tr><td>BATH</td><td>19.59</td><td>0.000</td><td>14.08</td><td>25.10</td></tr>
+          <tr><td>ROOMS</td><td>8.09</td><td>0.000</td><td>5.50</td><td>10.68</td></tr>
+          <tr><td>AGE</td><td>−0.37</td><td>0.002</td><td>−0.60</td><td>−0.13</td></tr>
+          <tr><td>EMEADW</td><td>53.48</td><td>0.000</td><td>46.49</td><td>60.48</td></tr>
+          <tr><td>LVTTWN</td><td>18.71</td><td>0.000</td><td>12.18</td><td>25.24</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>요약: <strong>R² = 0.696, Adjusted R² = 0.689</strong>.</p>
+
+      <div class="callout green">
+        <div class="label">결과 해석</div>
+        <p>① 모든 변수의 p-값이 ≪ 0.05. <strong>전부 통계적으로 유의함.</strong></p>
+        <p>② R²는 0.708 → 0.696으로 조금 떨어졌지만, Adjusted R²는 거의 그대로(0.697 → 0.689).
+        그 셋을 빼도 설명력이 거의 안 줄었다는 뜻 → <strong>뺀 게 정답</strong>.</p>
+        <p>③ 더 간결한 모델로 같은 설명력 유지. 끝!</p>
+      </div>
+
+      <div class="analogy">
+        <p><strong>"짐 줄이기" 비유.</strong></p>
+        <p>여행 가방에 옷 10벌 넣었다가 "정말 다 입을 거야?" 점검해서 7벌만 남기는 거예요.<br>
+        용량은 30% 줄였는데 옷차림은 거의 그대로면, 7벌이 맞는 선택!</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        의미 없는 변수를 빼도 Adjusted R²가 거의 그대로면 → 뺀 게 정답. 모델이 더 간결해져요.
+      </div>
+    </section>
+
+    <!-- 10장 · 예측 -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>예측 — 새 데이터의 Y를 추정하기</h2>
+      <div class="chap-sub">Prediction · 점 추정 + 구간 추정</div>
+
+      <p>변수 선택까지 끝낸 모델이 있어요. 이제 새로운 아파트의 가격을 <strong>예측</strong>해 봐요!</p>
+
+      <h3>회귀식에 X 값 대입</h3>
+
+      <div class="callout yellow">
+        <div class="label">질문</div>
+        <p>"2-bath, 8-room, 10-year-old 아파트의 가격은 얼마일까?"</p>
+        <p>모델: Ŷ = 80.573 + 19.592 × BATH + 8.092 × ROOMS − 0.368 × AGE</p>
+      </div>
+
+      <p>각 X 값을 대입하면 끝.</p>
+
+      <p><strong>Ŷ</strong> = 80.573 + 19.592 × 2 + 8.092 × 8 − 0.368 × 10<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;= 80.573 + 39.184 + 64.736 − 3.68<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;≈ <strong>180.8 (천 달러)</strong></p>
+
+      <div class="callout green">
+        <div class="label">점 추정</div>
+        <p>"이 아파트의 평균 가격은 약 180.8K"라고 추정했어요.</p>
+        <p>하지만 이건 <em>한 숫자</em>예요. 7강에서 봤듯이 한 숫자는 너무 외로워요. 신뢰구간을 만들어요!</p>
+      </div>
+
+      <h3>예측의 신뢰구간</h3>
+
+      <p>실제 Y는 식대로만 나오지 않아요. 잔차 e가 들어가요. e의 표준편차 추정치가 Sₑ이죠.</p>
+
+      <div class="formula wide">
+        Y &nbsp;≈&nbsp; Ŷ + e &nbsp;~&nbsp; N(Ŷ, S<sub>e</sub><sup>2</sup>)
+      </div>
+
+      <p>그러니 95% 신뢰구간은:</p>
+
+      <div class="formula wide">
+        95% CI &nbsp;:&nbsp; Ŷ ± 1.96 × S<sub>e</sub>
+      </div>
+
+      <p>(n이 충분히 크면 CLT가 작동해서 1.96. 작은 표본이면 대신 t-값을 써요.)</p>
+
+      <h3>예시로 계산</h3>
+
+      <p>Sₑ = 20.828 (위 5변수 모델). 그러면:</p>
+
+      <p>오차범위 = 1.96 × 20.828 ≈ 40.8K.</p>
+
+      <p><strong>95% CI : 180.8K ± 40.8K</strong> 즉 약 [140K, 221.6K].</p>
+
+      <div class="callout blue">
+        <div class="label">해석</div>
+        <p>"우리 모델은 이 아파트의 가격이 약 95% 확률로 140K ~ 222K 사이일 거라고 본다."</p>
+        <p>꽤 넓은 범위죠? Sₑ가 크면 예측이 그만큼 흐릿해요. R²가 높을수록 Sₑ는 작아지고 CI도 좁아져요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        예측 = 회귀식에 X 대입한 Ŷ + 1.96 × Sₑ 만큼의 띠. Sₑ가 작을수록 정확.
+      </div>
+    </section>
+
+    <!-- 에필로그 -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>맺는 글 · 회귀 여정의 끝</h2>
+      <div class="chap-sub">10주의 학기를 닫으며</div>
+
+      <p class="story">
+        9강과 10강을 통과하며 우리는 통계학의 가장 강력한 도구 하나를 손에 넣었어요.
+        <strong>회귀분석</strong>이에요. 점들 사이를 가로지르는 한 줄, 그 줄의 계수가 의미하는 것,
+        그 계수가 진짜 의미 있는지를 따지는 법, 그리고 새 데이터의 미래를 예측하는 법까지.
+      </p>
+
+      <p class="story">
+        이게 끝이 아니에요. 통계의 세계엔 시계열, 분산분석(ANOVA), 로지스틱 회귀,
+        기계학습 등 끝없는 가지가 뻗어 있어요. 하지만 그 모든 가지가 같은 뿌리에서 자라요 —
+        <em>확률, 분포, 표본, 검정, 회귀</em>. 이 학기에 우리가 다진 그 뿌리예요.
+      </p>
+
+      <h4>오늘의 장면 요약</h4>
+      <ul>
+        <li>β̂은 표본마다 흔들리는 확률변수</li>
+        <li>각 β에 대해 H₀: β = 0을 검정 → p-값 또는 CI로 판정</li>
+        <li>CI에 0이 포함 → 의미 없음. 포함 안 됨 → 의미 있음.</li>
+        <li>자유도: Total = n − 1, Regression = k, Residual = n − k − 1</li>
+        <li>MSE = SSE / (n − k − 1), Sₑ = √MSE</li>
+        <li>R²는 변수 늘리면 무조건 ↑ → Adjusted R²로 보정</li>
+        <li>변수 선택: p-값 큰 변수부터 한 개씩 빼기</li>
+        <li>예측: Ŷ = β̂₀ + Σβ̂ᵢXᵢ ± 1.96 × Sₑ</li>
+      </ul>
+
+      <h4>한 학기, 한 줄 요약</h4>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>1~2강 · 데이터 다루기</h5>
+          <p>요약통계와 그래프로 세상을 묘사하는 법.</p>
+        </div>
+        <div class="card">
+          <h5>3~5강 · 확률과 분포</h5>
+          <p>불확실성을 숫자로 다루는 언어를 배웠어요.</p>
+        </div>
+        <div class="card">
+          <h5>6강 · 표본분포·CLT</h5>
+          <p>표본평균이 어떻게 흔들리는지의 핵심 정리.</p>
+        </div>
+        <div class="card">
+          <h5>7강 · 신뢰구간</h5>
+          <p>"점이 아니라 띠로" 답하는 태도.</p>
+        </div>
+        <div class="card">
+          <h5>8강 · 가설 검정</h5>
+          <p>"진짜 그런가?"를 객관적으로 따지는 법.</p>
+        </div>
+        <div class="card">
+          <h5>9~10강 · 회귀분석</h5>
+          <p>관계를 찾고, 검정하고, 예측까지.</p>
+        </div>
+      </div>
+
+      <div class="epilogue">
+        <h2>마지막 마음가짐</h2>
+        <p>통계는 세상을 "알 수 있게" 만드는 도구가 아니에요.</p>
+        <p>오히려 "알 수 없음"을 정직하게 인정하는 언어예요.</p>
+        <p>그 정직함 위에 가장 그럴듯한 답을 얹는 일 — 그게 통계의 마음입니다.</p>
+        <p>한 학기 동안 이 노트를 따라와 줘서 고마워요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 10강, 그리고 본강의의 마지막 —</p>
+      </div>
+    </section>
+
+    <nav class="next-lecture final">
+      <a href="problems2.html" aria-label="연습문제 2로">
+        <span>
+          <span class="lec-hint">시험 출제 예고편 ②</span>
+          <span class="lec-title">★ 연습문제 2 풀이 노트 보러 가기</span>
+        </span>
+        <span class="lec-arrow">📝</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
