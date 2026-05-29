@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>5강 · 정규분포 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -247,9 +250,7 @@
       </div>
 
       <div class="formula">
-        f(x) = <span class="frac"><span class="num">1</span><span class="den">σ√(2π)</span></span>
-        · exp(−<span class="frac"><span class="num">1</span><span class="den">2</span></span>
-        (<span class="frac"><span class="num">x − μ</span><span class="den">σ</span></span>)²)
+        \[ f(x) = \frac{1}{\sigma\sqrt{2\pi}} \cdot \exp\!\left(-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2\right) \]
       </div>
 
       <p>복잡해 보이죠? 겁먹지 않아도 돼요.
@@ -589,8 +590,7 @@
       </div>
 
       <div class="formula">
-        Z = <span class="frac"><span class="num">X − μ</span><span class="den">σ</span></span>
-        &nbsp;∼ N(0, 1²)
+        \[ Z = \frac{X - \mu}{\sigma} \sim N(0, 1^2) \]
       </div>
 
       <p>X에서 평균을 빼고, 표준편차로 나눠요. 그럼 Z가 나와요.
@@ -598,7 +598,7 @@
 
       <p>반대로 되돌리려면 이렇게.</p>
 
-      <div class="formula">X = μ + σZ</div>
+      <div class="formula">\[ X = \mu + \sigma Z \]</div>
 
       <p>z값에 σ를 곱해서 원래 단위로 늘리고, 평균을 더해주면 X가 돼요.
       표준화의 <em>역연산</em>이에요.</p>
@@ -671,8 +671,7 @@
       <p>X ~ N(7, 2²)에서 P(X > 9)를 구해봐요.</p>
 
       <div class="formula">
-        P(X &gt; 9) = P(<span class="frac"><span class="num">X − 7</span><span class="den">2</span></span>
-        &gt; <span class="frac"><span class="num">9 − 7</span><span class="den">2</span></span>) = P(Z &gt; 1)
+        \[ P(X > 9) = P\!\left(\frac{X - 7}{2} > \frac{9 - 7}{2}\right) = P(Z > 1) \]
       </div>
 
       <p>X−7을 2로 나눈 게 Z예요. 부등식 양변에 같은 변환을 해줬을 뿐이에요.
@@ -817,7 +816,7 @@
       <p>표에서 0.73에 가장 가까운 값은 <strong>0.7291</strong>이에요.
       이 값은 <em>행 0.6</em>과 <em>열 0.01</em>의 교차점에 있어요.</p>
 
-      <div class="formula">z ≈ 0.6 + 0.01 = <strong>0.61</strong></div>
+      <div class="formula">\[ z \approx 0.6 + 0.01 = 0.61 \]</div>
 
       <div class="callout green">
         <div class="label">쓰는 상황</div>
@@ -881,8 +880,7 @@
       <em>취소가 250건을 넘는 경우</em>.</p>
 
       <div class="formula">
-        P(취소 &gt; 250) = P(Z &gt; <span class="frac"><span class="num">250 − 200</span><span class="den">50</span></span>)
-        = P(Z &gt; 1) ≈ <strong>0.1587</strong>
+        \[ P(\text{취소} > 250) = P\!\left(Z > \frac{250 - 200}{50}\right) = P(Z > 1) \approx 0.1587 \]
       </div>
 
       <p>즉 점유율이 95%에 못 미칠 확률이 약 <strong>15.9%</strong>예요.
@@ -1038,7 +1036,7 @@
       <p><strong>동대문</strong>. D ~ N(600, 80²) 이니까:</p>
 
       <div class="formula">
-        P(D &gt; 540) = P(Z &gt; <span class="frac"><span class="num">540 − 600</span><span class="den">80</span></span>) = P(Z &gt; −0.75)
+        \[ P(D > 540) = P\!\left(Z > \frac{540 - 600}{80}\right) = P(Z > -0.75) \]
       </div>
 
       <p>표준정규에서 P(Z &gt; −0.75) ≈ <strong>0.7734</strong>.
@@ -1048,7 +1046,7 @@
       <p><strong>명동</strong>. M ~ N(720, 50²) 이니까:</p>
 
       <div class="formula">
-        P(M &gt; 660) = P(Z &gt; <span class="frac"><span class="num">660 − 720</span><span class="den">50</span></span>) = P(Z &gt; −1.2)
+        \[ P(M > 660) = P\!\left(Z > \frac{660 - 720}{50}\right) = P(Z > -1.2) \]
       </div>
 
       <p>P(Z &gt; −1.2) ≈ <strong>0.8849</strong>.
@@ -1107,11 +1105,11 @@
 
       <p>W = aX + bY 라고 둘게요.</p>
 
-      <div class="formula">E[W] = a · E[X] + b · E[Y]</div>
+      <div class="formula">\[ E[W] = a \cdot E[X] + b \cdot E[Y] \]</div>
 
       <p>평균은 그냥 <em>가중합</em>이에요. 쉬워요.</p>
 
-      <div class="formula">Var[W] = a² · Var[X] + b² · Var[Y]</div>
+      <div class="formula">\[ \text{Var}[W] = a^2 \cdot \text{Var}[X] + b^2 \cdot \text{Var}[Y] \]</div>
 
       <p>독립이니까 공분산 항은 <strong>0</strong>이라서 사라져요.
       분산도 <em>가중합</em>. 단, 계수는 제곱이 붙어요.</p>
@@ -1138,7 +1136,7 @@
       이제 표준화로 부족 확률을 뽑을 수 있어요.</p>
 
       <div class="formula">
-        P(D + M &gt; 1200) = P(Z &gt; <span class="frac"><span class="num">1200 − 1320</span><span class="den">94.3</span></span>) = P(Z &gt; −1.27)
+        \[ P(D + M > 1200) = P\!\left(Z > \frac{1200 - 1320}{94.3}\right) = P(Z > -1.27) \]
       </div>
 
       <p>P(Z &gt; −1.27) ≈ <strong>0.898</strong>.
@@ -1185,18 +1183,18 @@
 
       <p>평균 공식은 전과 같아요.</p>
 
-      <div class="formula">E[W] = a · E[X] + b · E[Y]</div>
+      <div class="formula">\[ E[W] = a \cdot E[X] + b \cdot E[Y] \]</div>
 
       <p>분산이 달라져요. <strong>2ab · Cov[X, Y]</strong> 항이 추가돼요.</p>
 
       <div class="formula wide">
-        Var[W] = a²Var[X] + b²Var[Y] + 2ab · Cov[X, Y]
+        \[ \text{Var}[W] = a^2 \text{Var}[X] + b^2 \text{Var}[Y] + 2ab \cdot \text{Cov}[X, Y] \]
       </div>
 
       <p>상관계수로 다시 쓰면 이렇게.</p>
 
       <div class="formula wide">
-        Var[W] = a²σ<sub>X</sub>² + b²σ<sub>Y</sub>² + 2ab · σ<sub>X</sub>σ<sub>Y</sub> · ρ<sub>XY</sub>
+        \[ \text{Var}[W] = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2ab \cdot \sigma_X \sigma_Y \cdot \rho_{XY} \]
       </div>
 
       <p>공분산 Cov[X, Y] = σ<sub>X</sub>σ<sub>Y</sub> · ρ<sub>XY</sub> 를 대입한 것뿐이에요.</p>
@@ -1214,7 +1212,7 @@
       a = b = 1.</p>
 
       <div class="formula wide">
-        Var[D + M] = 80² + 50² + 2·1·1·80·50·(−0.65)
+        \[ \text{Var}[D + M] = 80^2 + 50^2 + 2 \cdot 1 \cdot 1 \cdot 80 \cdot 50 \cdot (-0.65) \]
       </div>
 
       <p>하나씩 계산해요.</p>
@@ -1239,7 +1237,7 @@
       <h3>인력 부족 확률 재계산</h3>
 
       <div class="formula">
-        P(D + M &gt; 1200) = P(Z &gt; <span class="frac"><span class="num">1200 − 1320</span><span class="den">60.83</span></span>) = P(Z &gt; −1.97)
+        \[ P(D + M > 1200) = P\!\left(Z > \frac{1200 - 1320}{60.83}\right) = P(Z > -1.97) \]
       </div>
 
       <p>P(Z &gt; −1.97) ≈ <strong>0.976</strong>.

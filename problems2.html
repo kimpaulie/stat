@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>연습문제 2 · 풀이 노트 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -169,7 +172,7 @@
       <p>비율의 CI 공식이에요. SE에는 진짜 p를 모르니 p̂으로 대신 써요.</p>
 
       <div class="formula wide">
-        CI: &nbsp; p̂ ± z<sub>0.025</sub> · √[ p̂(1−p̂) / n ]
+        \[ \text{CI}: \quad \hat{p} \pm z_{0.025} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
       </div>
 
       <p><strong>① SE 계산:</strong></p>
@@ -255,7 +258,7 @@
       <h3>(a) 표준오차 SE</h3>
 
       <div class="formula wide">
-        SE = σ / √n = 12,000 / √50 = 12,000 / 7.071 ≈ <strong>1,697원</strong>
+        \[ SE = \sigma / \sqrt{n} = 12{,}000 / \sqrt{50} = 12{,}000 / 7.071 \approx \mathbf{1{,}697} \text{ 원} \]
       </div>
 
       <h3>(b) 90% · 95% · 99% 신뢰구간</h3>
@@ -358,8 +361,7 @@
       <h3>(a) 표본평균과 SE</h3>
 
       <div class="formula wide">
-        X̄ = 150,000 / 100 = <strong>1,500 (병/일)</strong> &nbsp; · &nbsp;
-        SE = 397 / √100 = 397 / 10 = <strong>39.7</strong>
+        \[ \bar{X} = 150{,}000 / 100 = \mathbf{1{,}500} \text{ (병/일)} \quad \cdot \quad SE = 397 / \sqrt{100} = 397 / 10 = \mathbf{39.7} \]
       </div>
 
       <h3>(b) 90% · 95% · 99% CI</h3>
@@ -651,7 +653,7 @@
       <h3>0단계 · SE 계산</h3>
 
       <div class="formula wide">
-        SE = √( σ²<sub>X</sub>/n<sub>X</sub> + σ²<sub>Y</sub>/n<sub>Y</sub> )
+        \[ SE = \sqrt{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \]
       </div>
 
       <p>σ²<sub>X</sub>/n<sub>X</sub> = 78,500² / 500 = 6,162,250,000 / 500 = 12,324,500</p>

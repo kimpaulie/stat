@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>6강 · 표본분포와 CLT | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -236,7 +239,7 @@
       </div>
 
       <div class="formula">
-        X̄ = <span class="frac"><span class="num">X₁ + X₂ + ⋯ + Xₙ</span><span class="den">n</span></span>
+        \[ \bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n} \]
       </div>
 
       <p>기호에 익숙해지는 게 중요해요.
@@ -409,10 +412,7 @@
       각 관측값 Xᵢ의 평균은 μ니까…</p>
 
       <div class="formula">
-        E[X̄] = <span class="frac"><span class="num">E[X₁] + E[X₂] + ⋯ + E[Xₙ]</span><span class="den">n</span></span>
-        = <span class="frac"><span class="num">μ + μ + ⋯ + μ</span><span class="den">n</span></span>
-        = <span class="frac"><span class="num">nμ</span><span class="den">n</span></span>
-        = μ
+        \[ E[\bar{X}] = \frac{E[X_1] + E[X_2] + \cdots + E[X_n]}{n} = \frac{\mu + \mu + \cdots + \mu}{n} = \frac{n\mu}{n} = \mu \]
       </div>
 
       <div class="callout green">
@@ -437,10 +437,7 @@
       </div>
 
       <div class="formula">
-        Var[X̄] = <span class="frac"><span class="num">Var[X₁ + X₂ + ⋯ + Xₙ]</span><span class="den">n²</span></span>
-        = <span class="frac"><span class="num">σ² + σ² + ⋯ + σ²</span><span class="den">n²</span></span>
-        = <span class="frac"><span class="num">nσ²</span><span class="den">n²</span></span>
-        = <span class="frac"><span class="num">σ²</span><span class="den">n</span></span>
+        \[ \text{Var}[\bar{X}] = \frac{\text{Var}[X_1 + X_2 + \cdots + X_n]}{n^2} = \frac{\sigma^2 + \sigma^2 + \cdots + \sigma^2}{n^2} = \frac{n\sigma^2}{n^2} = \frac{\sigma^2}{n} \]
       </div>
 
       <p>즉 독립성 가정이 깨지면 이 깔끔한 결과가 깨져요.
@@ -516,8 +513,7 @@
       </div>
 
       <div class="formula">
-        SE = √<span class="frac"><span class="num">σ²</span><span class="den">n</span></span>
-        = <span class="frac"><span class="num">σ</span><span class="den">√n</span></span>
+        \[ \text{SE} = \sqrt{\frac{\sigma^2}{n}} = \frac{\sigma}{\sqrt{n}} \]
       </div>
 
       <p>SE가 크면? 표본을 다시 뽑을 때마다 X̄가 <em>휙휙 바뀌어요</em>.
@@ -621,16 +617,13 @@
       </div>
 
       <div class="formula">
-        X̄ ≈ N<span style="font-size:1.3em">(</span>
-        μ, <span class="frac"><span class="num">σ²</span><span class="den">n</span></span>
-        <span style="font-size:1.3em">)</span>
-        &nbsp;&nbsp;(n이 충분히 크면)
+        \[ \bar{X} \approx N\!\left(\mu,\ \frac{\sigma^2}{n}\right) \quad \text{(n이 충분히 크면)} \]
       </div>
 
       <p>혹은 합계로 표현하면:</p>
 
       <div class="formula">
-        X₁ + X₂ + ⋯ + Xₙ ≈ N(nμ, nσ²)
+        \[ X_1 + X_2 + \cdots + X_n \approx N(n\mu, n\sigma^2) \]
       </div>
 
       <div class="callout green">
@@ -823,8 +816,7 @@
       평균을 빼고 표준오차로 나눠요.</p>
 
       <div class="formula">
-        Z = <span class="frac"><span class="num">X̄ − μ</span><span class="den">σ/√n</span></span>
-        &nbsp;&nbsp;~&nbsp;&nbsp;N(0, 1)
+        \[ Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1) \]
       </div>
 
       <ol class="steps">
@@ -874,10 +866,7 @@
       </div>
 
       <div class="formula">
-        p = <span class="frac"><span class="num">좋다고 한 사람 수</span><span class="den">전체 모집단</span></span>
-        &nbsp;=&nbsp;
-        <span class="frac"><span class="num">x₁ + x₂ + ⋯ + x<sub>N</sub></span><span class="den">N</span></span>
-        &nbsp;=&nbsp; μ
+        \[ p = \frac{\text{좋다고 한 사람 수}}{\text{전체 모집단}} = \frac{x_1 + x_2 + \cdots + x_N}{N} = \mu \]
       </div>
 
       <p class="arrow-note">→ 비율 추정 = 1/0 답변의 평균 추정. 그러니까 앞서 배운 게 그대로 적용돼요.</p>
@@ -891,18 +880,14 @@
       그래서 제곱 평균이 그냥 원래 평균과 같아져요.</p>
 
       <div class="formula">
-        σ² = <span class="frac"><span class="num">1</span><span class="den">N</span></span>
-        Σ(xᵢ − μ)² =
-        <span class="frac"><span class="num">1</span><span class="den">N</span></span>
-        Σxᵢ² − μ²
+        \[ \sigma^2 = \frac{1}{N} \sum (x_i - \mu)^2 = \frac{1}{N} \sum x_i^2 - \mu^2 \]
       </div>
 
       <p>그런데 xᵢ는 0 또는 1이므로 xᵢ² = xᵢ.
       즉 Σxᵢ² = Σxᵢ = Nμ. 대입하면:</p>
 
       <div class="formula">
-        σ² = <span class="frac"><span class="num">Nμ</span><span class="den">N</span></span> − μ²
-        = μ − μ² = p − p² = p(1 − p)
+        \[ \sigma^2 = \frac{N\mu}{N} - \mu^2 = \mu - \mu^2 = p - p^2 = p(1 - p) \]
       </div>
 
       <p>0/1 변수의 분산은 <em>평균 × (1 − 평균)</em>으로 뚝 떨어져요.</p>
@@ -913,7 +898,7 @@
       <p>X̄의 역할을 이제 <strong>표본비율 p̂</strong>이 맡아요.</p>
 
       <div class="formula">
-        p̂ = <span class="frac"><span class="num">좋다고 답한 수</span><span class="den">n</span></span>
+        \[ \hat{p} = \frac{\text{좋다고 답한 수}}{n} \]
       </div>
 
       <p>Curio의 경우 p̂ = 535/1000 = 0.535. 이게 p의 추정값이에요.</p>
@@ -923,13 +908,11 @@
       <p>CLT를 그대로 적용하면:</p>
 
       <div class="formula">
-        p̂ ≈ N<span style="font-size:1.3em">(</span>
-        p, <span class="frac"><span class="num">p(1 − p)</span><span class="den">n</span></span>
-        <span style="font-size:1.3em">)</span>
+        \[ \hat{p} \approx N\!\left(p,\ \frac{p(1 - p)}{n}\right) \]
       </div>
 
       <div class="formula">
-        SE(p̂) = √<span class="frac"><span class="num">p(1 − p)</span><span class="den">n</span></span>
+        \[ \text{SE}(\hat{p}) = \sqrt{\frac{p(1 - p)}{n}} \]
       </div>
 
       <div class="callout green">

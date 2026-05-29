@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>4강 · 이산 확률분포 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -310,7 +313,7 @@
       </div>
 
       <div class="formula">
-        E(X) = μ = Σ x · P(X=x)
+        \[ E(X) = \mu = \sum x \cdot P(X=x) \]
       </div>
 
       <p>Σ(시그마)는 "모두 더하라"는 뜻이에요.
@@ -333,7 +336,7 @@
       </div>
 
       <div class="formula wide">
-        Var(X) = σ² = E[(X − μ)²] = Σ (x − μ)² · P(X=x)
+        \[ \text{Var}(X) = \sigma^2 = E[(X - \mu)^2] = \sum (x - \mu)^2 \cdot P(X=x) \]
       </div>
 
       <p>식을 풀면 이래요. 각 값 x에서 평균 μ를 뺀 <em>편차</em>를
@@ -346,7 +349,7 @@
       분산은 제곱 단위라 감이 안 오니까 루트를 씌워 원래 단위로 맞추는 거예요.</p>
 
       <div class="formula">
-        σ = √Var(X)
+        \[ \sigma = \sqrt{\text{Var}(X)} \]
       </div>
 
       <h3>계산 예시 · 두 자녀의 딸 수</h3>
@@ -403,14 +406,14 @@
       </div>
 
       <div class="formula">
-        P(X=1) = p &nbsp;·&nbsp; P(X=0) = 1 − p
+        \[ P(X=1) = p \quad\cdot\quad P(X=0) = 1 - p \]
       </div>
 
       <h3>기댓값과 분산</h3>
       <p>공식 유도는 간단해요. 위의 표에 기댓값·분산 공식을 그대로 적용하면 돼요.</p>
 
       <div class="formula">
-        E(X) = p &nbsp;·&nbsp; Var(X) = p(1 − p)
+        \[ E(X) = p \quad\cdot\quad \text{Var}(X) = p(1 - p) \]
       </div>
 
       <div class="analogy">
@@ -483,8 +486,7 @@
 
       <h3>확률 공식</h3>
       <div class="formula">
-        P(X = k) = C(n, k)<br>
-        × p<sup>k</sup> × (1 − p)<sup>n − k</sup>
+        \[ P(X = k) = C(n, k) \\ \times p^{k} \times (1 - p)^{n - k} \]
       </div>
 
       <p>공식이 갑자기 무섭죠. 기호부터 짚고 갈게요.</p>
@@ -534,7 +536,7 @@
       <p>공식은 놀랍도록 간단해요. Bernoulli 한 번의 공식에 n을 곱하면 끝.</p>
 
       <div class="formula">
-        E(X) = n · p &nbsp;·&nbsp; Var(X) = n · p · (1 − p)
+        \[ E(X) = n \cdot p \quad\cdot\quad \text{Var}(X) = n \cdot p \cdot (1 - p) \]
       </div>
 
       <div class="analogy">
@@ -726,7 +728,7 @@
       </div>
 
       <div class="formula wide">
-        Cov(X, Y) = E[(X − μ<sub>X</sub>)(Y − μ<sub>Y</sub>)]
+        \[ \text{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] \]
       </div>
 
       <p>공식을 풀어보면 "각 개체의 (X 편차) × (Y 편차)의 평균"이에요.</p>
@@ -859,7 +861,7 @@
       </div>
 
       <div class="formula">
-        ρ = <span class="frac"><span class="num">Cov(X, Y)</span><span class="den">σ<sub>X</sub> · σ<sub>Y</sub></span></span>
+        \[ \rho = \frac{\text{Cov}(X, Y)}{\sigma_X \cdot \sigma_Y} \]
       </div>
 
       <h3>값의 의미</h3>
@@ -920,14 +922,14 @@
       <p>조심해야 할 지점이 하나 있거든요. 공식 한 줄로 먼저 정리해 볼게요.</p>
 
       <div class="formula">
-        X, Y 독립 &nbsp;⇒&nbsp; Cov(X, Y) = 0
+        \[ X, Y \text{ 독립} \Rightarrow \text{Cov}(X, Y) = 0 \]
       </div>
 
       <p>독립이면 공분산은 <strong>반드시</strong> 0이에요.
       이쪽 방향은 항상 참이죠.</p>
 
       <div class="formula">
-        Cov(X, Y) = 0 &nbsp;<strong>⇏</strong>&nbsp; X, Y 독립
+        \[ \text{Cov}(X, Y) = 0 \nRightarrow X, Y \text{ 독립} \]
       </div>
 
       <p>그런데 반대 방향은 그렇지 않아요.
@@ -1017,7 +1019,7 @@
       <p>정답은 "공분산이 끼어든다" 예요.</p>
 
       <div class="formula">
-        Var(X + Y) = Var(X) + Var(Y) + 2 · Cov(X, Y)
+        \[ \text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2 \cdot \text{Cov}(X, Y) \]
       </div>
 
       <p>두 분산을 더한 뒤, <strong>공분산의 두 배</strong>를 얹어요.
@@ -1028,19 +1030,19 @@
       μ<sub>X</sub> = E[X], μ<sub>Y</sub> = E[Y] 로 두고요.</p>
 
       <div class="formula wide">
-        Var(X+Y) = E[ ((X+Y) − (μ<sub>X</sub>+μ<sub>Y</sub>))² ]
+        \[ \text{Var}(X+Y) = E\left[ ((X+Y) - (\mu_X+\mu_Y))^2 \right] \]
       </div>
 
       <p>괄호 안을 (X − μ<sub>X</sub>) + (Y − μ<sub>Y</sub>) 로 묶고 제곱을 펼쳐요.</p>
 
       <div class="formula wide">
-        = E[ (X−μ<sub>X</sub>)² + (Y−μ<sub>Y</sub>)² + 2(X−μ<sub>X</sub>)(Y−μ<sub>Y</sub>) ]
+        \[ = E\left[ (X-\mu_X)^2 + (Y-\mu_Y)^2 + 2(X-\mu_X)(Y-\mu_Y) \right] \]
       </div>
 
       <p>기댓값은 합에 대해 분배가 돼요. 세 덩어리로 나누면.</p>
 
       <div class="formula wide">
-        = Var(X) + Var(Y) + 2 · Cov(X, Y)
+        \[ = \text{Var}(X) + \text{Var}(Y) + 2 \cdot \text{Cov}(X, Y) \]
       </div>
 
       <p>평문으로 다시. 첫 두 덩어리는 각자의 분산.
@@ -1051,7 +1053,7 @@
       그러면 공식은 아주 단순해져요.</p>
 
       <div class="formula">
-        독립일 때: Var(X + Y) = Var(X) + Var(Y)
+        \[ \text{독립일 때:}\ \text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) \]
       </div>
 
       <p>분산도 "그냥 더하면 된다"가 되는 거예요.

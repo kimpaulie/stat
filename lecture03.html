@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>3강 · 확률의 세계 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -282,7 +285,7 @@
       이게 전부예요.</p>
 
       <div class="formula">
-        P(사건) = <span class="frac"><span class="num">사건의 크기</span><span class="den">표본공간의 크기</span></span>
+        \[ P(\text{사건}) = \frac{\text{사건의 크기}}{\text{표본공간의 크기}} \]
       </div>
 
       <div class="analogy">
@@ -446,7 +449,7 @@
       <p>표본공간 전체의 확률은 1 이에요.
       "무슨 일이든 하나는 반드시 일어난다" 는 뜻.</p>
 
-      <div class="formula">P(표본공간) = P(Ω) = 1</div>
+      <div class="formula">\[ P(\text{표본공간}) = P(\Omega) = 1 \]</div>
 
       <div class="callout">
         <div class="label">예시</div>
@@ -461,7 +464,7 @@
       <p>A가 일어나거나, 일어나지 않거나. 세상엔 둘 뿐이에요.
       그래서 둘을 더하면 1이죠.</p>
 
-      <div class="formula">P(Aᶜ) = 1 − P(A)</div>
+      <div class="formula">\[ P(A^c) = 1 - P(A) \]</div>
 
       <div class="analogy">
         <p><strong>비 올 확률로 비유해 볼까요.</strong></p>
@@ -476,7 +479,7 @@
       그렇지 않으면 두 번 세게 되거든요.</p>
 
       <div class="formula">
-        P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+        \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
       </div>
 
       <div class="chart-wrap">
@@ -537,7 +540,7 @@
       </div>
 
       <div class="formula">
-        P(A|B) = <span class="frac"><span class="num">P(A ∩ B)</span><span class="den">P(B)</span></span>
+        \[ P(A|B) = \frac{P(A \cap B)}{P(B)} \]
       </div>
 
       <div class="chart-wrap">
@@ -647,7 +650,7 @@
       양변에 P(B)를 곱해주면 끝.</p>
 
       <div class="formula">
-        P(A ∩ B) = P(A|B) × P(B) = P(B|A) × P(A)
+        \[ P(A \cap B) = P(A|B) \times P(B) = P(B|A) \times P(A) \]
       </div>
 
       <p>"A와 B가 둘 다 일어날 확률"을 구할 때 씁니다.
@@ -748,17 +751,17 @@
       B가 일어날 때 A가 일어나거나, B가 안 일어날 때 A가 일어나거나.</p>
 
       <div class="formula">
-        P(A) = P(A ∩ B) + P(A ∩ Bᶜ)
+        \[ P(A) = P(A \cap B) + P(A \cap B^c) \]
       </div>
       <div class="formula">
-        = P(A|B) × P(B) + P(A|Bᶜ) × P(Bᶜ)
+        \[ = P(A|B) \times P(B) + P(A|B^c) \times P(B^c) \]
       </div>
 
       <h3>베이즈 공식</h3>
       <p>이제 조건부 확률의 정의를 대입하면 베이즈 정리가 나와요.</p>
 
       <div class="formula">
-        P(B|A) = <span class="frac"><span class="num">P(A|B) × P(B)</span><span class="den">P(A|B) × P(B) + P(A|Bᶜ) × P(Bᶜ)</span></span>
+        \[ P(B|A) = \frac{P(A|B) \times P(B)}{P(A|B) \times P(B) + P(A|B^c) \times P(B^c)} \]
       </div>
 
       <div class="callout blue">
@@ -836,13 +839,13 @@
         <div class="card">
           <h5>정의 ①</h5>
           <p>조건부 확률로 표현해요.</p>
-          <div class="formula" style="margin:8px 0;">P(A|B) = P(A)</div>
+          <div class="formula" style="margin:8px 0;">\[ P(A|B) = P(A) \]</div>
           <p style="margin:0;">"B를 알아도 A의 확률은 안 변해요."</p>
         </div>
         <div class="card">
           <h5>정의 ②</h5>
           <p>교집합 확률로 표현해요.</p>
-          <div class="formula" style="margin:8px 0;">P(A ∩ B) = P(A) × P(B)</div>
+          <div class="formula" style="margin:8px 0;">\[ P(A \cap B) = P(A) \times P(B) \]</div>
           <p style="margin:0;">"함께 일어날 확률이 그냥 곱이에요."</p>
         </div>
       </div>

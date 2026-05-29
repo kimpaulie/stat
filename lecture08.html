@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>8강 · 가설 검정 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -147,7 +150,7 @@
       </div>
 
       <div class="formula">
-        X̄ ~ N( μ , &nbsp; (σ/√n)<sup>2</sup> )
+        \[ \bar{X} \sim N\left(\mu,\; (\sigma/\sqrt{n})^2\right) \]
       </div>
 
       <p>가설 검정도 결국 이 정규분포 위에서 벌어지는 일이에요. 그러니 "내가 본 X̄이
@@ -433,7 +436,7 @@
       <p>X̄은 정규분포 N(μ, σ²/n)을 따르죠. 이걸 표준정규 N(0, 1)로 옮겨요.</p>
 
       <div class="formula wide">
-        z = <span class="frac"><span class="num">X̄ − μ</span><span class="den">σ / √n</span></span>
+        \[ z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \]
       </div>
 
       <p>여기서 <strong>μ는 H₀가 주장하는 값</strong>을 그대로 넣어요. (예: H₀가 μ = 100이면 100을 대입.)</p>
@@ -919,7 +922,7 @@
       <p>7강에서 배운 대로, 모비율 p가 주어지면 표본비율 <strong>p̄</strong>의 표준오차는:</p>
 
       <div class="formula wide">
-        SE(p̄) = √[ p(1−p) / n ]
+        \[ SE(\bar{p}) = \sqrt{\frac{p(1-p)}{n}} \]
       </div>
 
       <p>표본평균 X̄의 SE가 σ/√n 이었던 것처럼, 비율은 √[p(1−p)/n] 로 살짝 바뀌어요.
@@ -928,7 +931,7 @@
       <h3>z-값 공식</h3>
 
       <div class="formula wide">
-        z = <span class="frac"><span class="num">p̄ − p<sub>0</sub></span><span class="den">√[ p<sub>0</sub>(1−p<sub>0</sub>) / n ]</span></span>
+        \[ z = \frac{\bar{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \]
       </div>
 
       <p>여기서 <strong>p₀</strong>는 H₀가 주장하는 값이에요. (예: H₀가 p = 0.75면 p₀ = 0.75.)</p>
@@ -974,7 +977,7 @@
       <p>"같다 vs 다르다"를 차이의 형태로 써요.</p>
 
       <div class="formula wide">
-        H₀ : μ<sub>S</sub> − μ<sub>T</sub> = 0 &nbsp; vs &nbsp; H₁ : μ<sub>S</sub> − μ<sub>T</sub> ≠ 0
+        \[ H_0 : \mu_S - \mu_T = 0 \quad \text{vs} \quad H_1 : \mu_S - \mu_T \ne 0 \]
       </div>
 
       <p>차이 D = μ<sub>S</sub> − μ<sub>T</sub>가 0이냐 아니냐의 검정으로 환원돼요. <em>한 집단 검정과 똑같은 모양</em>이죠!</p>
@@ -1009,7 +1012,7 @@
       <h3>z-값 공식</h3>
 
       <div class="formula wide">
-        z = <span class="frac"><span class="num">(X̄<sub>S</sub> − X̄<sub>T</sub>) − 0</span><span class="den">√(σ²<sub>S</sub>/n<sub>S</sub> + σ²<sub>T</sub>/n<sub>T</sub>)</span></span>
+        \[ z = \frac{(\bar{X}_S - \bar{X}_T) - 0}{\sqrt{\sigma_S^2/n_S + \sigma_T^2/n_T}} \]
       </div>
 
       <p>"−0"인 이유: H₀가 "차이가 0"이라고 주장하니까요.</p>
@@ -1050,7 +1053,7 @@
       <p>두 집단의 비율을 비교할 때도 같은 발상이에요.</p>
 
       <div class="formula wide">
-        H₀ : p<sub>S</sub> − p<sub>T</sub> = 0 &nbsp; vs &nbsp; H₁ : p<sub>S</sub> − p<sub>T</sub> ≠ 0
+        \[ H_0 : p_S - p_T = 0 \quad \text{vs} \quad H_1 : p_S - p_T \ne 0 \]
       </div>
 
       <h3>SE에 들어가는 p가 문제</h3>
@@ -1068,7 +1071,7 @@
       <h3>합친 비율 p̄ (pooled proportion)</h3>
 
       <div class="formula wide">
-        p̄ = <span class="frac"><span class="num">서울+도쿄 YES 총합</span><span class="den">서울+도쿄 응답자 총합</span></span> = <span class="frac"><span class="num">n<sub>S</sub>p̄<sub>S</sub> + n<sub>T</sub>p̄<sub>T</sub></span><span class="den">n<sub>S</sub> + n<sub>T</sub></span></span>
+        \[ \bar{p} = \frac{\text{서울+도쿄 YES 총합}}{\text{서울+도쿄 응답자 총합}} = \frac{n_S \bar{p}_S + n_T \bar{p}_T}{n_S + n_T} \]
       </div>
 
       <p>각 집단의 비율을 표본 크기로 <em>가중평균</em> 한 거예요. 큰 표본의 비율에 더 무게를 둬요.</p>
@@ -1076,7 +1079,7 @@
       <h3>z-값 공식</h3>
 
       <div class="formula wide">
-        z = <span class="frac"><span class="num">(p̄<sub>S</sub> − p̄<sub>T</sub>) − 0</span><span class="den">√[ p̄(1−p̄)/n<sub>S</sub> + p̄(1−p̄)/n<sub>T</sub> ]</span></span>
+        \[ z = \frac{(\bar{p}_S - \bar{p}_T) - 0}{\sqrt{\bar{p}(1-\bar{p})/n_S + \bar{p}(1-\bar{p})/n_T}} \]
       </div>
 
       <h3>예시 — 슬라이드 34~36 그대로</h3>
@@ -1138,13 +1141,13 @@
       <h3>가설과 통계량</h3>
 
       <div class="formula wide">
-        H₀ : μ<sub>D</sub> = 0 &nbsp; vs &nbsp; H₁ : μ<sub>D</sub> ≠ 0
+        \[ H_0 : \mu_D = 0 \quad \text{vs} \quad H_1 : \mu_D \ne 0 \]
       </div>
 
       <p>z(또는 t)-값:</p>
 
       <div class="formula wide">
-        z = <span class="frac"><span class="num">D̄ − 0</span><span class="den">S<sub>D</sub> / √n</span></span>
+        \[ z = \frac{\bar{D} - 0}{S_D / \sqrt{n}} \]
       </div>
 
       <p>표본이 충분히 크면 Z로, 작으면 자유도 n − 1인 t-분포로. (이번엔 Z 케이스 위주.)</p>

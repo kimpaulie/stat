@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>연습문제 1 · 풀이 노트 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -225,13 +228,13 @@
       <p>"X 부품인 동시에 고장도 난" 경우의 확률은 곱셈으로 풀려요.</p>
 
       <div class="formula">
-        P(U ∩ X) = P(X) · P(U | X) = 0.20 × 0.80 = <strong>0.16</strong>
+        \[ P(U \cap X) = P(X) \cdot P(U | X) = 0.20 \times 0.80 = \mathbf{0.16} \]
       </div>
 
       <p>같은 식으로 Y쪽도 구하면:</p>
 
       <div class="formula">
-        P(U ∩ Y) = P(Y) · P(U | Y) = 0.80 × 0.10 = <strong>0.08</strong>
+        \[ P(U \cap Y) = P(Y) \cdot P(U | Y) = 0.80 \times 0.10 = \mathbf{0.08} \]
       </div>
 
       <h3>4단계 · 전체 고장 확률 P(U)</h3>
@@ -239,20 +242,19 @@
       <p>고장 나는 길은 두 가지뿐이에요. 둘을 더하면 끝.</p>
 
       <div class="formula">
-        P(U) = P(U ∩ X) + P(U ∩ Y) = 0.16 + 0.08 = <strong>0.24</strong>
+        \[ P(U) = P(U \cap X) + P(U \cap Y) = 0.16 + 0.08 = \mathbf{0.24} \]
       </div>
 
       <h3>5단계 · 베이즈로 답 구하기</h3>
 
       <div class="formula">
-        P(X | U) = <span class="frac"><span class="num">P(U ∩ X)</span><span class="den">P(U)</span></span>
-        = <span class="frac"><span class="num">0.16</span><span class="den">0.24</span></span> ≈ <strong>0.6667</strong>
+        \[ P(X | U) = \frac{P(U \cap X)}{P(U)} = \frac{0.16}{0.24} \approx \mathbf{0.6667} \]
       </div>
 
       <p>나머지 Y쪽도 계산해 보면:</p>
 
       <div class="formula">
-        P(Y | U) = 0.08 / 0.24 ≈ <strong>0.3333</strong>
+        \[ P(Y | U) = 0.08 / 0.24 \approx \mathbf{0.3333} \]
       </div>
 
       <div class="callout green">
@@ -302,11 +304,7 @@
       </div>
 
       <div class="formula">
-        P(X | U<sup>c</sup>) =
-        <span class="frac"><span class="num">0.20 × 0.20</span><span class="den">0.20 × 0.20 + 0.80 × 0.90</span></span>
-        =
-        <span class="frac"><span class="num">0.04</span><span class="den">0.76</span></span>
-        ≈ <strong>0.0526</strong>
+        \[ P(X | U^c) = \frac{0.20 \times 0.20}{0.20 \times 0.20 + 0.80 \times 0.90} = \frac{0.04}{0.76} \approx \mathbf{0.0526} \]
       </div>
 
       <div class="callout green">
@@ -389,7 +387,7 @@
       <p>독립이라면 다음이 성립해야 해요.</p>
 
       <div class="formula">
-        P(Y = y | X = x) = P(Y = y) &nbsp; (모든 x, y에 대해)
+        \[ P(Y = y | X = x) = P(Y = y) \quad \text{(모든 } x, y \text{에 대해)} \]
       </div>
 
       <p>교수님이 칠판에서 직접 확인하신 값: <strong>P(Y=3 | X=1)</strong>.</p>
@@ -399,7 +397,7 @@
       </div>
 
       <div class="formula">
-        P(Y=3 | X=1) = 0.09 / 0.30 = <strong>0.30</strong>
+        \[ P(Y=3 | X=1) = 0.09 / 0.30 = \mathbf{0.30} \]
       </div>
 
       <p>그런데 주변확률은 P(Y=3) = <strong>0.22</strong>예요. 두 값이 다르죠?</p>
@@ -415,7 +413,7 @@
       <p>독립이면 또 다른 방식으로도 확인할 수 있어요.</p>
 
       <div class="formula">
-        P(X = x, Y = y) = P(X = x) · P(Y = y)
+        \[ P(X = x, Y = y) = P(X = x) \cdot P(Y = y) \]
       </div>
 
       <p>교수님이 보신 칸: <strong>X = 2, Y = 2</strong>.</p>
@@ -436,7 +434,7 @@
       <p>조건부 확률 정의:</p>
 
       <div class="formula">
-        P(Y | X) = <span class="frac"><span class="num">P(X ∩ Y)</span><span class="den">P(X)</span></span>
+        \[ P(Y | X) = \frac{P(X \cap Y)}{P(X)} \]
       </div>
 
       <p>독립이면 P(Y|X) = P(Y) 이므로 양변에 P(X)를 곱하면 P(X∩Y) = P(X)P(Y).
@@ -496,11 +494,11 @@
       <h3>평균 E[X], E[Y]</h3>
 
       <div class="formula">
-        E[X] = 0(0.10) + 1(0.30) + 2(0.30) + 3(0.30) = <strong>1.80</strong>
+        \[ E[X] = 0(0.10) + 1(0.30) + 2(0.30) + 3(0.30) = \mathbf{1.80} \]
       </div>
 
       <div class="formula">
-        E[Y] = 0(0.19) + 1(0.29) + 2(0.30) + 3(0.22) = <strong>1.55</strong>
+        \[ E[Y] = 0(0.19) + 1(0.29) + 2(0.30) + 3(0.22) = \mathbf{1.55} \]
       </div>
 
       <h3>분산 — 두 가지 방법</h3>
@@ -530,11 +528,11 @@
       <h3>코로나 X 분산 (방법 ②)</h3>
 
       <div class="formula">
-        E[X²] = 0²(0.10) + 1²(0.30) + 2²(0.30) + 3²(0.30) = <strong>4.20</strong>
+        \[ E[X^2] = 0^2(0.10) + 1^2(0.30) + 2^2(0.30) + 3^2(0.30) = \mathbf{4.20} \]
       </div>
 
       <div class="formula">
-        Var[X] = E[X²] − (E[X])² = 4.20 − (1.80)² = 4.20 − 3.24 = <strong>0.96</strong>
+        \[ Var[X] = E[X^2] - (E[X])^2 = 4.20 - (1.80)^2 = 4.20 - 3.24 = \mathbf{0.96} \]
       </div>
 
       <h3>정의식으로도 한 번 느껴보기 (X)</h3>
@@ -553,11 +551,11 @@
       <h3>삿포로 Y 분산 (방법 ②)</h3>
 
       <div class="formula">
-        E[Y²] = 0²(0.19) + 1²(0.29) + 2²(0.30) + 3²(0.22) = <strong>3.47</strong>
+        \[ E[Y^2] = 0^2(0.19) + 1^2(0.29) + 2^2(0.30) + 3^2(0.22) = \mathbf{3.47} \]
       </div>
 
       <div class="formula">
-        Var[Y] = 3.47 − (1.55)² = 3.47 − 2.4025 = <strong>1.0675</strong>
+        \[ Var[Y] = 3.47 - (1.55)^2 = 3.47 - 2.4025 = \mathbf{1.0675} \]
       </div>
 
       <h3>방법 ①로 검산해보기 (Y)</h3>
@@ -648,7 +646,7 @@
       <h3>공분산 계산</h3>
 
       <div class="formula">
-        Cov[X,Y] = E[XY] − E[X]E[Y] = 2.49 − (1.80 × 1.55) = 2.49 − 2.79 = <strong>−0.30</strong>
+        \[ Cov[X,Y] = E[XY] - E[X]E[Y] = 2.49 - (1.80 \times 1.55) = 2.49 - 2.79 = \mathbf{-0.30} \]
       </div>
 
       <div class="callout">
@@ -662,7 +660,7 @@
       <p>공분산은 단위에 따라 크기가 들쭉날쭉해서, 단위 영향을 없앤 <em>표준화 버전</em>이 상관계수예요.</p>
 
       <div class="formula">
-        ρ = <span class="frac"><span class="num">Cov[X, Y]</span><span class="den">σ<sub>X</sub> · σ<sub>Y</sub></span></span>
+        \[ \rho = \frac{Cov[X, Y]}{\sigma_X \cdot \sigma_Y} \]
       </div>
 
       <div class="data-strip">
@@ -672,7 +670,7 @@
       </div>
 
       <div class="formula">
-        ρ = −0.30 / 1.0124 ≈ <strong>−0.296</strong>
+        \[ \rho = -0.30 / 1.0124 \approx \mathbf{-0.296} \]
       </div>
 
       <h3>해석</h3>
@@ -721,7 +719,7 @@
       <h3>평균은 그냥 더하기</h3>
 
       <div class="formula">
-        E[X + Y] = E[X] + E[Y] = 1.80 + 1.55 = <strong>3.35</strong>
+        \[ E[X + Y] = E[X] + E[Y] = 1.80 + 1.55 = \mathbf{3.35} \]
       </div>
 
       <p class="story">
@@ -734,7 +732,7 @@
       <p>분산은 단순히 더하면 안 돼요. 공분산이 살아 있거든요.</p>
 
       <div class="formula">
-        Var[X + Y] = Var[X] + Var[Y] + 2 · Cov[X, Y]
+        \[ Var[X + Y] = Var[X] + Var[Y] + 2 \cdot Cov[X, Y] \]
       </div>
 
       <div class="callout yellow">
@@ -745,11 +743,11 @@
       <h3>숫자 대입</h3>
 
       <div class="formula">
-        Var[X + Y] = 0.96 + 1.0675 + 2 × (−0.30)
+        \[ Var[X + Y] = 0.96 + 1.0675 + 2 \times (-0.30) \]
       </div>
 
       <div class="formula">
-        = 2.0275 − 0.60 = <strong>1.4275</strong>
+        \[ = 2.0275 - 0.60 = \mathbf{1.4275} \]
       </div>
 
       <div class="callout green">
@@ -824,13 +822,13 @@
       <p>정규분포 표는 표준정규 Z(평균 0, 분산 1)에 대해서만 알려줘요. 그래서 X를 Z로 바꿔요.</p>
 
       <div class="formula">
-        Z = <span class="frac"><span class="num">X − 30000</span><span class="den">6000</span></span>
+        \[ Z = \frac{X - 30000}{6000} \]
       </div>
 
       <p>20,000원에 해당하는 z값을 찾아요.</p>
 
       <div class="formula">
-        z = (20000 − 30000) / 6000 = −10000/6000 ≈ <strong>−1.67</strong>
+        \[ z = (20000 - 30000) / 6000 = -10000/6000 \approx \mathbf{-1.67} \]
       </div>
 
       <h3>3단계 · 표 보기</h3>
@@ -838,7 +836,7 @@
       <p>표준정규분포표에서:</p>
 
       <div class="formula">
-        P(Z &lt; −1.67) ≈ <strong>0.0475</strong>
+        \[ P(Z < -1.67) \approx \mathbf{0.0475} \]
       </div>
 
       <div class="callout green">
@@ -900,17 +898,17 @@
       <p>왼쪽 면적 0.40을 만드는 z값을 표준정규분포표에서 찾으면…</p>
 
       <div class="formula">
-        z ≈ <strong>−0.25</strong> &nbsp; (정확히는 −0.253)
+        \[ z \approx \mathbf{-0.25} \quad \text{(정확히는 } -0.253 \text{)} \]
       </div>
 
       <h3>금액 x 풀기</h3>
 
       <div class="formula">
-        (x − 30000) / 6000 = −0.25
+        \[ (x - 30000) / 6000 = -0.25 \]
       </div>
 
       <div class="formula">
-        x = 30000 + (−0.25)(6000) = 30000 − 1500 = <strong>28,500원</strong>
+        \[ x = 30000 + (-0.25)(6000) = 30000 - 1500 = \mathbf{28{,}500} \text{ 원} \]
       </div>
 
       <div class="callout">
@@ -950,7 +948,7 @@
       <p>"X ≥ 2Y"는 양변에서 2Y를 빼면 X − 2Y ≥ 0. 새 변수 D를 만들어요.</p>
 
       <div class="formula">
-        D = X − 2Y &nbsp; ⇒ &nbsp; P(X ≥ 2Y) = P(D ≥ 0)
+        \[ D = X - 2Y \quad \Rightarrow \quad P(X \ge 2Y) = P(D \ge 0) \]
       </div>
 
       <p class="story">
@@ -969,7 +967,7 @@
       <h3>D의 평균</h3>
 
       <div class="formula">
-        E[D] = E[X] − 2E[Y] = 9000 − 2(8000) = <strong>−7000</strong>
+        \[ E[D] = E[X] - 2E[Y] = 9000 - 2(8000) = \mathbf{-7000} \]
       </div>
 
       <p>평균이 음수라는 건, "보통은 X가 2Y에 못 미친다"는 사실을 의미해요.
@@ -993,21 +991,21 @@
       </div>
 
       <div class="formula">
-        Var[D] = 1500² + 4(2500²) = 2,250,000 + 25,000,000 = <strong>27,250,000</strong>
+        \[ Var[D] = 1500^2 + 4(2500^2) = 2{,}250{,}000 + 25{,}000{,}000 = \mathbf{27{,}250{,}000} \]
       </div>
 
       <div class="formula">
-        σ<sub>D</sub> = √27,250,000 ≈ <strong>5,220</strong>
+        \[ \sigma_D = \sqrt{27{,}250{,}000} \approx \mathbf{5{,}220} \]
       </div>
 
       <h3>표준화 후 표 찾기</h3>
 
       <div class="formula">
-        z = (0 − (−7000)) / 5220 ≈ <strong>1.34</strong>
+        \[ z = (0 - (-7000)) / 5220 \approx \mathbf{1.34} \]
       </div>
 
       <div class="formula">
-        P(D ≥ 0) = P(Z ≥ 1.34) = 1 − P(Z &lt; 1.34) = 1 − 0.9099 = <strong>0.0901</strong>
+        \[ P(D \ge 0) = P(Z \ge 1.34) = 1 - P(Z < 1.34) = 1 - 0.9099 = \mathbf{0.0901} \]
       </div>
 
       <div class="callout green">
@@ -1049,7 +1047,7 @@
       <h3>"또는" 공식 ①</h3>
 
       <div class="formula">
-        P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+        \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
       </div>
 
       <p>왜 빼냐고요? <em>A와 B가 동시에 일어난 부분이 두 번 더해졌기</em> 때문에 한 번 빼주는 거예요.</p>
@@ -1091,13 +1089,13 @@
       <h3>교집합 (독립 ⇒ 곱)</h3>
 
       <div class="formula">
-        P(A ∩ B) = P(A) · P(B) = 0.5 × 0.5 = <strong>0.25</strong>
+        \[ P(A \cap B) = P(A) \cdot P(B) = 0.5 \times 0.5 = \mathbf{0.25} \]
       </div>
 
       <h3>합집합 계산</h3>
 
       <div class="formula">
-        P(A ∪ B) = 0.5 + 0.5 − 0.25 = <strong>0.75</strong>
+        \[ P(A \cup B) = 0.5 + 0.5 - 0.25 = \mathbf{0.75} \]
       </div>
 
       <div class="callout green">
@@ -1179,7 +1177,7 @@
       <p>표준오차(Standard Error, SE)는 <em>표본평균의 표준편차</em>예요. (a)에서 이미 구했어요.</p>
 
       <div class="formula">
-        SE = σ/√n = <strong>2</strong>
+        \[ SE = \sigma/\sqrt{n} = \mathbf{2} \]
       </div>
 
       <div class="table-scroll">
@@ -1200,21 +1198,21 @@
       <h4>① P(X̄ &lt; 95)</h4>
 
       <div class="formula">
-        z = (95 − 100)/2 = <strong>−2.5</strong>
+        \[ z = (95 - 100)/2 = \mathbf{-2.5} \]
       </div>
 
       <div class="formula">
-        P(X̄ &lt; 95) = P(Z &lt; −2.5) ≈ <strong>0.0062</strong>
+        \[ P(\bar{X} < 95) = P(Z < -2.5) \approx \mathbf{0.0062} \]
       </div>
 
       <h4>② P(95 &lt; X̄ &lt; 105)</h4>
 
       <div class="formula">
-        z<sub>1</sub> = −2.5, &nbsp; z<sub>2</sub> = 2.5
+        \[ z_1 = -2.5, \quad z_2 = 2.5 \]
       </div>
 
       <div class="formula">
-        P(−2.5 &lt; Z &lt; 2.5) = 0.9938 − 0.0062 = <strong>0.9876</strong>
+        \[ P(-2.5 < Z < 2.5) = 0.9938 - 0.0062 = \mathbf{0.9876} \]
       </div>
 
       <div class="callout green">
@@ -1277,7 +1275,7 @@
       <h3>(a) p = 0.45, n = 100</h3>
 
       <div class="formula">
-        E[p̄] = 0.45
+        \[ E[\bar{p}] = 0.45 \]
       </div>
 
       <div class="data-strip">
@@ -1288,7 +1286,7 @@
       <h3>(b) p = 0.15, n = 100</h3>
 
       <div class="formula">
-        E[p̄] = 0.15
+        \[ E[\bar{p}] = 0.15 \]
       </div>
 
       <div class="data-strip">
@@ -1301,7 +1299,7 @@
       <p>식을 다시 보면 답이 보여요.</p>
 
       <div class="formula">
-        SD[p̄] = √( p(1−p) / n )
+        \[ SD[\bar{p}] = \sqrt{\frac{p(1-p)}{n}} \]
       </div>
 
       <p>n은 같으니, 차이는 <strong>p(1−p)</strong>에서 옵니다.</p>

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>10강 · 회귀분석 II | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -202,7 +205,7 @@
       <h3>가설 세우기</h3>
 
       <div class="formula wide">
-        H<sub>0</sub> : β<sub>1</sub> = 0 &nbsp; vs &nbsp; H<sub>1</sub> : β<sub>1</sub> ≠ 0
+        \[ H_0 : \beta_1 = 0 \quad \text{vs} \quad H_1 : \beta_1 \ne 0 \]
       </div>
 
       <div class="callout">
@@ -216,7 +219,7 @@
       <p>8강의 z = (X̄ − μ₀)/SE와 똑같은 모양이에요. 평균 대신 β̂, 가정값 0과 비교.</p>
 
       <div class="formula wide">
-        t-Stat &nbsp;=&nbsp; <span class="frac"><span class="num">β̂<sub>1</sub> − 0</span><span class="den">Std Err of β̂<sub>1</sub></span></span>
+        \[ t\text{-Stat} = \frac{\hat{\beta}_1 - 0}{\text{Std Err of } \hat{\beta}_1} \]
       </div>
 
       <p>분자 = "관측된 계수와 0의 거리". 분모 = "그 계수의 흔들림 크기".</p>
@@ -370,8 +373,7 @@
       X̄을 추정하느라 자유도 1을 잃어서요.</p>
 
       <div class="formula wide">
-        X̄ = (1/n) Σ X<sub>i</sub> &nbsp;←&nbsp; 자유도 n (그대로)<br>
-        S<sup>2</sup> = (1/(n−1)) Σ(X<sub>i</sub> − X̄)<sup>2</sup> &nbsp;←&nbsp; X̄을 추정하느라 1 잃음 → 자유도 n−1
+        \[ \bar{X} = \frac{1}{n} \sum X_i \quad \leftarrow \quad \text{자유도 } n \text{ (그대로)} \\ S^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2 \quad \leftarrow \quad \bar{X} \text{을 추정하느라 1 잃음} \to \text{자유도 } n-1 \]
       </div>
 
       <h3>회귀에서의 자유도</h3>
@@ -479,7 +481,7 @@
       <p>그래서 <strong>변수 개수가 늘면 R²를 깎아내리는 보정 버전</strong>이 만들어졌어요.</p>
 
       <div class="formula wide">
-        Adjusted R<sup>2</sup> &nbsp;=&nbsp; 1 − <span class="frac"><span class="num">SSE / (n − k − 1)</span><span class="den">SST / (n − 1)</span></span>
+        \[ \text{Adjusted } R^2 = 1 - \frac{SSE / (n - k - 1)}{SST / (n - 1)} \]
       </div>
 
       <p>R²에서는 SSE / SST를 썼는데, 여기선 자유도로 나눈 비율이에요. 변수를 늘리면 분자(MSE) 쪽이
@@ -634,13 +636,13 @@
       <p>실제 Y는 식대로만 나오지 않아요. 잔차 e가 들어가요. e의 표준편차 추정치가 Sₑ이죠.</p>
 
       <div class="formula wide">
-        Y &nbsp;≈&nbsp; Ŷ + e &nbsp;~&nbsp; N(Ŷ, S<sub>e</sub><sup>2</sup>)
+        \[ Y \approx \hat{Y} + e \sim N(\hat{Y}, S_e^2) \]
       </div>
 
       <p>그러니 95% 신뢰구간은:</p>
 
       <div class="formula wide">
-        95% CI &nbsp;:&nbsp; Ŷ ± 1.96 × S<sub>e</sub>
+        \[ 95\% \text{ CI} : \hat{Y} \pm 1.96 \times S_e \]
       </div>
 
       <p>(n이 충분히 크면 CLT가 작동해서 1.96. 작은 표본이면 대신 t-값을 써요.)</p>

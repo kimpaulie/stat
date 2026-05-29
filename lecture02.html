@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>2강 · 숫자로 요약하기 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -236,8 +239,7 @@
       </div>
 
       <div class="formula">
-        X̄ = <span class="frac"><span class="num">X₁ + X₂ + ··· + Xₙ</span><span class="den">n</span></span>
-        = <span class="frac"><span class="num">Σ Xᵢ</span><span class="den">n</span></span>
+        \[ \bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{\sum X_i}{n} \]
       </div>
 
       <p>Σ(시그마)는 "다 더해라"는 신호. i는 1부터 n까지 도는 번호예요.
@@ -251,8 +253,7 @@
       </div>
 
       <div class="formula">
-        X̄ = <span class="frac"><span class="num">3 + 5 + 4 + 6 + 7</span><span class="den">5</span></span>
-        = <span class="frac"><span class="num">25</span><span class="den">5</span></span> = 5
+        \[ \bar{X} = \frac{3 + 5 + 4 + 6 + 7}{5} = \frac{25}{5} = 5 \]
       </div>
 
       <p>평균 용돈은 <strong>5만원</strong>이에요. 쉽죠?</p>
@@ -279,7 +280,7 @@
       </div>
 
       <div class="formula">
-        μ = <span class="frac"><span class="num">Σ Xᵢ</span><span class="den">N</span></span>
+        \[ \mu = \frac{\sum X_i}{N} \]
       </div>
 
       <div class="callout">
@@ -331,7 +332,7 @@
       <p>가운데 두 값은 5와 6 → 중앙값 = (5+6)/2 = <strong>5.5</strong>.</p>
 
       <div class="formula">
-        중앙값 위치 = <span class="frac"><span class="num">n + 1</span><span class="den">2</span></span> 번째
+        \[ \text{중앙값 위치} = \frac{n+1}{2} \text{ 번째} \]
       </div>
 
       <h3>왜 중앙값이 강할까</h3>
@@ -478,7 +479,7 @@
       </div>
 
       <div class="formula">
-        X̄<sub>G</sub> = (X₁ · X₂ · ··· · Xₙ)<sup>1/n</sup>
+        \[ \bar{X}_G = (X_1 \cdot X_2 \cdot \cdots \cdot X_n)^{1/n} \]
       </div>
 
       <h3>예시 · 주식 수익률</h3>
@@ -493,7 +494,7 @@
       </div>
 
       <div class="formula">
-        X̄<sub>R</sub> = [(1+R₁)(1+R₂)···(1+Rₙ)]<sup>1/n</sup> − 1
+        \[ \bar{X}_R = [(1+R_1)(1+R_2)\cdots(1+R_n)]^{1/n} - 1 \]
       </div>
 
       <p>수익률 기하평균 = (1.50 × 0.50 × 1.20)<sup>1/3</sup> − 1
@@ -604,7 +605,7 @@
       </div>
 
       <div class="formula">
-        Range = X<sub>max</sub> − X<sub>min</sub>
+        \[ \text{Range} = X_{\max} - X_{\min} \]
       </div>
 
       <p>앞의 예시(11~22)에선 범위 = 22 − 11 = <strong>11</strong>.
@@ -624,7 +625,7 @@
       </div>
 
       <div class="formula">
-        IQR = Q3 − Q1
+        \[ \text{IQR} = Q_3 - Q_1 \]
       </div>
 
       <p>앞의 예시: IQR = 19.5 − 12.5 = <strong>7</strong>.
@@ -678,7 +679,7 @@
       </div>
 
       <div class="formula">
-        S² = <span class="frac"><span class="num">Σ (Xᵢ − X̄)²</span><span class="den">n − 1</span></span>
+        \[ S^2 = \frac{\sum (X_i - \bar{X})^2}{n - 1} \]
       </div>
 
       <div class="definition">
@@ -688,7 +689,7 @@
       </div>
 
       <div class="formula">
-        S = √S² = √<span class="frac"><span class="num">Σ (Xᵢ − X̄)²</span><span class="den">n − 1</span></span>
+        \[ S = \sqrt{S^2} = \sqrt{\frac{\sum (X_i - \bar{X})^2}{n - 1}} \]
       </div>
 
       <h3>왜 n이 아니라 n−1?</h3>
@@ -722,12 +723,11 @@
       </div>
 
       <div class="formula">
-        S² = <span class="frac"><span class="num">40</span><span class="den">5 − 1</span></span>
-        = <span class="frac"><span class="num">40</span><span class="den">4</span></span> = 10
+        \[ S^2 = \frac{40}{5 - 1} = \frac{40}{4} = 10 \]
       </div>
 
       <div class="formula">
-        S = √10 ≈ <strong>3.16</strong>
+        \[ S = \sqrt{10} \approx 3.16 \]
       </div>
 
       <p>"평균 6에서 평균적으로 약 3.16만큼 떨어져 있다." 이게 표준편차의 뜻이에요.</p>
@@ -736,8 +736,7 @@
       <p>모집단 전체를 다루면 분모가 <strong>N</strong>이에요.</p>
 
       <div class="formula">
-        σ² = <span class="frac"><span class="num">Σ (Xᵢ − μ)²</span><span class="den">N</span></span>
-        &nbsp;·&nbsp; σ = √σ²
+        \[ \sigma^2 = \frac{\sum (X_i - \mu)^2}{N} \quad \cdot \quad \sigma = \sqrt{\sigma^2} \]
       </div>
 
       <div class="callout blue">
@@ -777,7 +776,7 @@
       </div>
 
       <div class="formula">
-        CV = <span class="frac"><span class="num">S</span><span class="den">X̄</span></span> × 100%
+        \[ CV = \frac{S}{\bar{X}} \times 100\% \]
       </div>
 
       <h3>예시 · 두 주식 비교</h3>
@@ -830,7 +829,7 @@
       </div>
 
       <div class="formula">
-        Z = <span class="frac"><span class="num">X − X̄</span><span class="den">S</span></span>
+        \[ Z = \frac{X - \bar{X}}{S} \]
       </div>
 
       <h3>예시 · 두 과목의 점수</h3>
@@ -838,10 +837,10 @@
       같은 85점인데 어느 쪽이 더 잘 본 걸까요?</p>
 
       <div class="formula">
-        Z<sub>국어</sub> = (85 − 70)/10 = <strong>1.5</strong>
+        \[ Z_{\text{국어}} = (85 - 70)/10 = 1.5 \]
       </div>
       <div class="formula">
-        Z<sub>수학</sub> = (85 − 80)/5 = <strong>1.0</strong>
+        \[ Z_{\text{수학}} = (85 - 80)/5 = 1.0 \]
       </div>
 
       <div class="callout green">
@@ -1038,7 +1037,7 @@
       </div>
 
       <div class="formula">
-        최소 비율 = (1 − 1/k²) × 100%
+        \[ \text{최소 비율} = \left(1 - \frac{1}{k^2}\right) \times 100\% \]
       </div>
 
       <div class="table-scroll">
@@ -1170,7 +1169,7 @@
       <p>상자그림에서 이상치는 이렇게 찾아요.</p>
 
       <div class="formula">
-        하한 = Q1 − 1.5 × IQR &nbsp;·&nbsp; 상한 = Q3 + 1.5 × IQR
+        \[ \text{하한} = Q_1 - 1.5 \times \text{IQR} \quad \cdot \quad \text{상한} = Q_3 + 1.5 \times \text{IQR} \]
       </div>
 
       <p>이 범위 밖의 값은 점으로 따로 찍어 <em>이상치</em>로 표시합니다.
@@ -1221,7 +1220,7 @@
       </div>
 
       <div class="formula">
-        cov(X, Y) = <span class="frac"><span class="num">Σ (Xᵢ − X̄)(Yᵢ − Ȳ)</span><span class="den">n − 1</span></span>
+        \[ \text{cov}(X, Y) = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{n - 1} \]
       </div>
 
       <div class="cards-2">
@@ -1257,8 +1256,7 @@
       <p>X̄ = 20/5 = <strong>4시간</strong>, Ȳ = 360/5 = <strong>72점</strong>.</p>
 
       <div class="formula">
-        cov(X, Y) = <span class="frac"><span class="num">61</span><span class="den">5 − 1</span></span>
-        = <strong>15.25</strong> (시간·점)
+        \[ \text{cov}(X, Y) = \frac{61}{5 - 1} = 15.25 \text{ (시간·점)} \]
       </div>
 
       <p>부호가 <em>양수</em> → 공부시간과 성적이 <strong>함께 오르는</strong>
@@ -1283,7 +1281,7 @@
       </div>
 
       <div class="formula">
-        r = <span class="frac"><span class="num">cov(X, Y)</span><span class="den">S<sub>X</sub> · S<sub>Y</sub></span></span>
+        \[ r = \frac{\text{cov}(X, Y)}{S_X \cdot S_Y} \]
       </div>
 
       <div class="chart-wrap">

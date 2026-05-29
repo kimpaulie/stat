@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>1강 · 통계 첫걸음 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -597,7 +600,7 @@
       <p class="arrow-note">→ 모든 칸을 <strong>전체(400)</strong>로 나눠요.</p>
 
       <div class="formula">
-        비율 = <span class="frac"><span class="num">해당 칸 빈도</span><span class="den">전체(400)</span></span>
+        \[ \text{비율} = \frac{\text{해당 칸 빈도}}{\text{전체}(400)} \]
       </div>
 
       <div class="data-strip">
@@ -753,7 +756,7 @@
         <li><strong>방 개수 정하기.</strong> 5개로 해요.</li>
         <li><strong>방 너비 계산.</strong>
           <div class="formula">
-            너비 = <span class="frac"><span class="num">50</span><span class="den">5</span></span> = 10
+            \[ \text{너비} = \frac{50}{5} = 10 \]
           </div>
         </li>
         <li><strong>방 경계 정하기.</strong>
@@ -809,8 +812,7 @@
       바로 비교가 안 되죠. 그래서 <strong>비율</strong>을 씁니다.</p>
 
       <div class="formula">
-        상대도수 = <span class="frac"><span class="num">해당 방의 도수</span><span class="den">전체 개수</span></span>
-        &nbsp;·&nbsp; 백분율 = 상대도수 × 100%
+        \[ \text{상대도수} = \frac{\text{해당 방의 도수}}{\text{전체 개수}} \quad \cdot \quad \text{백분율} = \text{상대도수} \times 100\% \]
       </div>
 
       <div class="table-scroll">
@@ -942,7 +944,7 @@
       <h3>② 파이 차트</h3>
       <p>동그란 파이를 조각으로 나눠요. 전체 중 몫을 보여주는 데 최고예요.</p>
 
-      <div class="formula">조각의 중심각 = 비율 × 360°</div>
+      <div class="formula">\[ \text{조각의 중심각} = \text{비율} \times 360° \]</div>
 
       <div class="chart-wrap">
         <div class="chart-title">Pie Chart · 은행 선호도</div>

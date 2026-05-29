@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>7강 · 신뢰구간 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -213,7 +216,7 @@
       </div>
 
       <div class="formula">
-        X̄ ~ N( μ , &nbsp; (σ/√n)<sup>2</sup> )
+        \[ \bar{X} \sim N\left(\mu,\; (\sigma/\sqrt{n})^2\right) \]
       </div>
 
       <p>즉, X̄은 평균 <strong>μ</strong> (모집단 평균),
@@ -277,7 +280,7 @@
       <p>Z 표에서 P(−1.96 ≤ Z ≤ 1.96) = 95% 이므로:</p>
 
       <div class="formula wide">
-        P(μ − 1.96·σ/√n ≤ X̄ ≤ μ + 1.96·σ/√n) ≅ 95%
+        \[ P\left(\mu - 1.96 \cdot \sigma/\sqrt{n} \le \bar{X} \le \mu + 1.96 \cdot \sigma/\sqrt{n}\right) \approx 95\% \]
       </div>
 
       <div class="callout green">
@@ -322,7 +325,7 @@
       이걸 부등식 정리만 다시 하면:</p>
 
       <div class="formula wide">
-        X̄ − 1.96·σ/√n ≤ μ ≤ X̄ + 1.96·σ/√n &nbsp; (95% 확률로)
+        \[ \bar{X} - 1.96 \cdot \sigma/\sqrt{n} \le \mu \le \bar{X} + 1.96 \cdot \sigma/\sqrt{n} \quad \text{(95% 확률로)} \]
       </div>
 
       <div class="callout green">
@@ -480,7 +483,7 @@
       <h3>신뢰구간의 공식</h3>
 
       <div class="formula">
-        X̄ ± Z<sub>α/2</sub> · <span class="frac"><span class="num">σ</span><span class="den">√n</span></span>
+        \[ \bar{X} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}} \]
       </div>
 
       <p>즉, <em>표본평균을 가운데 놓고</em> 양옆으로
@@ -656,8 +659,7 @@
         <div class="term">Sample Variance · 표본 분산 S²</div>
         <div class="kor">분모에 n−1을 쓰는 이유 한 줄: 불편추정량을 위해</div>
         <div class="formula">
-          S² = <span class="frac"><span class="num">1</span><span class="den">n − 1</span></span>
-          Σ (X<sub>i</sub> − X̄)²
+          \[ S^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2 \]
         </div>
         <p>각 표본값이 표본평균에서 얼마나 떨어졌는지를 제곱한 평균이에요.
         분모가 <strong>n−1</strong>인 건, 표본평균을 이미 한 번 사용했기 때문에
@@ -666,7 +668,7 @@
       </div>
 
       <div class="formula">
-        S = √S² &nbsp; — 표본 표준편차
+        \[ S = \sqrt{S^2} \quad \text{— 표본 표준편차} \]
       </div>
 
       <h3>교수님의 핵심: σ 자리에 그냥 S 끼우기</h3>
@@ -677,7 +679,7 @@
       <div class="callout">
         <div class="label">σ 모를 때의 95% 근사 CI</div>
         <div class="formula wide">
-          X̄ − 1.96 · S/√n ≤ μ ≤ X̄ + 1.96 · S/√n
+          \[ \bar{X} - 1.96 \cdot S/\sqrt{n} \le \mu \le \bar{X} + 1.96 \cdot S/\sqrt{n} \]
         </div>
         <p>구조는 σ 알 때와 <em>완전히 같아요</em>. 다른 점은 σ 자리에 S를 끼웠다는 것뿐.</p>
       </div>
@@ -837,7 +839,7 @@
       <p><em>참고용</em> 공식이에요. σ를 모르고 표본이 작을 때 더 정확한 답을 줍니다.</p>
 
       <div class="formula">
-        X̄ ± t<sub>α/2, n−1</sub> · <span class="frac"><span class="num">s</span><span class="den">√n</span></span>
+        \[ \bar{X} \pm t_{\alpha/2,\, n-1} \cdot \frac{s}{\sqrt{n}} \]
       </div>
 
       <p>즉, <em>표본평균</em> 중심으로 양옆 "t × s/√n" 만큼 펼친 구간이에요.
@@ -981,7 +983,7 @@
       <p>"ME를 ±E 이하로 만들고 싶다"면 공식에서 n을 풀어낼 수 있어요.</p>
 
       <div class="formula">
-        n = <span class="frac"><span class="num">Z<sup>2</sup> · σ<sup>2</sup></span><span class="den">E<sup>2</sup></span></span>
+        \[ n = \frac{Z^2 \cdot \sigma^2}{E^2} \]
       </div>
 
       <p>즉, ME = Z·σ/√n 에서 양변을 n에 대해 풀면 나와요.
@@ -1026,7 +1028,7 @@
       <h3>공식</h3>
 
       <div class="formula">
-        p̂ ± Z<sub>α/2</sub> · √( p̂(1 − p̂) / n )
+        \[ \hat{p} \pm Z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
       </div>
 
       <p>즉, 표본비율 p̂ 중심으로 양옆 "Z × √(p̂(1−p̂)/n)" 만큼 펼치면 끝.</p>
@@ -1057,7 +1059,7 @@
         <li><strong>조건 확인.</strong> np̂ = 420, n(1−p̂) = 580. 둘 다 넉넉.</li>
         <li><strong>표준오차.</strong>
           <div class="formula">
-            SE = √(0.42 × 0.58 / 1000) ≈ √0.0002436 ≈ 0.0156
+            \[ SE = \sqrt{0.42 \times 0.58 / 1000} \approx \sqrt{0.0002436} \approx 0.0156 \]
           </div>
         </li>
         <li><strong>ME (95%).</strong> 1.96 × 0.0156 ≈ 0.0306.</li>
@@ -1076,7 +1078,7 @@
       <strong>p = 0.5</strong>로 두는 게 가장 보수적이에요. 분산이 최대니까요.</p>
 
       <div class="formula">
-        n = <span class="frac"><span class="num">Z<sup>2</sup> · p(1 − p)</span><span class="den">E<sup>2</sup></span></span>
+        \[ n = \frac{Z^2 \cdot p(1-p)}{E^2} \]
       </div>
 
       <p>예: ME ≤ 3%p, 95% 신뢰 → n ≈ (1.96)<sup>2</sup> × 0.25 / (0.03)<sup>2</sup>
@@ -1204,7 +1206,7 @@
       <strong>두 표본평균의 차이</strong>를 쓰면 되겠죠.</p>
 
       <div class="formula">
-        추정량: X̄<sub>S</sub> − X̄<sub>T</sub>
+        \[ \text{추정량}: \bar{X}_S - \bar{X}_T \]
       </div>
 
       <p>즉, 서울 평균에서 도쿄 평균을 뺀 숫자를
@@ -1225,10 +1227,10 @@
         <li><strong>기댓값 (Expectation).</strong>
           기댓값의 선형성으로 바로 풀려요.
           <div class="formula">
-            E[X̄<sub>S</sub> − X̄<sub>T</sub>] = E[X̄<sub>S</sub>] − E[X̄<sub>T</sub>]
+            \[ E[\bar{X}_S - \bar{X}_T] = E[\bar{X}_S] - E[\bar{X}_T] \]
           </div>
           <div class="formula">
-            = μ<sub>S</sub> − μ<sub>T</sub>
+            \[ = \mu_S - \mu_T \]
           </div>
           즉, 우리의 추정량은 <em>평균적으로 정답과 일치</em>해요. 편향 없음. OK.
         </li>
@@ -1236,11 +1238,10 @@
           두 표본이 <em>독립</em>이라는 게 핵심이에요.
           독립이면 분산은 그냥 더해지거든요.
           <div class="formula">
-            Var[X̄<sub>S</sub> − X̄<sub>T</sub>]
+            \[ \mathrm{Var}[\bar{X}_S - \bar{X}_T] \]
           </div>
           <div class="formula">
-            = <span class="frac"><span class="num">σ<sub>S</sub><sup>2</sup></span><span class="den">n<sub>S</sub></span></span>
-            + <span class="frac"><span class="num">σ<sub>T</sub><sup>2</sup></span><span class="den">n<sub>T</sub></span></span>
+            \[ = \frac{\sigma_S^2}{n_S} + \frac{\sigma_T^2}{n_T} \]
           </div>
           즉, 각 표본평균의 분산(σ²/n 꼴)을 그냥 합치면 돼요.
           공분산은 0이라 빠져요.
@@ -1250,7 +1251,7 @@
           각 표본평균이 정규분포에 가까워지고,
           <em>정규끼리의 차</em>도 여전히 정규예요.
           <div class="formula">
-            X̄<sub>S</sub> − X̄<sub>T</sub> ≈ N( μ<sub>S</sub>−μ<sub>T</sub>, &nbsp; SE² )
+            \[ \bar{X}_S - \bar{X}_T \approx N(\mu_S - \mu_T,\; SE^2) \]
           </div>
           즉, 이 차이값은 "진짜 차이 μ<sub>S</sub>−μ<sub>T</sub>" 근처에 종 모양으로 쌓여요.
         </li>
@@ -1260,8 +1261,7 @@
         <div class="term">표준오차 (SE)</div>
         <div class="kor">두 표본평균 차이의 흔들림</div>
         <div class="formula">
-          SE = √( <span class="frac"><span class="num">σ<sub>S</sub><sup>2</sup></span><span class="den">n<sub>S</sub></span></span>
-          + <span class="frac"><span class="num">σ<sub>T</sub><sup>2</sup></span><span class="den">n<sub>T</sub></span></span> )
+          \[ SE = \sqrt{\frac{\sigma_S^2}{n_S} + \frac{\sigma_T^2}{n_T}} \]
         </div>
         <p>두 표준오차 제곱을 더한 뒤 √을 씌우는 거예요.
         각자의 흔들림이 합쳐진 총 흔들림이라고 보시면 돼요.</p>
@@ -1273,13 +1273,13 @@
       "추정량 ± 1.96 · SE" 공식이에요.</p>
 
       <div class="formula">
-        (X̄<sub>S</sub> − X̄<sub>T</sub>) ± 1.96 · SE
+        \[ (\bar{X}_S - \bar{X}_T) \pm 1.96 \cdot SE \]
       </div>
 
       <p>풀어서 쓰면 이렇게 돼요.</p>
 
       <div class="formula wide">
-        (X̄<sub>S</sub> − X̄<sub>T</sub>) ± 1.96 · √( σ<sub>S</sub><sup>2</sup>/n<sub>S</sub> + σ<sub>T</sub><sup>2</sup>/n<sub>T</sub> )
+        \[ (\bar{X}_S - \bar{X}_T) \pm 1.96 \cdot \sqrt{\sigma_S^2/n_S + \sigma_T^2/n_T} \]
       </div>
 
       <p>즉, <em>두 표본평균의 차이</em>를 중심에 놓고,
@@ -1290,7 +1290,7 @@
         <p>σ<sub>S</sub>, σ<sub>T</sub>를 모르면 (거의 항상 모르죠)
         표본 분산 <strong>S<sub>S</sub><sup>2</sup></strong>, <strong>S<sub>T</sub><sup>2</sup></strong>로 바꿔 넣어요.</p>
         <div class="formula wide">
-          (X̄<sub>S</sub> − X̄<sub>T</sub>) ± 1.96 · √( S<sub>S</sub><sup>2</sup>/n<sub>S</sub> + S<sub>T</sub><sup>2</sup>/n<sub>T</sub> )
+          \[ (\bar{X}_S - \bar{X}_T) \pm 1.96 \cdot \sqrt{S_S^2/n_S + S_T^2/n_T} \]
         </div>
         <p>n이 충분히 크면 이 근사로 충분해요.</p>
       </div>
@@ -1308,10 +1308,10 @@
         <li><strong>차이.</strong> X̄<sub>S</sub> − X̄<sub>T</sub> = 4.2 − 3.6 = <strong>0.6일</strong>.</li>
         <li><strong>표준오차.</strong>
           <div class="formula">
-            SE = √(1.5²/50 + 1.2²/40)
+            \[ SE = \sqrt{1.5^2/50 + 1.2^2/40} \]
           </div>
           <div class="formula">
-            = √(0.045 + 0.036) = √0.081 ≈ <strong>0.285</strong>
+            \[ = \sqrt{0.045 + 0.036} = \sqrt{0.081} \approx 0.285 \]
           </div>
         </li>
         <li><strong>오차범위.</strong> ME = 1.96 × 0.285 ≈ 0.558.</li>
@@ -1372,7 +1372,7 @@
         <li><strong>분산.</strong>
           독립이니까 각 분산을 더해요.
           <div class="formula wide">
-            Var = p<sub>S</sub>(1−p<sub>S</sub>)/n<sub>S</sub> + p<sub>T</sub>(1−p<sub>T</sub>)/n<sub>T</sub>
+            \[ \mathrm{Var} = p_S(1-p_S)/n_S + p_T(1-p_T)/n_T \]
           </div>
           p̂의 분산이 <em>p(1−p)/n</em>이었던 거 기억하죠?
         </li>
@@ -1382,7 +1382,7 @@
       <h3>95% 신뢰구간 공식</h3>
 
       <div class="formula wide">
-        (p̂<sub>S</sub> − p̂<sub>T</sub>) ± 1.96 · √( p<sub>S</sub>(1−p<sub>S</sub>)/n<sub>S</sub> + p<sub>T</sub>(1−p<sub>T</sub>)/n<sub>T</sub> )
+        \[ (\hat{p}_S - \hat{p}_T) \pm 1.96 \cdot \sqrt{p_S(1-p_S)/n_S + p_T(1-p_T)/n_T} \]
       </div>
 
       <p>즉, 두 표본비율의 차이에 ± 1.96·SE를 붙이는 거예요.</p>
@@ -1392,7 +1392,7 @@
         <p>진짜 p<sub>S</sub>, p<sub>T</sub>를 모르니까
         <strong>표본비율 p̂</strong>로 대체해서 계산해요.</p>
         <div class="formula wide">
-          (p̂<sub>S</sub> − p̂<sub>T</sub>) ± 1.96 · √( p̂<sub>S</sub>(1−p̂<sub>S</sub>)/n<sub>S</sub> + p̂<sub>T</sub>(1−p̂<sub>T</sub>)/n<sub>T</sub> )
+          \[ (\hat{p}_S - \hat{p}_T) \pm 1.96 \cdot \sqrt{\hat{p}_S(1-\hat{p}_S)/n_S + \hat{p}_T(1-\hat{p}_T)/n_T} \]
         </div>
         <p>n이 크면 이 근사가 충분히 정확해요.</p>
       </div>
@@ -1411,10 +1411,10 @@
           (서울이 8%p 높음).</li>
         <li><strong>분산.</strong>
           <div class="formula">
-            0.44·0.56/500 + 0.36·0.64/500
+            \[ 0.44 \cdot 0.56/500 + 0.36 \cdot 0.64/500 \]
           </div>
           <div class="formula">
-            = 0.000493 + 0.000461 ≈ 0.000954
+            \[ = 0.000493 + 0.000461 \approx 0.000954 \]
           </div>
         </li>
         <li><strong>SE.</strong> √0.000954 ≈ <strong>0.0309</strong>.</li>
@@ -1476,7 +1476,7 @@
       분산을 구할 때 꼬여요.</p>
 
       <div class="formula wide">
-        Var[X̄ − Ȳ] = σ<sub>X</sub>²/n + σ<sub>Y</sub>²/n + 2·Cov[X̄, Ȳ]
+        \[ \mathrm{Var}[\bar{X} - \bar{Y}] = \sigma_X^2/n + \sigma_Y^2/n + 2 \cdot \mathrm{Cov}[\bar{X}, \bar{Y}] \]
       </div>
 
       <p>즉, 뒤에 <strong>공분산 2·Cov[X̄, Ȳ]</strong>가 달라붙어요.
@@ -1495,7 +1495,7 @@
       <strong>학생마다 차이 하나</strong>를 만들어요.</p>
 
       <div class="formula">
-        D<sub>i</sub> := X<sub>i</sub> − Y<sub>i</sub>
+        \[ D_i := X_i - Y_i \]
       </div>
 
       <p>즉, 학생 i 의 수학 점수에서 통계 점수를 뺀 값이 D<sub>i</sub>.
@@ -1514,17 +1514,17 @@
       <ol class="steps">
         <li><strong>기댓값.</strong>
           <div class="formula">
-            E[D̄] = E[X̄ − Ȳ] = μ<sub>X</sub> − μ<sub>Y</sub>
+            \[ E[\bar{D}] = E[\bar{X} - \bar{Y}] = \mu_X - \mu_Y \]
           </div>
           즉, D̄ 역시 μ<sub>X</sub> − μ<sub>Y</sub>에 대한 좋은 추정량이에요.
         </li>
         <li><strong>분산.</strong> 이제 D는 <em>하나의 변수</em>니까 공분산 없이 깔끔해요.
           <div class="formula">
-            Var[D̄] = <span class="frac"><span class="num">σ<sub>D</sub>²</span><span class="den">n</span></span>
+            \[ \mathrm{Var}[\bar{D}] = \frac{\sigma_D^2}{n} \]
           </div>
           모르면 표본으로 근사.
           <div class="formula">
-            ≈ <span class="frac"><span class="num">S<sub>D</sub>²</span><span class="den">n</span></span>
+            \[ \approx \frac{S_D^2}{n} \]
           </div>
           즉, D값들의 표본분산만 구하면 끝이에요.
         </li>
@@ -1538,7 +1538,7 @@
       <p>이제 한 표본 CI 공식 그대로.</p>
 
       <div class="formula">
-        D̄ ± 1.96 · <span class="frac"><span class="num">S<sub>D</sub></span><span class="den">√n</span></span>
+        \[ \bar{D} \pm 1.96 \cdot \frac{S_D}{\sqrt{n}} \]
       </div>
 
       <p>즉, <em>차이값 D<sub>i</sub>들의 평균</em>을 중심으로,

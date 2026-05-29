@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>9강 · 회귀분석 I | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 </head>
 <body>
 
@@ -170,7 +173,7 @@
       <p>회귀의 기본 모양은 한 줄짜리 식이에요.</p>
 
       <div class="formula wide">
-        Y = β<sub>0</sub> + β<sub>1</sub>X<sub>1</sub> + β<sub>2</sub>X<sub>2</sub> + ⋯ + β<sub>k</sub>X<sub>k</sub> + e
+        \[ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_k X_k + e \]
       </div>
 
       <p>처음 보면 좀 복잡한데, <em>레시피</em>라고 생각하면 쉬워요.</p>
@@ -240,7 +243,7 @@
       이걸 <strong>단순선형회귀(Simple Linear Regression)</strong>라고 해요.</p>
 
       <div class="formula wide">
-        Y = β<sub>0</sub> + β<sub>1</sub>X + e
+        \[ Y = \beta_0 + \beta_1 X + e \]
       </div>
 
       <p>중학교 때 배운 직선의 방정식 <strong>y = ax + b</strong>랑 똑같죠? 그저 이름이 바뀌었을 뿐이에요.</p>
@@ -344,7 +347,7 @@
       <p>i번째 아파트의 연식이 X<sub>i</sub>예요. 회귀선이 <strong>예측</strong>하는 가격은:</p>
 
       <div class="formula wide">
-        Ŷ<sub>i</sub> = β<sub>0</sub> + β<sub>1</sub>X<sub>i</sub>
+        \[ \hat{Y}_i = \beta_0 + \beta_1 X_i \]
       </div>
 
       <p>"Ŷ" 위에 모자(^) 표시는 "추정"이라는 뜻이에요. <strong>실제로 관측한 가격</strong>은
@@ -442,7 +445,7 @@
       </div>
 
       <div class="formula wide">
-        SSE = ∑<sub>i=1</sub><sup>n</sup> ( Y<sub>i</sub> − Ŷ<sub>i</sub> )<sup>2</sup>
+        \[ SSE = \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 \]
       </div>
 
       <h3>회귀가 하는 일</h3>
@@ -567,7 +570,7 @@
       <h3>핵심 등식</h3>
 
       <div class="formula wide">
-        SST &nbsp;=&nbsp; SSR &nbsp;+&nbsp; SSE
+        \[ SST = SSR + SSE \]
       </div>
 
       <p>이게 정말 신기한 등식이에요. Y의 총 변동(SST)은 <strong>회귀선이 잡은 부분(SSR)</strong>과
@@ -651,8 +654,7 @@
       </div>
 
       <div class="formula wide">
-        R<sup>2</sup> &nbsp;=&nbsp; <span class="frac"><span class="num">SSR</span><span class="den">SST</span></span>
-        &nbsp;=&nbsp; 1 − <span class="frac"><span class="num">SSE</span><span class="den">SST</span></span>
+        \[ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST} \]
       </div>
 
       <h3>0과 1 사이의 숫자</h3>
@@ -777,7 +779,7 @@
       <p>이 표에서 <strong>Coefficients 열</strong>이 바로 β들이에요. 그러면 회귀식이 이렇게 완성돼요:</p>
 
       <div class="formula wide">
-        Ŷ &nbsp;=&nbsp; −0.57 &nbsp;−&nbsp; 1.62 × Rooms &nbsp;+&nbsp; 0.06 × Volume
+        \[ \hat{Y} = -0.57 - 1.62 \times \text{Rooms} + 0.06 \times \text{Volume} \]
       </div>
 
       <h3>각 열의 의미 (간단히)</h3>
