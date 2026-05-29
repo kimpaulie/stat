@@ -58,13 +58,13 @@
     <ol class="chap-list">
       <li><a href="#ch0">여는 글</a></li>
       <li><a href="#ch1">9강 한장 복습</a></li>
-      <li><a href="#ch2">β̂는 확률변수</a></li>
-      <li><a href="#ch3">계수 H.T. — p-값 방식</a></li>
+      <li><a href="#ch2">\(\hat{\beta}\)는 확률변수</a></li>
+      <li><a href="#ch3">계수 H.T. — \(p\)-값 방식</a></li>
       <li><a href="#ch4">계수 H.T. — CI 방식</a></li>
       <li><a href="#ch5">실제 예시 해석</a></li>
-      <li><a href="#ch6">자유도(df)</a></li>
-      <li><a href="#ch7">MSR · MSE · Sₑ</a></li>
-      <li><a href="#ch8">변수 선택 · Adjusted R²</a></li>
+      <li><a href="#ch6">자유도(\(df\))</a></li>
+      <li><a href="#ch7">MSR · MSE · \(S_e\)</a></li>
+      <li><a href="#ch8">변수 선택 · Adjusted \(R^2\)</a></li>
       <li><a href="#ch9">한 개씩 빼는 예시</a></li>
       <li><a href="#ch10">예측</a></li>
       <li><a href="#ch11">맺는 글</a></li>
@@ -108,12 +108,12 @@
         <div class="label">이 강의에서 배우는 것</div>
         <p><strong>① 회귀계수의 가설 검정</strong> — "이 변수, 진짜 효과가 있어?"</p>
         <p><strong>② 자유도와 MSE</strong> — 표준오차가 어디서 오는지</p>
-        <p><strong>③ 변수 선택</strong> — 쓸데없는 변수 골라내기 (Adjusted R²)</p>
-        <p><strong>④ 예측</strong> — 새 데이터의 Y를 추정하고 신뢰구간 만들기</p>
+        <p><strong>③ 변수 선택</strong> — 쓸데없는 변수 골라내기 (Adjusted \(R^2\))</p>
+        <p><strong>④ 예측</strong> — 새 데이터의 \(Y\)를 추정하고 신뢰구간 만들기</p>
       </div>
 
       <blockquote class="pull">
-        "이 변수가 정말 Y를 설명하나?"<br>
+        "이 변수가 정말 \(Y\)를 설명하나?"<br>
         그 답을 8강의 <strong>가설 검정</strong>이 또 한 번 해줘요.
       </blockquote>
     </section>
@@ -129,17 +129,17 @@
       <div class="callout blue">
         <div class="label">9강의 세 줄 요약</div>
         <p><strong>① 회귀선</strong>은 SSE(잔차 제곱의 합)를 최소화하는 직선.</p>
-        <p><strong>② SST = SSR + SSE</strong>. Y의 전체 변동이 회귀로 설명된 부분과 안 된 부분으로 나뉘어요.</p>
-        <p><strong>③ R² = SSR / SST</strong>. 회귀의 설명력 점수.</p>
+        <p><strong>② SST = SSR + SSE</strong>. \(Y\)의 전체 변동이 회귀로 설명된 부분과 안 된 부분으로 나뉘어요.</p>
+        <p><strong>③ \(R^2 = SSR / SST\)</strong>. 회귀의 설명력 점수.</p>
       </div>
 
       <h3>그래도 남는 질문</h3>
 
-      <p>R²가 0.89로 좋아 보였어요. 하지만 R²만 봐서는 알 수 없는 게 있어요.</p>
+      <p>\(R^2\)가 0.89로 좋아 보였어요. 하지만 \(R^2\)만 봐서는 알 수 없는 게 있어요.</p>
 
       <ul>
         <li>각 변수(Rooms, Volume 등)가 <em>개별적으로</em> 의미 있는가?</li>
-        <li>R²가 높다고 모든 변수가 다 좋은 건가? 쓸데없이 끼어든 변수도 있는 게 아닐까?</li>
+        <li>\(R^2\)가 높다고 모든 변수가 다 좋은 건가? 쓸데없이 끼어든 변수도 있는 게 아닐까?</li>
         <li>이 식으로 새 아파트 가격을 예측하면 얼마나 정확할까?</li>
       </ul>
 
@@ -154,53 +154,53 @@
     <!-- 2장 · β̂는 확률변수 -->
     <section class="chapter" id="ch2">
       <div class="chap-num">CHAPTER 02</div>
-      <h2>β̂은 확률변수 — 표본이 바뀌면 계수도 바뀌어요</h2>
+      <h2>\(\hat{\beta}\)은 확률변수 — 표본이 바뀌면 계수도 바뀌어요</h2>
       <div class="chap-sub">9강의 가장 중요한 깨달음</div>
 
-      <p>우리는 회귀선의 계수 β₀, β₁을 데이터로부터 <strong>추정</strong>했어요. 추정값에는 모자(^)를 씌워
-      <strong>β̂₀, β̂₁</strong>이라고 적어요.</p>
+      <p>우리는 회귀선의 계수 \(\beta_0, \beta_1\)을 데이터로부터 <strong>추정</strong>했어요. 추정값에는 모자(^)를 씌워
+      <strong>\(\hat{\beta}_0, \hat{\beta}_1\)</strong>이라고 적어요.</p>
 
-      <h3>다른 데이터, 다른 β̂</h3>
+      <h3>다른 데이터, 다른 \(\hat{\beta}\)</h3>
 
-      <p>같은 모집단에서 다른 표본을 뽑으면 어떻게 될까요? 다른 β̂이 나와요. β̂은 표본에 따라
+      <p>같은 모집단에서 다른 표본을 뽑으면 어떻게 될까요? 다른 \(\hat{\beta}\)이 나와요. \(\hat{\beta}\)은 표본에 따라
       흔들리는 <strong>확률변수</strong>인 거예요.</p>
 
       <div class="analogy">
         <p><strong>"오늘 잰 키와 내일 잰 키" 비유.</strong></p>
         <p>같은 사람이라도 측정할 때마다 키가 미세하게 다르게 나오죠. 측정 자체에 흔들림이 있으니까요.<br>
-        β̂도 똑같아요. 같은 회귀 분석이라도 표본이 다르면 살짝 다른 β̂이 나와요.</p>
+        \(\hat{\beta}\)도 똑같아요. 같은 회귀 분석이라도 표본이 다르면 살짝 다른 \(\hat{\beta}\)이 나와요.</p>
       </div>
 
-      <h3>β̂의 분포</h3>
+      <h3>\(\hat{\beta}\)의 분포</h3>
 
       <div class="callout">
         <div class="label">중요한 사실</div>
-        <p>잔차 e<sub>i</sub>들이 정규분포를 따른다고 가정하면, β̂도 <strong>t-분포</strong>를 따라요.</p>
-        <p>표본이 충분히 크면 t-분포는 정규분포에 거의 같아져요. (자유도가 커지니까!)</p>
-        <p>그래서 β̂에 대해서도 <strong>"평균(=진짜 β)", "표준오차", "분포"</strong>를 다 정의할 수 있어요. → 가설 검정과 신뢰구간을 만들 수 있어요!</p>
+        <p>잔차 \(e_i\)들이 정규분포를 따른다고 가정하면, \(\hat{\beta}\)도 <strong>\(t\)-분포</strong>를 따라요.</p>
+        <p>표본이 충분히 크면 \(t\)-분포는 정규분포에 거의 같아져요. (자유도가 커지니까!)</p>
+        <p>그래서 \(\hat{\beta}\)에 대해서도 <strong>"평균(=진짜 \(\beta\))", "표준오차", "분포"</strong>를 다 정의할 수 있어요. → 가설 검정과 신뢰구간을 만들 수 있어요!</p>
       </div>
 
       <h3>오늘의 핵심 질문</h3>
 
       <blockquote class="pull">
-        <strong>"β₁이 0이라는 H₀를 우리는 기각할 수 있는가?"</strong><br>
-        β₁ = 0이라는 건 "X₁이 Y에 영향을 주지 않는다"는 뜻이에요.<br>
-        이걸 기각할 증거를 찾으면 "X₁이 Y에 영향을 준다"고 결론지을 수 있죠.
+        <strong>"\(\beta_1\)이 0이라는 \(H_0\)를 우리는 기각할 수 있는가?"</strong><br>
+        \(\beta_1 = 0\)이라는 건 "\(X_1\)이 \(Y\)에 영향을 주지 않는다"는 뜻이에요.<br>
+        이걸 기각할 증거를 찾으면 "\(X_1\)이 \(Y\)에 영향을 준다"고 결론지을 수 있죠.
       </blockquote>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        β̂은 확률변수예요. 진짜 β의 추정값이고, 표본마다 흔들려요. 그래서 가설 검정이 가능해요.
+        \(\hat{\beta}\)은 확률변수예요. 진짜 \(\beta\)의 추정값이고, 표본마다 흔들려요. 그래서 가설 검정이 가능해요.
       </div>
     </section>
 
     <!-- 3장 · p-value 방식 -->
     <section class="chapter" id="ch3">
       <div class="chap-num">CHAPTER 03</div>
-      <h2>계수의 가설 검정 (방법 1) — p-값으로</h2>
+      <h2>계수의 가설 검정 (방법 1) — \(p\)-값으로</h2>
       <div class="chap-sub">8강의 H.T. 그대로 적용</div>
 
-      <p>각 회귀계수 β<sub>i</sub>에 대해 똑같은 검정을 해요. 예시로 β₁(연식의 계수)을 따져봐요.</p>
+      <p>각 회귀계수 \(\beta_i\)에 대해 똑같은 검정을 해요. 예시로 \(\beta_1\)(연식의 계수)을 따져봐요.</p>
 
       <h3>가설 세우기</h3>
 
@@ -209,14 +209,14 @@
       </div>
 
       <div class="callout">
-        <div class="label">H₀의 의미</div>
-        <p>"X₁(연식)은 Y(가격)와 아무 관계 없다." 계수가 0이면 X₁ 항이 식에서 사라지니까요.</p>
-        <p>이걸 기각하면 → "X₁은 Y에 의미 있는 영향을 준다"는 결론!</p>
+        <div class="label">\(H_0\)의 의미</div>
+        <p>"\(X_1\)(연식)은 \(Y\)(가격)와 아무 관계 없다." 계수가 0이면 \(X_1\) 항이 식에서 사라지니까요.</p>
+        <p>이걸 기각하면 → "\(X_1\)은 \(Y\)에 의미 있는 영향을 준다"는 결론!</p>
       </div>
 
-      <h3>t-통계량</h3>
+      <h3>\(t\)-통계량</h3>
 
-      <p>8강의 z = (X̄ − μ₀)/SE와 똑같은 모양이에요. 평균 대신 β̂, 가정값 0과 비교.</p>
+      <p>8강의 \(z = (\bar{X} - \mu_0)/SE\)와 똑같은 모양이에요. 평균 대신 \(\hat{\beta}\), 가정값 0과 비교.</p>
 
       <div class="formula wide">
         \[ t\text{-Stat} = \frac{\hat{\beta}_1 - 0}{\text{Std Err of } \hat{\beta}_1} \]
@@ -224,25 +224,25 @@
 
       <p>분자 = "관측된 계수와 0의 거리". 분모 = "그 계수의 흔들림 크기".</p>
 
-      <h3>p-값과 결론</h3>
+      <h3>\(p\)-값과 결론</h3>
 
-      <p>t-통계량으로 t-분포에서 p-값을 읽어요. 결론은 똑같아요.</p>
+      <p>\(t\)-통계량으로 \(t\)-분포에서 \(p\)-값을 읽어요. 결론은 똑같아요.</p>
 
       <div class="callout blue">
         <div class="label">기각 규칙</div>
-        <p><strong>p-값 &lt; α</strong> → H₀ 기각. "β₁ ≠ 0이라는 증거 있음." 즉 X₁은 의미 있는 변수.</p>
-        <p><strong>p-값 ≥ α</strong> → Fail to reject. "β₁ = 0일 가능성을 부정할 수 없음." X₁의 효과를 입증 못 함.</p>
+        <p><strong>\(p\)-값 \(< \alpha\)</strong> → \(H_0\) 기각. "\(\beta_1 \ne 0\)이라는 증거 있음." 즉 \(X_1\)은 의미 있는 변수.</p>
+        <p><strong>\(p\)-값 \(\ge \alpha\)</strong> → Fail to reject. "\(\beta_1 = 0\)일 가능성을 부정할 수 없음." \(X_1\)의 효과를 입증 못 함.</p>
       </div>
 
       <div class="callout green">
         <div class="label">엑셀 출력에서 어디 봐요?</div>
         <p>회귀 출력 계수 표의 <strong>P-value</strong> 열을 보면 끝이에요. 컴퓨터가 다 계산해 줘요.</p>
-        <p>0.05보다 작으면 ✅ 의미 있음. 크면 ❌ 의미 없음 (보통 α = 5% 기준).</p>
+        <p>0.05보다 작으면 ✅ 의미 있음. 크면 ❌ 의미 없음 (보통 \(\alpha = 5\%\) 기준).</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        β의 H.T. = 8강의 평균 H.T.와 똑같은 구조. p-값 &lt; α면 그 변수가 의미 있음.
+        \(\beta\)의 H.T. = 8강의 평균 H.T.와 똑같은 구조. \(p\)-값 \(< \alpha\)면 그 변수가 의미 있음.
       </div>
     </section>
 
@@ -252,23 +252,23 @@
       <h2>계수의 가설 검정 (방법 2) — 신뢰구간으로</h2>
       <div class="chap-sub">CI에 0이 들어 있나?</div>
 
-      <p>방법 1(p-값)과 똑같은 결론을 <strong>신뢰구간</strong>으로도 낼 수 있어요. 사실 엑셀 출력에 둘 다 나와 있어서
+      <p>방법 1(\(p\)-값)과 똑같은 결론을 <strong>신뢰구간</strong>으로도 낼 수 있어요. 사실 엑셀 출력에 둘 다 나와 있어서
       편한 쪽을 보면 돼요.</p>
 
       <h3>핵심 규칙</h3>
 
       <div class="callout blue">
-        <div class="label">CI 기반 판정 규칙 (α = 5% 기준)</div>
-        <p><strong>95% CI가 0을 포함</strong> → Fail to reject H₀. "β = 0 가능성을 못 버린다."</p>
-        <p><strong>95% CI가 0을 포함하지 않음</strong> → Reject H₀. "β ≠ 0이라는 증거 있음."</p>
+        <div class="label">CI 기반 판정 규칙 (\(\alpha = 5\%\) 기준)</div>
+        <p><strong>95% CI가 0을 포함</strong> → Fail to reject \(H_0\). "\(\beta = 0\) 가능성을 못 버린다."</p>
+        <p><strong>95% CI가 0을 포함하지 않음</strong> → Reject \(H_0\). "\(\beta \ne 0\)이라는 증거 있음."</p>
       </div>
 
       <h3>왜 이렇게 되나요?</h3>
 
-      <p>7강에서 신뢰구간이 무엇이었는지 떠올려요. <strong>"진짜 β가 95% 확률로 들어 있을 범위"</strong>예요.</p>
+      <p>7강에서 신뢰구간이 무엇이었는지 떠올려요. <strong>"진짜 \(\beta\)가 95% 확률로 들어 있을 범위"</strong>예요.</p>
 
-      <p>그 범위에 0이 들어 있다면 → "β = 0이 가능한 값"이라는 뜻 → H₀를 못 버려요.<br>
-      그 범위에 0이 안 들어 있다면 → "β = 0이 절대 가능하지 않다"는 뜻 → H₀를 버려요.</p>
+      <p>그 범위에 0이 들어 있다면 → "\(\beta = 0\)이 가능한 값"이라는 뜻 → \(H_0\)를 못 버려요.<br>
+      그 범위에 0이 안 들어 있다면 → "\(\beta = 0\)이 절대 가능하지 않다"는 뜻 → \(H_0\)를 버려요.</p>
 
       <div class="analogy">
         <p><strong>"의심 지대" 비유.</strong></p>
@@ -281,7 +281,7 @@
 
       <div class="callout green">
         <div class="label">중요한 사실</div>
-        <p>방법 1(p-값 &lt; α)과 방법 2(CI에 0 없음)는 <strong>완전히 동일한 결론</strong>을 내요.</p>
+        <p>방법 1(\(p\)-값 \(< \alpha\))과 방법 2(CI에 0 없음)는 <strong>완전히 동일한 결론</strong>을 내요.</p>
         <p>같은 5% 유의수준 기준이라면, 둘은 사실 같은 검정의 두 표현이에요. 어느 쪽으로 결론지어도 OK.</p>
       </div>
 
@@ -311,21 +311,21 @@
       </table>
       </div>
 
-      <h3>Rooms 변수 판정 (α = 5%)</h3>
+      <h3>Rooms 변수 판정 (\(\alpha = 5\%\))</h3>
 
       <div class="callout yellow">
         <div class="label">Rooms는 의미 있는 변수?</div>
-        <p><strong>방법 1 (p-값):</strong> p = 0.44 &gt; 0.05 = α → <strong>Fail to reject H₀</strong>.</p>
-        <p><strong>방법 2 (CI):</strong> 95% CI = [−5.82, 2.57]. 0이 <em>포함</em>됨 → <strong>Fail to reject H₀</strong>.</p>
+        <p><strong>방법 1 (\(p\)-값):</strong> \(p = 0.44 > 0.05 = \alpha\) → <strong>Fail to reject \(H_0\)</strong>.</p>
+        <p><strong>방법 2 (CI):</strong> 95% CI = \([-5.82, 2.57]\). 0이 <em>포함</em>됨 → <strong>Fail to reject \(H_0\)</strong>.</p>
         <p>결론: Rooms의 계수가 0일 가능성을 배제할 수 없어요. → <strong>Rooms는 통계적으로 유의하지 않음.</strong></p>
       </div>
 
-      <h3>Volume 변수 판정 (α = 5%)</h3>
+      <h3>Volume 변수 판정 (\(\alpha = 5\%\))</h3>
 
       <div class="callout green">
         <div class="label">Volume은 의미 있는 변수?</div>
-        <p><strong>방법 1 (p-값):</strong> p = 0.00 &lt; 0.05 = α → <strong>Reject H₀</strong>.</p>
-        <p><strong>방법 2 (CI):</strong> 95% CI = [0.04, 0.07]. 0이 <em>포함되지 않음</em> → <strong>Reject H₀</strong>.</p>
+        <p><strong>방법 1 (\(p\)-값):</strong> \(p = 0.00 < 0.05 = \alpha\) → <strong>Reject \(H_0\)</strong>.</p>
+        <p><strong>방법 2 (CI):</strong> 95% CI = \([0.04, 0.07]\). 0이 <em>포함되지 않음</em> → <strong>Reject \(H_0\)</strong>.</p>
         <p>결론: Volume의 계수가 0이 아니라는 강한 증거. → <strong>Volume은 통계적으로 유의함.</strong></p>
       </div>
 
@@ -354,23 +354,23 @@
     <!-- 6장 · 자유도 -->
     <section class="chapter" id="ch6">
       <div class="chap-num">CHAPTER 06</div>
-      <h2>자유도(df) — "추정마다 한 칸씩 잃어요"</h2>
+      <h2>자유도(\(df\)) — "추정마다 한 칸씩 잃어요"</h2>
       <div class="chap-sub">Degrees of Freedom</div>
 
-      <p>ANOVA 표에서 "df"라는 열을 봤죠? 이게 <strong>자유도(degrees of freedom)</strong>예요.
+      <p>ANOVA 표에서 "\(df\)"라는 열을 봤죠? 이게 <strong>자유도(degrees of freedom)</strong>예요.
       살짝 추상적인 개념이지만, 직관은 단순해요.</p>
 
       <div class="definition">
         <div class="term">Degrees of Freedom · 자유도</div>
         <div class="kor">"자유롭게 움직일 수 있는 정보의 개수"</div>
-        <p>원래 정보(데이터 점)는 n개예요. 그런데 우리가 평균이나 회귀계수를 추정할 때마다
-        <strong>정보 하나씩 묶여요</strong>. 그래서 "남은 자유도" = n − (묶인 개수).</p>
+        <p>원래 정보(데이터 점)는 \(n\)개예요. 그런데 우리가 평균이나 회귀계수를 추정할 때마다
+        <strong>정보 하나씩 묶여요</strong>. 그래서 "남은 자유도" \(= n - (\)묶인 개수\()\).</p>
       </div>
 
-      <h3>표본분산의 n − 1을 떠올려보세요</h3>
+      <h3>표본분산의 \(n - 1\)을 떠올려보세요</h3>
 
-      <p>2강에서 표본분산 S² = Σ(X<sub>i</sub> − X̄)² / (n − 1)이었죠. 왜 n − 1로 나눴을까요?
-      X̄을 추정하느라 자유도 1을 잃어서요.</p>
+      <p>2강에서 표본분산 \(S^2 = \sum (X_i - \bar{X})^2 / (n - 1)\)이었죠. 왜 \(n - 1\)로 나눴을까요?
+      \(\bar{X}\)을 추정하느라 자유도 1을 잃어서요.</p>
 
       <div class="formula wide">
         \[ \bar{X} = \frac{1}{n} \sum X_i \quad \leftarrow \quad \text{자유도 } n \text{ (그대로)} \\ S^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2 \quad \leftarrow \quad \bar{X} \text{을 추정하느라 1 잃음} \to \text{자유도 } n-1 \]
@@ -378,37 +378,37 @@
 
       <h3>회귀에서의 자유도</h3>
 
-      <p>회귀에선 β들을 추정해요. 절편 β₀ + 계수 β₁, ..., β<sub>k</sub> 해서 총 <strong>k + 1개</strong>를 추정해요.
-      그래서 자유도가 (k + 1)만큼 깎여요.</p>
+      <p>회귀에선 \(\beta\)들을 추정해요. 절편 \(\beta_0\) + 계수 \(\beta_1, \ldots, \beta_k\) 해서 총 <strong>\(k + 1\)개</strong>를 추정해요.
+      그래서 자유도가 \((k + 1)\)만큼 깎여요.</p>
 
       <div class="callout blue">
         <div class="label">회귀의 자유도 공식</div>
-        <p><strong>Total df = n − 1</strong> (Y의 평균 Ȳ을 추정하느라 1 잃음)</p>
-        <p><strong>Regression df = k</strong> (k개의 X 변수)</p>
-        <p><strong>Residual df = n − k − 1</strong> (n에서 β₀ 포함 k+1개 잃음)</p>
-        <p>확인: Regression df + Residual df = k + (n−k−1) = n−1 = Total df ✓</p>
+        <p><strong>Total \(df = n - 1\)</strong> (\(Y\)의 평균 \(\bar{Y}\)을 추정하느라 1 잃음)</p>
+        <p><strong>Regression \(df = k\)</strong> (\(k\)개의 \(X\) 변수)</p>
+        <p><strong>Residual \(df = n - k - 1\)</strong> (\(n\)에서 \(\beta_0\) 포함 \(k+1\)개 잃음)</p>
+        <p>확인: Regression \(df\) + Residual \(df = k + (n-k-1) = n-1 = \) Total \(df\) ✓</p>
       </div>
 
       <h3>9강 출력 예시</h3>
 
-      <p>n = 36, 변수 2개 (Rooms, Volume). k = 2.</p>
+      <p>\(n = 36\), 변수 2개 (Rooms, Volume). \(k = 2\).</p>
 
       <ul>
-        <li>Total df = 36 − 1 = 35 ✓ (출력의 Total 행과 일치)</li>
-        <li>Regression df = 2 ✓</li>
-        <li>Residual df = 36 − 2 − 1 = 33 ✓</li>
+        <li>Total \(df = 36 - 1 = 35\) ✓ (출력의 Total 행과 일치)</li>
+        <li>Regression \(df = 2\) ✓</li>
+        <li>Residual \(df = 36 - 2 - 1 = 33\) ✓</li>
       </ul>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        df = n − (추정 개수). 회귀에선 Residual df = n − k − 1. β들을 추정할 때마다 깎임.
+        \(df = n - (\)추정 개수\()\). 회귀에선 Residual \(df = n - k - 1\). \(\beta\)들을 추정할 때마다 깎임.
       </div>
     </section>
 
     <!-- 7장 · MSR/MSE -->
     <section class="chapter" id="ch7">
       <div class="chap-num">CHAPTER 07</div>
-      <h2>MSR · MSE · 표준오차 Sₑ</h2>
+      <h2>MSR · MSE · 표준오차 \(S_e\)</h2>
       <div class="chap-sub">제곱합을 자유도로 나누면 "평균 제곱"</div>
 
       <p>9강에서 본 SSR, SSE는 그냥 합이에요. 이걸 각자의 자유도로 나누면 <strong>"평균 제곱"</strong>이 돼요.</p>
@@ -417,81 +417,81 @@
 
       <div class="definition">
         <div class="term">MSR · Mean Square for Regression · 회귀 평균제곱</div>
-        <p>MSR = SSR / Regression df = SSR / k</p>
+        <p>\(MSR = SSR / \) Regression \(df = SSR / k\)</p>
         <p>"변수 한 개당 평균적으로 얼마나 설명하는가"의 크기.</p>
       </div>
 
       <div class="definition">
         <div class="term">MSE · Mean Square Error · 평균제곱오차</div>
-        <p>MSE = SSE / Residual df = SSE / (n − k − 1)</p>
+        <p>\(MSE = SSE / \) Residual \(df = SSE / (n - k - 1)\)</p>
         <p>"잔차들의 분산 추정치". 이게 핵심 — 잔차들이 얼마나 흔들리는지의 분산이에요.</p>
       </div>
 
-      <h3>표준오차 Sₑ</h3>
+      <h3>표준오차 \(S_e\)</h3>
 
       <div class="definition">
-        <div class="term">Standard Error of Estimate · Sₑ</div>
-        <p>S<sub>e</sub> = √MSE</p>
+        <div class="term">Standard Error of Estimate · \(S_e\)</div>
+        <p>\(S_e = \sqrt{MSE}\)</p>
         <p>잔차들의 표준편차 추정치. <em>"우리 회귀선이 평균적으로 데이터에서 얼마나 떨어져 있나"</em>의 크기.</p>
       </div>
 
       <h3>9강 예시로 확인</h3>
 
-      <p>n = 36, k = 2, SSE = 844.82.</p>
+      <p>\(n = 36\), \(k = 2\), \(SSE = 844.82\).</p>
 
       <ul>
-        <li>MSE = 844.82 / (36 − 2 − 1) = 844.82 / 33 ≈ <strong>25.60</strong> ✓ (출력의 MS Residual)</li>
-        <li>Sₑ = √25.60 ≈ <strong>5.06</strong> ✓ (출력의 Standard Error)</li>
+        <li>\(MSE = 844.82 / (36 - 2 - 1) = 844.82 / 33 \approx\) <strong>25.60</strong> ✓ (출력의 MS Residual)</li>
+        <li>\(S_e = \sqrt{25.60} \approx\) <strong>5.06</strong> ✓ (출력의 Standard Error)</li>
       </ul>
 
       <div class="callout blue">
-        <div class="label">Sₑ의 직관적 의미</div>
-        <p>"우리 회귀선의 예측값은 실제값에서 평균적으로 ±5.06 단위쯤 떨어져 있다"는 거예요.</p>
-        <p>Sₑ가 작을수록 예측이 정확해요. 잠시 후 <strong>예측 신뢰구간</strong>의 핵심이 돼요.</p>
+        <div class="label">\(S_e\)의 직관적 의미</div>
+        <p>"우리 회귀선의 예측값은 실제값에서 평균적으로 \(\pm 5.06\) 단위쯤 떨어져 있다"는 거예요.</p>
+        <p>\(S_e\)가 작을수록 예측이 정확해요. 잠시 후 <strong>예측 신뢰구간</strong>의 핵심이 돼요.</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        MSE = SSE / (n − k − 1). Sₑ = √MSE = 잔차의 표준편차 추정. 작을수록 예측 정확.
+        \(MSE = SSE / (n - k - 1)\). \(S_e = \sqrt{MSE}\) = 잔차의 표준편차 추정. 작을수록 예측 정확.
       </div>
     </section>
 
     <!-- 8장 · 변수 선택 -->
     <section class="chapter" id="ch8">
       <div class="chap-num">CHAPTER 08</div>
-      <h2>변수 선택 — Adjusted R²의 등장</h2>
+      <h2>변수 선택 — Adjusted \(R^2\)의 등장</h2>
       <div class="chap-sub">"필요 없는 변수"를 골라내는 법</div>
 
-      <p>9강에서 짧게 경고했죠. <strong>"R²는 변수만 늘리면 무조건 올라가요"</strong>. 왜?</p>
+      <p>9강에서 짧게 경고했죠. <strong>"\(R^2\)는 변수만 늘리면 무조건 올라가요"</strong>. 왜?</p>
 
-      <h3>R²의 함정</h3>
+      <h3>\(R^2\)의 함정</h3>
 
       <p>변수를 하나 더 추가하면 SSE는 어떻게 될까요? <strong>줄거나 같아요.</strong> 새 변수가 쓸데없어도
       적어도 다른 변수들 옆에서 SSE를 더 늘리진 않으니까요.</p>
 
-      <p>SSE가 줄면 → R² = 1 − SSE/SST 가 올라가요. 그래서 R²만 보면 "변수 많을수록 좋다"는 잘못된 결론이 나와요.</p>
+      <p>SSE가 줄면 → \(R^2 = 1 - SSE/SST\) 가 올라가요. 그래서 \(R^2\)만 보면 "변수 많을수록 좋다"는 잘못된 결론이 나와요.</p>
 
       <div class="callout yellow">
-        <div class="label">⚠️ R²의 약점</div>
-        <p>"이 변수, 진짜로 필요해? 아니면 그냥 통계적 화장이야?"를 R² 혼자선 판단 못 해요.</p>
+        <div class="label">⚠️ \(R^2\)의 약점</div>
+        <p>"이 변수, 진짜로 필요해? 아니면 그냥 통계적 화장이야?"를 \(R^2\) 혼자선 판단 못 해요.</p>
       </div>
 
-      <h3>Adjusted R² — 변수 개수에 페널티</h3>
+      <h3>Adjusted \(R^2\) — 변수 개수에 페널티</h3>
 
-      <p>그래서 <strong>변수 개수가 늘면 R²를 깎아내리는 보정 버전</strong>이 만들어졌어요.</p>
+      <p>그래서 <strong>변수 개수가 늘면 \(R^2\)를 깎아내리는 보정 버전</strong>이 만들어졌어요.</p>
 
       <div class="formula wide">
         \[ \text{Adjusted } R^2 = 1 - \frac{SSE / (n - k - 1)}{SST / (n - 1)} \]
       </div>
 
-      <p>R²에서는 SSE / SST를 썼는데, 여기선 자유도로 나눈 비율이에요. 변수를 늘리면 분자(MSE) 쪽이
+      <p>\(R^2\)에서는 \(SSE / SST\)를 썼는데, 여기선 자유도로 나눈 비율이에요. 변수를 늘리면 분자(MSE) 쪽이
       덜 줄어들면서 페널티가 작동해요.</p>
 
       <div class="callout">
-        <div class="label">Adjusted R²의 특징</div>
-        <p><strong>① 의미 없는 변수를 추가하면 오히려 떨어져요</strong>. (R²와 다른 점!)</p>
+        <div class="label">Adjusted \(R^2\)의 특징</div>
+        <p><strong>① 의미 없는 변수를 추가하면 오히려 떨어져요</strong>. (\(R^2\)와 다른 점!)</p>
         <p><strong>② 의미 있는 변수를 추가하면 올라가요</strong>.</p>
-        <p><strong>③ R²보다는 항상 작거나 같아요</strong>. (페널티 때문)</p>
+        <p><strong>③ \(R^2\)보다는 항상 작거나 같아요</strong>. (페널티 때문)</p>
       </div>
 
       <h3>변수 선택 절차 (한 개씩 빼기)</h3>
@@ -507,7 +507,7 @@
           </div>
           <div>
             <strong>② 가장 무의미한 변수 찾기</strong>
-            <span>p-값이 α보다 크고, 그 중에서도 가장 큰 변수.</span>
+            <span>\(p\)-값이 \(\alpha\)보다 크고, 그 중에서도 가장 큰 변수.</span>
           </div>
           <div>
             <strong>③ 그 변수 빼기</strong>
@@ -518,7 +518,7 @@
             <span>남은 변수들이 다 유의해질 때까지.</span>
           </div>
           <div>
-            <strong>⑤ R² ≈ Adjusted R² 확인</strong>
+            <strong>⑤ \(R^2 \approx\) Adjusted \(R^2\) 확인</strong>
             <span>둘이 비슷하면 변수 개수가 적절하다는 신호.</span>
           </div>
         </div>
@@ -526,7 +526,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        R²는 변수 늘리면 무조건 ↑. Adjusted R²가 진짜 성적표. p-값 큰 변수부터 한 개씩 빼는 게 정석.
+        \(R^2\)는 변수 늘리면 무조건 ↑. Adjusted \(R^2\)가 진짜 성적표. \(p\)-값 큰 변수부터 한 개씩 빼는 게 정석.
       </div>
     </section>
 
@@ -542,8 +542,8 @@
 
       <div class="table-scroll">
       <table class="blue-head center">
-        <caption>전체 변수 회귀 (n = 228)</caption>
-        <thead><tr><th>변수</th><th>Coeff</th><th>p-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
+        <caption>전체 변수 회귀 (\(n = 228\))</caption>
+        <thead><tr><th>변수</th><th>Coeff</th><th>\(p\)-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
         <tbody>
           <tr><td>Intercept</td><td>78.74</td><td>0.000</td><td>58.01</td><td>99.46</td></tr>
           <tr><td><strong>LOTSZ</strong></td><td>0.68</td><td><strong>0.068</strong></td><td>−0.05</td><td>1.41</td></tr>
@@ -558,9 +558,9 @@
       </table>
       </div>
 
-      <p>요약: <strong>R² = 0.708, Adjusted R² = 0.697</strong>.</p>
+      <p>요약: <strong>\(R^2 = 0.708\), Adjusted \(R^2 = 0.697\)</strong>.</p>
 
-      <p>α = 5% 기준으로 p-값이 0.05보다 큰 변수가 셋 있어요. <strong>LOTSZ (0.068), BDRM (0.099), GARG (0.087)</strong>.</p>
+      <p>\(\alpha = 5\%\) 기준으로 \(p\)-값이 0.05보다 큰 변수가 셋 있어요. <strong>LOTSZ (0.068), BDRM (0.099), GARG (0.087)</strong>.</p>
 
       <h3>2차 — 의미 없는 셋을 동시에 빼기</h3>
 
@@ -569,7 +569,7 @@
       <div class="table-scroll">
       <table class="blue-head center">
         <caption>축소된 회귀 (5변수)</caption>
-        <thead><tr><th>변수</th><th>Coeff</th><th>p-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
+        <thead><tr><th>변수</th><th>Coeff</th><th>\(p\)-value</th><th>Lower 95%</th><th>Upper 95%</th></tr></thead>
         <tbody>
           <tr><td>Intercept</td><td>80.57</td><td>0.000</td><td>61.27</td><td>99.87</td></tr>
           <tr><td>BATH</td><td>19.59</td><td>0.000</td><td>14.08</td><td>25.10</td></tr>
@@ -581,12 +581,12 @@
       </table>
       </div>
 
-      <p>요약: <strong>R² = 0.696, Adjusted R² = 0.689</strong>.</p>
+      <p>요약: <strong>\(R^2 = 0.696\), Adjusted \(R^2 = 0.689\)</strong>.</p>
 
       <div class="callout green">
         <div class="label">결과 해석</div>
-        <p>① 모든 변수의 p-값이 ≪ 0.05. <strong>전부 통계적으로 유의함.</strong></p>
-        <p>② R²는 0.708 → 0.696으로 조금 떨어졌지만, Adjusted R²는 거의 그대로(0.697 → 0.689).
+        <p>① 모든 변수의 \(p\)-값이 \(\ll 0.05\). <strong>전부 통계적으로 유의함.</strong></p>
+        <p>② \(R^2\)는 0.708 → 0.696으로 조금 떨어졌지만, Adjusted \(R^2\)는 거의 그대로(0.697 → 0.689).
         그 셋을 빼도 설명력이 거의 안 줄었다는 뜻 → <strong>뺀 게 정답</strong>.</p>
         <p>③ 더 간결한 모델로 같은 설명력 유지. 끝!</p>
       </div>
@@ -599,31 +599,31 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        의미 없는 변수를 빼도 Adjusted R²가 거의 그대로면 → 뺀 게 정답. 모델이 더 간결해져요.
+        의미 없는 변수를 빼도 Adjusted \(R^2\)가 거의 그대로면 → 뺀 게 정답. 모델이 더 간결해져요.
       </div>
     </section>
 
     <!-- 10장 · 예측 -->
     <section class="chapter" id="ch10">
       <div class="chap-num">CHAPTER 10</div>
-      <h2>예측 — 새 데이터의 Y를 추정하기</h2>
+      <h2>예측 — 새 데이터의 \(Y\)를 추정하기</h2>
       <div class="chap-sub">Prediction · 점 추정 + 구간 추정</div>
 
       <p>변수 선택까지 끝낸 모델이 있어요. 이제 새로운 아파트의 가격을 <strong>예측</strong>해 봐요!</p>
 
-      <h3>회귀식에 X 값 대입</h3>
+      <h3>회귀식에 \(X\) 값 대입</h3>
 
       <div class="callout yellow">
         <div class="label">질문</div>
         <p>"2-bath, 8-room, 10-year-old 아파트의 가격은 얼마일까?"</p>
-        <p>모델: Ŷ = 80.573 + 19.592 × BATH + 8.092 × ROOMS − 0.368 × AGE</p>
+        <p>모델: \(\hat{Y} = 80.573 + 19.592 \times \text{BATH} + 8.092 \times \text{ROOMS} - 0.368 \times \text{AGE}\)</p>
       </div>
 
-      <p>각 X 값을 대입하면 끝.</p>
+      <p>각 \(X\) 값을 대입하면 끝.</p>
 
-      <p><strong>Ŷ</strong> = 80.573 + 19.592 × 2 + 8.092 × 8 − 0.368 × 10<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;= 80.573 + 39.184 + 64.736 − 3.68<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;≈ <strong>180.8 (천 달러)</strong></p>
+      <p><strong>\(\hat{Y}\)</strong> \(= 80.573 + 19.592 \times 2 + 8.092 \times 8 - 0.368 \times 10\)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;\(= 80.573 + 39.184 + 64.736 - 3.68\)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;\(\approx\) <strong>180.8 (천 달러)</strong></p>
 
       <div class="callout green">
         <div class="label">점 추정</div>
@@ -633,7 +633,7 @@
 
       <h3>예측의 신뢰구간</h3>
 
-      <p>실제 Y는 식대로만 나오지 않아요. 잔차 e가 들어가요. e의 표준편차 추정치가 Sₑ이죠.</p>
+      <p>실제 \(Y\)는 식대로만 나오지 않아요. 잔차 \(e\)가 들어가요. \(e\)의 표준편차 추정치가 \(S_e\)이죠.</p>
 
       <div class="formula wide">
         \[ Y \approx \hat{Y} + e \sim N(\hat{Y}, S_e^2) \]
@@ -645,25 +645,25 @@
         \[ 95\% \text{ CI} : \hat{Y} \pm 1.96 \times S_e \]
       </div>
 
-      <p>(n이 충분히 크면 CLT가 작동해서 1.96. 작은 표본이면 대신 t-값을 써요.)</p>
+      <p>(\(n\)이 충분히 크면 CLT가 작동해서 1.96. 작은 표본이면 대신 \(t\)-값을 써요.)</p>
 
       <h3>예시로 계산</h3>
 
-      <p>Sₑ = 20.828 (위 5변수 모델). 그러면:</p>
+      <p>\(S_e = 20.828\) (위 5변수 모델). 그러면:</p>
 
-      <p>오차범위 = 1.96 × 20.828 ≈ 40.8K.</p>
+      <p>오차범위 \(= 1.96 \times 20.828 \approx 40.8\)K.</p>
 
-      <p><strong>95% CI : 180.8K ± 40.8K</strong> 즉 약 [140K, 221.6K].</p>
+      <p><strong>95% CI : \(180.8\text{K} \pm 40.8\text{K}\)</strong> 즉 약 \([140\text{K}, 221.6\text{K}]\).</p>
 
       <div class="callout blue">
         <div class="label">해석</div>
         <p>"우리 모델은 이 아파트의 가격이 약 95% 확률로 140K ~ 222K 사이일 거라고 본다."</p>
-        <p>꽤 넓은 범위죠? Sₑ가 크면 예측이 그만큼 흐릿해요. R²가 높을수록 Sₑ는 작아지고 CI도 좁아져요.</p>
+        <p>꽤 넓은 범위죠? \(S_e\)가 크면 예측이 그만큼 흐릿해요. \(R^2\)가 높을수록 \(S_e\)는 작아지고 CI도 좁아져요.</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        예측 = 회귀식에 X 대입한 Ŷ + 1.96 × Sₑ 만큼의 띠. Sₑ가 작을수록 정확.
+        예측 \(=\) 회귀식에 \(X\) 대입한 \(\hat{Y} + 1.96 \times S_e\) 만큼의 띠. \(S_e\)가 작을수록 정확.
       </div>
     </section>
 
@@ -687,14 +687,14 @@
 
       <h4>오늘의 장면 요약</h4>
       <ul>
-        <li>β̂은 표본마다 흔들리는 확률변수</li>
-        <li>각 β에 대해 H₀: β = 0을 검정 → p-값 또는 CI로 판정</li>
+        <li>\(\hat{\beta}\)은 표본마다 흔들리는 확률변수</li>
+        <li>각 \(\beta\)에 대해 \(H_0: \beta = 0\)을 검정 → \(p\)-값 또는 CI로 판정</li>
         <li>CI에 0이 포함 → 의미 없음. 포함 안 됨 → 의미 있음.</li>
-        <li>자유도: Total = n − 1, Regression = k, Residual = n − k − 1</li>
-        <li>MSE = SSE / (n − k − 1), Sₑ = √MSE</li>
-        <li>R²는 변수 늘리면 무조건 ↑ → Adjusted R²로 보정</li>
-        <li>변수 선택: p-값 큰 변수부터 한 개씩 빼기</li>
-        <li>예측: Ŷ = β̂₀ + Σβ̂ᵢXᵢ ± 1.96 × Sₑ</li>
+        <li>자유도: Total \(= n - 1\), Regression \(= k\), Residual \(= n - k - 1\)</li>
+        <li>\(MSE = SSE / (n - k - 1)\), \(S_e = \sqrt{MSE}\)</li>
+        <li>\(R^2\)는 변수 늘리면 무조건 ↑ → Adjusted \(R^2\)로 보정</li>
+        <li>변수 선택: \(p\)-값 큰 변수부터 한 개씩 빼기</li>
+        <li>예측: \(\hat{Y} = \hat{\beta}_0 + \sum \hat{\beta}_i X_i \pm 1.96 \times S_e\)</li>
       </ul>
 
       <h4>한 학기, 한 줄 요약</h4>

@@ -64,9 +64,9 @@
       <li><a href="#ch2">CLT 복습</a></li>
       <li><a href="#chQ1Q2">Q1·Q2 두 질문</a></li>
       <li><a href="#ch3">신뢰구간이란</a></li>
-      <li><a href="#ch4">σ 아는 경우의 CI</a></li>
+      <li><a href="#ch4">\(\sigma\) 아는 경우의 CI</a></li>
       <li><a href="#ch5">신뢰수준 90·95·99%</a></li>
-      <li><a href="#ch6">σ 모를 때 · S로 근사</a></li>
+      <li><a href="#ch6">\(\sigma\) 모를 때 · S로 근사</a></li>
       <li><a href="#ch7">t-분포 (보충)</a></li>
       <li><a href="#ch8">t 기반 CI (보충)</a></li>
       <li><a href="#ch9">n과 구간 폭</a></li>
@@ -109,7 +109,7 @@
       </p>
 
       <p class="story">
-        그런데 한 번의 실험에서 얻은 X̄ = 172.3. 이 <em>숫자 하나</em>로
+        그런데 한 번의 실험에서 얻은 \(\bar{X}\) = 172.3. 이 <em>숫자 하나</em>로
         "대한민국 성인 남성 평균 키는 172.3cm다"라고 선언해도 될까요?
       </p>
 
@@ -121,7 +121,7 @@
       <div class="callout">
         <div class="label">이 강의에서 배우는 것</div>
         <p><strong>① 신뢰구간(CI)이란 무엇인가.</strong> 왜 필요한가.</p>
-        <p><strong>② σ를 아는 경우</strong>와 <strong>모르는 경우</strong>의 계산법.</p>
+        <p><strong>② \(\sigma\)를 아는 경우</strong>와 <strong>모르는 경우</strong>의 계산법.</p>
         <p><strong>③ 모비율 p</strong>에 대한 신뢰구간까지 함께 완성해요.</p>
       </div>
 
@@ -139,8 +139,8 @@
       <div class="definition">
         <div class="term">Point Estimate · 점 추정</div>
         <div class="kor">한 숫자로 모수를 콕 집기</div>
-        <p>표본평균 <strong>X̄</strong> (표본에서 계산한 평균)
-        하나로 <strong>모평균 μ</strong> (진짜 전체 평균)를 추정하는 방식.</p>
+        <p>표본평균 <strong>\(\bar{X}\)</strong> (표본에서 계산한 평균)
+        하나로 <strong>모평균 \(\mu\)</strong> (진짜 전체 평균)를 추정하는 방식.</p>
         <p>간단해서 좋지만 "정확히 얼마나 가까운지"는 말해 주지 않아요.</p>
       </div>
 
@@ -209,27 +209,27 @@
 
       <div class="callout blue">
         <div class="label">중심극한정리 (CLT) 한 장 요약</div>
-        <p><strong>①</strong> 표본 크기 n이 충분히 크면(보통 n ≥ 30),
-        표본평균 X̄의 분포는 <em>정규분포</em>에 가까워져요.</p>
-        <p><strong>②</strong> X̄의 평균은 모평균 <strong>μ</strong> 그대로.</p>
-        <p><strong>③</strong> X̄의 표준오차는 <strong>σ/√n</strong>. n이 커질수록 좁아져요.</p>
+        <p><strong>①</strong> 표본 크기 n이 충분히 크면(보통 n \(\ge 30\)),
+        표본평균 \(\bar{X}\)의 분포는 <em>정규분포</em>에 가까워져요.</p>
+        <p><strong>②</strong> \(\bar{X}\)의 평균은 모평균 <strong>\(\mu\)</strong> 그대로.</p>
+        <p><strong>③</strong> \(\bar{X}\)의 표준오차는 <strong>\(\sigma /\sqrt{n}\)</strong>. n이 커질수록 좁아져요.</p>
       </div>
 
       <div class="formula">
         \[ \bar{X} \sim N\left(\mu,\; (\sigma/\sqrt{n})^2\right) \]
       </div>
 
-      <p>즉, X̄은 평균 <strong>μ</strong> (모집단 평균),
-      표준편차 <strong>σ/√n</strong> 인 정규분포를 따른다는 뜻이에요.</p>
+      <p>즉, \(\bar{X}\)은 평균 <strong>\(\mu\)</strong> (모집단 평균),
+      표준편차 <strong>\(\sigma /\sqrt{n}\)</strong> 인 정규분포를 따른다는 뜻이에요.</p>
 
-      <p>쉽게 말해 X̄은 μ 근처에 <em>종 모양</em>으로 쌓여요.
-      퍼짐의 폭은 σ/√n.</p>
+      <p>쉽게 말해 \(\bar{X}\)은 \(\mu\) 근처에 <em>종 모양</em>으로 쌓여요.
+      퍼짐의 폭은 \(\sigma /\sqrt{n}\).</p>
 
-      <p>이 σ/√n 을 <strong>표준오차 (Standard Error, SE)</strong>라고 불러요.
+      <p>이 \(\sigma /\sqrt{n}\) 을 <strong>표준오차 (Standard Error, SE)</strong>라고 불러요.
       "표본평균이 평균적으로 얼마나 흔들리는지"의 크기예요.</p>
 
       <div class="chart-wrap">
-        <div class="chart-title">표본평균 X̄의 분포</div>
+        <div class="chart-title">표본평균 \(\bar{X}\)의 분포</div>
         <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
           <line x1="60" y1="200" x2="620" y2="200" stroke="#1d1d1f" stroke-width="1.5"/>
           <!-- bell curve -->
@@ -249,7 +249,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        X̄은 μ 근처 종 모양. 폭은 σ/√n. 이게 신뢰구간의 출발선이에요.
+        \(\bar{X}\)은 \(\mu\) 근처 종 모양. 폭은 \(\sigma /\sqrt{n}\). 이게 신뢰구간의 출발선이에요.
       </div>
 
     </section>
@@ -262,22 +262,22 @@
 
       <p class="story">
         교수님께서는 신뢰구간을 들어가기 전에, 사고를 두 갈래로 나눠 보여주셨어요.
-        같은 식 <strong>X̄ ± 1.96·σ/√n</strong>이지만, "어느 쪽이 변하는가"에 따라
+        같은 식 <strong>\(\bar{X} \pm 1.96\cdot \sigma /\sqrt{n}\)</strong>이지만, "어느 쪽이 변하는가"에 따라
         의미가 완전히 달라져요.
       </p>
 
       <h3>Q1 · 표본평균은 어디 있을까?</h3>
 
       <div class="callout">
-        <div class="label">Q1 — 모평균 μ를 알 때</div>
-        <p><em>μ가 어디에 있고, n이 얼마나 큰지 안다고 가정.</em><br>
-        그렇다면 <strong>임의 표본평균 X̄</strong>는 어디에 있을까요?</p>
+        <div class="label">Q1 — 모평균 \(\mu\)를 알 때</div>
+        <p><em>\(\mu\)가 어디에 있고, n이 얼마나 큰지 안다고 가정.</em><br>
+        그렇다면 <strong>임의 표본평균 \(\bar{X}\)</strong>는 어디에 있을까요?</p>
         <p>다른 말로: "표본평균이 95% 확률로 들어갈 구간"을 찾고 싶어요.</p>
       </div>
 
-      <p>CLT에 의해 X̄ ≈ N(μ, σ²/n). 표준화하면 (X̄ − μ)/(σ/√n) ≈ N(0,1) = Z.</p>
+      <p>CLT에 의해 \(\bar{X} \approx N(\mu , \sigma^2/n)\). 표준화하면 \((\bar{X} - \mu )/(\sigma /\sqrt{n})\) \(\approx\) N(0,1) = Z.</p>
 
-      <p>Z 표에서 P(−1.96 ≤ Z ≤ 1.96) = 95% 이므로:</p>
+      <p>Z 표에서 \(P(-1.96 \le Z \le 1.96)\) = 95% 이므로:</p>
 
       <div class="formula wide">
         \[ P\left(\mu - 1.96 \cdot \sigma/\sqrt{n} \le \bar{X} \le \mu + 1.96 \cdot \sigma/\sqrt{n}\right) \approx 95\% \]
@@ -285,16 +285,16 @@
 
       <div class="callout green">
         <div class="label">Q1 답</div>
-        <p><strong>표본평균은 95% 확률로 모평균 μ를 중심으로 ±1.96·σ/√n 안에 있다.</strong></p>
+        <p><strong>표본평균은 95% 확률로 모평균 \(\mu\)를 중심으로 \(\pm\)\(1.96\cdot \sigma /\sqrt{n}\) 안에 있다.</strong></p>
       </div>
 
       <h3>추정 오차 — Estimation Error</h3>
 
       <div class="definition">
         <div class="term">Estimation Error · 추정 오차</div>
-        <div class="kor">|X̄ − μ|</div>
+        <div class="kor">\(|\bar{X} - \mu |\)</div>
         <p>표본평균이 진짜 모평균에서 얼마나 떨어져 있는가. 이걸 우리는 <em>모르지만</em>,
-        <strong>95% 확률로</strong> 1.96·σ/√n <em>이하</em>라는 사실은 알 수 있어요.</p>
+        <strong>95% 확률로</strong> \(1.96\cdot \sigma /\sqrt{n}\) <em>이하</em>라는 사실은 알 수 있어요.</p>
       </div>
 
       <p>그림으로 보면 두 가지 시나리오예요.</p>
@@ -302,12 +302,12 @@
       <div class="cards-2">
         <div class="card">
           <h5>95% — 가까운 경우</h5>
-          <p>X̄이 μ 근처. 추정 오차 ≤ 1.96·σ/√n.<br>
+          <p>\(\bar{X}\)이 \(\mu\) 근처. 추정 오차 \(\le\) \(1.96\cdot \sigma /\sqrt{n}\).<br>
           → 안심!</p>
         </div>
         <div class="card">
           <h5>5% — 운 나쁜 경우</h5>
-          <p>X̄이 꼬리에 들어감. 추정 오차 > 1.96·σ/√n.<br>
+          <p>\(\bar{X}\)이 꼬리에 들어감. 추정 오차 > \(1.96\cdot \sigma /\sqrt{n}\).<br>
           → 가끔 일어나는 일.</p>
         </div>
       </div>
@@ -316,12 +316,12 @@
 
       <div class="callout blue">
         <div class="label">Q2 — 사실 우리가 진짜 풀고 싶은 문제</div>
-        <p><em>표본을 한 번 뽑아서 X̄을 관찰했다고 하자.</em><br>
-        그렇다면 <strong>모평균 μ</strong>는 어디에 있을까요?</p>
-        <p>이번엔 X̄이 고정값, μ가 알 수 없는 진짜 값. 정반대 방향이에요.</p>
+        <p><em>표본을 한 번 뽑아서 \(\bar{X}\)을 관찰했다고 하자.</em><br>
+        그렇다면 <strong>모평균 \(\mu\)</strong>는 어디에 있을까요?</p>
+        <p>이번엔 \(\bar{X}\)이 고정값, \(\mu\)가 알 수 없는 진짜 값. 정반대 방향이에요.</p>
       </div>
 
-      <p>발상은 똑같아요. Q1에서 |X̄ − μ| ≤ 1.96·σ/√n 이 95% 성립한다고 했죠?
+      <p>발상은 똑같아요. Q1에서 \(|\bar{X} - \mu |\) \(\le\) \(1.96\cdot \sigma /\sqrt{n}\) 이 95% 성립한다고 했죠?
       이걸 부등식 정리만 다시 하면:</p>
 
       <div class="formula wide">
@@ -330,7 +330,7 @@
 
       <div class="callout green">
         <div class="label">Q2 답 = 신뢰구간</div>
-        <p><strong>관찰된 X̄을 중심으로 ±1.96·σ/√n 안에, 진짜 μ가 95% 확률로 있다.</strong></p>
+        <p><strong>관찰된 \(\bar{X}\)을 중심으로 \(\pm\)\(1.96\cdot \sigma /\sqrt{n}\) 안에, 진짜 \(\mu\)가 95% 확률로 있다.</strong></p>
         <p>이 구간이 바로 <em>"95% 신뢰구간"</em>이에요!</p>
       </div>
 
@@ -341,25 +341,25 @@
         <caption>같은 부등식, 다른 해석</caption>
         <thead><tr><th>구분</th><th>Q1</th><th>Q2 (CI)</th></tr></thead>
         <tbody>
-          <tr><td>모평균 μ</td><td>알려져 있음 (고정)</td><td>알 수 없음 (목표)</td></tr>
-          <tr><td>표본평균 X̄</td><td>아직 안 뽑음 (확률변수)</td><td>한 번 뽑아 관측한 값</td></tr>
-          <tr><td>중심</td><td>μ</td><td>X̄</td></tr>
-          <tr><td>의미</td><td>X̄이 μ 근처에</td><td>μ가 X̄ 근처에</td></tr>
-          <tr><td class="hi">결과 식</td><td class="hi">μ ± 1.96·σ/√n</td><td class="hi">X̄ ± 1.96·σ/√n</td></tr>
+          <tr><td>모평균 \(\mu\)</td><td>알려져 있음 (고정)</td><td>알 수 없음 (목표)</td></tr>
+          <tr><td>표본평균 \(\bar{X}\)</td><td>아직 안 뽑음 (확률변수)</td><td>한 번 뽑아 관측한 값</td></tr>
+          <tr><td>중심</td><td>\(\mu\)</td><td>\(\bar{X}\)</td></tr>
+          <tr><td>의미</td><td>\(\bar{X}\)이 \(\mu\) 근처에</td><td>\(\mu\)가 \(\bar{X}\) 근처에</td></tr>
+          <tr><td class="hi">결과 식</td><td class="hi">\(\mu \pm 1.96\cdot \sigma /\sqrt{n}\)</td><td class="hi">\(\bar{X} \pm 1.96\cdot \sigma /\sqrt{n}\)</td></tr>
         </tbody>
       </table>
       </div>
 
       <div class="analogy">
         <p><strong>등댓불과 배 이야기.</strong></p>
-        <p>Q1은 "등대(μ)는 거기 있고, 배(X̄)가 95% 확률로 들어가는 영해"를 그려요.<br>
-        Q2는 반대로 "내가 본 배(X̄) 옆에 등대(μ)가 95% 확률로 있을 영해"예요.<br>
-        같은 거리 1.96·σ/√n을 두 방향으로 다르게 활용하는 거죠.</p>
+        <p>Q1은 "등대(\(\mu\))는 거기 있고, 배(\(\bar{X}\))가 95% 확률로 들어가는 영해"를 그려요.<br>
+        Q2는 반대로 "내가 본 배(\(\bar{X}\)) 옆에 등대(\(\mu\))가 95% 확률로 있을 영해"예요.<br>
+        같은 거리 \(1.96\cdot \sigma /\sqrt{n}\)을 두 방향으로 다르게 활용하는 거죠.</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        Q1: μ → X̄. Q2: X̄ → μ. 같은 식, 거꾸로 읽기.
+        Q1: \(\mu\) → \(\bar{X}\). Q2: \(\bar{X}\) → \(\mu\). 같은 식, 거꾸로 읽기.
         Q2가 바로 신뢰구간이에요.
       </div>
 
@@ -380,9 +380,9 @@
 
       <div class="definition">
         <div class="term">Confidence Level · 신뢰수준</div>
-        <div class="kor">(1 − α) × 100%</div>
+        <div class="kor">(1 − \(\alpha\)) × 100%</div>
         <p>얼마나 많이 맞힐 수 있는지의 목표치. 보통 90%, 95%, 99%를 써요.
-        나머지 α는 놓칠 각오를 한 <em>유의수준</em>이에요.</p>
+        나머지 \(\alpha\)는 놓칠 각오를 한 <em>유의수준</em>이에요.</p>
       </div>
 
       <h3>95% 신뢰의 흔한 오해</h3>
@@ -447,7 +447,7 @@
             <text x="516" y="356" fill="#1d1d1f">빗나감 (5개)</text>
           </g>
         </svg>
-        <div class="chart-caption">20개만 그렸지만 의미는 같아요 — 대부분은 μ를 품고, 몇 개만 빗나가요.</div>
+        <div class="chart-caption">20개만 그렸지만 의미는 같아요 — 대부분은 \(\mu\)를 품고, 몇 개만 빗나가요.</div>
       </div>
 
       <div class="analogy">
@@ -467,16 +467,16 @@
     <!-- ═══════ 4장 ═══════ -->
     <section class="chapter" id="ch4">
       <div class="chap-num">CHAPTER 04</div>
-      <h2>σ를 아는 경우 — Z로 만드는 CI</h2>
-      <div class="chap-sub">Confidence Interval for μ (σ known)</div>
+      <h2>\(\sigma\)를 아는 경우 — Z로 만드는 CI</h2>
+      <div class="chap-sub">Confidence Interval for \(\mu\) (\(\sigma\) known)</div>
 
       <p>먼저 가장 간단한 상황부터. 교과서에 자주 나오는 <strong>이상적인 경우</strong>예요.
-      모집단의 표준편차 <strong>σ</strong>가 이미 알려져 있다고 가정해요.</p>
+      모집단의 표준편차 <strong>\(\sigma\)</strong>가 이미 알려져 있다고 가정해요.</p>
 
       <div class="callout">
         <div class="label">가정 세 가지</div>
-        <p>① 모집단 표준편차 <strong>σ를 안다</strong>.</p>
-        <p>② 모집단이 정규분포를 따르거나, <strong>n이 충분히 크다</strong>(n ≥ 30).</p>
+        <p>① 모집단 표준편차 <strong>\(\sigma\)를 안다</strong>.</p>
+        <p>② 모집단이 정규분포를 따르거나, <strong>n이 충분히 크다</strong>(n \(\ge 30\)).</p>
         <p>③ 표본은 무작위 추출이다.</p>
       </div>
 
@@ -487,41 +487,41 @@
       </div>
 
       <p>즉, <em>표본평균을 가운데 놓고</em> 양옆으로
-      "Z × σ/√n" 만큼 펼친 게 신뢰구간이에요.</p>
+      "Z × \(\sigma /\sqrt{n}\)" 만큼 펼친 게 신뢰구간이에요.</p>
 
       <p>식을 뜯어보면 세 조각이 보여요.</p>
 
       <div class="cards-2">
         <div class="card">
-          <h5>X̄ · 점 추정</h5>
+          <h5>\(\bar{X}\) · 점 추정</h5>
           <div class="kor-sub">띠의 중심</div>
           <p>표본으로 구한 평균. 우리가 가진 가장 좋은 <em>한 점</em>이에요.</p>
         </div>
         <div class="card">
-          <h5>Z<sub>α/2</sub> · 임계값</h5>
+          <h5>\(Z_{\alpha /2}\) · 임계값</h5>
           <div class="kor-sub">신뢰 수준의 번역</div>
-          <p>표준정규분포에서 양쪽 꼬리 α/2를 잘라내는 값. 신뢰가 클수록 커져요.</p>
+          <p>표준정규분포에서 양쪽 꼬리 \(\alpha /2\)를 잘라내는 값. 신뢰가 클수록 커져요.</p>
         </div>
         <div class="card">
-          <h5>σ/√n · 표준오차</h5>
+          <h5>\(\sigma /\sqrt{n}\) · 표준오차</h5>
           <div class="kor-sub">흔들림의 크기</div>
-          <p>X̄이 평균적으로 μ에서 얼마나 떨어지는지를 말해요.</p>
+          <p>\(\bar{X}\)이 평균적으로 \(\mu\)에서 얼마나 떨어지는지를 말해요.</p>
         </div>
         <div class="card">
           <h5>전체 · 오차범위</h5>
           <div class="kor-sub">Margin of Error</div>
-          <p>Z · σ/√n 을 묶어 <strong>ME</strong>라고 불러요. 띠의 <em>반지름</em>.</p>
+          <p>Z · \(\sigma /\sqrt{n}\) 을 묶어 <strong>ME</strong>라고 불러요. 띠의 <em>반지름</em>.</p>
         </div>
       </div>
 
       <div class="definition">
         <div class="term">Margin of Error · 오차범위 (ME)</div>
         <div class="kor">띠의 반지름</div>
-        <p>ME = Z<sub>α/2</sub> · σ/√n. CI는 "X̄ ± ME" 형태로 써요.
+        <p>ME = \(Z_{\alpha /2}\) · \(\sigma /\sqrt{n}\). CI는 "\(\bar{X}\) \(\pm\) ME" 형태로 써요.
         ME가 작을수록 구간이 좁고, 정보가 날카로워요.</p>
       </div>
 
-      <p class="arrow-note">→ 신뢰구간 = X̄ − ME &nbsp;~&nbsp; X̄ + ME</p>
+      <p class="arrow-note">→ 신뢰구간 = \(\bar{X}\) − ME &nbsp;~&nbsp; \(\bar{X}\) + ME</p>
 
     </section>
 
@@ -529,7 +529,7 @@
     <section class="chapter" id="ch5">
       <div class="chap-num">CHAPTER 05</div>
       <h2>90 · 95 · 99% — 신뢰의 값어치</h2>
-      <div class="chap-sub">Z<sub>α/2</sub> 값과 구간 폭</div>
+      <div class="chap-sub">\(Z_{\alpha /2}\) 값과 구간 폭</div>
 
       <p>신뢰수준을 높이면 구간은 어떻게 변할까요?
       직관적으로는 "더 많이 맞히려면 더 넓은 그물"이 필요해요.</p>
@@ -538,9 +538,9 @@
 
       <div class="table-scroll">
       <table class="blue-head center">
-        <caption>자주 쓰는 Z<sub>α/2</sub> 값</caption>
+        <caption>자주 쓰는 \(Z_{\alpha /2}\) 값</caption>
         <thead>
-          <tr><th>신뢰수준</th><th>α</th><th>α/2</th><th>Z<sub>α/2</sub></th></tr>
+          <tr><th>신뢰수준</th><th>\(\alpha\)</th><th>\(\alpha /2\)</th><th>\(Z_{\alpha /2}\)</th></tr>
         </thead>
         <tbody>
           <tr><td>90 %</td><td>0.10</td><td>0.05</td><td>1.645</td></tr>
@@ -578,13 +578,13 @@
 
       <h3>같은 데이터, 세 가지 띠</h3>
 
-      <p>예를 들어 X̄ = 50, σ = 10, n = 25일 때 CI를 세 가지로 만들어 볼게요.
-      표준오차는 σ/√n = 10/5 = <strong>2</strong>이에요.</p>
+      <p>예를 들어 \(\bar{X}\) = 50, \(\sigma\) = 10, n = 25일 때 CI를 세 가지로 만들어 볼게요.
+      표준오차는 \(\sigma /\sqrt{n}\) = 10/5 = <strong>2</strong>이에요.</p>
 
       <div class="data-strip">
-        90% → 50 ± 1.645 × 2 = 50 ± 3.29 → (46.71, 53.29)<br>
-        95% → 50 ± 1.96 × 2&nbsp; = 50 ± 3.92 → (46.08, 53.92)<br>
-        99% → 50 ± 2.576 × 2 = 50 ± 5.15 → (44.85, 55.15)
+        90% → 50 \(\pm\) 1.645 × 2 = 50 \(\pm\) 3.29 → (46.71, 53.29)<br>
+        95% → 50 \(\pm\) 1.96 × 2&nbsp; = 50 \(\pm\) 3.92 → (46.08, 53.92)<br>
+        99% → 50 \(\pm\) 2.576 × 2 = 50 \(\pm\) 5.15 → (44.85, 55.15)
       </div>
 
       <!-- 세 구간 비교 -->
@@ -644,10 +644,10 @@
     <!-- ═══════ 6장 ═══════ -->
     <section class="chapter" id="ch6">
       <div class="chap-num">CHAPTER 06</div>
-      <h2>σ를 모를 때 — 표본표준편차 S로 근사</h2>
-      <div class="chap-sub">교수님 공식: X̄ ± 1.96 · S/√n</div>
+      <h2>\(\sigma\)를 모를 때 — 표본표준편차 S로 근사</h2>
+      <div class="chap-sub">교수님 공식: \(\bar{X} \pm 1.96 \cdot S/\sqrt{n}\)</div>
 
-      <p>여기서 솔직한 질문 하나. "모표준편차 σ를 진짜로 아는 경우가 얼마나 있어?"</p>
+      <p>여기서 솔직한 질문 하나. "모표준편차 \(\sigma\)를 진짜로 아는 경우가 얼마나 있어?"</p>
 
       <p>거의 없어요. 모평균조차 모르는 마당에 모표준편차를 안다는 건
       <em>동화 속 이야기</em>죠. 현실에서는 표본에서 직접 계산할 수 있는
@@ -656,64 +656,64 @@
       <h3>표본 분산·표본 표준편차 S</h3>
 
       <div class="definition">
-        <div class="term">Sample Variance · 표본 분산 S²</div>
-        <div class="kor">분모에 n−1을 쓰는 이유 한 줄: 불편추정량을 위해</div>
+        <div class="term">Sample Variance · 표본 분산 \(S^2\)</div>
+        <div class="kor">분모에 \(n-1\)을 쓰는 이유 한 줄: 불편추정량을 위해</div>
         <div class="formula">
           \[ S^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2 \]
         </div>
         <p>각 표본값이 표본평균에서 얼마나 떨어졌는지를 제곱한 평균이에요.
-        분모가 <strong>n−1</strong>인 건, 표본평균을 이미 한 번 사용했기 때문에
+        분모가 <strong>\(n-1\)</strong>인 건, 표본평균을 이미 한 번 사용했기 때문에
         "자유롭게 변할 수 있는 정보"가 1개 줄어든 걸 보정하는 거예요.</p>
-        <p>그래서 E[S²] = σ²이 성립. <em>편향 없는 추정량(unbiased)</em>이 돼요.</p>
+        <p>그래서 \(E[S^2] = \sigma^2\)이 성립. <em>편향 없는 추정량(unbiased)</em>이 돼요.</p>
       </div>
 
       <div class="formula">
         \[ S = \sqrt{S^2} \quad \text{— 표본 표준편차} \]
       </div>
 
-      <h3>교수님의 핵심: σ 자리에 그냥 S 끼우기</h3>
+      <h3>교수님의 핵심: \(\sigma\) 자리에 그냥 S 끼우기</h3>
 
-      <p>교수님께서는 t-분포 같은 새 도구를 꺼내지 않고, <strong>σ 대신 S</strong>를
+      <p>교수님께서는 t-분포 같은 새 도구를 꺼내지 않고, <strong>\(\sigma\) 대신 S</strong>를
       그대로 끼워서 <em>근사 신뢰구간</em>을 쓰자고 하셨어요.</p>
 
       <div class="callout">
-        <div class="label">σ 모를 때의 95% 근사 CI</div>
+        <div class="label">\(\sigma\) 모를 때의 95% 근사 CI</div>
         <div class="formula wide">
           \[ \bar{X} - 1.96 \cdot S/\sqrt{n} \le \mu \le \bar{X} + 1.96 \cdot S/\sqrt{n} \]
         </div>
-        <p>구조는 σ 알 때와 <em>완전히 같아요</em>. 다른 점은 σ 자리에 S를 끼웠다는 것뿐.</p>
+        <p>구조는 \(\sigma\) 알 때와 <em>완전히 같아요</em>. 다른 점은 \(\sigma\) 자리에 S를 끼웠다는 것뿐.</p>
       </div>
 
       <h3>왜 이게 '근사'인가</h3>
 
-      <p>S는 σ에 가까운 값이지만 <em>표본마다 흔들리는 추정치</em>예요.
+      <p>S는 \(\sigma\)에 가까운 값이지만 <em>표본마다 흔들리는 추정치</em>예요.
       그래서 정확한 95%가 아니라 <strong>대략 95%</strong>의 신뢰구간이 돼요.
-      그래도 n이 충분히 크면(보통 n ≥ 30) 이 근사가 아주 잘 들어맞아요.</p>
+      그래도 n이 충분히 크면(보통 n \(\ge 30\)) 이 근사가 아주 잘 들어맞아요.</p>
 
       <div class="callout blue">
         <div class="label">한 줄 요약</div>
-        <p><strong>σ 알 때 → X̄ ± 1.96·σ/√n (정확한 CI)<br>
-        σ 모를 때 → X̄ ± 1.96·S/√n (근사 CI)</strong></p>
+        <p><strong>\(\sigma\) 알 때 → \(\bar{X} \pm 1.96\cdot \sigma /\sqrt{n}\) (정확한 CI)<br>
+        \(\sigma\) 모를 때 → \(\bar{X} \pm 1.96\cdot S/\sqrt{n}\) (근사 CI)</strong></p>
       </div>
 
       <h3>예시 · 스마트폰 배터리</h3>
 
       <div class="data-strip">
-        n = 25, &nbsp; X̄ = 10.5 시간, &nbsp; S = 1.2 시간
+        n = 25, &nbsp; \(\bar{X}\) = 10.5 시간, &nbsp; S = 1.2 시간
       </div>
 
       <ol class="steps">
-        <li><strong>표준오차.</strong> S/√n = 1.2/5 = 0.24.</li>
-        <li><strong>오차범위.</strong> ME = 1.96 × 0.24 ≈ 0.470.</li>
-        <li><strong>95% CI.</strong> 10.5 ± 0.470 → <strong>(10.03, 10.97) 시간</strong>.</li>
+        <li><strong>표준오차.</strong> \(S/\sqrt{n}\) = 1.2/5 = 0.24.</li>
+        <li><strong>오차범위.</strong> ME = 1.96 × 0.24 \(\approx\) 0.470.</li>
+        <li><strong>95% CI.</strong> 10.5 \(\pm\) 0.470 → <strong>(10.03, 10.97) 시간</strong>.</li>
       </ol>
 
       <p>"이 모델 평균 배터리는 95% 신뢰로 약 <strong>10.0 ~ 11.0 시간</strong>"이라고 답할 수 있어요.</p>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        σ 모르면 그 자리에 표본 표준편차 S를 넣어 근사 CI.
-        구조 그대로 — Z = 1.96, ±1.96·S/√n.
+        \(\sigma\) 모르면 그 자리에 표본 표준편차 S를 넣어 근사 CI.
+        구조 그대로 — Z = 1.96, \(\pm\)\(1.96\cdot S/\sqrt{n}\).
       </div>
 
     </section>
@@ -726,7 +726,7 @@
 
       <div class="callout yellow">
         <div class="label">참고 — 시험 범위는 6장까지!</div>
-        <p>이 강의의 핵심 공식은 <strong>X̄ ± 1.96·S/√n</strong>입니다.
+        <p>이 강의의 핵심 공식은 <strong>\(\bar{X} \pm 1.96\cdot S/\sqrt{n}\)</strong>입니다.
         아래 t-분포 내용은 표본이 매우 작을 때(n &lt; 30) 더 정확한 답을 주는
         <em>고급 보정 도구</em>예요. 시험 부담 없이 "이런 게 있구나" 정도만 봐도 충분.</p>
       </div>
@@ -784,7 +784,7 @@
         </div>
         <div class="card">
           <h5>④ 정규에 수렴</h5>
-          <p>df → ∞이면 표준정규와 일치해요. 실전에선 n ≥ 30부터 거의 같다고 봐요.</p>
+          <p>df → \(\infty\)이면 표준정규와 일치해요. 실전에선 n \(\ge 30\)부터 거의 같다고 봐요.</p>
         </div>
       </div>
 
@@ -836,32 +836,32 @@
       <h2>(보충) t 기반 신뢰구간</h2>
       <div class="chap-sub">표본이 작을 때 (n &lt; 30) 더 정확하게</div>
 
-      <p><em>참고용</em> 공식이에요. σ를 모르고 표본이 작을 때 더 정확한 답을 줍니다.</p>
+      <p><em>참고용</em> 공식이에요. \(\sigma\)를 모르고 표본이 작을 때 더 정확한 답을 줍니다.</p>
 
       <div class="formula">
         \[ \bar{X} \pm t_{\alpha/2,\, n-1} \cdot \frac{s}{\sqrt{n}} \]
       </div>
 
-      <p>즉, <em>표본평균</em> 중심으로 양옆 "t × s/√n" 만큼 펼친 구간이에요.
-      4장 공식과 비교하면 <strong>σ 자리에 s, Z 자리에 t</strong>가 들어갔을 뿐이에요.</p>
+      <p>즉, <em>표본평균</em> 중심으로 양옆 "t × \(s/\sqrt{n}\)" 만큼 펼친 구간이에요.
+      4장 공식과 비교하면 <strong>\(\sigma\) 자리에 s, Z 자리에 t</strong>가 들어갔을 뿐이에요.</p>
 
       <p>구조는 완전히 같으니 겁먹지 마세요.</p>
 
       <div class="cards-2">
         <div class="card">
-          <h5>X̄</h5>
+          <h5>\(\bar{X}\)</h5>
           <p>표본평균. 달라진 건 없어요.</p>
         </div>
         <div class="card">
-          <h5>t<sub>α/2, n−1</sub></h5>
-          <p>t 표에서 찾는 임계값. 자유도 n−1과 α/2를 넣어요.</p>
+          <h5>\(t_{\alpha /2, n-1}\)</h5>
+          <p>t 표에서 찾는 임계값. 자유도 \(n-1\)과 \(\alpha /2\)를 넣어요.</p>
         </div>
         <div class="card">
           <h5>s</h5>
           <p>표본 표준편차. 모집단이 아니라 <em>우리 데이터</em>에서 계산.</p>
         </div>
         <div class="card">
-          <h5>s / √n</h5>
+          <h5>\(s / \sqrt{n}\)</h5>
           <p>표본 기반 표준오차. 모집단 SE의 근사치예요.</p>
         </div>
       </div>
@@ -871,17 +871,17 @@
       <p>어떤 스마트폰 25대의 배터리 수명(시간)을 측정했어요.</p>
 
       <div class="data-strip">
-        n = 25, &nbsp; X̄ = 10.5 시간, &nbsp; s = 1.2 시간
+        n = 25, &nbsp; \(\bar{X}\) = 10.5 시간, &nbsp; s = 1.2 시간
       </div>
 
       <p>95% 신뢰구간을 만들어 볼게요.</p>
 
       <ol class="steps">
-        <li><strong>자유도.</strong> df = n − 1 = 24.</li>
-        <li><strong>임계값.</strong> t<sub>0.025, 24</sub> ≈ <strong>2.064</strong> (t 표에서).</li>
-        <li><strong>표준오차.</strong> s/√n = 1.2/5 = 0.24.</li>
-        <li><strong>오차범위.</strong> ME = 2.064 × 0.24 ≈ 0.495.</li>
-        <li><strong>CI.</strong> 10.5 ± 0.495 → <strong>(10.005, 10.995)</strong> 시간.</li>
+        <li><strong>자유도.</strong> df = \(n - 1\) = 24.</li>
+        <li><strong>임계값.</strong> \(t_{0.025, 24}\) \(\approx\) <strong>2.064</strong> (t 표에서).</li>
+        <li><strong>표준오차.</strong> \(s/\sqrt{n}\) = 1.2/5 = 0.24.</li>
+        <li><strong>오차범위.</strong> ME = 2.064 × 0.24 \(\approx\) 0.495.</li>
+        <li><strong>CI.</strong> 10.5 \(\pm\) 0.495 → <strong>(10.005, 10.995)</strong> 시간.</li>
       </ol>
 
       <div class="callout green">
@@ -898,7 +898,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        σ를 모르면 s와 t. 자유도 n−1 챙기기.
+        \(\sigma\)를 모르면 s와 t. 자유도 \(n-1\) 챙기기.
       </div>
 
     </section>
@@ -909,7 +909,7 @@
       <h2>표본 크기 n의 힘</h2>
       <div class="chap-sub">n이 커지면 구간이 좁아진다</div>
 
-      <p>여러 번 말했지만 다시 한 번. 표준오차는 <strong>σ/√n</strong>이에요.
+      <p>여러 번 말했지만 다시 한 번. 표준오차는 <strong>\(\sigma /\sqrt{n}\)</strong>이에요.
       분모에 n이 있다는 사실. 별 거 아닌 것 같지만 <em>엄청난 의미</em>예요.</p>
 
       <div class="analogy">
@@ -925,9 +925,9 @@
       즉 <strong>구간 폭이 절반</strong>이 돼요.</p>
 
       <div class="data-strip">
-        n = 25&nbsp; → SE = σ/5<br>
-        n = 100 → SE = σ/10&nbsp; <em>(폭 50%)</em><br>
-        n = 400 → SE = σ/20&nbsp; <em>(폭 25%)</em>
+        n = 25&nbsp; → SE = \(\sigma\)/5<br>
+        n = 100 → SE = \(\sigma\)/10&nbsp; <em>(폭 50%)</em><br>
+        n = 400 → SE = \(\sigma\)/20&nbsp; <em>(폭 25%)</em>
       </div>
 
       <!-- n 증가에 따른 CI 폭 감소 그래프 -->
@@ -980,20 +980,20 @@
 
       <h3>필요한 n 거꾸로 구하기</h3>
 
-      <p>"ME를 ±E 이하로 만들고 싶다"면 공식에서 n을 풀어낼 수 있어요.</p>
+      <p>"ME를 \(\pm\)E 이하로 만들고 싶다"면 공식에서 n을 풀어낼 수 있어요.</p>
 
       <div class="formula">
         \[ n = \frac{Z^2 \cdot \sigma^2}{E^2} \]
       </div>
 
-      <p>즉, ME = Z·σ/√n 에서 양변을 n에 대해 풀면 나와요.
-      <em>원하는 정밀도 E가 작을수록</em>, <em>σ가 클수록</em> n이 더 커져야 한다는 뜻이에요.</p>
+      <p>즉, ME = Z·\(\sigma /\sqrt{n}\) 에서 양변을 n에 대해 풀면 나와요.
+      <em>원하는 정밀도 E가 작을수록</em>, <em>\(\sigma\)가 클수록</em> n이 더 커져야 한다는 뜻이에요.</p>
 
-      <p>예: σ = 10, 95% 신뢰로 ME ≤ 2로 만들고 싶다면</p>
+      <p>예: \(\sigma\) = 10, 95% 신뢰로 ME \(\le 2\)로 만들고 싶다면</p>
 
       <div class="data-strip">
-        n = (1.96)<sup>2</sup> × (10)<sup>2</sup> / 2<sup>2</sup>
-        = 3.8416 × 100 / 4 ≈ <strong>96.04</strong> → n = 97 (반올림 ↑)
+        n = \((1.96)^2\) × \((10)^2\) / \(2^2\)
+        = 3.8416 × 100 / 4 \(\approx\) <strong>96.04</strong> → n = 97 (반올림 ↑)
       </div>
 
       <div class="callout yellow">
@@ -1020,9 +1020,9 @@
 
       <div class="definition">
         <div class="term">Sample Proportion · 표본비율</div>
-        <div class="kor">p̂ (p-hat)</div>
+        <div class="kor">\(\hat{p}\) (p-hat)</div>
         <p>표본에서 해당 특성을 가진 비율.
-        설문 1000명 중 A를 지지한 350명이면 p̂ = 0.35예요.</p>
+        설문 1000명 중 A를 지지한 350명이면 \(\hat{p}\) = 0.35예요.</p>
       </div>
 
       <h3>공식</h3>
@@ -1031,62 +1031,62 @@
         \[ \hat{p} \pm Z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
       </div>
 
-      <p>즉, 표본비율 p̂ 중심으로 양옆 "Z × √(p̂(1−p̂)/n)" 만큼 펼치면 끝.</p>
+      <p>즉, 표본비율 \(\hat{p}\) 중심으로 양옆 "Z × √(\(\hat{p} (1-\hat{p} )/n\))" 만큼 펼치면 끝.</p>
 
-      <p>제곱근 안쪽 <strong>p̂(1 − p̂)</strong>이 분산 역할을 해요.
-      비율에서는 이 값이 σ<sup>2</sup> 자리를 대신하는 거죠.</p>
+      <p>제곱근 안쪽 <strong>\(\hat{p} (1 - \hat{p} )\)</strong>이 분산 역할을 해요.
+      비율에서는 이 값이 \(\sigma^2\) 자리를 대신하는 거죠.</p>
 
       <div class="analogy">
         <p><strong>동전 던지기의 흔들림.</strong></p>
         <p>앞면 나올 확률 p 인 동전을 n 번 던져요.
-        앞면 비율 p̂의 흔들림은 p 가 0.5 일 때 가장 커요 (0.5·0.5 = 0.25).
+        앞면 비율 \(\hat{p}\)의 흔들림은 p 가 0.5 일 때 가장 커요 (0.5·0.5 = 0.25).
         p 가 0 이나 1 에 가까우면 결과가 뻔해서 흔들림이 작아져요.</p>
       </div>
 
       <div class="callout">
         <div class="label">사용 조건</div>
-        <p>표본이 충분히 커야 해요. 흔한 기준은 <strong>n p̂ ≥ 5</strong>
-        <strong>그리고 n(1 − p̂) ≥ 5</strong>. 성공 횟수·실패 횟수 모두 5 이상.</p>
+        <p>표본이 충분히 커야 해요. 흔한 기준은 <strong>\(n \hat{p} \ge 5\)</strong>
+        <strong>그리고 \(n(1 - \hat{p} ) \ge 5\)</strong>. 성공 횟수·실패 횟수 모두 5 이상.</p>
       </div>
 
       <h3>예시 · 후보 지지율 조사</h3>
 
       <div class="data-strip">
-        n = 1000명, 후보 A 지지 = 420명 &nbsp;→&nbsp; p̂ = 0.42
+        n = 1000명, 후보 A 지지 = 420명 &nbsp;→&nbsp; \(\hat{p}\) = 0.42
       </div>
 
       <ol class="steps">
-        <li><strong>조건 확인.</strong> np̂ = 420, n(1−p̂) = 580. 둘 다 넉넉.</li>
+        <li><strong>조건 확인.</strong> \(n\hat{p} = 420\), \(n(1-\hat{p} ) = 580\). 둘 다 넉넉.</li>
         <li><strong>표준오차.</strong>
           <div class="formula">
             \[ SE = \sqrt{0.42 \times 0.58 / 1000} \approx \sqrt{0.0002436} \approx 0.0156 \]
           </div>
         </li>
-        <li><strong>ME (95%).</strong> 1.96 × 0.0156 ≈ 0.0306.</li>
-        <li><strong>CI.</strong> 0.42 ± 0.0306 → <strong>(0.389, 0.451)</strong>.</li>
+        <li><strong>ME (95%).</strong> 1.96 × 0.0156 \(\approx\) 0.0306.</li>
+        <li><strong>CI.</strong> 0.42 \(\pm\) 0.0306 → <strong>(0.389, 0.451)</strong>.</li>
       </ol>
 
       <div class="callout green">
         <div class="label">현실의 한 줄</div>
         <p>"후보 A의 진짜 지지율은 95% 신뢰로 <strong>38.9% ~ 45.1%</strong>
-        사이일 것이다." 뉴스에서 자주 보는 "오차범위 ±3.1%p"가 이거예요.</p>
+        사이일 것이다." 뉴스에서 자주 보는 "오차범위 \(\pm\)3.1%p"가 이거예요.</p>
       </div>
 
       <h3>비율 조사에 필요한 n</h3>
 
       <p>평균처럼 n도 거꾸로 풀 수 있어요. 다만 여기선 p를 모르니
-      <strong>p = 0.5</strong>로 두는 게 가장 보수적이에요. 분산이 최대니까요.</p>
+      <strong>\(p = 0.5\)</strong>로 두는 게 가장 보수적이에요. 분산이 최대니까요.</p>
 
       <div class="formula">
         \[ n = \frac{Z^2 \cdot p(1-p)}{E^2} \]
       </div>
 
-      <p>예: ME ≤ 3%p, 95% 신뢰 → n ≈ (1.96)<sup>2</sup> × 0.25 / (0.03)<sup>2</sup>
-      ≈ <strong>1068명</strong>. 여론조사가 1000명 언저리인 이유예요.</p>
+      <p>예: ME \(\le 3\)%p, 95% 신뢰 → n \(\approx\) \((1.96)^2\) × 0.25 / \((0.03)^2\)
+      \(\approx\) <strong>1068명</strong>. 여론조사가 1000명 언저리인 이유예요.</p>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        비율도 CI가 있다. 뉴스의 "±3.1%p"가 바로 오차범위.
+        비율도 CI가 있다. 뉴스의 "\(\pm\)3.1%p"가 바로 오차범위.
       </div>
 
     </section>
@@ -1102,7 +1102,7 @@
       <p>어떤 택배 회사가 30건의 배송 시간을 기록했어요.</p>
 
       <div class="data-strip">
-        n = 30, &nbsp; X̄ = 2.1일, &nbsp; s = 0.5일, &nbsp; 신뢰수준 95%
+        n = 30, &nbsp; \(\bar{X}\) = 2.1일, &nbsp; s = 0.5일, &nbsp; 신뢰수준 95%
       </div>
 
       <div class="table-scroll">
@@ -1111,9 +1111,9 @@
         <thead><tr><th>항목</th><th>값</th></tr></thead>
         <tbody>
           <tr><td>df</td><td>29</td></tr>
-          <tr><td>t<sub>0.025, 29</sub></td><td>2.045</td></tr>
-          <tr><td>SE = s/√n</td><td>0.5 / √30 ≈ 0.0913</td></tr>
-          <tr><td>ME = t · SE</td><td>2.045 × 0.0913 ≈ 0.187</td></tr>
+          <tr><td>\(t_{0.025, 29}\)</td><td>2.045</td></tr>
+          <tr><td>SE = \(s/\sqrt{n}\)</td><td>0.5 / √30 \(\approx\) 0.0913</td></tr>
+          <tr><td>ME = t · SE</td><td>2.045 × 0.0913 \(\approx\) 0.187</td></tr>
           <tr><td class="hi">95% CI</td><td class="hi">(1.913, 2.287) 일</td></tr>
         </tbody>
       </table>
@@ -1124,22 +1124,22 @@
       <h3>장면 ② · 학생 통학 시간</h3>
 
       <p>학교 학생 100명의 통학 시간을 조사했어요. 과거 기록에서
-      σ = 15분이 알려져 있어요.</p>
+      \(\sigma\) = 15분이 알려져 있어요.</p>
 
       <div class="data-strip">
-        n = 100, &nbsp; X̄ = 42분, &nbsp; σ = 15분 (기지), &nbsp; 99% 신뢰
+        n = 100, &nbsp; \(\bar{X}\) = 42분, &nbsp; \(\sigma\) = 15분 (기지), &nbsp; 99% 신뢰
       </div>
 
-      <p>σ가 알려졌으니 Z를 써요.</p>
+      <p>\(\sigma\)가 알려졌으니 Z를 써요.</p>
 
       <div class="table-scroll">
       <table class="center">
         <caption>Z 기반 계산</caption>
         <thead><tr><th>항목</th><th>값</th></tr></thead>
         <tbody>
-          <tr><td>Z<sub>0.005</sub></td><td>2.576</td></tr>
-          <tr><td>SE = σ/√n</td><td>15 / 10 = 1.5</td></tr>
-          <tr><td>ME</td><td>2.576 × 1.5 ≈ 3.864</td></tr>
+          <tr><td>\(Z_{0.005}\)</td><td>2.576</td></tr>
+          <tr><td>SE = \(\sigma /\sqrt{n}\)</td><td>15 / 10 = 1.5</td></tr>
+          <tr><td>ME</td><td>2.576 × 1.5 \(\approx\) 3.864</td></tr>
           <tr><td class="hi">99% CI</td><td class="hi">(38.14, 45.86) 분</td></tr>
         </tbody>
       </table>
@@ -1152,14 +1152,14 @@
       <p>공장에서 500개 제품을 검사해 <strong>15개</strong>가 불량이었어요. 95% 신뢰로 불량률은?</p>
 
       <div class="data-strip">
-        p̂ = 15/500 = 0.03
+        \(\hat{p}\) = 15/500 = 0.03
       </div>
 
       <ol class="steps">
-        <li>조건 확인: np̂ = 15, n(1−p̂) = 485. 살짝 아슬하지만 OK.</li>
-        <li>SE = √(0.03 × 0.97 / 500) ≈ √0.0000582 ≈ 0.00763.</li>
-        <li>ME = 1.96 × 0.00763 ≈ 0.01495.</li>
-        <li>CI = 0.03 ± 0.015 → <strong>(0.015, 0.045)</strong> = (1.5%, 4.5%).</li>
+        <li>조건 확인: \(n\hat{p} = 15\), \(n(1-\hat{p} ) = 485\). 살짝 아슬하지만 OK.</li>
+        <li>SE = √(0.03 × 0.97 / 500) \(\approx\) √0.0000582 \(\approx\) 0.00763.</li>
+        <li>ME = 1.96 × 0.00763 \(\approx\) 0.01495.</li>
+        <li>CI = 0.03 \(\pm\) 0.015 → <strong>(0.015, 0.045)</strong> = (1.5%, 4.5%).</li>
       </ol>
 
       <div class="callout green">
@@ -1182,25 +1182,25 @@
       <div class="chap-sub">Comparing Two Means · Independent Samples</div>
 
       <p>이제 이야기를 한 단계 넓혀 볼게요.
-      지금까지는 <strong>한 모집단</strong>의 평균 μ를 추정했죠.</p>
+      지금까지는 <strong>한 모집단</strong>의 평균 \(\mu\)를 추정했죠.</p>
 
       <p>하지만 현실의 질문은 보통 이렇게 생겨요.
       "서울 체류 시간과 도쿄 체류 시간 중 <em>어느 쪽이 더 길까?</em>"</p>
 
       <p>두 모집단을 비교해야 하는 상황이에요.
-      모평균을 <strong>μ<sub>S</sub></strong> (서울), <strong>μ<sub>T</sub></strong> (도쿄)라고 두고,
-      우리가 알고 싶은 건 <em>둘의 차이</em> μ<sub>S</sub> − μ<sub>T</sub> 예요.</p>
+      모평균을 <strong>\(\mu_S\)</strong> (서울), <strong>\(\mu_T\)</strong> (도쿄)라고 두고,
+      우리가 알고 싶은 건 <em>둘의 차이</em> \(\mu_S\) − \(\mu_T\) 예요.</p>
 
       <div class="definition">
         <div class="term">Independent Samples · 독립 표본</div>
         <div class="kor">서로 다른 두 모집단에서 따로따로 뽑기</div>
-        <p>서울 사람 n<sub>S</sub>명, 도쿄 사람 n<sub>T</sub>명을 <em>독립적으로</em> 뽑은 상황.
+        <p>서울 사람 \(n_S\)명, 도쿄 사람 \(n_T\)명을 <em>독립적으로</em> 뽑은 상황.
         한쪽 표본의 결과가 다른 쪽에 영향을 주지 않아요.</p>
       </div>
 
       <h3>자연스러운 추정량</h3>
 
-      <p>직관부터 시작해요. 서울 표본평균 X̄<sub>S</sub>, 도쿄 표본평균 X̄<sub>T</sub>가 있잖아요?</p>
+      <p>직관부터 시작해요. 서울 표본평균 \(\bar{X}_S\), 도쿄 표본평균 \(\bar{X}_T\)가 있잖아요?</p>
 
       <p>두 모평균의 차이를 추정하려면
       <strong>두 표본평균의 차이</strong>를 쓰면 되겠죠.</p>
@@ -1210,7 +1210,7 @@
       </div>
 
       <p>즉, 서울 평균에서 도쿄 평균을 뺀 숫자를
-      μ<sub>S</sub> − μ<sub>T</sub>의 <em>좋은 추측</em>으로 삼겠다는 거예요.</p>
+      \(\mu_S\) − \(\mu_T\)의 <em>좋은 추측</em>으로 삼겠다는 거예요.</p>
 
       <div class="callout yellow">
         <div class="label">진짜 써도 될까? — 교수님의 3단 체크</div>
@@ -1243,17 +1243,17 @@
           <div class="formula">
             \[ = \frac{\sigma_S^2}{n_S} + \frac{\sigma_T^2}{n_T} \]
           </div>
-          즉, 각 표본평균의 분산(σ²/n 꼴)을 그냥 합치면 돼요.
+          즉, 각 표본평균의 분산(\(\sigma^2/n\) 꼴)을 그냥 합치면 돼요.
           공분산은 0이라 빠져요.
         </li>
         <li><strong>분포 (Distribution).</strong>
-          n<sub>S</sub>, n<sub>T</sub>가 충분히 크면 <strong>CLT</strong>에 의해
+          \(n_S\), \(n_T\)가 충분히 크면 <strong>CLT</strong>에 의해
           각 표본평균이 정규분포에 가까워지고,
           <em>정규끼리의 차</em>도 여전히 정규예요.
           <div class="formula">
             \[ \bar{X}_S - \bar{X}_T \approx N(\mu_S - \mu_T,\; SE^2) \]
           </div>
-          즉, 이 차이값은 "진짜 차이 μ<sub>S</sub>−μ<sub>T</sub>" 근처에 종 모양으로 쌓여요.
+          즉, 이 차이값은 "진짜 차이 \(\mu_S\)−\(\mu_T\)" 근처에 종 모양으로 쌓여요.
         </li>
       </ol>
 
@@ -1270,7 +1270,7 @@
       <h3>95% 신뢰구간 공식</h3>
 
       <p>이제 6강·7강에서 본 패턴과 똑같이 조립하면 끝.
-      "추정량 ± 1.96 · SE" 공식이에요.</p>
+      "추정량 \(\pm\) 1.96 · SE" 공식이에요.</p>
 
       <div class="formula">
         \[ (\bar{X}_S - \bar{X}_T) \pm 1.96 \cdot SE \]
@@ -1286,9 +1286,9 @@
       양옆으로 1.96·SE 만큼 펼치면 95% 신뢰구간이 나와요.</p>
 
       <div class="callout blue">
-        <div class="label">σ를 모를 때</div>
-        <p>σ<sub>S</sub>, σ<sub>T</sub>를 모르면 (거의 항상 모르죠)
-        표본 분산 <strong>S<sub>S</sub><sup>2</sup></strong>, <strong>S<sub>T</sub><sup>2</sup></strong>로 바꿔 넣어요.</p>
+        <div class="label">\(\sigma\)를 모를 때</div>
+        <p>\(\sigma_S\), \(\sigma_T\)를 모르면 (거의 항상 모르죠)
+        표본 분산 <strong>\(S_S^2\)</strong>, <strong>\(S_T^2\)</strong>로 바꿔 넣어요.</p>
         <div class="formula wide">
           \[ (\bar{X}_S - \bar{X}_T) \pm 1.96 \cdot \sqrt{S_S^2/n_S + S_T^2/n_T} \]
         </div>
@@ -1300,12 +1300,12 @@
       <p>외국인 관광객의 평균 체류 시간(일)을 조사했다고 해볼게요.</p>
 
       <div class="data-strip">
-        서울: n<sub>S</sub> = 50, &nbsp; X̄<sub>S</sub> = 4.2, &nbsp; S<sub>S</sub> = 1.5<br>
-        도쿄: n<sub>T</sub> = 40, &nbsp; X̄<sub>T</sub> = 3.6, &nbsp; S<sub>T</sub> = 1.2
+        서울: \(n_S\) = 50, &nbsp; \(\bar{X}_S\) = 4.2, &nbsp; \(S_S\) = 1.5<br>
+        도쿄: \(n_T\) = 40, &nbsp; \(\bar{X}_T\) = 3.6, &nbsp; \(S_T\) = 1.2
       </div>
 
       <ol class="steps">
-        <li><strong>차이.</strong> X̄<sub>S</sub> − X̄<sub>T</sub> = 4.2 − 3.6 = <strong>0.6일</strong>.</li>
+        <li><strong>차이.</strong> \(\bar{X}_S\) − \(\bar{X}_T\) = 4.2 − 3.6 = <strong>0.6일</strong>.</li>
         <li><strong>표준오차.</strong>
           <div class="formula">
             \[ SE = \sqrt{1.5^2/50 + 1.2^2/40} \]
@@ -1314,8 +1314,8 @@
             \[ = \sqrt{0.045 + 0.036} = \sqrt{0.081} \approx 0.285 \]
           </div>
         </li>
-        <li><strong>오차범위.</strong> ME = 1.96 × 0.285 ≈ 0.558.</li>
-        <li><strong>95% CI.</strong> 0.6 ± 0.558 → <strong>(0.042, 1.158)</strong> 일.</li>
+        <li><strong>오차범위.</strong> ME = 1.96 × 0.285 \(\approx\) 0.558.</li>
+        <li><strong>95% CI.</strong> 0.6 \(\pm\) 0.558 → <strong>(0.042, 1.158)</strong> 일.</li>
       </ol>
 
       <div class="callout green">
@@ -1341,8 +1341,8 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        두 평균 차이의 CI는 (X̄<sub>S</sub>−X̄<sub>T</sub>) ± 1.96·√(σ²<sub>S</sub>/n<sub>S</sub> + σ²<sub>T</sub>/n<sub>T</sub>).
-        σ 모르면 S로.
+        두 평균 차이의 CI는 (\(\bar{X}_S\)−\(\bar{X}_T\)) \(\pm\) 1.96·√(\(\sigma^2_S\)/\(n_S\) + \(\sigma^2_T\)/\(n_T\)).
+        \(\sigma\) 모르면 S로.
       </div>
 
     </section>
@@ -1351,13 +1351,13 @@
     <section class="chapter" id="ch13">
       <div class="chap-num">CHAPTER 13</div>
       <h2>두 비율 차이의 신뢰구간</h2>
-      <div class="chap-sub">C.I. for p<sub>S</sub> − p<sub>T</sub></div>
+      <div class="chap-sub">C.I. for \(p_S\) − \(p_T\)</div>
 
       <p>이번엔 평균이 아니라 <em>비율</em>의 비교예요.
       "정당 A 지지율은 서울과 부산 중 어디가 더 높을까?"</p>
 
-      <p>모비율 <strong>p<sub>S</sub></strong>와 <strong>p<sub>T</sub></strong>가 있고,
-      우리는 <em>차이</em> p<sub>S</sub> − p<sub>T</sub>를 추정하고 싶어요.</p>
+      <p>모비율 <strong>\(p_S\)</strong>와 <strong>\(p_T\)</strong>가 있고,
+      우리는 <em>차이</em> \(p_S\) − \(p_T\)를 추정하고 싶어요.</p>
 
       <h3>평균 때와 똑같은 뼈대</h3>
 
@@ -1365,16 +1365,16 @@
       평균 자리에 <em>비율</em>만 바꿔 넣으면 끝이에요.</p>
 
       <ol class="steps">
-        <li><strong>추정량.</strong> p̂<sub>S</sub> − p̂<sub>T</sub>.
+        <li><strong>추정량.</strong> \(\hat{p}_S\) − \(\hat{p}_T\).
           각 표본에서 구한 비율의 차이예요.</li>
-        <li><strong>기댓값.</strong> E[p̂<sub>S</sub> − p̂<sub>T</sub>] = p<sub>S</sub> − p<sub>T</sub>.
+        <li><strong>기댓값.</strong> E[\(\hat{p}_S\) − \(\hat{p}_T\)] = \(p_S\) − \(p_T\).
           편향 없음.</li>
         <li><strong>분산.</strong>
           독립이니까 각 분산을 더해요.
           <div class="formula wide">
             \[ \mathrm{Var} = p_S(1-p_S)/n_S + p_T(1-p_T)/n_T \]
           </div>
-          p̂의 분산이 <em>p(1−p)/n</em>이었던 거 기억하죠?
+          \(\hat{p}\)의 분산이 <em>\(p(1-p)/n\)</em>이었던 거 기억하죠?
         </li>
         <li><strong>분포.</strong> n이 충분히 크면 정규 근사 OK.</li>
       </ol>
@@ -1385,12 +1385,12 @@
         \[ (\hat{p}_S - \hat{p}_T) \pm 1.96 \cdot \sqrt{p_S(1-p_S)/n_S + p_T(1-p_T)/n_T} \]
       </div>
 
-      <p>즉, 두 표본비율의 차이에 ± 1.96·SE를 붙이는 거예요.</p>
+      <p>즉, 두 표본비율의 차이에 \(\pm\) 1.96·SE를 붙이는 거예요.</p>
 
       <div class="callout blue">
-        <div class="label">실제로는 p̂로 근사</div>
-        <p>진짜 p<sub>S</sub>, p<sub>T</sub>를 모르니까
-        <strong>표본비율 p̂</strong>로 대체해서 계산해요.</p>
+        <div class="label">실제로는 \(\hat{p}\)로 근사</div>
+        <p>진짜 \(p_S\), \(p_T\)를 모르니까
+        <strong>표본비율 \(\hat{p}\)</strong>로 대체해서 계산해요.</p>
         <div class="formula wide">
           \[ (\hat{p}_S - \hat{p}_T) \pm 1.96 \cdot \sqrt{\hat{p}_S(1-\hat{p}_S)/n_S + \hat{p}_T(1-\hat{p}_T)/n_T} \]
         </div>
@@ -1402,12 +1402,12 @@
       <p>서울과 부산에서 각각 여론조사를 했어요.</p>
 
       <div class="data-strip">
-        서울: n<sub>S</sub> = 500, &nbsp; A 지지 220명 → p̂<sub>S</sub> = 0.44<br>
-        부산: n<sub>T</sub> = 500, &nbsp; A 지지 180명 → p̂<sub>T</sub> = 0.36
+        서울: \(n_S\) = 500, &nbsp; A 지지 220명 → \(\hat{p}_S\) = 0.44<br>
+        부산: \(n_T\) = 500, &nbsp; A 지지 180명 → \(\hat{p}_T\) = 0.36
       </div>
 
       <ol class="steps">
-        <li><strong>차이.</strong> p̂<sub>S</sub> − p̂<sub>T</sub> = 0.44 − 0.36 = <strong>0.08</strong>
+        <li><strong>차이.</strong> \(\hat{p}_S\) − \(\hat{p}_T\) = 0.44 − 0.36 = <strong>0.08</strong>
           (서울이 8%p 높음).</li>
         <li><strong>분산.</strong>
           <div class="formula">
@@ -1417,28 +1417,28 @@
             \[ = 0.000493 + 0.000461 \approx 0.000954 \]
           </div>
         </li>
-        <li><strong>SE.</strong> √0.000954 ≈ <strong>0.0309</strong>.</li>
-        <li><strong>ME.</strong> 1.96 × 0.0309 ≈ 0.0606.</li>
-        <li><strong>95% CI.</strong> 0.08 ± 0.0606 → <strong>(0.019, 0.141)</strong>.</li>
+        <li><strong>SE.</strong> √0.000954 \(\approx\) <strong>0.0309</strong>.</li>
+        <li><strong>ME.</strong> 1.96 × 0.0309 \(\approx\) 0.0606.</li>
+        <li><strong>95% CI.</strong> 0.08 \(\pm\) 0.0606 → <strong>(0.019, 0.141)</strong>.</li>
       </ol>
 
       <div class="callout green">
         <div class="label">해석</div>
-        <p>"서울이 부산보다 A 지지율이 <strong>1.9%p ~ 14.1%p</strong> 더 높다"라고
+        <p>"서울이 부산보다 A 지지율이 <strong>\(1.9%p ~ 14.1%p\)</strong> 더 높다"라고
         95% 신뢰로 말할 수 있어요.
         구간이 전부 양수 → "서울이 진짜로 더 높다"는 근거가 돼요.</p>
       </div>
 
       <div class="analogy">
         <p><strong>두 지역 여론조사의 오차.</strong></p>
-        <p>뉴스에서 "서울 오차 ±4.4%p, 부산 오차 ±4.2%p" 이런 식으로 따로 발표하죠?
+        <p>뉴스에서 "서울 오차 \(\pm\)4.4%p, 부산 오차 \(\pm\)4.2%p" 이런 식으로 따로 발표하죠?
         <em>두 오차가 합쳐진</em> 오차가 두 지역의 <strong>차이</strong>의 오차예요.
         그래서 차이의 오차가 더 커져요.</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        평균의 논리와 동일. σ²/n 자리에 p(1−p)/n만 끼워 넣기.
+        평균의 논리와 동일. \(\sigma^2/n\) 자리에 \(p(1-p)/n\)만 끼워 넣기.
       </div>
 
     </section>
@@ -1459,7 +1459,7 @@
         <div class="term">Paired Samples · 짝 표본</div>
         <div class="kor">한 대상에서 두 측정값이 나오는 표본</div>
         <p>학생 1명에게서 (수학 점수, 통계 점수)를 함께 받는 식.
-        각 학생이 <em>한 쌍의 숫자</em> (X<sub>i</sub>, Y<sub>i</sub>)를 내요.</p>
+        각 학생이 <em>한 쌍의 숫자</em> (\(X_i\), \(Y_i\))를 내요.</p>
       </div>
 
       <div class="analogy">
@@ -1472,24 +1472,24 @@
 
       <h3>문제 · 공분산이 끼어든다</h3>
 
-      <p>독립 표본처럼 X̄ − Ȳ 를 써서 μ<sub>X</sub> − μ<sub>Y</sub>를 추정하려 하면…
+      <p>독립 표본처럼 \(\bar{X}\) − \(\bar{Y}\) 를 써서 \(\mu_X\) − \(\mu_Y\)를 추정하려 하면…
       분산을 구할 때 꼬여요.</p>
 
       <div class="formula wide">
         \[ \mathrm{Var}[\bar{X} - \bar{Y}] = \sigma_X^2/n + \sigma_Y^2/n + 2 \cdot \mathrm{Cov}[\bar{X}, \bar{Y}] \]
       </div>
 
-      <p>즉, 뒤에 <strong>공분산 2·Cov[X̄, Ȳ]</strong>가 달라붙어요.
+      <p>즉, 뒤에 <strong>공분산 2·Cov[\(\bar{X}\), \(\bar{Y}\)]</strong>가 달라붙어요.
       독립이었으면 이게 0이어서 깔끔했는데,
       여기선 같은 사람에서 나온 숫자라 <em>연관</em>돼 있어 0이 아니에요.</p>
 
       <div class="callout yellow">
         <div class="label">왜 문제인가</div>
-        <p>공분산 Cov[X̄, Ȳ]를 <em>어떻게 추정하지?</em> 까다로워요.
+        <p>공분산 Cov[\(\bar{X}\), \(\bar{Y}\)]를 <em>어떻게 추정하지?</em> 까다로워요.
         그래서 다른 길을 찾아야 해요. 다행히 아주 예쁜 트릭이 있어요.</p>
       </div>
 
-      <h3>트릭 · D<sub>i</sub> := X<sub>i</sub> − Y<sub>i</sub> 변환</h3>
+      <h3>트릭 · \(D_i\) := \(X_i\) − \(Y_i\) 변환</h3>
 
       <p>발상의 전환. 두 숫자를 <em>각각</em> 보지 말고,
       <strong>학생마다 차이 하나</strong>를 만들어요.</p>
@@ -1498,25 +1498,25 @@
         \[ D_i := X_i - Y_i \]
       </div>
 
-      <p>즉, 학생 i 의 수학 점수에서 통계 점수를 뺀 값이 D<sub>i</sub>.
+      <p>즉, 학생 i 의 수학 점수에서 통계 점수를 뺀 값이 \(D_i\).
       이제 학생마다 <em>숫자 하나</em>만 남아요.
       <strong>두 개짜리 표본이 한 개짜리 표본으로 변신</strong>한 거예요!</p>
 
       <div class="callout blue">
         <div class="label">핵심 관찰</div>
-        <p>D<sub>i</sub>의 표본평균 D̄는 그냥 차이들의 평균이에요.
-        그런데 수학적으로 D̄ = X̄ − Ȳ 와 똑같아요.
+        <p>\(D_i\)의 표본평균 \(\bar{D}\)는 그냥 차이들의 평균이에요.
+        그런데 수학적으로 \(\bar{D}\) = \(\bar{X}\) − \(\bar{Y}\) 와 똑같아요.
         "먼저 빼고 평균" = "먼저 평균 내고 뺌"</p>
       </div>
 
-      <h3>D<sub>i</sub>에 대한 분석 (아주 간단해짐)</h3>
+      <h3>\(D_i\)에 대한 분석 (아주 간단해짐)</h3>
 
       <ol class="steps">
         <li><strong>기댓값.</strong>
           <div class="formula">
             \[ E[\bar{D}] = E[\bar{X} - \bar{Y}] = \mu_X - \mu_Y \]
           </div>
-          즉, D̄ 역시 μ<sub>X</sub> − μ<sub>Y</sub>에 대한 좋은 추정량이에요.
+          즉, \(\bar{D}\) 역시 \(\mu_X\) − \(\mu_Y\)에 대한 좋은 추정량이에요.
         </li>
         <li><strong>분산.</strong> 이제 D는 <em>하나의 변수</em>니까 공분산 없이 깔끔해요.
           <div class="formula">
@@ -1528,7 +1528,7 @@
           </div>
           즉, D값들의 표본분산만 구하면 끝이에요.
         </li>
-        <li><strong>분포.</strong> n이 충분히 크면 CLT에 의해 D̄ ≈ 정규.
+        <li><strong>분포.</strong> n이 충분히 크면 CLT에 의해 \(\bar{D}\) \(\approx\) 정규.
           정규분포 이야기로 복귀.
         </li>
       </ol>
@@ -1541,31 +1541,31 @@
         \[ \bar{D} \pm 1.96 \cdot \frac{S_D}{\sqrt{n}} \]
       </div>
 
-      <p>즉, <em>차이값 D<sub>i</sub>들의 평균</em>을 중심으로,
+      <p>즉, <em>차이값 \(D_i\)들의 평균</em>을 중심으로,
       <em>차이값들의 표준편차</em>를 √n으로 나눈 만큼 펼치면 돼요.
-      μ<sub>X</sub> − μ<sub>Y</sub>의 95% CI 완성.</p>
+      \(\mu_X\) − \(\mu_Y\)의 95% CI 완성.</p>
 
       <div class="callout green">
         <div class="label">핵심 요약</div>
-        <p>짝 표본 → D<sub>i</sub>로 변환 → <strong>한 표본 문제</strong>로 환원 → 8장 t-CI 그대로.</p>
-        <p>작은 n이면 Z 대신 <strong>t<sub>α/2, n−1</sub></strong>을 써서 더 안전하게.</p>
+        <p>짝 표본 → \(D_i\)로 변환 → <strong>한 표본 문제</strong>로 환원 → 8장 t-CI 그대로.</p>
+        <p>작은 n이면 Z 대신 <strong>\(t_{\alpha /2, n-1}\)</strong>을 써서 더 안전하게.</p>
       </div>
 
       <h3>예시 · 수학 vs 통계 점수</h3>
 
       <p>학생 10명에게서 수학 점수와 통계 점수를 받았다고 해볼게요.
-      각 학생마다 차이 D<sub>i</sub> = 수학 − 통계 를 계산했어요.</p>
+      각 학생마다 차이 \(D_i\) = 수학 − 통계 를 계산했어요.</p>
 
       <div class="data-strip">
-        n = 10, &nbsp; D̄ = 5점 (수학이 평균 5점 높음), &nbsp; S<sub>D</sub> = 6점
+        n = 10, &nbsp; \(\bar{D}\) = 5점 (수학이 평균 5점 높음), &nbsp; \(S_D\) = 6점
       </div>
 
       <ol class="steps">
-        <li><strong>자유도.</strong> df = n − 1 = 9.</li>
-        <li><strong>임계값.</strong> t<sub>0.025, 9</sub> ≈ <strong>2.262</strong>.</li>
-        <li><strong>표준오차.</strong> S<sub>D</sub>/√n = 6/√10 ≈ 1.897.</li>
-        <li><strong>오차범위.</strong> ME = 2.262 × 1.897 ≈ 4.29.</li>
-        <li><strong>95% CI.</strong> 5 ± 4.29 → <strong>(0.71, 9.29)</strong> 점.</li>
+        <li><strong>자유도.</strong> df = \(n - 1\) = 9.</li>
+        <li><strong>임계값.</strong> \(t_{0.025, 9}\) \(\approx\) <strong>2.262</strong>.</li>
+        <li><strong>표준오차.</strong> \(S_D\)/√n = 6/√10 \(\approx\) 1.897.</li>
+        <li><strong>오차범위.</strong> ME = 2.262 × 1.897 \(\approx\) 4.29.</li>
+        <li><strong>95% CI.</strong> 5 \(\pm\) 4.29 → <strong>(0.71, 9.29)</strong> 점.</li>
       </ol>
 
       <div class="callout green">
@@ -1603,8 +1603,8 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        짝 표본은 D<sub>i</sub> = X<sub>i</sub> − Y<sub>i</sub> 변환으로 한 표본 문제가 돼요.
-        D̄ ± 1.96·S<sub>D</sub>/√n.
+        짝 표본은 \(D_i\) = \(X_i\) − \(Y_i\) 변환으로 한 표본 문제가 돼요.
+        \(\bar{D}\) \(\pm\) 1.96·\(S_D\)/√n.
       </div>
 
     </section>
@@ -1629,17 +1629,17 @@
       <h4>오늘의 장면 요약</h4>
       <ul>
         <li>점 추정의 외로움 → 구간 추정의 따뜻함</li>
-        <li>CLT 덕분에 X̄이 정규가 됐어요 (n 크면)</li>
-        <li>CI = 점 추정 ± 임계값 × 표준오차</li>
-        <li>σ 알면 Z, 모르면 t (df = n − 1)</li>
+        <li>CLT 덕분에 \(\bar{X}\)이 정규가 됐어요 (n 크면)</li>
+        <li>CI = 점 추정 \(\pm\) 임계값 × 표준오차</li>
+        <li>\(\sigma\) 알면 Z, 모르면 t (df = \(n - 1\))</li>
         <li>t는 정규의 사촌 — 꼬리가 두껍고 df 커지면 수렴</li>
         <li>신뢰 높을수록 구간 넓어요 — Z 1.645 / 1.96 / 2.576</li>
         <li>n 4배 → 폭 절반. n 결정 공식도 배웠어요</li>
-        <li>모비율 CI: p̂ ± Z · √(p̂(1−p̂)/n)</li>
+        <li>모비율 CI: \(\hat{p}\) \(\pm\) Z · √(\(\hat{p} (1-\hat{p} )/n\))</li>
         <li>"95% 신뢰"의 올바른 해석 — 100번 중 95번</li>
-        <li><strong>두 평균 차이</strong>: (X̄<sub>S</sub>−X̄<sub>T</sub>) ± 1.96·√(σ²/n 합)</li>
-        <li><strong>두 비율 차이</strong>: (p̂<sub>S</sub>−p̂<sub>T</sub>) ± 1.96·√(p(1−p)/n 합)</li>
-        <li><strong>짝 표본</strong>: D<sub>i</sub> = X<sub>i</sub> − Y<sub>i</sub> 변환 → 한 표본 문제로 환원</li>
+        <li><strong>두 평균 차이</strong>: (\(\bar{X}_S\)−\(\bar{X}_T\)) \(\pm\) 1.96·√(\(\sigma^2/n\) 합)</li>
+        <li><strong>두 비율 차이</strong>: (\(\hat{p}_S\)−\(\hat{p}_T\)) \(\pm\) 1.96·√(\(p(1-p)/n\) 합)</li>
+        <li><strong>짝 표본</strong>: \(D_i\) = \(X_i\) − \(Y_i\) 변환 → 한 표본 문제로 환원</li>
       </ul>
 
       <h4>다음 강의로 이어집니다</h4>
@@ -1664,7 +1664,7 @@
         </div>
       </div>
 
-      <p>앞으로 이 친구들을 만날 때, 오늘 배운 <strong>Z · t · SE · CI</strong>가
+      <p>앞으로 이 친구들을 만날 때, 오늘 배운 <strong>\(Z \cdot t \cdot SE \cdot CI\)</strong>가
       길잡이 역할을 할 거예요. 모든 추리통계는 같은 뿌리에서 자라나거든요.</p>
 
       <div class="epilogue">

@@ -66,7 +66,7 @@
       <li><a href="#ch5">좋은 선이란? · SSE</a></li>
       <li><a href="#ch6">왜 가격이 다 다른가</a></li>
       <li><a href="#ch7">SST = SSR + SSE</a></li>
-      <li><a href="#ch8">R² 결정계수</a></li>
+      <li><a href="#ch8">\(R^2\) 결정계수</a></li>
       <li><a href="#ch9">회귀 출력 읽기</a></li>
       <li><a href="#ch10">맺는 글</a></li>
     </ol>
@@ -109,7 +109,7 @@
         <div class="label">이 강의에서 배우는 것</div>
         <p><strong>① 회귀 모델식</strong> — Y와 X들을 연결하는 한 줄.</p>
         <p><strong>② "좋은 선"의 기준</strong> — 점들에서 평균적으로 가까운 선.</p>
-        <p><strong>③ R²</strong> — 그 선이 데이터를 얼마나 잘 설명하는가의 점수.</p>
+        <p><strong>③ \(R^2\)</strong> — 그 선이 데이터를 얼마나 잘 설명하는가의 점수.</p>
       </div>
 
       <blockquote class="pull">
@@ -143,7 +143,7 @@
           <h5>③ 예측</h5>
           <div class="kor-sub">미래를 미리 그려보기</div>
           <p>"올해 광고비를 50% 늘리면 매출이 얼마나 늘까?"<br>
-          식이 있으면 새로운 X값에 대해 Y를 <em>추정</em>할 수 있어요.</p>
+          식이 있으면 새로운 \(X\)값에 대해 \(Y\)를 <em>추정</em>할 수 있어요.</p>
         </div>
       </div>
 
@@ -167,8 +167,8 @@
     <!-- ═══════ 2장 · 모델식 ═══════ -->
     <section class="chapter" id="ch2">
       <div class="chap-num">CHAPTER 02</div>
-      <h2>회귀 모델식 — Y를 만드는 레시피</h2>
-      <div class="chap-sub">Y = β₀ + β₁X₁ + ... + βₖXₖ + e</div>
+      <h2>회귀 모델식 — \(Y\)를 만드는 레시피</h2>
+      <div class="chap-sub">\(Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k + e\)</div>
 
       <p>회귀의 기본 모양은 한 줄짜리 식이에요.</p>
 
@@ -181,40 +181,40 @@
       <h3>각 부품 뜯어보기</h3>
 
       <div class="definition">
-        <div class="term">Y · Dependent Variable · 종속변수</div>
+        <div class="term">\(Y\) · Dependent Variable · 종속변수</div>
         <div class="kor">"우리가 설명하고 싶은 결과값"</div>
-        <p>예: 아파트 가격. Y는 다른 변수들에 <em>의존</em>해서 결정돼요.</p>
+        <p>예: 아파트 가격. \(Y\)는 다른 변수들에 <em>의존</em>해서 결정돼요.</p>
       </div>
 
       <div class="definition">
-        <div class="term">X₁, X₂, ..., Xₖ · Explanatory Variables · 설명변수</div>
-        <div class="kor">"Y를 설명하는 재료들"</div>
-        <p>예: 평수, 층수, 방 개수, 연식 등. k개 있다고 적었어요.</p>
+        <div class="term">\(X_1, X_2, \ldots, X_k\) · Explanatory Variables · 설명변수</div>
+        <div class="kor">"\(Y\)를 설명하는 재료들"</div>
+        <p>예: 평수, 층수, 방 개수, 연식 등. \(k\)개 있다고 적었어요.</p>
       </div>
 
       <div class="definition">
-        <div class="term">β₀, β₁, ..., βₖ · 계수 (coefficients)</div>
+        <div class="term">\(\beta_0, \beta_1, \ldots, \beta_k\) · 계수 (coefficients)</div>
         <div class="kor">"각 재료의 무게(영향력)"</div>
-        <p>β₀ = 절편(intercept). X들이 다 0일 때 Y의 기본값.<br>
-        β₁ = X₁이 1 단위 늘면 Y가 평균 얼마 변하는지.</p>
+        <p>\(\beta_0\) = 절편(intercept). \(X\)들이 다 0일 때 \(Y\)의 기본값.<br>
+        \(\beta_1\) = \(X_1\)이 1 단위 늘면 \(Y\)가 평균 얼마 변하는지.</p>
       </div>
 
       <div class="definition">
-        <div class="term">e · Error · 오차</div>
+        <div class="term">\(e\) · Error · 오차</div>
         <div class="kor">"식이 잡지 못한 나머지"</div>
-        <p>현실의 Y는 식만으로 딱 맞아떨어지지 않아요. 우리가 모르는 다른 요인들,
-        측정 노이즈 같은 게 다 e 안에 들어가요.</p>
+        <p>현실의 \(Y\)는 식만으로 딱 맞아떨어지지 않아요. 우리가 모르는 다른 요인들,
+        측정 노이즈 같은 게 다 \(e\) 안에 들어가요.</p>
       </div>
 
       <h3>요리 레시피 비유</h3>
 
       <div class="analogy">
         <p><strong>케이크 만들기 비유.</strong></p>
-        <p><strong>Y</strong> = 케이크 맛 점수.<br>
-        <strong>X₁</strong> = 밀가루 g, <strong>X₂</strong> = 설탕 g, <strong>X₃</strong> = 굽는 시간 분.<br>
-        <strong>β들</strong> = 각 재료가 맛 점수에 미치는 영향력 (밀가루 1g이 점수에 얼마 기여하나).<br>
-        <strong>β₀</strong> = 재료가 다 0일 때의 기본 점수 (그냥 0이겠죠).<br>
-        <strong>e</strong> = 오븐 컨디션, 그날 기분 같은 측정 안 되는 요인.</p>
+        <strong>\(Y\)</strong> = 케이크 맛 점수.<br>
+        <strong>\(X_1\)</strong> = 밀가루 g, <strong>\(X_2\)</strong> = 설탕 g, <strong>\(X_3\)</strong> = 굽는 시간 분.<br>
+        <strong>\(\beta\)들</strong> = 각 재료가 맛 점수에 미치는 영향력 (밀가루 1g이 점수에 얼마 기여하나).<br>
+        <strong>\(\beta_0\)</strong> = 재료가 다 0일 때의 기본 점수 (그냥 0이겠죠).<br>
+        <strong>\(e\)</strong> = 오븐 컨디션, 그날 기분 같은 측정 안 되는 요인.</p>
       </div>
 
       <h3>회귀의 큰 목표 세 가지</h3>
@@ -222,48 +222,48 @@
       <p>모델식만 쓰고 끝나는 게 아니에요. 이 식을 갖고 우리가 하고 싶은 일은:</p>
 
       <ol>
-        <li><strong>β들을 추정해요.</strong> 데이터로부터 어떤 숫자가 들어가야 가장 자연스러운지 찾아요.</li>
-        <li><strong>중요한 변수와 안 중요한 변수를 구분해요.</strong> 어떤 X가 Y에 진짜 영향을 주는가.</li>
-        <li><strong>각 X의 영향력을 수치화해요.</strong> "평수가 1평 늘면 가격이 평균 ◯만원 오른다"는 식으로.</li>
+        <li><strong>\(\beta\)들을 추정해요.</strong> 데이터로부터 어떤 숫자가 들어가야 가장 자연스러운지 찾아요.</li>
+        <li><strong>중요한 변수와 안 중요한 변수를 구분해요.</strong> 어떤 \(X\)가 \(Y\)에 진짜 영향을 주는가.</li>
+        <li><strong>각 \(X\)의 영향력을 수치화해요.</strong> "평수가 1평 늘면 가격이 평균 ◯만원 오른다"는 식으로.</li>
       </ol>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        Y = β들이 X들에 곱해진 합 + 오차 e. 회귀는 이 β들을 데이터에서 찾는 일.
+        \(Y\) = \(\beta\)들이 \(X\)들에 곱해진 합 + 오차 \(e\). 회귀는 이 \(\beta\)들을 데이터에서 찾는 일.
       </div>
     </section>
 
     <!-- ═══════ 3장 · 단순선형회귀 ═══════ -->
     <section class="chapter" id="ch3">
       <div class="chap-num">CHAPTER 03</div>
-      <h2>단순선형회귀 — X가 딱 하나일 때</h2>
+      <h2>단순선형회귀 — \(X\)가 딱 하나일 때</h2>
       <div class="chap-sub">눈으로 보는 회귀</div>
 
-      <p>X가 여러 개면 머릿속으로 그리기 힘들어요. 그래서 우선 X가 <strong>하나일 때</strong>부터 시작해요.
+      <p>\(X\)가 여러 개면 머릿속으로 그리기 힘들어요. 그래서 우선 \(X\)가 <strong>하나일 때</strong>부터 시작해요.
       이걸 <strong>단순선형회귀(Simple Linear Regression)</strong>라고 해요.</p>
 
       <div class="formula wide">
         \[ Y = \beta_0 + \beta_1 X + e \]
       </div>
 
-      <p>중학교 때 배운 직선의 방정식 <strong>y = ax + b</strong>랑 똑같죠? 그저 이름이 바뀌었을 뿐이에요.</p>
+      <p>중학교 때 배운 직선의 방정식 <strong>\(y = ax + b\)</strong>랑 똑같죠? 그저 이름이 바뀌었을 뿐이에요.</p>
 
       <div class="table-scroll">
       <table class="blue-head center">
         <caption>중학수학 ↔ 회귀의 용어 번역</caption>
         <thead><tr><th>중학수학</th><th>회귀</th><th>의미</th></tr></thead>
         <tbody>
-          <tr><td>x, y</td><td>X, Y</td><td>변수 두 개</td></tr>
-          <tr><td>b</td><td>β₀</td><td>절편(상수항)</td></tr>
-          <tr><td>a</td><td>β₁</td><td>기울기(=한 단위당 변화)</td></tr>
-          <tr><td>(없음)</td><td>e</td><td>오차 — 직선이 못 잡는 나머지</td></tr>
+          <tr><td>\(x, y\)</td><td>\(X, Y\)</td><td>변수 두 개</td></tr>
+          <tr><td>\(b\)</td><td>\(\beta_0\)</td><td>절편(상수항)</td></tr>
+          <tr><td>\(a\)</td><td>\(\beta_1\)</td><td>기울기(=한 단위당 변화)</td></tr>
+          <tr><td>(없음)</td><td>\(e\)</td><td>오차 — 직선이 못 잡는 나머지</td></tr>
         </tbody>
       </table>
       </div>
 
       <h3>아파트 가격 vs 연식 — 한 장의 그림</h3>
 
-      <p>아파트 200채 데이터로 산점도를 그렸어요. X축 = 연식, Y축 = 가격(천만원).</p>
+      <p>아파트 200채 데이터로 산점도를 그렸어요. \(X\)축 = 연식, \(Y\)축 = 가격(천만원).</p>
 
       <div class="chart-wrap">
         <div class="chart-title">House Value vs Age (산점도 + 회귀선)</div>
@@ -337,26 +337,26 @@
     <section class="chapter" id="ch4">
       <div class="chap-num">CHAPTER 04</div>
       <h2>잔차 — 직선이 못 잡은 부분</h2>
-      <div class="chap-sub">Residual · eᵢ = Yᵢ − Ŷᵢ</div>
+      <div class="chap-sub">Residual · \(e_i = Y_i - \hat{Y}_i\)</div>
 
       <p>회귀선은 점들에 정확히 다 닿진 않아요. 각 점은 직선에서 살짝 떨어져 있죠.
       그 거리를 <strong>잔차(residual)</strong>라고 해요.</p>
 
       <h3>예측값 vs 실제값</h3>
 
-      <p>i번째 아파트의 연식이 X<sub>i</sub>예요. 회귀선이 <strong>예측</strong>하는 가격은:</p>
+      <p>\(i\)번째 아파트의 연식이 \(X_i\)예요. 회귀선이 <strong>예측</strong>하는 가격은:</p>
 
       <div class="formula wide">
         \[ \hat{Y}_i = \beta_0 + \beta_1 X_i \]
       </div>
 
-      <p>"Ŷ" 위에 모자(^) 표시는 "추정"이라는 뜻이에요. <strong>실제로 관측한 가격</strong>은
-      Y<sub>i</sub>라고 적어요. 둘은 다르죠.</p>
+      <p>"\(\hat{Y}\)" 위에 모자(^) 표시는 "추정"이라는 뜻이에요. <strong>실제로 관측한 가격</strong>은
+      \(Y_i\)라고 적어요. 둘은 다르죠.</p>
 
       <div class="definition">
         <div class="term">Residual · 잔차</div>
         <div class="kor">"실제값 − 예측값"</div>
-        <p>e<sub>i</sub> = Y<sub>i</sub> − Ŷ<sub>i</sub></p>
+        <p>\(e_i = Y_i - \hat{Y}_i\)</p>
         <p>"이 점이 회귀선에서 위로(혹은 아래로) 얼마나 떨어졌나"의 거리예요.
         양수면 점이 선 위, 음수면 선 아래.</p>
       </div>
@@ -419,7 +419,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        잔차 e = 실제값 − 예측값. 회귀선이 설명하지 못한 부분. 작을수록 좋은 선.
+        잔차 \(e\) = 실제값 − 예측값. 회귀선이 설명하지 못한 부분. 작을수록 좋은 선.
       </div>
     </section>
 
@@ -440,8 +440,8 @@
       <div class="definition">
         <div class="term">SSE · Sum of Squared Errors · 잔차 제곱의 합</div>
         <div class="kor">"선이 얼마나 데이터에서 멀리 떨어졌나"의 총점</div>
-        <p>SSE = Σ (Y<sub>i</sub> − Ŷ<sub>i</sub>)² = Σ (Y<sub>i</sub> − β<sub>0</sub> − β<sub>1</sub>X<sub>i</sub>)²</p>
-        <p>"i=1부터 n까지 다 더한다"는 뜻이에요. 잔차를 제곱해서 모두 합한 값.</p>
+        <p>\(SSE = \sum (Y_i - \hat{Y}_i)^2 = \sum (Y_i - \beta_0 - \beta_1 X_i)^2\)</p>
+        <p>"\(i=1\)부터 \(n\)까지 다 더한다"는 뜻이에요. 잔차를 제곱해서 모두 합한 값.</p>
       </div>
 
       <div class="formula wide">
@@ -451,7 +451,7 @@
       <h3>회귀가 하는 일</h3>
 
       <blockquote class="pull">
-        <strong>SSE를 가장 작게 만드는 β₀, β₁을 찾는다.</strong><br>
+        <strong>SSE를 가장 작게 만드는 \(\beta_0, \beta_1\)을 찾는다.</strong><br>
         그게 회귀선의 정의예요.
       </blockquote>
 
@@ -470,7 +470,7 @@
         <div class="label">제곱 vs 절댓값</div>
         <p>① 제곱은 <strong>큰 오차에 더 큰 패널티</strong>를 줘요. 이상치(outlier)에 민감해지지만,
         대신 한쪽으로 크게 벗어난 점을 가까이 끌어와요.</p>
-        <p>② 절댓값보다 <strong>미분하기 쉬워요</strong>. 그래서 β₀, β₁의 최적값을 깔끔한 공식으로 풀 수 있어요.</p>
+        <p>② 절댓값보다 <strong>미분하기 쉬워요</strong>. 그래서 \(\beta_0, \beta_1\)의 최적값을 깔끔한 공식으로 풀 수 있어요.</p>
         <p>③ 통계 이론과 잘 어울려요 (정규분포·표준편차·분산 모두 제곱 위에서 정의돼요).</p>
       </div>
 
@@ -499,12 +499,12 @@
 
       <div class="cards-2">
         <div class="card">
-          <h5>① 연식이 다르니까 (X가 다름)</h5>
+          <h5>① 연식이 다르니까 (\(X\)가 다름)</h5>
           <p>"연식이 1년 늘면 가격이 평균 ◯만원 변한다"는 우리 회귀선이 설명하는 부분.<br>
           <strong>설명변수의 차이</strong>가 만든 가격 차이.</p>
         </div>
         <div class="card">
-          <h5>② 다른 이유 (X로 설명 안 됨)</h5>
+          <h5>② 다른 이유 (\(X\)로 설명 안 됨)</h5>
           <p>같은 연식인데도 가격이 다 다르잖아요? 위치, 층수, 인테리어… 회귀선이 잡지 못한 모든 차이.<br>
           <strong>오차(잔차)</strong>가 만든 가격 차이.</p>
         </div>
@@ -532,7 +532,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        Y가 흔들리는 이유 = ① X가 흔들려서 + ② 그 외 잡것들. 회귀가 잘 잡으면 ①이 커요.
+        \(Y\)가 흔들리는 이유 = ① \(X\)가 흔들려서 + ② 그 외 잡것들. 회귀가 잘 잡으면 ①이 커요.
       </div>
     </section>
 
@@ -548,22 +548,22 @@
 
       <div class="definition">
         <div class="term">SST · Total Sum of Squares · 총변동</div>
-        <div class="kor">"Y가 평균에서 얼마나 흔들리는가" 전체</div>
-        <p>SST = Σ (Y<sub>i</sub> − Ȳ)²</p>
-        <p>각 Y가 평균 Ȳ에서 떨어진 정도를 제곱해서 더한 값. <strong>Y의 총 변동</strong>이에요.</p>
+        <div class="kor">"\(Y\)가 평균에서 얼마나 흔들리는가" 전체</div>
+        <p>\(SST = \sum (Y_i - \bar{Y})^2\)</p>
+        <p>각 \(Y\)가 평균 \(\bar{Y}\)에서 떨어진 정도를 제곱해서 더한 값. <strong>\(Y\)의 총 변동</strong>이에요.</p>
       </div>
 
       <div class="definition">
         <div class="term">SSR · Regression Sum of Squares · 회귀변동</div>
         <div class="kor">"회귀선이 설명한 변동"</div>
-        <p>SSR = Σ (Ŷ<sub>i</sub> − Ȳ)²</p>
-        <p>예측값 Ŷ이 평균 Ȳ에서 떨어진 정도. 즉 "회귀선이 만들어낸" 변동이에요.</p>
+        <p>\(SSR = \sum (\hat{Y}_i - \bar{Y})^2\)</p>
+        <p>예측값 \(\hat{Y}\)이 평균 \(\bar{Y}\)에서 떨어진 정도. 즉 "회귀선이 만들어낸" 변동이에요.</p>
       </div>
 
       <div class="definition">
         <div class="term">SSE · Error Sum of Squares · 잔차변동</div>
         <div class="kor">"회귀선이 설명하지 못한 변동"</div>
-        <p>SSE = Σ (Y<sub>i</sub> − Ŷ<sub>i</sub>)²</p>
+        <p>\(SSE = \sum (Y_i - \hat{Y}_i)^2\)</p>
         <p>5장에서 본 그 SSE랑 같아요. 잔차 제곱의 합.</p>
       </div>
 
@@ -573,7 +573,7 @@
         \[ SST = SSR + SSE \]
       </div>
 
-      <p>이게 정말 신기한 등식이에요. Y의 총 변동(SST)은 <strong>회귀선이 잡은 부분(SSR)</strong>과
+      <p>이게 정말 신기한 등식이에요. \(Y\)의 총 변동(SST)은 <strong>회귀선이 잡은 부분(SSR)</strong>과
       <strong>잡지 못한 부분(SSE)</strong>의 합으로 깔끔하게 쪼개져요.</p>
 
       <div class="chart-wrap">
@@ -626,12 +626,12 @@
 
       <div class="callout green">
         <div class="label">SST = SSR + SSE의 의미</div>
-        <p><strong>SSR 비율이 크다 → 회귀선이 잘 설명함</strong> → 변수 X가 Y를 잘 잡고 있음.</p>
-        <p><strong>SSE 비율이 크다 → 회귀선이 설명 못 함</strong> → X 말고 다른 변수가 필요함.</p>
+        <p><strong>SSR 비율이 크다 → 회귀선이 잘 설명함</strong> → 변수 \(X\)가 \(Y\)를 잘 잡고 있음.</p>
+        <p><strong>SSE 비율이 크다 → 회귀선이 설명 못 함</strong> → \(X\) 말고 다른 변수가 필요함.</p>
       </div>
 
       <p>그래서 자연스럽게 다음 질문이 나와요. <em>"SSR 비율을 한 숫자로 어떻게 표현?"</em>
-      답이 다음 장의 <strong>R²</strong>예요.</p>
+      답이 다음 장의 <strong>\(R^2\)</strong>예요.</p>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
@@ -642,15 +642,15 @@
     <!-- ═══════ 8장 · R² ═══════ -->
     <section class="chapter" id="ch8">
       <div class="chap-num">CHAPTER 08</div>
-      <h2>R² — 회귀의 시험 점수</h2>
+      <h2>\(R^2\) — 회귀의 시험 점수</h2>
       <div class="chap-sub">Coefficient of Determination · 결정계수</div>
 
-      <p>이제 회귀의 성적표 같은 숫자가 등장해요. <strong>R²</strong> (R-Square, 알스퀘어).</p>
+      <p>이제 회귀의 성적표 같은 숫자가 등장해요. <strong>\(R^2\)</strong> (R-Square, 알스퀘어).</p>
 
       <div class="definition">
-        <div class="term">R² · Coefficient of Determination · 결정계수</div>
-        <div class="kor">"Y의 변동 중 몇 %가 회귀선으로 설명되는가"</div>
-        <p>R² = SSR / SST = (설명된 변동) / (전체 변동)</p>
+        <div class="term">\(R^2\) · Coefficient of Determination · 결정계수</div>
+        <div class="kor">"\(Y\)의 변동 중 몇 %가 회귀선으로 설명되는가"</div>
+        <p>\(R^2 = SSR / SST\) = (설명된 변동) / (전체 변동)</p>
       </div>
 
       <div class="formula wide">
@@ -659,53 +659,53 @@
 
       <h3>0과 1 사이의 숫자</h3>
 
-      <p>R²는 항상 0과 1 사이예요. (비율이니까.)</p>
+      <p>\(R^2\)는 항상 0과 1 사이예요. (비율이니까.)</p>
 
       <div class="table-scroll">
       <table class="blue-head center">
-        <caption>R² 값이 의미하는 것</caption>
-        <thead><tr><th>R²</th><th>해석</th><th>회귀의 상태</th></tr></thead>
+        <caption>\(R^2\) 값이 의미하는 것</caption>
+        <thead><tr><th>\(R^2\)</th><th>해석</th><th>회귀의 상태</th></tr></thead>
         <tbody>
           <tr><td>1.0</td><td>100% 설명</td><td>완벽 (현실에선 거의 없음)</td></tr>
           <tr><td>0.9</td><td>90% 설명</td><td>아주 좋음</td></tr>
           <tr><td class="hi">0.5</td><td class="hi">50% 설명</td><td class="hi">절반은 잡음</td></tr>
           <tr><td>0.2</td><td>20% 설명</td><td>설명력 부족</td></tr>
-          <tr><td>0.0</td><td>전혀 설명 못 함</td><td>X가 Y와 무관</td></tr>
+          <tr><td>0.0</td><td>전혀 설명 못 함</td><td>\(X\)가 \(Y\)와 무관</td></tr>
         </tbody>
       </table>
       </div>
 
-      <h3>R²의 직관</h3>
+      <h3>\(R^2\)의 직관</h3>
 
       <div class="analogy">
         <p><strong>"퍼즐 맞추기" 비유.</strong></p>
-        <p>Y라는 그림 퍼즐 1000조각이 있어요. 우리 회귀선은 그 중 몇 조각을 맞췄을까요?<br>
-        <strong>R² = 0.7이면 700조각 맞춤. 300조각은 안 맞춰진 상태.</strong></p>
+        <p>\(Y\)라는 그림 퍼즐 1000조각이 있어요. 우리 회귀선은 그 중 몇 조각을 맞췄을까요?<br>
+        <strong>\(R^2 = 0.7\)이면 700조각 맞춤. 300조각은 안 맞춰진 상태.</strong></p>
         <p>점수가 높을수록 그림이 더 명확하게 드러나요.</p>
       </div>
 
-      <h3>R = √R² (Multiple R)</h3>
+      <h3>\(R = \sqrt{R^2}\) (Multiple R)</h3>
 
-      <p>R²의 제곱근을 그냥 <strong>R</strong>이라고 불러요. 회귀 출력에는 <em>"Multiple R"</em>로 나와요.</p>
+      <p>\(R^2\)의 제곱근을 그냥 <strong>\(R\)</strong>이라고 불러요. 회귀 출력에는 <em>"Multiple R"</em>로 나와요.</p>
 
       <div class="callout">
-        <div class="label">R의 의미</div>
-        <p>R은 <strong>실제값 Y와 예측값 Ŷ 사이의 상관계수</strong>예요.</p>
+        <div class="label">\(R\)의 의미</div>
+        <p>\(R\)은 <strong>실제값 \(Y\)와 예측값 \(\hat{Y}\) 사이의 상관계수</strong>예요.</p>
         <p>"우리 회귀선이 데이터와 얼마나 같은 방향으로 흐르는가"의 정도. 1에 가까울수록 좋아요.</p>
       </div>
 
-      <h3>주의 — R² 함정</h3>
+      <h3>주의 — \(R^2\) 함정</h3>
 
       <div class="callout yellow">
-        <div class="label">⚠️ R²가 높다고 다 좋은 건 아니에요</div>
-        <p>① <strong>변수만 늘리면 R²는 무조건 올라가요</strong>. 쓸데없는 변수를 추가해도! (그래서 10강에서 Adjusted R² 등장.)</p>
-        <p>② <strong>인과관계의 증거가 아니에요</strong>. R²가 높아도 "X가 Y의 원인이다"라는 뜻이 아니에요. 둘 다 같은 제3 변수의 영향일 수도.</p>
-        <p>③ R²가 낮다고 모델이 무용지물도 아니에요. 분야에 따라 0.2도 의미 있을 수 있어요.</p>
+        <div class="label">⚠️ \(R^2\)가 높다고 다 좋은 건 아니에요</div>
+        <p>① <strong>변수만 늘리면 \(R^2\)는 무조건 올라가요</strong>. 쓸데없는 변수를 추가해도! (그래서 10강에서 Adjusted \(R^2\) 등장.)</p>
+        <p>② <strong>인과관계의 증거가 아니에요</strong>. \(R^2\)가 높아도 "\(X\)가 \(Y\)의 원인이다"라는 뜻이 아니에요. 둘 다 같은 제3 변수의 영향일 수도.</p>
+        <p>③ \(R^2\)가 낮다고 모델이 무용지물도 아니에요. 분야에 따라 0.2도 의미 있을 수 있어요.</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        R² = SSR/SST. 0에 가까우면 설명 못 함, 1에 가까우면 잘 설명함.
+        \(R^2 = SSR/SST\). 0에 가까우면 설명 못 함, 1에 가까우면 잘 설명함.
       </div>
     </section>
 
@@ -727,14 +727,14 @@
         <tbody>
           <tr><td>Multiple R</td><td>0.94</td><td>실제값과 예측값의 상관계수</td></tr>
           <tr><td class="hi">R Square</td><td class="hi">0.89</td><td class="hi">결정계수 — 89%의 변동 설명</td></tr>
-          <tr><td>Adjusted R Square</td><td>0.88</td><td>변수 개수 보정한 R² (10강)</td></tr>
+          <tr><td>Adjusted R Square</td><td>0.88</td><td>변수 개수 보정한 \(R^2\) (10강)</td></tr>
           <tr><td>Standard Error</td><td>5.06</td><td>잔차의 표준편차 추정치</td></tr>
-          <tr><td>Observations</td><td>36</td><td>표본 개수 n</td></tr>
+          <tr><td>Observations</td><td>36</td><td>표본 개수 \(n\)</td></tr>
         </tbody>
       </table>
       </div>
 
-      <p>먼저 보는 곳: <strong>R Square</strong>. 0.89면 "Y의 변동의 89%를 우리 회귀선이 설명함"이라는 뜻.</p>
+      <p>먼저 보는 곳: <strong>R Square</strong>. 0.89면 "\(Y\)의 변동의 89%를 우리 회귀선이 설명함"이라는 뜻.</p>
 
       <h3>② ANOVA 박스 (분산 분석)</h3>
 
@@ -757,10 +757,10 @@
         <li>Residual의 SS = <strong>SSE</strong> = 844.82</li>
         <li>Total의 SS = <strong>SST</strong> = 7771.44</li>
         <li>확인: 6926.62 + 844.82 = 7771.44 ✓</li>
-        <li>R² = 6926.62 / 7771.44 ≈ 0.89 ✓</li>
+        <li>\(R^2 = 6926.62 / 7771.44 \approx 0.89\) ✓</li>
       </ul>
 
-      <p>나머지(df, MS, F)는 10강에서 다뤄요. 자유도와 표준오차 같은 개념이에요.</p>
+      <p>나머지(\(df\), \(MS\), \(F\))는 10강에서 다뤄요. 자유도와 표준오차 같은 개념이에요.</p>
 
       <h3>③ 계수 표 — 핵심 결과</h3>
 
@@ -776,7 +776,7 @@
       </table>
       </div>
 
-      <p>이 표에서 <strong>Coefficients 열</strong>이 바로 β들이에요. 그러면 회귀식이 이렇게 완성돼요:</p>
+      <p>이 표에서 <strong>Coefficients 열</strong>이 바로 \(\beta\)들이에요. 그러면 회귀식이 이렇게 완성돼요:</p>
 
       <div class="formula wide">
         \[ \hat{Y} = -0.57 - 1.62 \times \text{Rooms} + 0.06 \times \text{Volume} \]
@@ -789,11 +789,11 @@
         <caption>계수 표 각 열 해설</caption>
         <thead><tr><th>열</th><th>의미</th></tr></thead>
         <tbody>
-          <tr><td>Coefficients</td><td>추정된 β 값 (회귀식의 계수)</td></tr>
-          <tr><td>Standard Error</td><td>β 추정값의 흔들림 크기</td></tr>
-          <tr><td>t Stat</td><td>"이 β가 0인지" 검정의 통계량</td></tr>
-          <tr><td>P-value</td><td>"이 β = 0"이라는 H₀의 p-값 (8강에서 본 그것!)</td></tr>
-          <tr><td>Lower / Upper 95%</td><td>β의 95% 신뢰구간 (7강)</td></tr>
+          <tr><td>Coefficients</td><td>추정된 \(\beta\) 값 (회귀식의 계수)</td></tr>
+          <tr><td>Standard Error</td><td>\(\beta\) 추정값의 흔들림 크기</td></tr>
+          <tr><td>t Stat</td><td>"이 \(\beta\)가 0인지" 검정의 통계량</td></tr>
+          <tr><td>P-value</td><td>"이 \(\beta = 0\)"이라는 \(H_0\)의 \(p\)-값 (8강에서 본 그것!)</td></tr>
+          <tr><td>Lower / Upper 95%</td><td>\(\beta\)의 95% 신뢰구간 (7강)</td></tr>
         </tbody>
       </table>
       </div>
@@ -806,7 +806,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        엑셀 출력 = 3구역 (Regression Statistics · ANOVA · 계수표). R²와 Coefficients부터 봐요.
+        엑셀 출력 = 3구역 (Regression Statistics · ANOVA · 계수표). \(R^2\)와 Coefficients부터 봐요.
       </div>
     </section>
 
@@ -823,24 +823,24 @@
 
       <p class="story">
         그리고 그 선이 데이터를 <em>얼마나 잘</em> 설명하는지 측정하는 점수,
-        <strong>R²</strong>도 손에 넣었죠. SSR / SST.
+        <strong>\(R^2\)</strong>도 손에 넣었죠. \(SSR / SST\).
       </p>
 
       <p class="story">
         하지만 아직 답하지 못한 질문이 있어요. <em>"이 회귀선이 진짜 의미 있는가?"</em><br>
-        β들이 0이 아니라는 걸 어떻게 통계적으로 증명할까요? 그게 10강 주제예요.
+        \(\beta\)들이 0이 아니라는 걸 어떻게 통계적으로 증명할까요? 그게 10강 주제예요.
       </p>
 
       <h4>오늘의 장면 요약</h4>
       <ul>
         <li>회귀의 세 목표: 관계 묘사 · 유의성 · 예측</li>
-        <li>모델식: Y = β₀ + β₁X₁ + ⋯ + βₖXₖ + e</li>
+        <li>모델식: \(Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k + e\)</li>
         <li>단순선형회귀는 산점도 위의 직선</li>
-        <li>잔차 eᵢ = Yᵢ − Ŷᵢ — 선이 못 잡은 거리</li>
+        <li>잔차 \(e_i = Y_i - \hat{Y}_i\) — 선이 못 잡은 거리</li>
         <li>좋은 선 = SSE를 최소화하는 선 (OLS)</li>
         <li>SST = SSR + SSE — 변동의 분해</li>
-        <li>R² = SSR/SST — 회귀의 시험 점수</li>
-        <li>Multiple R = √R²</li>
+        <li>\(R^2 = SSR/SST\) — 회귀의 시험 점수</li>
+        <li>Multiple \(R = \sqrt{R^2}\)</li>
         <li>엑셀 출력 = Statistics · ANOVA · Coefficients 3구역</li>
       </ul>
 
@@ -849,19 +849,19 @@
       <div class="cards-2">
         <div class="card">
           <h5>계수의 가설 검정</h5>
-          <p>"이 변수 β가 정말 0이 아닌가?" — 8강의 H.T.를 회귀에 적용해요.</p>
+          <p>"이 변수 \(\beta\)가 정말 0이 아닌가?" — 8강의 H.T.를 회귀에 적용해요.</p>
         </div>
         <div class="card">
           <h5>변수 선택</h5>
-          <p>Adjusted R²와 p-값을 보고 "필요 없는 변수"를 골라내요.</p>
+          <p>Adjusted \(R^2\)와 \(p\)-값을 보고 "필요 없는 변수"를 골라내요.</p>
         </div>
         <div class="card">
           <h5>예측</h5>
-          <p>새 데이터의 Y를 추정하고 신뢰구간으로 감싸요.</p>
+          <p>새 데이터의 \(Y\)를 추정하고 신뢰구간으로 감싸요.</p>
         </div>
         <div class="card">
           <h5>자유도와 표준오차</h5>
-          <p>"왜 n − k − 1로 나누지?" 마지막 퍼즐.</p>
+          <p>"왜 \(n - k - 1\)로 나누지?" 마지막 퍼즐.</p>
         </div>
       </div>
 

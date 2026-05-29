@@ -62,7 +62,7 @@
       <li><a href="#ch0">여는 글</a></li>
       <li><a href="#ch1">연속 확률변수와 PDF</a></li>
       <li><a href="#ch2">정규분포의 특성</a></li>
-      <li><a href="#ch3">μ와 σ의 역할</a></li>
+      <li><a href="#ch3">\(\mu\)와 \(\sigma\)의 역할</a></li>
       <li><a href="#ch4">68-95-99.7 법칙</a></li>
       <li><a href="#ch5">표준정규분포</a></li>
       <li><a href="#ch6">표준화 공식</a></li>
@@ -198,8 +198,8 @@
 
       <div class="definition">
         <div class="term">Normal Distribution · 정규분포</div>
-        <div class="kor">N(μ, σ²)</div>
-        <p style="margin:0">평균 <em>μ</em>와 분산 <em>σ²</em>로 결정되는
+        <div class="kor">\(N(\mu, \sigma^2)\)</div>
+        <p style="margin:0">평균 \(\mu\)와 분산 \(\sigma^2\)로 결정되는
         <strong>종 모양</strong>의 연속 확률분포. 통계에서 가장 중요하고
         가장 자주 등장하는 분포예요.</p>
       </div>
@@ -209,7 +209,7 @@
       <ol class="steps">
         <li><strong>종 모양</strong>. 가운데가 제일 높고 양옆으로 낮아져요.</li>
         <li><strong>좌우 대칭</strong>. 평균을 기준으로 완벽한 거울.</li>
-        <li><strong>두 숫자로 결정</strong>. 평균 μ와 표준편차 σ만 알면 모양이 정해져요.</li>
+        <li><strong>두 숫자로 결정</strong>. 평균 \(\mu\)와 표준편차 \(\sigma\)만 알면 모양이 정해져요.</li>
         <li><strong>양 끝은 0에 가까워져요</strong>. 하지만 완전히 닿지는 않아요.</li>
       </ol>
 
@@ -258,20 +258,20 @@
 
       <div class="callout">
         <div class="label">수식은 겁먹지 마세요</div>
-        <p>외울 필요 없어요. 중요한 건 <strong>μ와 σ 두 숫자</strong>만으로 곡선이 정해진다는 점이에요.
+        <p>외울 필요 없어요. 중요한 건 <strong>\(\mu\)와 \(\sigma\) 두 숫자</strong>만으로 곡선이 정해진다는 점이에요.
         이 공식은 "종 그리는 법"이고, 우리는 그 결과 면적만 쓸 거예요.</p>
       </div>
 
       <h3>확률 읽는 법</h3>
       <ul>
         <li><strong>전체 면적 = 1</strong>. 모든 확률의 합이니까 당연해요.</li>
-        <li><strong>P(Z ≥ a) + P(Z &lt; a) = 1</strong>. 두 쪽으로 나누면 합은 1.</li>
-        <li><strong>P(Z &lt; −a) = P(Z ≥ a)</strong>. 좌우 대칭이니까 양쪽 꼬리는 같아요.</li>
+        <li><strong>\(P(Z \ge a) + P(Z < a) = 1\)</strong>. 두 쪽으로 나누면 합은 1.</li>
+        <li><strong>\(P(Z < -a) = P(Z \ge a)\)</strong>. 좌우 대칭이니까 양쪽 꼬리는 같아요.</li>
       </ul>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        정규분포 = μ와 σ만으로 그려지는 좌우 대칭 종 곡선. 전체 면적은 1.
+        정규분포 = \(\mu\)와 \(\sigma\)만으로 그려지는 좌우 대칭 종 곡선. 전체 면적은 1.
       </div>
 
     </section>
@@ -279,7 +279,7 @@
     <!-- ═══════ 3장 ═══════ -->
     <section class="chapter" id="ch3">
       <div class="chap-num">CHAPTER 03</div>
-      <h2>μ와 σ의 역할</h2>
+      <h2>\(\mu\)와 \(\sigma\)의 역할</h2>
       <div class="chap-sub">평균이 움직이면, 표준편차가 변하면</div>
 
       <p>정규분포는 두 숫자로 결정된다고 했어요.
@@ -287,23 +287,23 @@
 
       <div class="cards-2">
         <div class="card">
-          <h5>μ · 평균</h5>
+          <h5>\(\mu\) · 평균</h5>
           <div class="kor-sub">곡선의 위치</div>
-          <p>μ가 커지면 곡선이 <em>오른쪽</em>으로 이동해요.
+          <p>\(\mu\)가 커지면 곡선이 <em>오른쪽</em>으로 이동해요.
           모양은 그대로, 위치만 달라져요.</p>
         </div>
         <div class="card">
-          <h5>σ · 표준편차</h5>
+          <h5>\(\sigma\) · 표준편차</h5>
           <div class="kor-sub">곡선의 퍼짐</div>
-          <p>σ가 작으면 <em>뾰족하게</em> 솟고, σ가 크면 <em>넓고 낮게</em> 퍼져요.
+          <p>\(\sigma\)가 작으면 <em>뾰족하게</em> 솟고, \(\sigma\)가 크면 <em>넓고 낮게</em> 퍼져요.
           위치는 그대로, 모양이 달라져요.</p>
         </div>
       </div>
 
-      <h3>평균이 바뀔 때 (σ는 고정)</h3>
+      <h3>평균이 바뀔 때 (\(\sigma\)는 고정)</h3>
 
       <div class="chart-wrap">
-        <div class="chart-title">Varying the mean · μ만 이동</div>
+        <div class="chart-title">Varying the mean · \(\mu\)만 이동</div>
         <svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
           <line x1="50" y1="220" x2="590" y2="220" stroke="#1d1d1f" stroke-width="1.5"/>
           <line x1="50" y1="30" x2="50" y2="220" stroke="#1d1d1f" stroke-width="1.5"/>
@@ -339,10 +339,10 @@
         <div class="chart-caption">세 곡선의 <em>모양</em>은 같아요. <em>위치</em>만 바뀌었어요.</div>
       </div>
 
-      <h3>표준편차가 바뀔 때 (μ는 고정)</h3>
+      <h3>표준편차가 바뀔 때 (\(\mu\)는 고정)</h3>
 
       <div class="chart-wrap">
-        <div class="chart-title">Varying the standard deviation · σ만 변화</div>
+        <div class="chart-title">Varying the standard deviation · \(\sigma\)만 변화</div>
         <svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg">
           <line x1="50" y1="240" x2="590" y2="240" stroke="#1d1d1f" stroke-width="1.5"/>
           <line x1="50" y1="30" x2="50" y2="240" stroke="#1d1d1f" stroke-width="1.5"/>
@@ -381,18 +381,18 @@
             <rect x="450" y="90" width="14" height="3" fill="#c0392b"/><text x="470" y="94" fill="#1d1d1f">σ = 2 (퍼짐)</text>
           </g>
         </svg>
-        <div class="chart-caption">σ가 작을수록 뾰족하게, 클수록 넓게 퍼져요.</div>
+        <div class="chart-caption">\(\sigma\)가 작을수록 뾰족하게, 클수록 넓게 퍼져요.</div>
       </div>
 
       <div class="analogy">
         <p><strong>비유해볼까요.</strong></p>
-        <p>μ는 <em>무대의 중심 위치</em>. 마이크 스탠드가 왼쪽이냐 오른쪽이냐의 문제예요.</p>
-        <p>σ는 <em>조명의 퍼짐</em>. 스포트라이트는 좁고 강해요(σ 작음). 플러드라이트는 넓고 약해요(σ 큼).</p>
+        <p>\(\mu\)는 <em>무대의 중심 위치</em>. 마이크 스탠드가 왼쪽이냐 오른쪽이냐의 문제예요.</p>
+        <p>\(\sigma\)는 <em>조명의 퍼짐</em>. 스포트라이트는 좁고 강해요(\(\sigma\) 작음). 플러드라이트는 넓고 약해요(\(\sigma\) 큼).</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        μ = 위치 · σ = 퍼짐. 두 손잡이로 종 곡선을 자유자재로 조정.
+        \(\mu\) = 위치 · \(\sigma\) = 퍼짐. 두 손잡이로 종 곡선을 자유자재로 조정.
       </div>
 
     </section>
@@ -404,16 +404,16 @@
       <div class="chap-sub">기억하면 평생 쓰는 세 숫자</div>
 
       <p>정규분포에는 유명한 법칙이 하나 있어요.
-      평균에서 <strong>몇 σ 떨어진 구간</strong>에 데이터가 얼마나 들어가는지에 관한 규칙이에요.</p>
+      평균에서 <strong>몇 \(\sigma\) 떨어진 구간</strong>에 데이터가 얼마나 들어가는지에 관한 규칙이에요.</p>
 
       <div class="definition">
         <div class="term">Empirical Rule · 경험 법칙</div>
         <div class="kor">68-95-99.7의 마법</div>
         <p style="margin:6px 0 0 0">정규분포에서는:</p>
         <ul style="margin:6px 0 0 18px">
-          <li>약 <strong>68%</strong>가 μ ± 1σ 안에</li>
-          <li>약 <strong>95%</strong>가 μ ± 2σ 안에</li>
-          <li>약 <strong>99.7%</strong>가 μ ± 3σ 안에</li>
+          <li>약 <strong>68%</strong>가 \(\mu \pm 1\sigma\) 안에</li>
+          <li>약 <strong>95%</strong>가 \(\mu \pm 2\sigma\) 안에</li>
+          <li>약 <strong>99.7%</strong>가 \(\mu \pm 3\sigma\) 안에</li>
         </ul>
       </div>
 
@@ -465,21 +465,21 @@
             <text x="460" y="300" fill="#6b6b6b">나머지 0.3% = 꼬리</text>
           </g>
         </svg>
-        <div class="chart-caption">평균으로부터 1σ, 2σ, 3σ 구간의 면적이 곧 확률.</div>
+        <div class="chart-caption">평균으로부터 \(1\sigma, 2\sigma, 3\sigma\) 구간의 면적이 곧 확률.</div>
       </div>
 
       <div class="analogy">
         <p><strong>키로 비유해볼까요.</strong></p>
         <p>한국 성인 남성의 키가 평균 172cm, 표준편차 6cm인 정규분포라고 해봐요.</p>
-        <p>그러면 10명 중 약 7명은 <strong>166~178cm</strong> 사이(1σ 구간).
-        20명 중 19명은 <strong>160~184cm</strong> 사이(2σ 구간).
-        1000명 중 997명은 <strong>154~190cm</strong> 사이(3σ 구간)예요.</p>
+        <p>그러면 10명 중 약 7명은 <strong>166~178cm</strong> 사이(\(1\sigma\) 구간).
+        20명 중 19명은 <strong>160~184cm</strong> 사이(\(2\sigma\) 구간).
+        1000명 중 997명은 <strong>154~190cm</strong> 사이(\(3\sigma\) 구간)예요.</p>
       </div>
 
       <div class="callout green">
         <div class="label">이 숫자를 외우면</div>
-        <p>계산기 없이도 어림셈이 가능해요. "우리 반 평균 70점, σ=10이면
-        90점 이상은 얼마?" → 2σ 밖 절반 = 2.5% 정도. 빠르죠.</p>
+        <p>계산기 없이도 어림셈이 가능해요. "우리 반 평균 70점, \(\sigma=10\)이면
+        90점 이상은 얼마?" → \(2\sigma\) 밖 절반 = 2.5% 정도. 빠르죠.</p>
       </div>
 
       <div class="take-away">
@@ -497,8 +497,8 @@
 
       <p>세상엔 정규분포가 무수히 많아요.</p>
 
-      <p>키(μ=172, σ=6), 시험 점수(μ=70, σ=12), 다운로드 시간(μ=7, σ=2)…
-      μ와 σ 조합에 따라 끝없이 달라져요.</p>
+      <p>키(\(\mu=172, \sigma=6\)), 시험 점수(\(\mu=70, \sigma=12\)), 다운로드 시간(\(\mu=7, \sigma=2\))…
+      \(\mu\)와 \(\sigma\) 조합에 따라 끝없이 달라져요.</p>
 
       <p>매번 다른 곡선의 면적을 계산하긴 번거로워요.
       그래서 <strong>기준 하나</strong>를 정했어요.</p>
@@ -513,13 +513,13 @@
 
       <div class="definition">
         <div class="term">Standard Normal Distribution · 표준정규분포</div>
-        <div class="kor">Z ~ N(0, 1²)</div>
+        <div class="kor">\(Z \sim N(0, 1^2)\)</div>
         <p style="margin:0">평균이 <strong>0</strong>이고 표준편차가 <strong>1</strong>인
-        정규분포. 보통 확률변수 기호는 <em>Z</em>를 써요. 모든 계산의 기준 곡선이에요.</p>
+        정규분포. 보통 확률변수 기호는 \(Z\)를 써요. 모든 계산의 기준 곡선이에요.</p>
       </div>
 
       <div class="chart-wrap">
-        <div class="chart-title">Standard Normal N(0, 1²)</div>
+        <div class="chart-title">Standard Normal \(N(0, 1^2)\)</div>
         <svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg">
           <line x1="50" y1="230" x2="590" y2="230" stroke="#1d1d1f" stroke-width="1.5"/>
           <line x1="50" y1="30" x2="50" y2="230" stroke="#1d1d1f" stroke-width="1.5"/>
@@ -550,7 +550,7 @@
           </g>
           <text x="320" y="270" text-anchor="middle" font-size="12" fill="#6b6b6b">Z</text>
         </svg>
-        <div class="chart-caption">평균 0, 표준편차 1. 가장 높은 점은 z=0에서 약 0.4.</div>
+        <div class="chart-caption">평균 0, 표준편차 1. 가장 높은 점은 \(z=0\)에서 약 0.4.</div>
       </div>
 
       <p>표준정규로 바꿔두면 <strong>정규분포표(Normal Table)</strong> 하나로
@@ -558,13 +558,13 @@
 
       <div class="callout blue">
         <div class="label">우리가 풀 두 가지 문제</div>
-        <p><strong>ⓐ</strong> z값이 주어지면 → 확률을 찾는다. 예: P(Z ≤ 0.73) = ?</p>
-        <p><strong>ⓑ</strong> 확률이 주어지면 → z값을 찾는다. 예: P(Z ≤ z) = 0.73 일 때 z = ?</p>
+        <p><strong>ⓐ</strong> \(z\)값이 주어지면 → 확률을 찾는다. 예: \(P(Z \le 0.73) = ?\)</p>
+        <p><strong>ⓑ</strong> 확률이 주어지면 → \(z\)값을 찾는다. 예: \(P(Z \le z) = 0.73\) 일 때 \(z = ?\)</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        표준정규 Z ~ N(0, 1). 모든 정규분포를 이리로 데려와 풀어요.
+        표준정규 \(Z \sim N(0, 1)\). 모든 정규분포를 이리로 데려와 풀어요.
       </div>
 
     </section>
@@ -577,7 +577,7 @@
 
       <p>현실의 정규분포는 대부분 표준정규가 아니에요.</p>
 
-      <p>다운로드 시간은 μ=7, σ=2. 키는 μ=172, σ=6.
+      <p>다운로드 시간은 \(\mu=7, \sigma=2\). 키는 \(\mu=172, \sigma=6\).
       매번 곡선이 달라요.</p>
 
       <p>그래서 이걸 <em>표준정규로 번역</em>하는 마법의 공식이 있어요.
@@ -586,33 +586,33 @@
       <div class="definition">
         <div class="term">Standardization · 표준화</div>
         <div class="kor">핵심 공식</div>
-        <p style="margin:0">만약 <em>X ~ N(μ, σ²)</em>라면:</p>
+        <p style="margin:0">만약 \(X \sim N(\mu, \sigma^2)\)라면:</p>
       </div>
 
       <div class="formula">
         \[ Z = \frac{X - \mu}{\sigma} \sim N(0, 1^2) \]
       </div>
 
-      <p>X에서 평균을 빼고, 표준편차로 나눠요. 그럼 Z가 나와요.
-      Z는 항상 표준정규(평균 0, σ=1)를 따라요.</p>
+      <p>\(X\)에서 평균을 빼고, 표준편차로 나눠요. 그럼 \(Z\)가 나와요.
+      \(Z\)는 항상 표준정규(평균 0, \(\sigma=1\))를 따라요.</p>
 
       <p>반대로 되돌리려면 이렇게.</p>
 
       <div class="formula">\[ X = \mu + \sigma Z \]</div>
 
-      <p>z값에 σ를 곱해서 원래 단위로 늘리고, 평균을 더해주면 X가 돼요.
+      <p>\(z\)값에 \(\sigma\)를 곱해서 원래 단위로 늘리고, 평균을 더해주면 \(X\)가 돼요.
       표준화의 <em>역연산</em>이에요.</p>
 
       <div class="analogy">
-        <p><strong>Z의 뜻을 직관으로 풀어봐요.</strong></p>
-        <p>Z는 "X가 평균에서 <strong>몇 표준편차만큼</strong> 떨어졌나"를 재는 자예요.
-        Z=2라면 평균보다 2σ 위. Z=−1이면 평균보다 1σ 아래.</p>
+        <p><strong>\(Z\)의 뜻을 직관으로 풀어봐요.</strong></p>
+        <p>\(Z\)는 "\(X\)가 평균에서 <strong>몇 표준편차만큼</strong> 떨어졌나"를 재는 자예요.
+        \(Z=2\)라면 평균보다 \(2\sigma\) 위. \(Z=-1\)이면 평균보다 \(1\sigma\) 아래.</p>
         <p>키로 치면 172cm 평균에서 178cm인 사람은
-        Z = (178−172)/6 = 1. "1σ 위의 키"예요.</p>
+        \(Z = (178-172)/6 = 1\). "\(1\sigma\) 위의 키"예요.</p>
       </div>
 
       <div class="chart-wrap">
-        <div class="chart-title">표준화 시각화 · X → Z 변환</div>
+        <div class="chart-title">표준화 시각화 · \(X \to Z\) 변환</div>
         <svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
           <!-- Original -->
           <g transform="translate(0,0)">
@@ -657,32 +657,32 @@
             <text x="590" y="98" font-size="10" fill="#6b6b6b" text-anchor="end">Z</text>
           </g>
         </svg>
-        <div class="chart-caption">X축 숫자만 바뀌고, 곡선 아래 면적(확률)은 같아요.</div>
+        <div class="chart-caption">\(X\)축 숫자만 바뀌고, 곡선 아래 면적(확률)은 같아요.</div>
       </div>
 
       <div class="callout yellow">
         <div class="label">면적은 불변</div>
-        <p>X의 한 구간을 표준화하면 Z의 대응 구간이 돼요.
+        <p>\(X\)의 한 구간을 표준화하면 \(Z\)의 대응 구간이 돼요.
         그 <strong>면적(확률)은 완전히 같아요</strong>.
         눈금만 번역됐을 뿐이에요.</p>
       </div>
 
       <h3>표준화 예시</h3>
-      <p>X ~ N(7, 2²)에서 P(X > 9)를 구해봐요.</p>
+      <p>\(X \sim N(7, 2^2)\)에서 \(P(X > 9)\)를 구해봐요.</p>
 
       <div class="formula">
         \[ P(X > 9) = P\!\left(\frac{X - 7}{2} > \frac{9 - 7}{2}\right) = P(Z > 1) \]
       </div>
 
-      <p>X−7을 2로 나눈 게 Z예요. 부등식 양변에 같은 변환을 해줬을 뿐이에요.
+      <p>\(X-7\)을 2로 나눈 게 \(Z\)예요. 부등식 양변에 같은 변환을 해줬을 뿐이에요.
       확률 값은 그대로예요.</p>
 
-      <p>표준정규표에서 P(Z &gt; 1) ≈ <strong>0.1587</strong>.
+      <p>표준정규표에서 \(P(Z > 1) \approx\) <strong>0.1587</strong>.
       즉 약 <strong>15.87%</strong>의 다운로드가 9초를 넘겨요.</p>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        Z = (X − μ)/σ. 이 한 줄이면 어떤 정규분포든 표준정규로 번역돼요.
+        \(Z = (X - \mu)/\sigma\). 이 한 줄이면 어떤 정규분포든 표준정규로 번역돼요.
       </div>
 
     </section>
@@ -693,16 +693,16 @@
       <h2>Z-table 읽기</h2>
       <div class="chap-sub">확률을 찾아주는 사전</div>
 
-      <p>표준정규분포표(Z-table)는 <strong>P(Z ≤ z)</strong> 값을 미리 계산해둔 표예요.
+      <p>표준정규분포표(Z-table)는 <strong>\(P(Z \le z)\)</strong> 값을 미리 계산해둔 표예요.
       보는 법만 익히면 한 번에 답이 나와요.</p>
 
       <div class="definition">
         <div class="term">Z-table 보는 법</div>
         <div class="kor">행과 열을 나눠서 읽기</div>
         <ul style="margin:6px 0 0 18px">
-          <li><strong>첫 번째 열</strong> = z의 소수점 첫째 자리까지 (예: 0.7)</li>
-          <li><strong>첫 번째 행</strong> = z의 소수점 둘째 자리 (예: 0.03)</li>
-          <li><strong>교차하는 칸</strong> = P(Z ≤ z) 값</li>
+          <li><strong>첫 번째 열</strong> = \(z\)의 소수점 첫째 자리까지 (예: 0.7)</li>
+          <li><strong>첫 번째 행</strong> = \(z\)의 소수점 둘째 자리 (예: 0.03)</li>
+          <li><strong>교차하는 칸</strong> = \(P(Z \le z)\) 값</li>
         </ul>
       </div>
 
@@ -729,10 +729,10 @@
         </table>
       </div>
 
-      <h3>예시 ⓐ · P(Z ≤ 0.73) 찾기</h3>
+      <h3>예시 ⓐ · \(P(Z \le 0.73)\) 찾기</h3>
 
       <ol class="steps">
-        <li>z = 0.73을 <strong>0.7 + 0.03</strong>으로 나눠요.</li>
+        <li>\(z = 0.73\)을 <strong>0.7 + 0.03</strong>으로 나눠요.</li>
         <li>첫 열에서 <strong>0.7</strong>을 찾아 해당 행으로 가요.</li>
         <li>첫 행에서 <strong>0.03</strong>을 찾아 해당 열로 내려가요.</li>
         <li>교차점의 값을 읽어요 → <strong>0.7673</strong>.</li>
@@ -740,13 +740,13 @@
 
       <div class="callout">
         <div class="label">해석</div>
-        <p>P(Z ≤ 0.73) = 0.7673.
+        <p>\(P(Z \le 0.73) = 0.7673\).
         <em>표준정규 변수가 0.73 이하일 확률이 약 76.73%</em>라는 뜻.
         곡선 아래 왼쪽 부분의 면적이에요.</p>
       </div>
 
       <div class="chart-wrap">
-        <div class="chart-title">P(Z ≤ 0.73) 의 시각화</div>
+        <div class="chart-title">\(P(Z \le 0.73)\) 의 시각화</div>
         <svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
           <line x1="50" y1="210" x2="590" y2="210" stroke="#1d1d1f" stroke-width="1.5"/>
           <!-- shaded left of 0.73 (x≈364) -->
@@ -769,14 +769,14 @@
       </div>
 
       <div class="callout blue">
-        <div class="label">자주 쓰는 z값 암기</div>
-        <p>P(Z ≤ 1.00) ≈ 0.8413 · P(Z ≤ 1.64) ≈ 0.9495 · P(Z ≤ 1.96) ≈ 0.9750 ·
-        P(Z ≤ 2.33) ≈ 0.9901 · P(Z ≤ 2.58) ≈ 0.9951.</p>
+        <div class="label">자주 쓰는 \(z\)값 암기</div>
+        <p>\(P(Z \le 1.00) \approx 0.8413\) · \(P(Z \le 1.64) \approx 0.9495\) · \(P(Z \le 1.96) \approx 0.9750\) ·
+        \(P(Z \le 2.33) \approx 0.9901\) · \(P(Z \le 2.58) \approx 0.9951\).</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        행(소수 첫째 자리) + 열(둘째 자리) = P(Z ≤ z). 이게 Z-table의 전부예요.
+        행(소수 첫째 자리) + 열(둘째 자리) = \(P(Z \le z)\). 이게 Z-table의 전부예요.
       </div>
 
     </section>
@@ -788,14 +788,14 @@
       <div class="chap-sub">표를 거꾸로 읽는 기술</div>
 
       <p>이번엔 반대예요. <strong>확률이 먼저 주어지고</strong>,
-      그에 맞는 z값을 찾아야 해요.</p>
+      그에 맞는 \(z\)값을 찾아야 해요.</p>
 
-      <p>예: P(Z ≤ z) = 0.73 이 되는 z는?</p>
+      <p>예: \(P(Z \le z) = 0.73\) 이 되는 \(z\)는?</p>
 
       <ol class="steps">
         <li>표 <em>내부</em>에서 <strong>0.73에 가장 가까운 값</strong>을 찾아요.</li>
         <li>그 값이 있는 행(소수 첫째 자리)과 열(둘째 자리)을 읽어요.</li>
-        <li>두 숫자를 더해요 → z 값이에요.</li>
+        <li>두 숫자를 더해요 → \(z\) 값이에요.</li>
       </ol>
 
       <div class="table-scroll">
@@ -825,19 +825,19 @@
       </div>
 
       <h3>실전 · 다운로드 99% 완료 시간</h3>
-      <p>X ~ N(7, 2²)에서 P(X ≤ x) = 0.99 인 x는?</p>
+      <p>\(X \sim N(7, 2^2)\)에서 \(P(X \le x) = 0.99\) 인 \(x\)는?</p>
 
       <ol class="steps">
-        <li>P(Z ≤ z) = 0.99 가 되는 z를 찾아요 → z ≈ <strong>2.33</strong>.</li>
-        <li>표준화 역공식: <em>X = μ + σZ</em> = 7 + 2 × 2.33.</li>
-        <li>x = <strong>11.66초</strong>.</li>
+        <li>\(P(Z \le z) = 0.99\) 가 되는 \(z\)를 찾아요 → \(z \approx\) <strong>2.33</strong>.</li>
+        <li>표준화 역공식: \(X = \mu + \sigma Z\) = 7 + 2 × 2.33.</li>
+        <li>\(x =\) <strong>11.66초</strong>.</li>
       </ol>
 
       <p>즉 약 <strong>11.66초</strong>가 지나면 99%의 다운로드가 끝나요.</p>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        내부 값 → 행+열 → z. 그리고 X = μ + σZ 로 원래 단위로 복귀.
+        내부 값 → 행+열 → \(z\). 그리고 \(X = \mu + \sigma Z\) 로 원래 단위로 복귀.
       </div>
 
     </section>
@@ -849,30 +849,30 @@
       <div class="chap-sub">오늘 배운 도구로 풀어보기</div>
 
       <h3>예시 1 · MyTVLab 다운로드 시간</h3>
-      <p>X ~ N(7, 2²). 평균 7초, 표준편차 2초의 다운로드 시간.</p>
+      <p>\(X \sim N(7, 2^2)\). 평균 7초, 표준편차 2초의 다운로드 시간.</p>
 
       <div class="cards-2">
         <div class="card">
           <h5>Q1. 9초 초과 비율?</h5>
-          <p>P(X &gt; 9) = P(Z &gt; 1) = 1 − 0.8413 = <strong>0.1587</strong>.
+          <p>\(P(X > 9) = P(Z > 1) = 1 - 0.8413 =\) <strong>0.1587</strong>.
           약 15.9%의 다운로드가 9초를 넘겨요.</p>
         </div>
         <div class="card">
           <h5>Q2. 99% 완료 시간?</h5>
-          <p>z = 2.33 → x = 7 + 2 × 2.33 = <strong>11.66초</strong>.
+          <p>\(z = 2.33\) → \(x = 7 + 2 \times 2.33 =\) <strong>11.66초</strong>.
           11.66초면 99%가 끝나요.</p>
         </div>
       </div>
 
       <div class="callout yellow">
         <div class="label">Q3. 기술 개선 효과는?</div>
-        <p>σ가 작아지면 곡선이 좁고 뾰족해져요. → 9초 초과 확률이 줄어들고,
-        99% 완료 시간도 짧아져요. μ가 작아지면 전체가 왼쪽으로 이동해요.
+        <p>\(\sigma\)가 작아지면 곡선이 좁고 뾰족해져요. → 9초 초과 확률이 줄어들고,
+        99% 완료 시간도 짧아져요. \(\mu\)가 작아지면 전체가 왼쪽으로 이동해요.
         두 효과 모두 사용자가 체감하는 <em>느림</em>을 줄여요.</p>
       </div>
 
       <h3>예시 2 · 호텔 객실 예약</h3>
-      <p>배경: 동대문 호텔 객실 1000개. 설 연휴 취소 건수가 N(200, 50²)를 따른대요.
+      <p>배경: 동대문 호텔 객실 1000개. 설 연휴 취소 건수가 \(N(200, 50^2)\)를 따른대요.
       오버부킹 200건을 허용했어요.</p>
 
       <p><strong>Q. 점유율이 95% 미만일 확률?</strong></p>
@@ -887,12 +887,12 @@
       드물게 객실이 남는 날이 있다는 뜻이죠.</p>
 
       <h3>예시 3 · 스키 파카 생산 계획</h3>
-      <p>Sport Obermeyer의 파카 수요는 N(1200, 130²).
+      <p>Sport Obermeyer의 파카 수요는 \(N(1200, 130^2)\).
       수요 충족 확률을 95%로 맞추려면?</p>
 
       <ol class="steps">
-        <li>P(Z ≤ z) = 0.95 인 z ≈ <strong>1.645</strong>.</li>
-        <li>X = 1200 + 130 × 1.645 ≈ <strong>1414</strong>벌.</li>
+        <li>\(P(Z \le z) = 0.95\) 인 \(z \approx\) <strong>1.645</strong>.</li>
+        <li>\(X = 1200 + 130 \times 1.645 \approx\) <strong>1414</strong>벌.</li>
         <li>즉 최소 1414벌을 생산하면 수요를 95% 확률로 감당해요.</li>
       </ol>
 
@@ -919,12 +919,12 @@
             <text x="560" y="220">1500</text>
           </g>
         </svg>
-        <div class="chart-caption">평균 1200 + 1.645σ ≈ 1414. 이 지점 아래 95%의 확률이 쌓여요.</div>
+        <div class="chart-caption">평균 \(1200 + 1.645\sigma \approx 1414\). 이 지점 아래 95%의 확률이 쌓여요.</div>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        모든 문제의 골격은 같아요. 표준화 → z로 바꾸기 → 표로 확률 읽기.
+        모든 문제의 골격은 같아요. 표준화 → \(z\)로 바꾸기 → 표로 확률 읽기.
       </div>
 
     </section>
@@ -1000,7 +1000,7 @@
 
       <div class="table-scroll">
         <table class="blue-head center compact">
-          <thead><tr><th>지점</th><th>평균 μ</th><th>표준편차 σ</th></tr></thead>
+          <thead><tr><th>지점</th><th>평균 \(\mu\)</th><th>표준편차 \(\sigma\)</th></tr></thead>
           <tbody>
             <tr><td>동대문 (D)</td><td>600</td><td>80</td></tr>
             <tr><td>명동 (M)</td><td>720</td><td>50</td></tr>
@@ -1008,7 +1008,7 @@
         </table>
       </div>
 
-      <p>그리고 둘 사이엔 상관계수 <em>ρ<sub>dm</sub></em> = <strong>−0.65</strong>.</p>
+      <p>그리고 둘 사이엔 상관계수 \(\rho_{dm}\) = <strong>−0.65</strong>.</p>
 
       <p>음의 상관이라는 건, 한 지점이 붐비면 다른 지점은 한가해지는 경향을 말해요.
       서울 관광객이 같은 날 두 지점에 <em>반반으로 쏠린다</em>면 자연스러운 결과죠.</p>
@@ -1033,23 +1033,23 @@
 
       <h3>지점별 부족 확률 · 표준화로 풀기</h3>
 
-      <p><strong>동대문</strong>. D ~ N(600, 80²) 이니까:</p>
+      <p><strong>동대문</strong>. \(D \sim N(600, 80^2)\) 이니까:</p>
 
       <div class="formula">
         \[ P(D > 540) = P\!\left(Z > \frac{540 - 600}{80}\right) = P(Z > -0.75) \]
       </div>
 
-      <p>표준정규에서 P(Z &gt; −0.75) ≈ <strong>0.7734</strong>.
+      <p>표준정규에서 \(P(Z > -0.75) \approx\) <strong>0.7734</strong>.
       즉 동대문은 약 <strong>77%</strong> 확률로 인력 부족이에요.
       사실상 거의 매일 바쁘다는 뜻.</p>
 
-      <p><strong>명동</strong>. M ~ N(720, 50²) 이니까:</p>
+      <p><strong>명동</strong>. \(M \sim N(720, 50^2)\) 이니까:</p>
 
       <div class="formula">
         \[ P(M > 660) = P\!\left(Z > \frac{660 - 720}{50}\right) = P(Z > -1.2) \]
       </div>
 
-      <p>P(Z &gt; −1.2) ≈ <strong>0.8849</strong>.
+      <p>\(P(Z > -1.2) \approx\) <strong>0.8849</strong>.
       명동은 약 <strong>88%</strong> 확률로 부족이에요.
       명동 쪽이 더 자주 모자라요.</p>
 
@@ -1057,16 +1057,16 @@
         <div class="label">왜 두 지점을 묶어서 봐야 할까?</div>
         <p>스태프 풀이 <em>공유</em>잖아요. 한쪽이 남으면 다른 쪽을 도울 수 있어요.</p>
         <p>그래서 "두 지점을 합쳐서" 부족 확률을 다시 계산해야 해요.
-        합계 <strong>D + M</strong>의 분포를 알아야 하죠.</p>
+        합계 <strong>\(D + M\)</strong>의 분포를 알아야 하죠.</p>
       </div>
 
-      <h3>두 지점을 합치면 · P(D + M &gt; 1200)?</h3>
+      <h3>두 지점을 합치면 · \(P(D + M > 1200)\)?</h3>
 
-      <p>총 200명 × 6방 = <strong>1200방</strong>이 하루 처리 한계예요.
-      부족 확률 = P(D + M &gt; 1200).</p>
+      <p>총 \(200 \times 6 =\) <strong>1200방</strong>이 하루 처리 한계예요.
+      부족 확률 = \(P(D + M > 1200)\).</p>
 
       <p>여기서 질문이 나와요.
-      <strong>D + M은 과연 정규분포일까요?</strong>
+      <strong>\(D + M\)은 과연 정규분포일까요?</strong>
       두 변수가 독립이 아니라 음의 상관이 있으니까, 답이 궁금해요.</p>
 
       <div class="callout blue">
@@ -1094,8 +1094,8 @@
       <div class="definition">
         <div class="term">독립 정규의 합 · Key Fact</div>
         <div class="kor">합도 정규</div>
-        <p style="margin:0">X와 Y가 <strong>독립</strong>이고 각각 정규분포를 따르면,
-        임의의 상수 a, b에 대해 <em>aX + bY</em>도 정규분포예요.</p>
+        <p style="margin:0">\(X\)와 \(Y\)가 <strong>독립</strong>이고 각각 정규분포를 따르면,
+        임의의 상수 \(a, b\)에 대해 \(aX + bY\)도 정규분포예요.</p>
       </div>
 
       <p>정규 + 정규 = 정규. 모양이 무너지지 않아요.
@@ -1103,7 +1103,7 @@
 
       <h3>평균과 분산 구하기</h3>
 
-      <p>W = aX + bY 라고 둘게요.</p>
+      <p>\(W = aX + bY\) 라고 둘게요.</p>
 
       <div class="formula">\[ E[W] = a \cdot E[X] + b \cdot E[Y] \]</div>
 
@@ -1115,31 +1115,31 @@
       분산도 <em>가중합</em>. 단, 계수는 제곱이 붙어요.</p>
 
       <div class="callout">
-        <div class="label">왜 a², b² 일까?</div>
+        <div class="label">왜 \(a^2, b^2\) 일까?</div>
         <p>분산은 <em>제곱 단위</em>라서 그래요.
-        표준편차 σ<sub>X</sub>를 a배 늘리면 aσ<sub>X</sub>가 되고,
-        분산은 그걸 제곱한 a²σ<sub>X</sub>²가 돼요.</p>
+        표준편차 \(\sigma_X\)를 \(a\)배 늘리면 \(a\sigma_X\)가 되고,
+        분산은 그걸 제곱한 \(a^2\sigma_X^2\)가 돼요.</p>
       </div>
 
       <h3>예시 · 독립 호텔 체인을 가정해봐요</h3>
 
       <p>실제 호텔은 상관이 있지만, <em>만약 독립이라면</em> 어떻게 되는지 먼저 연습.
-      D ~ N(600, 80²), M ~ N(720, 50²), 독립 가정.</p>
+      \(D \sim N(600, 80^2)\), \(M \sim N(720, 50^2)\), 독립 가정.</p>
 
-      <p><strong>평균</strong>. E[D + M] = 600 + 720 = <strong>1320</strong>.</p>
+      <p><strong>평균</strong>. \(E[D + M] = 600 + 720 =\) <strong>1320</strong>.</p>
 
-      <p><strong>분산</strong>. Var[D + M] = 80² + 50² = 6400 + 2500 = <strong>8900</strong>.</p>
+      <p><strong>분산</strong>. \(\text{Var}[D + M] = 80^2 + 50^2 = 6400 + 2500 =\) <strong>8900</strong>.</p>
 
-      <p><strong>표준편차</strong>. √8900 ≈ <strong>94.3</strong>.</p>
+      <p><strong>표준편차</strong>. \(\sqrt{8900} \approx\) <strong>94.3</strong>.</p>
 
-      <p>즉 독립 가정 하에서 D + M ~ N(1320, 94.3²).
+      <p>즉 독립 가정 하에서 \(D + M \sim N(1320, 94.3^2)\).
       이제 표준화로 부족 확률을 뽑을 수 있어요.</p>
 
       <div class="formula">
         \[ P(D + M > 1200) = P\!\left(Z > \frac{1200 - 1320}{94.3}\right) = P(Z > -1.27) \]
       </div>
 
-      <p>P(Z &gt; −1.27) ≈ <strong>0.898</strong>.
+      <p>\(P(Z > -1.27) \approx\) <strong>0.898</strong>.
       독립이라면 약 <strong>90%</strong> 확률로 총합이 1200을 넘어요.</p>
 
       <div class="callout green">
@@ -1161,18 +1161,18 @@
       <h2>결합 정규의 합</h2>
       <div class="chap-sub">상관이 있어도 괜찮아요</div>
 
-      <p>현실의 두 호텔은 독립이 아니에요. 상관이 있어요(ρ = −0.65).
+      <p>현실의 두 호텔은 독립이 아니에요. 상관이 있어요(\(\rho = -0.65\)).
       그래도 합이 정규일까요?</p>
 
       <div class="definition">
         <div class="term">Jointly Normal · 결합 정규</div>
         <div class="kor">함께 묶어서 정규</div>
-        <p style="margin:0">X와 Y가 <strong>결합 정규분포</strong>(jointly normal)를 따르면,
-        임의의 상수 a, b에 대해:</p>
+        <p style="margin:0">\(X\)와 \(Y\)가 <strong>결합 정규분포</strong>(jointly normal)를 따르면,
+        임의의 상수 \(a, b\)에 대해:</p>
         <ul style="margin:8px 0 0 18px">
-          <li><em>a + bX</em> 는 정규</li>
-          <li><em>X + Y</em> 는 정규</li>
-          <li><em>aX + bY</em> 는 정규</li>
+          <li>\(a + bX\) 는 정규</li>
+          <li>\(X + Y\) 는 정규</li>
+          <li>\(aX + bY\) 는 정규</li>
         </ul>
       </div>
 
@@ -1185,7 +1185,7 @@
 
       <div class="formula">\[ E[W] = a \cdot E[X] + b \cdot E[Y] \]</div>
 
-      <p>분산이 달라져요. <strong>2ab · Cov[X, Y]</strong> 항이 추가돼요.</p>
+      <p>분산이 달라져요. <strong>\(2ab \cdot \text{Cov}[X, Y]\)</strong> 항이 추가돼요.</p>
 
       <div class="formula wide">
         \[ \text{Var}[W] = a^2 \text{Var}[X] + b^2 \text{Var}[Y] + 2ab \cdot \text{Cov}[X, Y] \]
@@ -1197,19 +1197,19 @@
         \[ \text{Var}[W] = a^2 \sigma_X^2 + b^2 \sigma_Y^2 + 2ab \cdot \sigma_X \sigma_Y \cdot \rho_{XY} \]
       </div>
 
-      <p>공분산 Cov[X, Y] = σ<sub>X</sub>σ<sub>Y</sub> · ρ<sub>XY</sub> 를 대입한 것뿐이에요.</p>
+      <p>공분산 \(\text{Cov}[X, Y] = \sigma_X \sigma_Y \cdot \rho_{XY}\) 를 대입한 것뿐이에요.</p>
 
       <div class="callout yellow">
         <div class="label">독립 공식은 특수한 경우</div>
-        <p>ρ = 0 이면 2ab · σ<sub>X</sub>σ<sub>Y</sub> · 0 = 0.
+        <p>\(\rho = 0\) 이면 \(2ab \cdot \sigma_X \sigma_Y \cdot 0 = 0\).
         그래서 독립 공식(ch12)이 자연히 나와요.
         <em>결합 정규 공식이 진짜 일반형</em>이에요.</p>
       </div>
 
-      <h3>호텔 예제 · D + M 제대로 풀기</h3>
+      <h3>호텔 예제 · \(D + M\) 제대로 풀기</h3>
 
-      <p>이제 ρ<sub>dm</sub> = −0.65 를 반영해서 합의 분산을 구해봐요.
-      a = b = 1.</p>
+      <p>이제 \(\rho_{dm} = -0.65\) 를 반영해서 합의 분산을 구해봐요.
+      \(a = b = 1\).</p>
 
       <div class="formula wide">
         \[ \text{Var}[D + M] = 80^2 + 50^2 + 2 \cdot 1 \cdot 1 \cdot 80 \cdot 50 \cdot (-0.65) \]
@@ -1218,18 +1218,18 @@
       <p>하나씩 계산해요.</p>
 
       <ol class="steps">
-        <li>80² = <strong>6400</strong>.</li>
-        <li>50² = <strong>2500</strong>.</li>
-        <li>2 × 80 × 50 × (−0.65) = <strong>−5200</strong>.</li>
-        <li>합: 6400 + 2500 − 5200 = <strong>3700</strong>.</li>
+        <li>\(80^2 =\) <strong>6400</strong>.</li>
+        <li>\(50^2 =\) <strong>2500</strong>.</li>
+        <li>\(2 \times 80 \times 50 \times (-0.65) =\) <strong>−5200</strong>.</li>
+        <li>합: \(6400 + 2500 - 5200 =\) <strong>3700</strong>.</li>
       </ol>
 
-      <p>표준편차는 √3700 ≈ <strong>60.83</strong>.
-      즉 D + M ~ N(1320, 60.83²).</p>
+      <p>표준편차는 \(\sqrt{3700} \approx\) <strong>60.83</strong>.
+      즉 \(D + M \sim N(1320, 60.83^2)\).</p>
 
       <div class="callout blue">
         <div class="label">음의 상관이 준 선물</div>
-        <p>독립 가정에서는 σ ≈ 94.3 이었는데, 상관 −0.65가 들어가니까 <strong>60.83</strong>으로 줄었어요.</p>
+        <p>독립 가정에서는 \(\sigma \approx 94.3\) 이었는데, 상관 −0.65가 들어가니까 <strong>60.83</strong>으로 줄었어요.</p>
         <p>변동성이 줄었다는 뜻이에요. 한 지점이 많이 오면 다른 지점이 덜 오니까
         <em>합계의 흔들림</em>이 작아져요. 리스크 분산 효과죠.</p>
       </div>
@@ -1240,26 +1240,26 @@
         \[ P(D + M > 1200) = P\!\left(Z > \frac{1200 - 1320}{60.83}\right) = P(Z > -1.97) \]
       </div>
 
-      <p>P(Z &gt; −1.97) ≈ <strong>0.976</strong>.
+      <p>\(P(Z > -1.97) \approx\) <strong>0.976</strong>.
       무려 <strong>97.6%</strong> 확률로 총합이 1200을 넘어요.</p>
 
-      <p>평균(1320)이 용량(1200)보다 이미 크고, σ도 작아서 거의 확정적으로 초과해요.
+      <p>평균(1320)이 용량(1200)보다 이미 크고, \(\sigma\)도 작아서 거의 확정적으로 초과해요.
       즉 <em>스태프 풀 자체를 늘려야</em> 하는 신호예요.</p>
 
       <h3>한 걸음 더 · 어느 쪽이 더 많을까?</h3>
 
-      <p>질문: P(D &gt; M) = ?
+      <p>질문: \(P(D > M) = ?\)
       즉 동대문 손님이 명동보다 많을 확률이에요.</p>
 
-      <p>W = D − M 이라고 두고 결합 정규의 성질을 써요.
-      a = 1, b = −1.</p>
+      <p>\(W = D - M\) 이라고 두고 결합 정규의 성질을 써요.
+      \(a = 1, b = -1\).</p>
 
       <ol class="steps">
-        <li>E[W] = 600 − 720 = <strong>−120</strong>. 평균으로는 명동이 120명 더 많아요.</li>
-        <li>Var[W] = 80² + (−1)²·50² + 2·1·(−1)·80·50·(−0.65) = 6400 + 2500 + 5200 = <strong>14,100</strong>.
+        <li>\(E[W] = 600 - 720 =\) <strong>−120</strong>. 평균으로는 명동이 120명 더 많아요.</li>
+        <li>\(\text{Var}[W] = 80^2 + (-1)^2 \cdot 50^2 + 2 \cdot 1 \cdot (-1) \cdot 80 \cdot 50 \cdot (-0.65) = 6400 + 2500 + 5200 =\) <strong>14,100</strong>.
           <br>음수 계수 × 음의 상관 = 양수. 차의 분산이 <em>커졌어요</em>.</li>
-        <li>σ<sub>W</sub> = √14,100 ≈ <strong>118.7</strong>.</li>
-        <li>P(W &gt; 0) = P(Z &gt; (0 − (−120))/118.7) = P(Z &gt; 1.01) ≈ <strong>0.156</strong>.</li>
+        <li>\(\sigma_W = \sqrt{14{,}100} \approx\) <strong>118.7</strong>.</li>
+        <li>\(P(W > 0) = P(Z > (0 - (-120))/118.7) = P(Z > 1.01) \approx\) <strong>0.156</strong>.</li>
       </ol>
 
       <p>동대문이 명동보다 많을 확률은 약 <strong>15.6%</strong>예요.
@@ -1267,14 +1267,14 @@
 
       <div class="callout">
         <div class="label">부호 주의!</div>
-        <p>차를 구할 때 b = −1이에요. 분산 공식에 그대로 넣어야 해요.</p>
-        <p>2ab에 (−1)이 들어가면 공분산 항의 <em>부호가 뒤집혀요</em>.
+        <p>차를 구할 때 \(b = -1\)이에요. 분산 공식에 그대로 넣어야 해요.</p>
+        <p>\(2ab\)에 \((-1)\)이 들어가면 공분산 항의 <em>부호가 뒤집혀요</em>.
         음의 상관이 차의 분산을 <strong>증가</strong>시키는 이유예요.</p>
       </div>
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        결합 정규 = 어떤 선형결합도 정규. 분산에 2·Cov(X, Y)만 더 챙기면 끝.
+        결합 정규 = 어떤 선형결합도 정규. 분산에 \(2 \cdot \text{Cov}(X, Y)\)만 더 챙기면 끝.
       </div>
 
     </section>
@@ -1293,16 +1293,16 @@
       <h4>오늘 배운 것</h4>
       <ul>
         <li>연속 확률변수의 PDF와 "면적 = 확률" 원리</li>
-        <li>정규분포 N(μ, σ²)의 종 모양과 네 가지 성질</li>
-        <li>μ는 위치를, σ는 퍼짐을 조절</li>
+        <li>정규분포 \(N(\mu, \sigma^2)\)의 종 모양과 네 가지 성질</li>
+        <li>\(\mu\)는 위치를, \(\sigma\)는 퍼짐을 조절</li>
         <li>68-95-99.7 경험 법칙</li>
-        <li>표준정규분포 Z ~ N(0, 1)</li>
-        <li>표준화 공식 Z = (X − μ)/σ</li>
+        <li>표준정규분포 \(Z \sim N(0, 1)\)</li>
+        <li>표준화 공식 \(Z = (X - \mu)/\sigma\)</li>
         <li>Z-table 읽기와 역방향 찾기</li>
         <li>MyTVLab, 호텔, 스키 파카의 실전 응용</li>
         <li>다변량 정규 · 호텔 체인 예제</li>
         <li>독립 정규의 합 — 공분산 = 0</li>
-        <li>결합 정규의 합 — 2·Cov 항까지 포함</li>
+        <li>결합 정규의 합 — \(2 \cdot \text{Cov}\) 항까지 포함</li>
       </ul>
 
       <h4>다음 주 예고 · 표본분포와 중심극한정리</h4>
