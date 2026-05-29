@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lecture 5 · STP 전략 — Segmentation · Targeting · Positioning</title>
+  <meta name="description" content="누구에게 무엇을 어떻게 — STP 전략 프레임워크와 점검표" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="목차 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="brand-mark">M</span>
+    <span class="brand-text">마케팅 학습 노트</span>
+  </a>
+  <nav class="nav-lec">
+    <a href="lecture04.html" class="nav-prev" aria-label="이전 강의">◀</a>
+    <span class="nav-current">Lecture 5</span>
+    <a href="lecture06.html" class="nav-next" aria-label="다음 강의">▶</a>
+  </nav>
+</header>
+
+<div class="reading-progress"><div class="bar"></div></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">강의 목록</div>
+      <ul class="lec-list">
+        <li><a href="lecture01.html"><span class="num">01</span> 변화의 시대 마케팅</a></li>
+        <li><a href="lecture02.html"><span class="num">02</span> 마케팅 프로세스</a></li>
+        <li><a href="lecture03.html"><span class="num">03</span> 전략 기획</a></li>
+        <li><a href="lecture04.html"><span class="num">04</span> 소비자 인사이트</a></li>
+        <li class="active"><a href="lecture05.html"><span class="num">05</span> STP 전략</a></li>
+        <li><a href="lecture06.html"><span class="num">06</span> 신제품 수용 전략</a></li>
+        <li><a href="lecture07.html"><span class="num">07</span> 전략적 브랜드 매니지먼트</a></li>
+        <li><a href="lecture08.html"><span class="num">08</span> 옴니채널 &amp; 경험형 리테일</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">이 강의의 프레임 11개</div>
+      <ol class="chap-list">
+        <li><a href="#ch0">PROLOGUE · Who-What-How 복기</a></li>
+        <li><a href="#ch1">FRAMEWORK 01 · STP 3단계 프로세스</a></li>
+        <li><a href="#ch2">FRAMEWORK 02 · Segmentation 4변수</a></li>
+        <li><a href="#ch3">PRINCIPLE 01 · 세분화의 3가지 효익</a></li>
+        <li><a href="#ch4">FRAMEWORK 03 · Target Segment 평가 매트릭스</a></li>
+        <li><a href="#ch5">FRAMEWORK 04 · 페르소나 작성 가이드</a></li>
+        <li><a href="#ch6">PRINCIPLE 02 · 포지셔닝은 인식 전쟁</a></li>
+        <li><a href="#ch7">FRAMEWORK 05 · 4P 정합성 체크</a></li>
+        <li><a href="#ch8">FRAMEWORK 06 · Category · POP · POD</a></li>
+        <li><a href="#ch9">PRINCIPLE 03 · Traditional vs Disruptive</a></li>
+        <li><a href="#ch10">FRAMEWORK 07 · Disruptive 도입 4단계</a></li>
+        <li><a href="#ch11">CASE · Sir Kensington · Grüns · IKEA · Dyson</a></li>
+        <li><a href="#ch12">FIELD CHECKLIST · 30개 항목</a></li>
+      </ol>
+    </div>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <div class="kicker">Lecture 5 · Segmentation · Targeting · Positioning</div>
+      <h1>STP 전략 — <br/>누구에게 무엇을 어떻게</h1>
+      <p class="lead">"모두를 위한 제품"은 곧 "아무도 사랑하지 않는 제품"입니다. 세분화·표적·포지셔닝의 의사결정 순서와 점검표를 정리합니다.</p>
+    </div>
+
+    <!-- ───── ch0 PROLOGUE ───── -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>Who · What · How를 다시 펴라</h2>
+
+      <p>
+        2강에서 본 <strong>3 Global Marketing Success Pillars</strong>를 다시 꺼냅니다.
+        STP는 이 세 기둥의 첫 단계(WHO)를 정밀하게 풀어쓴 도구예요.
+      </p>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">Pillar 1 · WHO</div>
+          <p>누가 우리 타깃 고객이며 그들의 욕구는 무엇인가? → <strong>Segmentation + Targeting</strong>이 답을 만듦</p>
+        </div>
+        <div class="card">
+          <div class="card-label">Pillar 2 · WHAT &amp; Pillar 3 · HOW</div>
+          <p>그들에게 무엇을 어떻게 전달할 것인가? → <strong>Positioning + 4P</strong>가 답을 만듦</p>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <strong>이번 강의의 한 줄</strong> — STP가 흔들리면 4P가 아무리 정교해도 무너집니다. 4P의 모든 선택은 STP를 뿌리로 합니다.
+      </div>
+    </section>
+
+    <!-- ───── ch1 FRAMEWORK 01 ───── -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">FRAMEWORK 01</div>
+      <h2>STP 3단계 프로세스</h2>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">Segmentation → Targeting → Positioning</div>
+        <ol>
+          <li><strong>① Market Segmentation</strong>
+            <ul>
+              <li>Identify bases for segmenting the market</li>
+              <li>Develop segment profiles</li>
+            </ul>
+          </li>
+          <li><strong>② Target Marketing</strong>
+            <ul>
+              <li>Develop measure of segment attractiveness</li>
+              <li>Select target segments</li>
+            </ul>
+          </li>
+          <li><strong>③ Market Positioning</strong>
+            <ul>
+              <li>Develop positioning for target segments</li>
+              <li>Develop a marketing mix for each segment</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="when-to-use"><strong>언제 쓰나:</strong> 신제품 출시, 시장 진입, 리브랜딩, 사업 부진 진단 — 모든 마케팅 의사결정의 출발점</div>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · 순서를 거꾸로 가지 마라</strong>
+        포지셔닝부터 정해놓고 거기에 맞춰 타깃을 끼워 맞추거나, 타깃을 정해놓고 세분화를 우회하는 회사가 의외로 많습니다.
+        결과는 <em>"누구에게도 충분히 매력적이지 않은 메시지"</em>. 반드시 ①→②→③ 순서.
+      </div>
+    </section>
+
+    <!-- ───── ch2 FRAMEWORK 02 ───── -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">FRAMEWORK 02</div>
+      <h2>Segmentation 4변수 — 시장을 어떻게 나눌까</h2>
+
+      <p>
+        세분화 기준은 무수히 많지만, 4가지 카테고리 안에 들어옵니다.
+        <strong>한 가지만 쓰지 말고, 2~3개를 조합해서 쓰는 것이 실무 정석.</strong>
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>변수</th>
+              <th>예시 항목</th>
+              <th>강점</th>
+              <th>한계</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Geographic<br/>(지리적)</th>
+              <td>국가, 지방, 도시, 지역, 동네, 기후</td>
+              <td>실행 즉시 가능, 채널·매장과 연결</td>
+              <td>같은 지역 안에도 욕구는 천차만별</td>
+            </tr>
+            <tr>
+              <th>Demographic<br/>(인구통계)</th>
+              <td>연령, 성별, 가족 구성, 학력, 소득</td>
+              <td>측정 쉬움, 데이터 확보 용이</td>
+              <td>같은 연령·소득이 같은 욕구를 갖진 않음</td>
+            </tr>
+            <tr>
+              <th>Psychographic<br/>(심리·라이프스타일)</th>
+              <td>라이프스타일, 사회 계층, 성격, 가치관</td>
+              <td>"왜 사는가"를 설명, 메시지 설계에 강력</td>
+              <td>측정 어려움, 정성 리서치 필요</td>
+            </tr>
+            <tr>
+              <th>Behavioral<br/>(행동)</th>
+              <td>사용 여부, 사용량, 추구 효익, 충성도, 태도</td>
+              <td>실제 행동 데이터 기반, 가장 강한 예측력</td>
+              <td>과거 행동만 보면 신규 시장 못 봄</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · 매트리스 시장 4사 세분화</strong>
+        같은 매트리스 카테고리 안에서 4개 회사가 어떻게 다르게 세분화했는지 —
+        <ul>
+          <li><strong>에이스침대</strong>: Demographic + Behavioral — "구매해서 오래 쓰는 정통 침대 고객"</li>
+          <li><strong>코웨이</strong>: Behavioral — "위생·관리 부담을 느끼는 렌탈 고객" (2014년 "렌탈은 자동차만 가능"이라던 업계 통념 깨고 진입, 2012년 240억→2022년 2,400억)</li>
+          <li><strong>시몬스</strong>: Psychographic — "프리미엄 라이프스타일을 추구하는 고객" (Beautyrest Black)</li>
+          <li><strong>Anssil</strong>: Behavioral + Psychographic — "이사·관리 편한 매트리스를 원하는 환경 가치 고객" (CES 3년 연속 수상)</li>
+        </ul>
+        같은 시장도 어떤 변수로 자르냐에 따라 완전히 다른 사업이 만들어집니다.
+      </div>
+    </section>
+
+    <!-- ───── ch3 PRINCIPLE 01 ───── -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">PRINCIPLE 01</div>
+      <h2>세분화의 기본 가정과 3가지 효익</h2>
+
+      <p>
+        Kotler & Armstrong 정의 — <em>"the process of dividing into smaller groups of buyers with distinct needs, characteristics, or behaviors that might require separate marketing strategies or mixes."</em>
+      </p>
+
+      <div class="definition">
+        <div class="def-label">ASSUMPTIONS</div>
+        <div class="def-name">세분화의 두 가지 기본 가정</div>
+        <ul>
+          <li><strong>① Heterogeneity of consumer needs</strong> — 모든 고객이 같은 욕구를 갖고 있다면 세분화 필요 없음</li>
+          <li><strong>② Limited resources and capacity of a firm</strong> — 회사가 모든 욕구에 다 대응할 자원·역량이 무한하다면 세분화 필요 없음</li>
+        </ul>
+        <p>두 가정 모두 현실 시장에서 성립 → 세분화는 선택이 아닌 <strong>필수</strong></p>
+      </div>
+
+      <div class="definition">
+        <div class="def-label">IMPLICATIONS</div>
+        <div class="def-name">세분화의 3가지 효익</div>
+        <ol>
+          <li><strong>Divide and Conquer</strong> — 세그먼트별로 마케팅 믹스를 맞춤화하여, 경쟁사 대비 우수한 가치 제공</li>
+          <li><strong>Efficiency</strong> — 살 가능성이 가장 높은 고객에게 집중 → 마케팅 효율 극대화</li>
+          <li><strong>Opportunity</strong> — 경쟁사가 못 본 새 기회 발견</li>
+        </ol>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Walmart × Jet.com × ThredUp</strong>
+        Walmart가 "저소득 오프라인 고객" 세그먼트를 너무 잘 지배해서 오히려 갇혀 있었던 게 문제였어요.
+        <ul>
+          <li>2016 <strong>Jet.com $3.3B 인수</strong> → 도시 밀레니얼 온라인 고객 세그먼트 확보 (이후 Walmart로 통합)</li>
+          <li><strong>ThredUp 파트너십</strong> → 중고 의류를 원하는 가치소비 세그먼트 확보 (지속가능성 추구 MZ)</li>
+        </ul>
+        같은 회사가 보유 못한 새 세그먼트는 M&A·파트너십으로 빨리 사들이는 게 정석.
+      </div>
+    </section>
+
+    <!-- ───── ch4 FRAMEWORK 03 ───── -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">FRAMEWORK 03</div>
+      <h2>Target Segment 평가 매트릭스 (3차원 가중 점수)</h2>
+
+      <p>
+        타깃 시장 선정의 핵심 — <strong>"매력적이지만 우리에게도 맞는" 세그먼트를 찾는 것</strong>.
+        세그먼트가 아무리 크고 성장해도 우리가 못 들어가면 의미 없습니다.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">Target Market 평가 3차원</div>
+        <ul>
+          <li><strong>① Attractiveness of consumers</strong> — 규모, 성장률, 가격 민감도</li>
+          <li><strong>② Segment structural attractiveness</strong> — 경쟁, 대체재, 구매자 협상력, 공급자 협상력 (Porter 5 Forces 변형)</li>
+          <li><strong>③ Company objectives and resources</strong> — 경쟁우위, 자원 가용성, 회사 목표와 일치성</li>
+        </ul>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · 타깃 세그먼트 평가표</strong>
+        직접 회사로 가져가 채워 쓰는 양식 (점수 0-10, 가중치 합 = 1.0)
+      </div>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>Relative Importance</th>
+              <th>Rating (0-10)</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4" style="background:#f3f4f6;text-align:left"><strong>① Segment Attractiveness</strong></td></tr>
+            <tr><td>Segment size</td><td>0.40</td><td>6</td><td>2.40</td></tr>
+            <tr><td>Growth rate</td><td>0.30</td><td>3</td><td>0.90</td></tr>
+            <tr><td>Profit margins</td><td>0.20</td><td>4</td><td>0.80</td></tr>
+            <tr><td>Cost to serve</td><td>0.10</td><td>8</td><td>0.80</td></tr>
+            <tr><td></td><td></td><td><strong>TOTAL</strong></td><td><strong>4.90</strong></td></tr>
+            <tr><td colspan="4" style="background:#f3f4f6;text-align:left"><strong>② Competitive Intensity</strong></td></tr>
+            <tr><td>Number of competitors</td><td>0.20</td><td>8</td><td>1.60</td></tr>
+            <tr><td>Advantage over substitutes</td><td>0.30</td><td>3</td><td>0.90</td></tr>
+            <tr><td>Degree of differentiation</td><td>0.20</td><td>5</td><td>1.00</td></tr>
+            <tr><td>Strength of competitors</td><td>0.30</td><td>7</td><td>2.10</td></tr>
+            <tr><td></td><td></td><td><strong>TOTAL</strong></td><td><strong>5.60</strong></td></tr>
+            <tr><td colspan="4" style="background:#f3f4f6;text-align:left"><strong>③ Company Fit</strong></td></tr>
+            <tr><td>Channel fit</td><td>0.40</td><td>5</td><td>2.00</td></tr>
+            <tr><td>Branding fit</td><td>0.10</td><td>6</td><td>0.60</td></tr>
+            <tr><td>Customer base fit</td><td>0.30</td><td>3</td><td>0.90</td></tr>
+            <tr><td>Technology fit</td><td>0.20</td><td>8</td><td>1.60</td></tr>
+            <tr><td></td><td></td><td><strong>TOTAL</strong></td><td><strong>5.10</strong></td></tr>
+            <tr><td colspan="4" style="background:#fef3c7;text-align:left"><strong>FACTOR WEIGHTING</strong></td></tr>
+            <tr><td>Segment Attractiveness</td><td>0.30</td><td>4.90</td><td>1.47</td></tr>
+            <tr><td>Competitive Intensity</td><td>0.40</td><td>5.60</td><td>2.24</td></tr>
+            <tr><td>Company Fit</td><td>0.30</td><td>5.10</td><td>1.53</td></tr>
+            <tr><td></td><td></td><td><strong>OVERALL</strong></td><td><strong>5.24</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <strong>실무 팁</strong> — 여러 후보 세그먼트에 대해 이 표를 동일 가중치로 만들어 점수 비교. 한 칸을 채울 때 데이터 출처를 옆에 적어두면 의사결정 회의에서 강력합니다.
+      </div>
+    </section>
+
+    <!-- ───── ch5 FRAMEWORK 04 ───── -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">FRAMEWORK 04</div>
+      <h2>Target Audience Persona — 정밀하게, 상세하게</h2>
+
+      <p>
+        타깃 세그먼트를 정했다고 끝이 아닙니다.
+        <strong>실제 한 사람을 머릿속에 그릴 수 있을 만큼 상세하게 묘사</strong>해야 사내·사외 의사소통이 작동합니다.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">Persona의 두 가지 핵심 조건</div>
+        <ul>
+          <li><strong>① Basis for communication</strong> — 사내(제품·디자인·CS) + 사외(광고대행사·외주) 모두가 같은 사람을 그리도록</li>
+          <li><strong>② Describe in great detail and be precise</strong> — "30대 여성"이 아니라 "32세, 강남구 거주, 외국계 회사 7년차 마케터, 주말엔 캠핑, Instagram 팔로워 1200명"</li>
+        </ul>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · 페르소나 작성 12항목</strong>
+        <ul>
+          <li>① 이름·나이·성별</li>
+          <li>② 직업·연차·소득 수준</li>
+          <li>③ 거주지·가족 구성</li>
+          <li>④ 평일/주말 하루 일과</li>
+          <li>⑤ 주요 디지털 채널 (Instagram, YouTube, 카카오, 네이버…)</li>
+          <li>⑥ 핵심 욕구·고민거리 (Pain points)</li>
+          <li>⑦ 가치관·라이프스타일</li>
+          <li>⑧ 우리 카테고리에서의 사용 행태</li>
+          <li>⑨ 우리 카테고리에서의 정보 탐색 방식</li>
+          <li>⑩ 구매 의사결정 시 영향력 있는 사람</li>
+          <li>⑪ "이걸 사면 무엇이 좋아질 거라 기대하나" (JTBD)</li>
+          <li>⑫ 우리 브랜드를 한 단어로 평가한다면</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch6 PRINCIPLE 02 ───── -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">PRINCIPLE 02</div>
+      <h2>Positioning은 인식 전쟁이다</h2>
+
+      <p>
+        Kotler & Keller 정의 — <em>"The process of establishing a viable competitive positioning of the firm and its offerings in the minds of consumers within each target market."</em>
+        핵심 키워드는 <strong>"in the minds"</strong>. 제품에 하는 게 아니라 <strong>고객 머릿속에 하는 일</strong>입니다.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">PRINCIPLE</div>
+        <div class="def-name">Trout &amp; Ries — 포지셔닝의 두 법칙</div>
+        <ul>
+          <li><strong>The Law of Perception</strong>
+            <ul>
+              <li>Marketing is not a battle of products</li>
+              <li>It's a battle of <strong>perceptions</strong></li>
+              <li><em>"Positioning is not what you do to a product — positioning is what you do to the mind of a consumer."</em></li>
+            </ul>
+          </li>
+          <li><strong>The Law of Focus</strong>
+            <ul>
+              <li>가장 강력한 마케팅 개념은 <strong>고객 머릿속의 한 단어를 소유하는 것</strong></li>
+              <li>Volvo = "안전", BMW = "주행", Tesla = "전기차의 미래", Hermès = "장인정신"</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · 풀무원 "바른먹거리"</strong>
+        풀무원은 두부·콩나물 회사가 아니라 "바른먹거리"라는 한 단어를 소유했어요. 그 단어에 들어맞는 모든 카테고리(샐러드, 두유, 라면)로 확장 가능. <strong>제품이 먼저가 아니라 단어가 먼저.</strong>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · 기능 나열은 포지셔닝이 아니다</strong>
+        "우리는 빠르고, 안전하고, 저렴하고, 디자인도 좋고…" — 이건 카탈로그지 포지셔닝이 아닙니다. 한 단어 또는 한 문장으로 응축이 안 되면 시장에서 인식되지 않아요.
+      </div>
+    </section>
+
+    <!-- ───── ch7 FRAMEWORK 05 ───── -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">FRAMEWORK 05</div>
+      <h2>4P 정합성 체크 — Consistency &amp; Complementarity</h2>
+
+      <p>
+        포지셔닝이 정해지면, 4P(Product·Price·Place·Promotion) 모든 선택이 그것을 향해 정렬되어야 합니다.
+        하나라도 어긋나면 고객은 혼란.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">4P 정합성 2법칙</div>
+        <ul>
+          <li><strong>① Consistency (일관성)</strong>
+            <ul>
+              <li>Targeting&Positioning ↔ Product, Price, Place, Promotion 각각이 같은 방향</li>
+              <li>"프리미엄 포지셔닝인데 다이소에 깔린다" — Inconsistency</li>
+            </ul>
+          </li>
+          <li><strong>② Complementarity (보완성)</strong>
+            <ul>
+              <li>4P끼리도 서로 일관 + 시너지</li>
+              <li>특히 Product ↔ Place가 가장 자주 엇박자: 좋은 제품도 어울리지 않는 채널이면 인식 망가짐</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · KIA Soul "Hipster Hamsters"</strong>
+        KIA Soul은 박스카라는 제품(Product) + 도시 청년 합리적 가격(Price) + 디스플레이 매장(Place) + 힙합 댄스 햄스터 광고(Promotion) — 모든 P가 "젊고 힙한 도시 라이프스타일"이라는 한 점을 향함. 2010~2014 광고가 연결되면서 일관성 누적.
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · 4P 정합성 진단표</strong>
+        <ul>
+          <li>Product가 우리 포지셔닝의 한 단어를 강화하는가</li>
+          <li>Price가 그 인식과 어울리는 수준인가</li>
+          <li>Place(채널·매장)가 그 인식과 충돌하지 않는가</li>
+          <li>Promotion이 그 인식을 반복적으로 새기는가</li>
+          <li>4P끼리 서로 모순되는 메시지를 주지 않는가</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch8 FRAMEWORK 06 ───── -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">FRAMEWORK 06</div>
+      <h2>Competition-Based Positioning — Category · POP · POD</h2>
+
+      <p>
+        포지셔닝의 가장 클래식한 프레임 — <strong>"어떤 카테고리에 속하면서, 그 카테고리 안에서 어떻게 다른가"</strong>.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">제품 포지셔닝의 3요소</div>
+        <ul>
+          <li><strong>① Category Membership</strong> — 어느 카테고리의 일원인지 명확히 (예: "이건 스마트폰입니다")</li>
+          <li><strong>② Points-of-Parity (POPs)</strong> — 그 카테고리에 속하려면 기본적으로 갖춰야 할 속성. "남들이랑 비슷해야 하는 것"</li>
+          <li><strong>③ Points-of-Difference (PODs)</strong> — 같은 카테고리 안에서 우리만의 차별점. "남들이랑 달라야 하는 것"</li>
+        </ul>
+        <div class="when-to-use"><strong>언제 쓰나:</strong> 기존 카테고리에 진입할 때, 카테고리 안에서 자리를 명확히 해야 할 때</div>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · iPhone 2007 vs Foldable Phone</strong>
+        iPhone 2007 발표 키워드는 <em>"Apple reinvents the phone."</em>
+        <ul>
+          <li>Category Membership: 전화기(Phone) — 익숙한 카테고리 선언</li>
+          <li>POPs: 통화·문자·인터넷 (기존 폰이 다 했던 것)</li>
+          <li>PODs: 풀스크린 터치, App Store, 손가락만으로 조작</li>
+        </ul>
+        Foldable Phone도 같은 패턴 — "여전히 폰이지만, 펼쳐지는 화면이라는 차별점". POP 없이 POD만 있으면 카테고리 인식이 안 됩니다.
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · POD에만 매달리지 마라</strong>
+        혁신적인 차별점에 빠져서 기본기(POP)를 무시하면, "신기하긴 한데 못 쓰겠다"로 끝납니다. Galaxy Gear S(원조 스마트워치)가 시계로서의 POP가 약했던 이유로 Apple Watch에 밀렸어요.
+      </div>
+    </section>
+
+    <!-- ───── ch9 PRINCIPLE 03 ───── -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">PRINCIPLE 03</div>
+      <h2>Traditional vs Disruptive Positioning</h2>
+
+      <p>
+        Competition-Based Positioning은 강력하지만 한계가 있습니다 — <strong>카테고리 안에서만 싸우다 보면 다 비슷해진다.</strong>
+        성숙 시장(mature market)에서는 카테고리 자체를 거부하는 전략이 더 유효합니다.
+      </p>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">Traditional Positioning</div>
+          <div class="card-title">"카테고리 내 차별화"</div>
+          <ul>
+            <li>같은 카테고리 안의 경쟁자들과 속성으로 비교</li>
+            <li>POP+POD 프레임 적용</li>
+            <li>장점: 명확, 비교 가능</li>
+            <li>단점: 시간 지나면 모두 비슷해짐 (commoditization)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Disruptive Positioning</div>
+          <div class="card-title">"카테고리 자체 거부"</div>
+          <ul>
+            <li>카테고리 전체의 게임 룰·관행·이미지에 반기</li>
+            <li>"우리는 X가 아닙니다" 선언</li>
+            <li>장점: 단숨에 존재감, 새 카테고리 창조</li>
+            <li>단점: 실행 역량·자본·용기 필요</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · 전통 포지셔닝의 4가지 함정</strong>
+        <ul>
+          <li>Hyper-sensitivity to competitive tactics — 경쟁사 POP·증강 트렌드에 끌려다님</li>
+          <li>Hyper-sensitivity to consumer expectations — 고객이 익숙한 기대만 충족</li>
+          <li>Offerings become more similar over time — 결국 모두 동질화</li>
+          <li>혁신의 여지가 카테고리 안에 갇힘</li>
+        </ul>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · IKEA, Dyson, OTT, Blue Ocean Shift</strong>
+        <ul>
+          <li><strong>IKEA</strong> — "가구 매장"이라는 카테고리 통념을 거부. 거대 창고형 + DIY 조립 + 셀프서비스 + 가족 나들이 공간으로 재정의</li>
+          <li><strong>Dyson</strong> — "가전제품" 카테고리 안에서 "엔지니어링 럭셔리"라는 다른 영역 창조</li>
+          <li><strong>OTT (Netflix)</strong> — "영화관" "케이블TV" 카테고리 자체 거부. "집에서 언제든"이라는 새 카테고리</li>
+          <li>W. Chan Kim의 <em>Blue Ocean Shift</em> 메시지 — <strong>"Create, Don't Compete!"</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch10 FRAMEWORK 07 ───── -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">FRAMEWORK 07</div>
+      <h2>Disruptive Positioning 도입 결정 — 4단계 의사결정 트리</h2>
+
+      <p>
+        "Disruptive로 갈 것인가, Traditional로 갈 것인가"는 회사 운명이 걸린 결정.
+        다음 4단계 질문을 순서대로 통과한 경우에만 Disruptive를 시도하세요.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">DECISION TREE</div>
+        <div class="def-name">Disruptive Positioning 도입 4단계</div>
+        <ol>
+          <li><strong>Step 1 — Analysis of Category Structure</strong>
+            <ul>
+              <li>카테고리 구조가 잘 정의되어 있고, 안정·예측 가능, 비교적 동질적인가?</li>
+              <li>YES → 다음 단계 / NO → 아직 Traditional이 더 효과적</li>
+            </ul>
+          </li>
+          <li><strong>Step 2 — Analysis of Category Identity</strong>
+            <ul>
+              <li>소비자들이 카테고리의 현재 관행·이미지에 불만이 있다는 근거가 있는가?</li>
+              <li>그 불만을 특정 관행·다이내믹과 연결할 수 있는가?</li>
+            </ul>
+          </li>
+          <li><strong>Step 3 — Disruptive Positioning Strategy</strong>
+            <ul>
+              <li>그 관행과 이미지에 반하는 대안 포지셔닝을 만들어낼 수 있는가?</li>
+              <li>카테고리에 붙어 있는 부정적 연상을 뒤집을 수 있는가?</li>
+            </ul>
+          </li>
+          <li><strong>Step 4 — Analysis of Firm Competencies</strong>
+            <ul>
+              <li>회사가 그 disruptive 전략을 실행할 역량(자원·기술·문화)이 있는가?</li>
+              <li>없다면 → 좋은 아이디어라도 실행 불가</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · Disruptive 진단 체크리스트</strong>
+        4단계 모두 YES → Disruptive 추진<br/>
+        1~3은 YES이지만 Step 4가 NO → 자체 역량 강화 또는 파트너십<br/>
+        Step 1·2 중 하나라도 NO → 카테고리 안에서 Traditional 포지셔닝
+      </div>
+    </section>
+
+    <!-- ───── ch11 CASE STUDY ───── -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">CASE STUDY</div>
+      <h2>인사이트 케이스 — Sir Kensington · Grüns · IKEA · Dyson</h2>
+
+      <p>
+        성숙 시장(Mature Market)에서 Disruptive Positioning이 어떻게 작동했는지 4개 사례.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>회사</th>
+              <th>카테고리</th>
+              <th>카테고리의 관행·이미지</th>
+              <th>Disruptive 포지셔닝</th>
+              <th>결과</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sir Kensington's</td>
+              <td>케첩·마요네즈</td>
+              <td>대기업 독점, 합성첨가물, 어린이 식품 이미지</td>
+              <td>장인적·성인용·고급 소스. 빅토리아 시대 콧수염 신사 캐릭터</td>
+              <td>2017년 <strong>Unilever 인수</strong></td>
+            </tr>
+            <tr>
+              <td>Grüns</td>
+              <td>비타민·영양제</td>
+              <td>알약 삼키기 부담, 가루 섞기 귀찮음, 의무감</td>
+              <td>"If it's not enjoyable, it won't become a habit" — 곰돌이 젤리 형태</td>
+              <td>2026년 <strong>Unilever $1.2B 인수</strong></td>
+            </tr>
+            <tr>
+              <td>IKEA</td>
+              <td>가구</td>
+              <td>고급·내구재·서비스 받기·세대 물려주기</td>
+              <td>저렴·DIY·셀프 픽업·일회성·가족 나들이</td>
+              <td>전 세계 점령</td>
+            </tr>
+            <tr>
+              <td>Dyson</td>
+              <td>청소기·헤어드라이어</td>
+              <td>저관여 백색가전, 가격 경쟁</td>
+              <td>엔지니어링 럭셔리. James Dyson 본인 등장 광고</td>
+              <td>가전을 "디자인 럭셔리"로 재정의</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Grüns의 인사이트 한 줄</strong>
+        <em>"If it's not enjoyable… it won't become a habit."</em>
+        Founder Chad Janis가 2022년 자기 비타민 습관 만들기에 실패하면서 발견한 인사이트. 4년 만에 Unilever가 $1.2B에 인수. 거대 회사가 따라잡을 수 없는 카테고리 자체를 새로 만든 사례.
+      </div>
+
+      <div class="take-away">
+        <strong>공통 패턴</strong> — 4개 모두 ① 성숙·동질적 카테고리, ② 소비자의 잠재 불만, ③ 카테고리 관행을 거부하는 한 단어/한 문장, ④ 그 단어를 실행할 역량. 모두 Disruptive 4단계를 통과.
+      </div>
+    </section>
+
+    <!-- ───── ch12 FIELD CHECKLIST ───── -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">FIELD CHECKLIST</div>
+      <h2>STP 마스터 체크리스트 30항목</h2>
+
+      <p>STP 의사결정 시 사전·중간·사후 점검용. 빠뜨리면 사업 전체가 흔들립니다.</p>
+
+      <div class="table-scroll">
+        <table class="center checklist">
+          <thead>
+            <tr>
+              <th style="width:60px">No.</th>
+              <th>점검 항목</th>
+              <th style="width:120px">단계</th>
+              <th style="width:80px">✓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>시장의 이질성(Heterogeneity)이 충분해 세분화가 유효한가</td><td>S 진단</td><td>☐</td></tr>
+            <tr><td>2</td><td>4변수(Geo·Demo·Psycho·Behavioral) 중 어느 것을 주축으로 할지 정했나</td><td>S 진단</td><td>☐</td></tr>
+            <tr><td>3</td><td>2~3개 변수를 조합해 세그먼트를 정의했나</td><td>S 설계</td><td>☐</td></tr>
+            <tr><td>4</td><td>각 세그먼트의 규모·성장률·수익성이 측정 가능한가</td><td>S 설계</td><td>☐</td></tr>
+            <tr><td>5</td><td>세그먼트들 사이가 실제로 다른가 (Intra ≪ Inter)</td><td>S 설계</td><td>☐</td></tr>
+            <tr><td>6</td><td>세그먼트가 행동으로 접근 가능한가 (Reachable)</td><td>S 설계</td><td>☐</td></tr>
+            <tr><td>7</td><td>각 세그먼트 프로파일(특성·욕구·미디어)을 1장 카드로 정리했나</td><td>S 설계</td><td>☐</td></tr>
+            <tr><td>8</td><td>경쟁사가 못 본 새 세그먼트가 있는지 별도로 봤나</td><td>S 설계</td><td>☐</td></tr>
+            <tr><td>9</td><td>3차원 평가 매트릭스(매력도·경쟁강도·회사적합도)를 만들었나</td><td>T 평가</td><td>☐</td></tr>
+            <tr><td>10</td><td>각 차원 안의 세부 항목과 가중치를 정했나</td><td>T 평가</td><td>☐</td></tr>
+            <tr><td>11</td><td>각 점수에 데이터·근거 출처를 적었나</td><td>T 평가</td><td>☐</td></tr>
+            <tr><td>12</td><td>여러 후보 세그먼트를 동일 기준으로 비교했나</td><td>T 평가</td><td>☐</td></tr>
+            <tr><td>13</td><td>회사 자원·역량 부족 시 진입 포기 옵션도 검토했나</td><td>T 평가</td><td>☐</td></tr>
+            <tr><td>14</td><td>최종 선택 타깃에 대해 "왜 그 세그먼트인지" 1문장으로 답할 수 있나</td><td>T 선택</td><td>☐</td></tr>
+            <tr><td>15</td><td>페르소나 12항목을 모두 채웠나</td><td>T 페르소나</td><td>☐</td></tr>
+            <tr><td>16</td><td>페르소나에 실명·실연령·실거주지를 부여했나 (가공이라도)</td><td>T 페르소나</td><td>☐</td></tr>
+            <tr><td>17</td><td>사내 모든 부서가 같은 페르소나를 공유하는가</td><td>T 페르소나</td><td>☐</td></tr>
+            <tr><td>18</td><td>외부 파트너(광고·디자인)에게 페르소나 카드를 전달했나</td><td>T 페르소나</td><td>☐</td></tr>
+            <tr><td>19</td><td>포지셔닝을 한 단어 또는 한 문장으로 압축할 수 있나</td><td>P 진술</td><td>☐</td></tr>
+            <tr><td>20</td><td>그 단어가 경쟁사에 없는 단어인가</td><td>P 진술</td><td>☐</td></tr>
+            <tr><td>21</td><td>Category Membership·POPs·PODs를 명시했나</td><td>P 진술</td><td>☐</td></tr>
+            <tr><td>22</td><td>Traditional vs Disruptive 중 어느 쪽을 선택했고, 그 근거가 있나</td><td>P 전략</td><td>☐</td></tr>
+            <tr><td>23</td><td>Disruptive 선택 시 4단계 결정 트리를 모두 통과했나</td><td>P 전략</td><td>☐</td></tr>
+            <tr><td>24</td><td>Product가 그 포지셔닝을 강화하는가</td><td>P · 4P</td><td>☐</td></tr>
+            <tr><td>25</td><td>Price가 그 포지셔닝과 어울리는가</td><td>P · 4P</td><td>☐</td></tr>
+            <tr><td>26</td><td>Place(채널)가 그 포지셔닝과 충돌하지 않는가</td><td>P · 4P</td><td>☐</td></tr>
+            <tr><td>27</td><td>Promotion이 그 포지셔닝을 반복적으로 새기는가</td><td>P · 4P</td><td>☐</td></tr>
+            <tr><td>28</td><td>4P 사이의 보완성(Complementarity)이 확보되었나</td><td>P · 4P</td><td>☐</td></tr>
+            <tr><td>29</td><td>분기별로 포지셔닝 인식 추적(Brand Tracking)을 할 계획이 있나</td><td>운영</td><td>☐</td></tr>
+            <tr><td>30</td><td>STP를 다시 검토할 트리거(시장 변화·경쟁 진입·성과 하락)를 정의했나</td><td>운영</td><td>☐</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <strong>STP의 5가지 Key Takeaways</strong> — Focus on Consumer Needs · Select &amp; Conquer · Create Differential Advantage · Keep Consistency &amp; Integration · Stay Relevant.
+      </div>
+    </section>
+
+    <nav class="next-lecture">
+      <a href="lecture06.html">
+        <span class="next-label">다음 강의</span>
+        <span class="next-title">Lecture 6 · 신제품 수용 전략 — Chasm · ACCORD · 4 Frictions</span>
+        <span class="next-arrow">▶</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

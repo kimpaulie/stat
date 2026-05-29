@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>3강 · 전략 기획 | 마케팅 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">마케팅 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">3강 전략 기획</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="lecture02.html" aria-label="이전 강의">◀</a>
+    <a href="lecture04.html" aria-label="다음 강의">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>변화의 시대</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>마케팅 프로세스</a></li>
+      <li><a href="lecture03.html" class="active"><span class="num">03</span>전략 기획</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>소비자 인사이트</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>STP 전략</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>신제품 수용</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>브랜드 매니지먼트</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>옴니채널·경험</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">이 강의의 프레임</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">여는 글</a></li>
+      <li><a href="#ch1">전략 기획 4단계</a></li>
+      <li><a href="#ch2">Mission 정의</a></li>
+      <li><a href="#ch3">Motivation 동기</a></li>
+      <li><a href="#ch4">Strategic Fit</a></li>
+      <li><a href="#ch5">Micro vs Macro</a></li>
+      <li><a href="#ch6">5C 분석</a></li>
+      <li><a href="#ch7">Core Competency</a></li>
+      <li><a href="#ch8">경쟁사 분석 5요소</a></li>
+      <li><a href="#ch9">PEST 4 렌즈</a></li>
+      <li><a href="#ch10">SWOT 통합</a></li>
+      <li><a href="#ch11">Best Buy 케이스</a></li>
+      <li><a href="#ch12">마스터 체크리스트</a></li>
+    </ol>
+
+    <div class="side-footer" data-lecture-num="03"><!-- populated by app.js --></div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Lecture 03<br>Strategic Planning · 환경 분석 4 렌즈</div>
+      <h1>전략 기획
+        <span class="small">— Mission에서 SWOT까지, 빠뜨리지 말아야 할 분석 체계</span>
+      </h1>
+      <p class="lead">
+        좋은 마케팅은 좋은 전략에서 시작해요.<br>
+        좋은 전략은 <em>환경을 정확히 읽는 일</em>에서 출발하죠.<br>
+        이번 강의는 환경을 읽는 4가지 렌즈 — Micro · Macro · S/W · O/T 를 정리해요.
+      </p>
+    </div>
+
+    <!-- 여는 글 -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>여는 글 · 전략은 환경 분석에서 시작해요</h2>
+      <div class="chap-sub">"기업 전략의 본질은 기업을 환경에 맞추는 일이다" — Michael Porter</div>
+
+      <p>2강에서 마케팅의 출발점이 "고객"이라는 걸 봤어요. 3강은 그 고객을 둘러싼
+      <strong>더 큰 환경</strong>까지 시야를 넓혀요. 회사 안(역량), 회사 밖(고객·경쟁사·거시환경)
+      모두를 체계적으로 읽는 도구함을 받아요.</p>
+
+      <div class="callout">
+        <div class="label">이 강의에서 손에 넣을 도구 6개</div>
+        <p>① <strong>Strategic Planning 4단계</strong> — Mission → Goals → Portfolio → Marketing<br>
+        ② <strong>5C 분석</strong> — Company·Customer·Competitor·Collaborator·Context<br>
+        ③ <strong>PEST 분석</strong> — Political·Economic·Social·Technological<br>
+        ④ <strong>Core Competency 진단</strong> — 우리만의 차별 역량<br>
+        ⑤ <strong>경쟁사 분석 5요소</strong> — 목표·전략·역량·반응·핵심역량<br>
+        ⑥ <strong>SWOT 통합 매트릭스</strong> — 내·외부 분석을 한 장에</p>
+      </div>
+
+      <blockquote class="pull">
+        "환경을 잘못 읽으면 아무리 좋은 실행도 헛수고예요.<br>
+        잘 읽으면 작은 실행이 큰 결과를 만들어요."
+      </blockquote>
+    </section>
+
+    <!-- 1. Strategic Planning 4단계 -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">FRAMEWORK 01 — Steps in Strategic Planning</div>
+      <h2>전략 기획 4단계 — 회사 전체에서 마케팅까지</h2>
+      <div class="chap-sub">From Corporate Mission to Functional Strategy</div>
+
+      <div class="definition">
+        <div class="term">Strategic Planning · 전략 기획</div>
+        <div class="kor">"조직 목표·역량과 마케팅 사이의 strategic fit을 유지·발전시키는 일"</div>
+        <p>변하는 환경 속에서 기회를 잡기 위해 회사를 적응시키는 작업. 의사결정의 위험과
+        불확실성을 줄이고 성공 확률을 높이는 게 목적.</p>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Strategic Planning 4단계</div>
+        <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Corporate level boxes -->
+          <g>
+            <rect x="20" y="80" width="140" height="60" rx="6" fill="#dde7f5" stroke="#1e3a8a" stroke-width="2"/>
+            <text x="90" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">① Mission</text>
+            <text x="90" y="125" text-anchor="middle" font-size="10" fill="#1e3a8a">왜 존재하나</text>
+          </g>
+          <g>
+            <rect x="180" y="80" width="140" height="60" rx="6" fill="#dde7f5" stroke="#1e3a8a" stroke-width="2"/>
+            <text x="250" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">② Objectives</text>
+            <text x="250" y="125" text-anchor="middle" font-size="10" fill="#1e3a8a">무엇을 달성</text>
+          </g>
+          <g>
+            <rect x="340" y="80" width="140" height="60" rx="6" fill="#dde7f5" stroke="#1e3a8a" stroke-width="2"/>
+            <text x="410" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">③ Portfolio</text>
+            <text x="410" y="125" text-anchor="middle" font-size="10" fill="#1e3a8a">어디서 경쟁</text>
+          </g>
+          <g>
+            <rect x="540" y="80" width="160" height="60" rx="6" fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+            <text x="620" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">④ Marketing Strategy</text>
+            <text x="620" y="125" text-anchor="middle" font-size="10" fill="#c0392b">어떻게 실행</text>
+          </g>
+
+          <!-- arrows -->
+          <line x1="160" y1="110" x2="180" y2="110" stroke="#1d1d1f" stroke-width="2" marker-end="url(#arr)"/>
+          <line x1="320" y1="110" x2="340" y2="110" stroke="#1d1d1f" stroke-width="2" marker-end="url(#arr)"/>
+          <line x1="480" y1="110" x2="540" y2="110" stroke="#1d1d1f" stroke-width="2" marker-end="url(#arr)"/>
+
+          <defs>
+            <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#1d1d1f"/>
+            </marker>
+          </defs>
+
+          <!-- level labels -->
+          <text x="250" y="55" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">Corporate level</text>
+          <line x1="20" y1="65" x2="490" y2="65" stroke="#6b6b6b" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="620" y="55" text-anchor="middle" font-size="11" fill="#6b6b6b" font-style="italic">Business unit level</text>
+          <line x1="540" y1="65" x2="700" y2="65" stroke="#c0392b" stroke-width="1" stroke-dasharray="3 3"/>
+
+          <text x="360" y="180" text-anchor="middle" font-size="11" fill="#6b6b6b">위로 올라갈수록 회사 전체, 오른쪽으로 갈수록 구체 실행</text>
+        </svg>
+      </div>
+
+      <p>① ~ ③은 <strong>Corporate level</strong> — CEO와 임원진이 결정. ④는 <strong>Business unit / Product level</strong> —
+      마케팅·R&D·운영 등 기능 부서가 실행. 마케팅 전략은 항상 위 3단계의 큰 그림 안에서 움직여요.</p>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Mission → Objectives → Portfolio → Marketing. 위에서부터 내려와야 흐름이 맞아요.
+      </div>
+    </section>
+
+    <!-- 2. Mission -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">FRAMEWORK 02 — Mission</div>
+      <h2>Mission — "왜 존재하나"를 한 문장으로</h2>
+      <div class="chap-sub">Disney의 진화로 보는 미션의 힘</div>
+
+      <div class="definition">
+        <div class="term">Mission · 사명</div>
+        <div class="kor">"회사가 왜 존재하는가를 한 문장으로 적은 것"</div>
+        <p>모든 전략 결정의 출발점. 새 사업 진출·인수합병·인재 채용·예산 배분이 다 미션에 비추어
+        판단됨. 흔히 한 줄짜리 문장이지만, 그 한 줄이 수십억 달러 결정을 좌우해요.</p>
+      </div>
+
+      <h3>Disney 미션의 진화</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>Disney 1세대 — 콘텐츠 회사</h5>
+          <p>"The world's leading producers and providers of <strong>entertainment and information</strong>."<br>
+          → 콘텐츠와 브랜드 포트폴리오 차별화에 집중.</p>
+        </div>
+        <div class="card">
+          <h5>Disney 현재 — 스토리텔링 회사</h5>
+          <p>"To entertain, inform and inspire people around the globe through the power of <strong>unparalleled storytelling</strong>."<br>
+          → 콘텐츠가 아닌 스토리텔링이 핵심으로 격상.</p>
+        </div>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">CASE IN ACTION — Disney의 $100B M&A 역사</div>
+        <p>1996 Capital Cities/ABC ($19B) → 2006 Pixar ($7.4B) → 2009 Marvel ($4.4B) → 2012 Lucasfilm ($4.1B) →
+        2017 BamTech ($2.9B) → 2019 21st Century Fox ($71.3B) → 2023 Hulu ($8.6B).</p>
+        <p>총 누적 $100B+. 모두 "스토리텔링 자산 확보"라는 한 미션으로 정당화됨. 미션이 명확하면 거대 의사결정도 일관성을 가져요.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">TRAP TO AVOID — "있어 보이는 미션"</div>
+        <p>"세계 최고의 가치를 창출한다" 같은 문장은 어디나 쓸 수 있어요 = 정보량 0.</p>
+        <p>좋은 미션은 ① 우리 산업·우리 회사 특유의 단어가 있고, ② 무엇은 안 한다는 게 암시되고, ③ 직원이 "그건 우리 일이 맞나?"를 결정할 때 답이 나와야 해요.</p>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · Mission 점검 6가지</div>
+        <div class="map-row">
+          <div><strong>① 고유성</strong><span>우리 회사·산업만의 단어가 있나?</span></div>
+          <div><strong>② 고객</strong><span>누구를 위한 미션인지 명확한가?</span></div>
+          <div><strong>③ 가치</strong><span>제공하는 핵심 가치가 적혀 있나?</span></div>
+          <div><strong>④ 경계</strong><span>"이건 안 한다"의 경계가 암시되나?</span></div>
+          <div><strong>⑤ 진화</strong><span>5년 전 미션과 비교했을 때 시대에 맞나?</span></div>
+          <div><strong>⑥ 결정 기준</strong><span>새 사업 검토 시 미션이 판단 근거가 되나?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        미션 = 모든 의사결정의 북극성. 일반적이면 쓸모없고, 구체적이면 길잡이가 돼요.
+      </div>
+    </section>
+
+    <!-- 3. Motivation -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">PRINCIPLE 01 — Motivation</div>
+      <h2>동기 — Start With Why</h2>
+      <div class="chap-sub">목표가 아닌 의미가 사람을 움직여요</div>
+
+      <div class="definition">
+        <div class="term">Motivation · 동기</div>
+        <div class="kor">"목표를 향해 에너지를 보내는 내적 각성 상태"</div>
+        <p>마케팅은 결국 사람들의 의사결정과 행동을 다루는 일. 회사 내부 직원이든, 외부 고객이든
+        동기 없이는 행동도 없어요. 좋은 전략은 항상 동기를 설계해요.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">CASE IN ACTION — NASA "I'm Putting a Man on the Moon"</div>
+        <p>Andrew Carton의 연구(2018, ASQ): JFK가 1960년대 NASA를 이끌 때, 청소부에게도 "나는 바닥을 닦는 게 아니라 사람을 달에 보내고 있다"는 의미부여를 가능하게 함.</p>
+        <p>일상 업무(전기 회로 만들기)와 회사의 궁극 목표(달에 사람 보내기)를 연결하는 <strong>4단계 sense-giving</strong>이 핵심:
+        ① 궁극 목표 명확화, ② 중간 목표로 분해, ③ 각자 업무와 중간 목표 연결, ④ 그 연결을 시각·언어로 반복 강조.</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">Charles Handy — "사람은 자원이 아니다"</div>
+        <p>"사물은 관리되어야 하지만, <strong>사람은 격려와 용기로 움직여요</strong>. 사람을 물건처럼 취급하면, 사람도 물건처럼 행동해요."</p>
+        <p>전략이 아무리 정교해도, 그것을 실행할 사람의 동기가 없으면 결과는 안 나와요.</p>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · 동기 설계 5가지</div>
+        <div class="map-row">
+          <div><strong>① Why 명확화</strong><span>회사의 존재 이유를 직원·고객 모두에게 한 줄로 설명 가능?</span></div>
+          <div><strong>② 일상과 연결</strong><span>각 부서·각 사람의 일이 큰 목적과 어떻게 연결되는지 보이나?</span></div>
+          <div><strong>③ 반복 강조</strong><span>그 연결을 자주, 다양한 형태로 노출하나?</span></div>
+          <div><strong>④ 자율성</strong><span>각자가 "본인의 방식"으로 일할 여지가 있나?</span></div>
+          <div><strong>⑤ 의미 측정</strong><span>직원·고객이 그 의미를 인지하는지 측정 도구가 있나?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        무엇(What)·어떻게(How)보다 왜(Why)가 먼저. 동기 없는 전략은 종이 위에서만 작동해요.
+      </div>
+    </section>
+
+    <!-- 4. Strategic Fit -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">PRINCIPLE 02 — Strategic Fit</div>
+      <h2>Strategic Fit — 내부 역량과 외부 기회의 정합성</h2>
+      <div class="chap-sub">전략의 본질</div>
+
+      <p>전략 기획의 핵심은 한 마디로 <strong>fit</strong>이에요. 우리가 잘하는 것과 시장이 원하는 것이 맞아떨어지는 자리를 찾는 일.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Strategic Fit — 두 원의 교집합</div>
+        <svg viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Two circles -->
+          <circle cx="180" cy="140" r="100" fill="#dde7f5" opacity="0.6" stroke="#1e3a8a" stroke-width="2"/>
+          <circle cx="320" cy="140" r="100" fill="#fbecea" opacity="0.6" stroke="#c0392b" stroke-width="2"/>
+
+          <text x="120" y="100" font-size="13" font-weight="700" fill="#1e3a8a">우리 역량</text>
+          <text x="100" y="120" font-size="11" fill="#1e3a8a">(Strengths)</text>
+          <text x="290" y="100" font-size="13" font-weight="700" fill="#c0392b">시장 기회</text>
+          <text x="290" y="120" font-size="11" fill="#c0392b">(Opportunities)</text>
+
+          <text x="250" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="#1d1d1f">STRATEGIC</text>
+          <text x="250" y="165" text-anchor="middle" font-size="14" font-weight="700" fill="#1d1d1f">FIT</text>
+          <text x="250" y="185" text-anchor="middle" font-size="11" fill="#6b6b6b">교집합이 클수록 강한 전략</text>
+        </svg>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>역량은 있지만 기회가 없음</h5>
+          <p>잘하는 게 있는데 시장이 원하지 않는 상태.<br>
+          → 새 시장을 만들거나, 역량을 다른 시장에 적용.</p>
+        </div>
+        <div class="card">
+          <h5>기회는 있지만 역량이 없음</h5>
+          <p>시장은 큰데 우리는 그걸 잘 못함.<br>
+          → 인수합병, 파트너십, 채용으로 역량 보강.</p>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        전략 = 우리 강점 × 시장 기회의 교집합 찾기. 한쪽만 봐선 안 돼요.
+      </div>
+    </section>
+
+    <!-- 5. Micro vs Macro -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">FRAMEWORK 03 — Marketing Environment</div>
+      <h2>Micro vs Macro — 환경은 두 층이에요</h2>
+      <div class="chap-sub">Direct Marketing vs External Marketing</div>
+
+      <p>마케팅 환경은 <strong>가까운 환경(Micro)</strong>과 <strong>먼 환경(Macro)</strong>으로 나뉘어요.
+      가까운 건 우리가 직접 상호작용. 먼 건 우리가 통제 못 함.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>Microenvironment vs Macroenvironment</caption>
+        <thead>
+          <tr><th>구분</th><th>Microenvironment</th><th>Macroenvironment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>별칭</td><td>Direct Marketing</td><td>External Marketing</td></tr>
+          <tr><td>거리</td><td>가까움 (직접 상호작용)</td><td>멈 (간접 영향)</td></tr>
+          <tr><td>통제</td><td>일부 통제 가능</td><td>거의 통제 불가</td></tr>
+          <tr><td>구성</td><td><strong>5C</strong>: Company / Customer / Competitor / Collaborator / Context</td><td><strong>PEST</strong>: Political / Economic / Social / Technological</td></tr>
+          <tr><td>점검 주기</td><td>매월·분기</td><td>매년·중장기</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">왜 둘 다 봐야 하나</div>
+        <p>마이크로만 보면 코앞의 경쟁사·고객만 봄 → 큰 흐름을 놓침.<br>
+        매크로만 보면 거시 트렌드는 알지만 실행 단위가 없음.<br>
+        <strong>둘을 같이 봐야 "맥락 + 실행"의 균형</strong>이 잡혀요.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Micro(5C)와 Macro(PEST)는 한 쌍의 안경. 둘 다 끼고 봐야 환경이 보여요.
+      </div>
+    </section>
+
+    <!-- 6. 5C -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">FRAMEWORK 04 — 5C Analysis</div>
+      <h2>5C — 미시환경의 5가지 축</h2>
+      <div class="chap-sub">Company · Customer · Competitor · Collaborator · Context</div>
+
+      <div class="definition">
+        <div class="term">5C Analysis</div>
+        <div class="kor">"마이크로 환경을 빠짐없이 보는 5개 렌즈"</div>
+        <p>전통 4C(Company·Customer·Competitor·Context)에 협력 파트너 C(Collaborator)가 추가된 형태.
+        디지털 시대 플랫폼·생태계의 중요도가 커지면서 표준이 됨.</p>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>① Company</h5>
+          <p><strong>우리</strong>: 미션·역량·재무 상태·조직 문화·브랜드 자산.<br>
+          내부에서 본 우리.</p>
+        </div>
+        <div class="card">
+          <h5>② Customer</h5>
+          <p><strong>고객</strong>: WHO·WHAT·HOW(2강) + JTBD + 욕구 레벨.<br>
+          가장 중요한 C.</p>
+        </div>
+        <div class="card">
+          <h5>③ Competitor</h5>
+          <p><strong>경쟁</strong>: 현재·잠재 경쟁자, 그들의 목표·역량·반응 전략.<br>
+          (다음 챕터에서 자세히)</p>
+        </div>
+        <div class="card">
+          <h5>④ Collaborator</h5>
+          <p><strong>협력</strong>: 공급사·유통사·전략적 파트너·생태계 플레이어.<br>
+          B2B에서 특히 중요.</p>
+        </div>
+        <div class="card">
+          <h5>⑤ Context</h5>
+          <p><strong>맥락</strong>: 산업 구조, 시장 트렌드, 규제 환경 등 우리 가까이의 큰 흐름.<br>
+          (PEST와 일부 겹침)</p>
+        </div>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · 5C 분석 시 빠지면 안 되는 15가지</div>
+        <div class="map-row">
+          <div><strong>Company ①</strong><span>현재 매출/이익 추세는?</span></div>
+          <div><strong>Company ②</strong><span>핵심 역량과 약점은?</span></div>
+          <div><strong>Company ③</strong><span>현금·인력·기술 자원의 여유분은?</span></div>
+          <div><strong>Customer ①</strong><span>주 타겟의 구매 결정 요인은?</span></div>
+          <div><strong>Customer ②</strong><span>최근 1년 고객 행동의 변화는?</span></div>
+          <div><strong>Customer ③</strong><span>이탈 고객의 진짜 이유는?</span></div>
+          <div><strong>Competitor ①</strong><span>직접 경쟁사 Top 3은?</span></div>
+          <div><strong>Competitor ②</strong><span>잠재 진입자(거인·스타트업)는?</span></div>
+          <div><strong>Competitor ③</strong><span>그들이 우리를 어떻게 볼까?</span></div>
+          <div><strong>Collaborator ①</strong><span>핵심 공급사·유통 파트너는 누구인가?</span></div>
+          <div><strong>Collaborator ②</strong><span>플랫폼·생태계 의존도가 높은가?</span></div>
+          <div><strong>Collaborator ③</strong><span>파트너 의존도의 위험을 어떻게 분산?</span></div>
+          <div><strong>Context ①</strong><span>산업 성장률·이익률은?</span></div>
+          <div><strong>Context ②</strong><span>최근·예상 규제 변화는?</span></div>
+          <div><strong>Context ③</strong><span>시장 트렌드의 변곡점은?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        5C = Company / Customer / Competitor / Collaborator / Context. 한 칸이라도 비면 위험.
+      </div>
+    </section>
+
+    <!-- 7. Core Competency -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">FRAMEWORK 05 — Core Competency</div>
+      <h2>Core Competency — 우리만의 진짜 강점</h2>
+      <div class="chap-sub">"Being exceptionally good at something valued by customers"</div>
+
+      <div class="definition">
+        <div class="term">Core Competency · 핵심 역량</div>
+        <div class="kor">"고객이 가치 있게 여기는 무언가를 남보다 압도적으로 잘하는 것"</div>
+        <p>단순한 "잘하는 것" 모두가 핵심 역량이 아니에요. <strong>① 고객이 가치를 느끼고, ② 경쟁사가 따라하기 어려우며, ③ 여러 시장에 응용 가능한</strong> 능력만이 진짜 core.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">CASE IN ACTION — 실제 회사들의 Core Competency</div>
+        <p><strong>NVIDIA</strong>: 고성능 그래픽카드의 병렬처리. AI 시대에 GPU = 표준이 되며 폭발적 성장.<br>
+        <strong>Apple</strong>: 혁신적 디자인 + 신 소프트웨어 기술을 소비자 가전에 통합하는 능력.<br>
+        <strong>3M</strong>: 매년 수십 개의 새 제품을 만들어내는 프로세스 자체.</p>
+      </div>
+
+      <h3>핵심 역량을 만드는 조직 문화 — 세 가지 사례</h3>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>3M · William McKnight (1948)</h5>
+          <p>"좋은 사람에게 권한을 위임하면 그들은 본인 방식으로 일하고 싶어합니다. 실수는 일어나지만, 본질이 맞다면 그 실수는 길게 보면 별 문제 아닙니다."<br>
+          → 실험을 격려하는 조직 문화.</p>
+        </div>
+        <div class="card">
+          <h5>Google · 20% Time</h5>
+          <p>직원의 20% 시간을 본인이 흥미 있는 프로젝트에 쓸 수 있게 보장.<br>
+          → Google 제품의 <strong>50%</strong>가 이 20% 시간에서 나옴. Gmail·AdSense 등.</p>
+        </div>
+        <div class="card">
+          <h5>Amazon · Fire Phone 실패 후</h5>
+          <p>Fire Phone은 큰 실패. 하지만 Bezos: "We're working on much <em>bigger failures</em> right now."<br>
+          → 실패를 환영하는 게 혁신의 토양.</p>
+        </div>
+        <div class="card">
+          <h5>Microsoft · Nadella Culture Change</h5>
+          <p>경쟁사 존중(Office를 iOS에 출시) + 신입 의견 청취 + Bell Curve 평가 폐지 + Fail Faster.<br>
+          → 주가 2배 이상 상승.</p>
+        </div>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · Core Competency 진단 5가지</div>
+        <div class="map-row">
+          <div><strong>① 고객 가치</strong><span>이게 정말 고객에게 의미 있는가? (내부 자랑 아닌)</span></div>
+          <div><strong>② 모방 난이도</strong><span>경쟁사가 따라하려면 몇 년 걸릴까?</span></div>
+          <div><strong>③ 확장성</strong><span>다른 시장·제품에도 적용 가능한가?</span></div>
+          <div><strong>④ 지속성</strong><span>기술 변화가 와도 살아남을 역량인가?</span></div>
+          <div><strong>⑤ 문화 뿌리</strong><span>한 사람이 떠나도 회사에 남아있을 역량인가?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Core Competency = "고객 가치 × 모방 난이도 × 확장성" 세 조건 다 만족.
+      </div>
+    </section>
+
+    <!-- 8. Competitor Analysis -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">FRAMEWORK 06 — Competitor Analysis</div>
+      <h2>경쟁사 분석 — 5가지 차원 다 보기</h2>
+      <div class="chap-sub">목표 · 전략 · 역량 · 반응 · 핵심역량</div>
+
+      <p>경쟁사 분석은 단순히 "그들의 제품"만 보는 게 아니에요. <strong>5가지 차원</strong>을 다 점검해야
+      그들이 어떻게 움직일지 예측할 수 있어요.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>경쟁사 분석 5요소</caption>
+        <thead>
+          <tr><th>차원</th><th>질문</th><th>왜 중요한가</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>① Objectives</strong></td><td>그들이 추구하는 목표는?</td><td>성장? 점유율? 수익성? 다른 목표는 다른 행동을 낳음</td></tr>
+          <tr><td><strong>② Strategies</strong></td><td>현재의 시장 접근 방식은?</td><td>저가? 프리미엄? 니치? 영역별 진입?</td></tr>
+          <tr><td><strong>③ Capabilities</strong></td><td>실행 가능한 자원·역량은?</td><td>현금·기술·인력의 깊이</td></tr>
+          <tr><td><strong>④ Reaction</strong></td><td>우리 행동에 어떻게 반응할까?</td><td>공격적? 방어적? 무대응?</td></tr>
+          <tr><td class="hi"><strong>⑤ Core Competency</strong></td><td class="hi">그들만의 진짜 강점은?</td><td class="hi">이걸 알아야 차별점 설계 가능</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>경쟁의 모양 — Simplicity & Mobility</h3>
+
+      <div class="callout blue">
+        <div class="label">CASE IN ACTION — 징기스칸의 단순한 안장</div>
+        <p>13세기 몽골 제국이 유라시아를 정복할 수 있었던 비결: <strong>단순한 안장 + 활 + 작은 말</strong>. 무거운 갑옷의 유럽 기사를 압도. 복잡함보다 단순함과 기동성이 이긴다는 교훈은 마케팅에도 그대로.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">CASE IN ACTION — AI 시대의 3대 경쟁</div>
+        <p><strong>ChatGPT (OpenAI)</strong>: 고급 추론·코드 + 거대 플러그인 생태계 + 커스터마이징.<br>
+        <strong>Gemini (Google)</strong>: 멀티모달(텍스트·이미지·영상) + Google Cloud 통합 + Deep Research.<br>
+        <strong>Claude (Anthropic)</strong>: 안전성 우선 (Constitutional AI) + Long Context + 윤리적 응답.<br>
+        같은 LLM 시장에서도 각자 다른 core competency로 차별화.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">CASE IN ACTION — NVIDIA · Groq 인수</div>
+        <p>NVIDIA가 GPU 시장을 지배하면서도 추론 가속 칩 스타트업 Groq를 인수. 이유: 추론 시장이 학습 시장만큼 커질 것에 대비. 거인이라도 <strong>새 경쟁축</strong>이 보이면 인수로 대응.</p>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · 경쟁사 분석 8가지</div>
+        <div class="map-row">
+          <div><strong>① 식별</strong><span>현재 경쟁사 Top 3 + 잠재 경쟁사 Top 3 적었나?</span></div>
+          <div><strong>② 매력도</strong><span>이 산업이 그들에게도 매력적인가?</span></div>
+          <div><strong>③ 진입 장벽</strong><span>새 진입자를 막는 장벽이 있나?</span></div>
+          <div><strong>④ 목표</strong><span>각 경쟁사의 추구 목표는?</span></div>
+          <div><strong>⑤ 전략</strong><span>그들의 현재 시장 접근 방식은?</span></div>
+          <div><strong>⑥ 역량</strong><span>그들의 자원·역량의 한계와 강점은?</span></div>
+          <div><strong>⑦ 반응 패턴</strong><span>과거 우리 행동에 어떻게 반응했나?</span></div>
+          <div><strong>⑧ Core Comp.</strong><span>그들만의 따라하기 어려운 강점은?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        경쟁사 분석 = 5가지 차원(목표·전략·역량·반응·핵심역량) 모두 점검. 한 차원만으론 예측 불가.
+      </div>
+    </section>
+
+    <!-- 9. PEST -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">FRAMEWORK 07 — PEST Analysis</div>
+      <h2>PEST — 거시환경의 4 렌즈</h2>
+      <div class="chap-sub">Political · Economic · Social · Technological</div>
+
+      <div class="definition">
+        <div class="term">PEST Analysis</div>
+        <div class="kor">"우리가 통제할 수 없지만 우리 사업에 영향을 주는 4가지 거시 흐름"</div>
+        <p>마이크로(5C)와 달리 PEST는 회사 차원에서 거의 통제 불가능. 대신 <strong>예측하고 적응</strong>해야 함.</p>
+      </div>
+
+      <h3>P — Political & Legal</h3>
+
+      <div class="callout">
+        <div class="label">현재의 P 환경</div>
+        <p>미·중 무역 갈등, EU AI 규제, 한국 데이터 3법 등. <strong>2025년 한미 관세, 기술 수출통제, GDPR/EU AI Act</strong>가 모든 글로벌 기업의 핵심 리스크. 정치는 마케팅의 변수가 아니라 <em>상수</em>가 됨.</p>
+      </div>
+
+      <h3>E — Economic & Ecological</h3>
+
+      <div class="callout">
+        <div class="label">현재의 E 환경</div>
+        <p>호르무즈 해협 위기 → 유가 영향. 한국으로 오는 중동산 원유의 99%가 이 해협 경유.<br>
+        에너지·원자재·환율은 모든 산업의 비용 구조를 흔들어요. <strong>시나리오 플래닝(Scenario Planning)</strong>이 필요한 이유.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">TOOL — Scenario Planning</div>
+        <p>Herman Kahn (1962, On Thermonuclear War)에서 시작 → Peter Schwartz (The Art of the Long View)로 대중화.</p>
+        <p>"하나의 미래"를 예측하는 게 아니라, <strong>여러 가능한 시나리오</strong>를 미리 그려놓고 각각에 대응할 전략을 준비. 불확실성이 큰 시대에 필수 도구.</p>
+      </div>
+
+      <h3>S — Social & Cultural</h3>
+
+      <div class="callout blue">
+        <div class="label">3가지 거시 사회 트렌드</div>
+        <p>① <strong>순환 경제</strong>: Madewell Forever × ThredUP의 "A Circular Store" — 새 옷이 아닌 중고 옷도 매장에서 판매.<br>
+        ② <strong>PetConomy</strong>: 펫푸드("The Real Grain Free"), 동물병원 치과 케어가 휴먼 그레이드 수준으로 격상.<br>
+        ③ <strong>Aging Population</strong>: 2024년 일본 30.2% → 2050년 한국 39.4% (65세 이상 비율). 노인 시장이 모든 산업의 새 중심.</p>
+      </div>
+
+      <h3>T — Technological</h3>
+
+      <div class="callout">
+        <div class="label">2025 시가총액 Top 10</div>
+        <p>NVIDIA $3.89T · Microsoft $3.71T · Apple $3.19T · Amazon $2.37T · Alphabet $2.18T · Meta $1.81T · Saudi Aramco $1.60T · Broadcom $1.29T · TSMC $1.22T · Berkshire $1.05T.</p>
+        <p>10개 중 7개가 IT/AI 회사. 모든 산업이 <strong>기술 회사로 재정의</strong>되고 있음.</p>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · PEST 점검 12가지</div>
+        <div class="map-row">
+          <div><strong>P-1 규제</strong><span>현재·예상 규제 변화 3가지?</span></div>
+          <div><strong>P-2 통상</strong><span>관세·무역장벽 변화?</span></div>
+          <div><strong>P-3 정치</strong><span>핵심 시장의 정치 안정성?</span></div>
+          <div><strong>E-1 금리</strong><span>금리 시나리오 ±2% 영향?</span></div>
+          <div><strong>E-2 환율</strong><span>환율 ±10% 영향?</span></div>
+          <div><strong>E-3 원자재</strong><span>핵심 원자재 가격 변동성?</span></div>
+          <div><strong>S-1 인구</strong><span>핵심 타겟 인구 구조 변화?</span></div>
+          <div><strong>S-2 트렌드</strong><span>3년 후 라이프스타일 변화?</span></div>
+          <div><strong>S-3 가치관</strong><span>ESG·다양성·웰니스 요구 수준?</span></div>
+          <div><strong>T-1 핵심 기술</strong><span>우리 산업을 바꿀 기술 3가지?</span></div>
+          <div><strong>T-2 도입 속도</strong><span>업계의 기술 도입 속도?</span></div>
+          <div><strong>T-3 대체</strong><span>우리 사업을 대체할 신기술?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        PEST = 거시환경 4 렌즈. 통제 못 하지만 예측해야 함. Scenario Planning이 핵심 도구.
+      </div>
+    </section>
+
+    <!-- 10. SWOT -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">FRAMEWORK 08 — SWOT Analysis</div>
+      <h2>SWOT — 내·외부 분석을 한 장에</h2>
+      <div class="chap-sub">Internal (S·W) × External (O·T)</div>
+
+      <div class="definition">
+        <div class="term">SWOT Analysis</div>
+        <div class="kor">"내부 강·약점 × 외부 기회·위협의 4분면 통합"</div>
+        <p>5C와 PEST의 결과를 <strong>한 페이지로 압축</strong>하는 도구. 가장 흔하게 쓰이지만 가장 자주
+        형식적으로 작성되는 도구이기도. 제대로 쓰려면 5C와 PEST가 선행되어야 함.</p>
+      </div>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>SWOT 4분면 정의</caption>
+        <thead>
+          <tr><th></th><th>도움(Helpful)</th><th>해로움(Harmful)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>내부 (Internal)</strong></td><td class="hi" style="background:#e7f2eb"><strong>S · Strengths</strong><br>활용할 역량</td><td class="hi" style="background:#fbecea"><strong>W · Weaknesses</strong><br>보강할 약점</td></tr>
+          <tr><td><strong>외부 (External)</strong></td><td class="hi" style="background:#e7f2eb"><strong>O · Opportunities</strong><br>잡을 트렌드·이벤트·아이디어</td><td class="hi" style="background:#fbecea"><strong>T · Threats</strong><br>대비할 외부 위협</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">각 분면의 정의 (Michael Porter 인용)</div>
+        <p><strong>S</strong> = 회사·사업부가 잘 수행하게 해주는 역량. <em>활용(leverage)</em>해야 할 자산.<br>
+        <strong>W</strong> = 회사·사업부의 성과를 막는 특성. <em>해결(address)</em>해야 할 문제.<br>
+        <strong>O</strong> = 회사·사업부가 활용할 수 있는 트렌드·힘·이벤트·아이디어. <em>붙잡아야(capitalize)</em>.<br>
+        <strong>T</strong> = 통제 밖의 가능한 사건·힘. <em>계획·완화(plan·mitigate)</em>해야 할 위험.</p>
+        <p>"기업 전략의 본질은 기업을 환경에 맞추는 일이다" — Michael Porter</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">TRAP TO AVOID — 형식적 SWOT</div>
+        <p>"강점: 좋은 인력, 약점: 자금 부족, 기회: 시장 성장, 위협: 경쟁 심화" → <strong>0점.</strong></p>
+        <p>모두 어디나 통하는 말. 좋은 SWOT은 ① 우리 특유의 단어가 있고, ② 숫자로 뒷받침되고, ③ 그 다음 행동이 도출돼야 해요.</p>
+      </div>
+
+      <div class="study-map">
+        <div class="label">CHECK · SWOT 작성 8가지</div>
+        <div class="map-row">
+          <div><strong>① 선행 분석</strong><span>5C와 PEST를 먼저 했나?</span></div>
+          <div><strong>② 구체성</strong><span>각 항목이 우리 회사 특유의 단어로 적혔나?</span></div>
+          <div><strong>③ 숫자 근거</strong><span>각 항목이 데이터로 뒷받침되나?</span></div>
+          <div><strong>④ 균형</strong><span>4분면이 비슷한 분량인가? (보통 S가 과대평가됨)</span></div>
+          <div><strong>⑤ 우선순위</strong><span>각 분면의 Top 3가 정해졌나?</span></div>
+          <div><strong>⑥ 매칭</strong><span>S × O (활용 전략), W × T (방어 전략) 매트릭스가 있나?</span></div>
+          <div><strong>⑦ 행동</strong><span>각 항목에 대한 후속 행동이 정의됐나?</span></div>
+          <div><strong>⑧ 업데이트</strong><span>최소 분기마다 갱신하는 체계가 있나?</span></div>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        SWOT은 5C·PEST의 결과를 압축하는 도구. 형식만 채우면 무용지물. 구체성·숫자·후속 행동이 핵심.
+      </div>
+    </section>
+
+    <!-- 11. Best Buy Case -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">CASE STUDY — Best Buy</div>
+      <h2>Best Buy "New Blue" — 전략 기획의 전체 사례</h2>
+      <div class="chap-sub">Amazon 시대에 살아남은 가전 유통</div>
+
+      <p>3강의 모든 프레임을 한 회사 사례로 통합해봐요. <strong>Best Buy</strong>는 Amazon 등장으로
+      "곧 죽을 회사"로 불렸지만, Hubert Joly CEO가 "New Blue" 전략으로 부활시킨 케이스.</p>
+
+      <h3>위기 진단 (2012)</h3>
+
+      <div class="callout">
+        <div class="label">SWOT 진단 — 2012년 시점</div>
+        <p><strong>S</strong>: 1,000+ 매장, 직원 전문성, Geek Squad 서비스, 브랜드 인지도.<br>
+        <strong>W</strong>: Showrooming 현상 (오프라인 보고 Amazon에서 구매), 적자 누적.<br>
+        <strong>O</strong>: Amazon이 못 하는 영역 (상담·설치·노인 케어), 제조사의 매장 내 브랜드 공간 수요.<br>
+        <strong>T</strong>: Amazon의 가격 우위, 제조사 직판(Apple Store 등).</p>
+      </div>
+
+      <h3>전략 — "Building the New Blue"</h3>
+
+      <blockquote class="pull">
+        "비즈니스 관점에서 무엇을 할지(What)는 어렵지 않아요.<br>
+        진짜 어려운 건 <strong>어떻게(How)와 왜(Why)</strong>예요." — Hubert Joly, Best Buy CEO
+      </blockquote>
+
+      <div class="cards-2">
+        <div class="card">
+          <h5>전술 ① — Price Match Guarantee</h5>
+          <p>Amazon·Walmart 등의 가격과 매칭. Showrooming 문제 정면 돌파. "가격 차이"라는 약점을 제거.</p>
+        </div>
+        <div class="card">
+          <h5>전술 ② — Store within Store</h5>
+          <p>Samsung Galaxy Studio, Apple Shop 등 제조사의 브랜드 공간을 매장 안에 입점. 제조사가 임대료 지불 → Best Buy 수익원.</p>
+        </div>
+        <div class="card">
+          <h5>전술 ③ — In-Home Consultation</h5>
+          <p>"You'll be surprised what your home can do." 무료 가정 방문 상담 서비스. Amazon이 못 하는 영역.</p>
+        </div>
+        <div class="card">
+          <h5>전술 ④ — Geek Squad</h5>
+          <p>전문 설치·수리 인력. 단순 판매가 아닌 "기술 솔루션" 회사로 재정의.</p>
+        </div>
+        <div class="card">
+          <h5>전술 ⑤ — Focus on Non-Amazonian</h5>
+          <p>Amazon이 약한 영역 집중: <strong>고령자 케어</strong>. Best Buy Health(GreatCall, Critical Signal Technologies, AgeTech).</p>
+        </div>
+        <div class="card">
+          <h5>전술 ⑥ — Brand Refresh</h5>
+          <p>"Imagine That" 메시지. "Us(품질·사람·혁신) vs You(특징·신뢰·가치)" 포지셔닝.</p>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">결과 — 주가 2010 ~ 2018</div>
+        <p>Joly 취임 시점 $20대 → 2018년 $80대로 4배 상승. "Amazon 시대에도 오프라인 가전 유통이 살아남을 수 있다"는 증거.</p>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        SWOT · 5C · PEST 모두 합쳐도 한 가지 — <strong>"경쟁사가 약한 곳에 우리 강점을 배치"</strong>. Best Buy = 그 전략의 교과서.
+      </div>
+    </section>
+
+    <!-- 12. 마스터 체크리스트 -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">FIELD CHECKLIST</div>
+      <h2>전략 기획 마스터 체크리스트</h2>
+      <div class="chap-sub">실제 전략 워크숍에서 점검할 25가지</div>
+
+      <p>강의 전체에서 추출. 회사의 연간 전략 회의 자료를 옆에 두고 한 행씩 채워보세요.</p>
+
+      <div class="table-scroll">
+      <table class="blue-head center">
+        <caption>전략 기획 25 체크리스트</caption>
+        <thead>
+          <tr><th>영역</th><th>체크 항목</th><th>상태</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="3">Mission</td><td>회사 미션이 한 문장으로 정의되어 있나?</td><td>☐</td></tr>
+          <tr><td>그 미션이 5년 전과 다른가? (시대 적합성)</td><td>☐</td></tr>
+          <tr><td>새 사업 검토 시 미션이 판단 기준이 되나?</td><td>☐</td></tr>
+          <tr><td rowspan="3">Motivation</td><td>직원이 회사의 "Why"를 한 줄로 말할 수 있나?</td><td>☐</td></tr>
+          <tr><td>각자의 일이 큰 목적과 어떻게 연결되는지 보이나?</td><td>☐</td></tr>
+          <tr><td>리더가 "Why"를 반복 강조하는 체계가 있나?</td><td>☐</td></tr>
+          <tr><td rowspan="3">Company</td><td>현재 매출·이익 추세를 분기 단위로 추적하나?</td><td>☐</td></tr>
+          <tr><td>핵심 역량 Top 3가 명확하게 정의됐나?</td><td>☐</td></tr>
+          <tr><td>그 역량이 "고객 가치 × 모방 난이도 × 확장성" 다 만족하나?</td><td>☐</td></tr>
+          <tr><td rowspan="3">Customer</td><td>주 타겟의 JTBD가 명확한가?</td><td>☐</td></tr>
+          <tr><td>최근 1년간 고객 행동 변화를 데이터로 추적 가능?</td><td>☐</td></tr>
+          <tr><td>이탈 고객의 진짜 이유를 알고 있나?</td><td>☐</td></tr>
+          <tr><td rowspan="3">Competitor</td><td>경쟁사 Top 3 + 잠재 경쟁사 Top 3 적혀 있나?</td><td>☐</td></tr>
+          <tr><td>각 경쟁사의 목표·전략·역량·반응·핵심역량을 안다?</td><td>☐</td></tr>
+          <tr><td>잠재 진입자가 우리 시장에 들어올 시그널을 모니터링하나?</td><td>☐</td></tr>
+          <tr><td>Collaborator</td><td>핵심 파트너 의존도가 측정·관리되나?</td><td>☐</td></tr>
+          <tr><td>Context</td><td>산업 성장률·규제·트렌드 변곡점이 정리되나?</td><td>☐</td></tr>
+          <tr><td rowspan="4">PEST</td><td>Political: 핵심 규제 변화 3가지 식별?</td><td>☐</td></tr>
+          <tr><td>Economic: 환율·금리·원자재 시나리오 분석 있나?</td><td>☐</td></tr>
+          <tr><td>Social: 인구 구조·가치관 트렌드 추적?</td><td>☐</td></tr>
+          <tr><td>Technological: 우리 산업을 바꿀 신기술 3가지 식별?</td><td>☐</td></tr>
+          <tr><td rowspan="4">SWOT 통합</td><td>5C·PEST 분석 후 SWOT을 작성했나?</td><td>☐</td></tr>
+          <tr><td>각 분면 항목이 데이터·숫자로 뒷받침되나?</td><td>☐</td></tr>
+          <tr><td>S×O / W×T 매트릭스로 행동 전략 도출했나?</td><td>☐</td></tr>
+          <tr><td>최소 분기마다 갱신하는 체계가 있나?</td><td>☐</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        Mission → 5C(Micro) + PEST(Macro) → Core Competency → Competitor → SWOT 통합 → 행동 전략. 25개 점검이면 빠짐없음.
+      </div>
+
+      <div class="epilogue">
+        <h2>마지막 한 줄</h2>
+        <p>"<em>기업 전략의 본질은 기업을 환경에 맞추는 일이다.</em>" — Michael Porter</p>
+        <p>좋은 전략은 천재의 직관이 아니라 <strong>체계적 분석의 결과</strong>예요. 4가지 렌즈(5C·PEST·Core·SWOT)가 그 분석을 빠짐없이 만들어줘요.</p>
+        <p>다음 강의(4강 Marketing Information)에서는 이 분석을 위해 <strong>인사이트를 어떻게 뽑아낼지</strong> 봐요.</p>
+        <p style="margin-top:16px; font-style:italic; color:#cfc8b0;">— 3강, 끝 —</p>
+      </div>
+    </section>
+
+    <nav class="next-lecture">
+      <a href="lecture04.html" aria-label="4강으로">
+        <span>
+          <span class="lec-hint">다음 강의</span>
+          <span class="lec-title">4강 · 소비자 인사이트 — 인사이트 뽑는 법</span>
+        </span>
+        <span class="lec-arrow">→</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+<div class="drawer-backdrop"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

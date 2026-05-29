@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lecture 6 · 신제품 수용 전략 — Market Acceptance Strategy</title>
+  <meta name="description" content="Chasm·ACCORD·4 Frictions 등 신제품 채택·확산 프레임 모음" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="목차 열기"><span></span><span></span><span></span></button>
+  <a href="index.html" class="brand">
+    <span class="brand-mark">M</span>
+    <span class="brand-text">마케팅 학습 노트</span>
+  </a>
+  <nav class="nav-lec">
+    <a href="lecture05.html" class="nav-prev">◀</a>
+    <span class="nav-current">Lecture 6</span>
+    <a href="lecture07.html" class="nav-next">▶</a>
+  </nav>
+</header>
+
+<div class="reading-progress"><div class="bar"></div></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">강의 목록</div>
+      <ul class="lec-list">
+        <li><a href="lecture01.html"><span class="num">01</span> 변화의 시대 마케팅</a></li>
+        <li><a href="lecture02.html"><span class="num">02</span> 마케팅 프로세스</a></li>
+        <li><a href="lecture03.html"><span class="num">03</span> 전략 기획</a></li>
+        <li><a href="lecture04.html"><span class="num">04</span> 소비자 인사이트</a></li>
+        <li><a href="lecture05.html"><span class="num">05</span> STP 전략</a></li>
+        <li class="active"><a href="lecture06.html"><span class="num">06</span> 신제품 수용 전략</a></li>
+        <li><a href="lecture07.html"><span class="num">07</span> 전략적 브랜드 매니지먼트</a></li>
+        <li><a href="lecture08.html"><span class="num">08</span> 옴니채널 &amp; 경험형 리테일</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">이 강의의 프레임 11개</div>
+      <ol class="chap-list">
+        <li><a href="#ch0">PROLOGUE · NPD1 &lt; NPD2</a></li>
+        <li><a href="#ch1">PRINCIPLE 01 · Solution &gt; Technology</a></li>
+        <li><a href="#ch2">FRAMEWORK 01 · Greater Pain 원칙</a></li>
+        <li><a href="#ch3">FRAMEWORK 02 · Rogers Diffusion 5 Adopter</a></li>
+        <li><a href="#ch4">FRAMEWORK 03 · Geoffrey Moore Chasm</a></li>
+        <li><a href="#ch5">PRINCIPLE 02 · Prospect Theory &amp; 9X Effect</a></li>
+        <li><a href="#ch6">FRAMEWORK 04 · 혁신 2×2 (Strike·Long·Tinker·Home)</a></li>
+        <li><a href="#ch7">FRAMEWORK 05 · Consumer Resistance 5 Barriers</a></li>
+        <li><a href="#ch8">FRAMEWORK 06 · Rogers ACCORD 6요소</a></li>
+        <li><a href="#ch9">FRAMEWORK 07 · 4 Frictions</a></li>
+        <li><a href="#ch10">CASE · Warby Parker — 모든 프레임 적용</a></li>
+        <li><a href="#ch11">PRINCIPLE 03 · Loss Aversion 3변수</a></li>
+        <li><a href="#ch12">FIELD CHECKLIST · 30개 항목</a></li>
+      </ol>
+    </div>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <div class="kicker">Lecture 6 · New Product Adoption &amp; Diffusion</div>
+      <h1>신제품 수용 전략 — <br/>왜 좋은 제품도 시장에서 죽는가</h1>
+      <p class="lead">개발(NPD1)보다 수용(NPD2)이 더 어렵습니다. 고객의 저항·관성·손실회피를 넘는 11개 프레임과 30개 점검표.</p>
+    </div>
+
+    <!-- ───── ch0 ───── -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>두 개의 NPD — Development &lt; Diffusion</h2>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">NPD1</div>
+          <div class="card-title">New Product <em>Development</em></div>
+          <p>제품·기술을 만드는 단계. R&amp;D, 엔지니어링, 디자인 중심.</p>
+        </div>
+        <div class="card">
+          <div class="card-label">NPD2</div>
+          <div class="card-title">New Product <em>Adoption &amp; Diffusion</em></div>
+          <p>시장이 받아들이는 단계. 마케팅·커뮤니케이션·심리·채널 중심.</p>
+        </div>
+      </div>
+
+      <blockquote class="pull">
+        <strong>NPD1 &lt; NPD2</strong> — 시장에서 실패하면 아무리 잘 개발해도 소용없다.<br/>
+        <span class="cite">"Importance of Market Acceptance!"</span>
+      </blockquote>
+
+      <div class="take-away">
+        이번 강의의 한 줄 — <strong>"기술이 아니라 솔루션을, 기능이 아니라 고객의 통증을, 제품이 아니라 채택의 심리를 본다."</strong>
+      </div>
+    </section>
+
+    <!-- ───── ch1 ───── -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">PRINCIPLE 01</div>
+      <h2>혁신가와 소비자의 심리 차이 — Solution이 먼저, Technology는 나중</h2>
+
+      <p>
+        혁신가(개발자·창업자)와 소비자(잠재 사용자)는 같은 제품을 정반대로 봅니다.
+        혁신가는 "이 기술이 가능해진다는 게 놀랍지 않아?"라고 생각하지만, 소비자는 "이게 내 일상에 무슨 도움이 되나?"라고 묻죠.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">PRINCIPLE</div>
+        <div class="def-name">Focus on Solution, NOT on Technology or Features</div>
+        <ul>
+          <li><strong>Tech-first 화법</strong> — "5GHz 듀얼밴드 Wi-Fi 6E 지원"</li>
+          <li><strong>Solution-first 화법</strong> — "거실 끝까지 끊김 없는 인터넷"</li>
+          <li>고객은 후자만 이해합니다.</li>
+        </ul>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · "Thousands of Songs in Your Pocket"</strong>
+        2001년 Steve Jobs의 iPod 발표 — 그는 "5GB hard disk, FireWire interface"라고 말하지 않고 <em>"1000 songs in your pocket"</em>이라고 했죠.
+        같은 제품, 다른 화법. <strong>스펙은 엔지니어에게, 솔루션은 고객에게.</strong>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · ANGEL ROBOTICS "Joy of Walking Again"</strong>
+        외골격 로봇을 만드는 KAIST 스핀오프 — 12자유도 토크모터·6채널 지면반력센서 같은 스펙 대신 <em>"A Miraculous Step — feel the joy of walking again"</em>이라는 한 문장으로 시장을 설득. 솔루션 = 다시 걷는 기쁨.
+      </div>
+    </section>
+
+    <!-- ───── ch2 ───── -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">FRAMEWORK 01</div>
+      <h2>Greater Pain 원칙 — 가장 아픈 사람에게 먼저 가라</h2>
+
+      <blockquote class="pull">
+        "Go first to those who can benefit most from you!"<br/>
+        <span class="cite">— Philip Kotler, <em>Kotler on Marketing</em></span>
+      </blockquote>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">Vitamin</div>
+          <p>없어도 살 수 있는 부가적 효익. "있으면 좋겠다(nice to have)."</p>
+        </div>
+        <div class="card">
+          <div class="card-label">Painkiller</div>
+          <p>지금 당장 통증을 멈춰주는 필수재. "없으면 못 산다(must have)."</p>
+        </div>
+      </div>
+
+      <div class="take-away">
+        <strong>실무 적용</strong> — 신제품 출시 첫 표적은 항상 <em>Painkiller가 되는 세그먼트</em>여야 합니다. Vitamin 세그먼트는 나중에. 자원이 한정될수록 더더욱.
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · 드론은 누구에게 Painkiller인가</strong>
+        취미용 드론(Vitamin)이 아닌, <em>"전력선 점검·재난 구조·농업 방제"</em>처럼 사람이 도저히 못 가는 곳에 가야 하는 산업 고객(Painkiller)이 먼저 시장을 만들었습니다.
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Tesla Roadster First (2008)</strong>
+        Tesla는 대중차가 아니라 <em>전기차에 가장 목마른 친환경 부유층</em>을 먼저 잡았어요. Roadster $109K → Model S → Model 3로 점진 확산. <strong>가장 아픈 사람부터, 가격 부담은 나중에.</strong>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Aqualisa Quartz Digital Shower</strong>
+        영국 디지털 샤워의 출시 실패담 — 처음에 일반 소비자에게 갔다가 실패. 알고 보니 <em>샤워 설치·수리에 매일 고통받는 배관공(plumber)</em>이야말로 Painkiller 세그먼트였음. 채널을 배관공으로 돌리자 폭발.
+      </div>
+    </section>
+
+    <!-- ───── ch3 ───── -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">FRAMEWORK 02</div>
+      <h2>Rogers Diffusion of Innovations — 5 Adopter Types</h2>
+
+      <p>
+        Everett Rogers의 1962년 고전 <em>Diffusion of Innovations</em>. 시장은 절대로 한꺼번에 채택하지 않고, <strong>종 모양 곡선을 따라 단계적으로 확산</strong>됩니다.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>Adopter Type</th>
+              <th>비율</th>
+              <th>특성</th>
+              <th>마케팅 핵심</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>Innovators</th><td>2.5%</td><td>모험적, 신기술 자체에 매료</td><td>접근성, 베타 액세스</td></tr>
+            <tr><th>Early Adopters</th><td>13.5%</td><td>의견 리더, 사회적 영향력</td><td>스토리텔링, 인플루언서</td></tr>
+            <tr><th>Early Majority</th><td>34%</td><td>신중·실용적, 검증 후 진입</td><td>케이스·증거·표준화</td></tr>
+            <tr><th>Late Majority</th><td>34%</td><td>회의적, 사회적 압력으로 진입</td><td>가격, 사용성, 보장</td></tr>
+            <tr><th>Laggards</th><td>16%</td><td>전통 고수, 변화 거부</td><td>억지로 변화시키지 말 것</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · 5%로 100%를 일반화하지 마라</strong>
+        Innovator + Early Adopter (16%)의 열광적 반응을 보고 "주류 시장도 곧 따라올 것"이라 착각하는 게 가장 흔한 실수. <strong>16%와 84%는 완전히 다른 사람들입니다.</strong>
+      </div>
+    </section>
+
+    <!-- ───── ch4 ───── -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">FRAMEWORK 03</div>
+      <h2>Geoffrey Moore's Chasm — 죽음의 골짜기</h2>
+
+      <p>
+        Rogers의 곡선에는 보이지 않는 단절이 있다고 Geoffrey Moore가 지적했어요.
+        Early Adopter(Visionary)와 Early Majority(Pragmatist) 사이에는 <strong>"Chasm(깊은 골짜기)"</strong>이 있어서, 16%까지 잘 나가던 제품이 거기서 죽는다.
+      </p>
+
+      <div class="mini-flow">
+        <div class="step"><strong>Early Market</strong><br/>Innovators + Visionaries</div>
+        <div class="arrow">→</div>
+        <div class="step" style="background:#fee2e2"><strong>⚠ CHASM</strong><br/>여기서 80% 죽음</div>
+        <div class="arrow">→</div>
+        <div class="step"><strong>Mainstream Market</strong><br/>Pragmatists + Conservatives</div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Visionaries (Early)</th>
+              <th>Pragmatists (Mainstream)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>Market Type</th><td>Early</td><td>Mainstream</td></tr>
+            <tr><th>Sub-type</th><td>Enthusiasts · Visionaries</td><td>Pragmatists · Conservatives</td></tr>
+            <tr><th>사고 방식</th><td>Intuitive · 직관</td><td>Analytic · 분석</td></tr>
+            <tr><th>변화 태도</th><td>Support Revolution</td><td>Support Evolution</td></tr>
+            <tr><th>군집 행동</th><td>Contrarian — Break away from the pack</td><td>Conformists — Stay with the herd</td></tr>
+            <tr><th>의사결정</th><td>Follow their own dictates</td><td>Consult with their colleagues</td></tr>
+            <tr><th>리스크 태도</th><td><strong>Take risks</strong> · See what is possible</td><td><strong>Avoid risks</strong> · Pursue what is probable</td></tr>
+            <tr><th>심리 초점</th><td>Promotion Focused (성취·이득)</td><td>Prevention Focused (안전·손실회피)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · Chasm 건너기 체크리스트</strong>
+        <ul>
+          <li>Reference Customer를 1~2개 산업의 명확한 사례로 확보했는가</li>
+          <li>"Whole Product"(부속·서비스·교육·표준)가 갖춰졌는가</li>
+          <li>실무자의 "리스크"를 줄이는 보증·환불·SLA가 있는가</li>
+          <li>Pragmatist의 동료 네트워크(컨퍼런스·전문 미디어)에서 검증 받았는가</li>
+          <li>한 Bowling Alley(특정 산업)을 완전히 점령한 뒤 다음으로 옮기는 전략인가</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch5 ───── -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">PRINCIPLE 02</div>
+      <h2>Prospect Theory · Status Quo Bias · 9X Effect</h2>
+
+      <p>
+        Tversky &amp; Kahneman의 Prospect Theory — 사람은 같은 크기의 손실을 같은 크기의 이득보다 약 <strong>2~3배 강하게</strong> 느낍니다. 신제품 채택의 가장 큰 적이 바로 이 손실회피.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">PRINCIPLE</div>
+        <div class="def-name">Status Quo Bias — 천칭의 비밀</div>
+        <p>
+          고객이 신제품을 살까 말까 고민할 때 머릿속 천칭은 다음과 같이 작동합니다 —
+        </p>
+        <ul>
+          <li><strong>Benefits 쪽</strong>: Product Benefit 1, 2, 3 (신제품이 주는 것)</li>
+          <li><strong>Costs 쪽</strong>: Existing Product Value (지금 쓰는 것의 가치) + Demanded Change (변화 노력) + Value that Must Be Paid (구매 비용)</li>
+        </ul>
+        <p>
+          기업은 Benefits만 계산하지만, 고객은 Costs를 3가지로 계산합니다. <strong>Benefits &gt; Costs 가 아니라 Benefits &gt; 3·Costs 정도 되어야 움직입니다.</strong>
+        </p>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · 9X Effect</strong>
+        <em>개발자 시각</em>에서는 새 제품이 옛 제품보다 3배 좋아 보이지만 (Endowment Bias 1), <em>소비자 시각</em>에서는 옛 제품의 친숙함 때문에 새 제품을 3배 낮게 평가합니다 (Endowment Bias 2).
+        결과 — <strong>객관적으로 같은 제품을 두 사람이 9배 차이로 본다.</strong>
+        <br/><br/>
+        해석: "이거 진짜 좋은데 왜 안 팔리지?"라는 개발자의 한탄이 여기서 나옵니다. 진짜로 안 좋은 게 아니라 인식 차이가 9배라서 그래요.
+      </div>
+
+      <div class="take-away">
+        <strong>대응 전략</strong> — 신제품의 Benefits를 강조하는 것보다 <strong>"바꿔도 잃을 게 없다"</strong>는 안심 신호를 주는 게 더 효과적. 무료 체험, 환불 보장, Trade-In, 점진적 도입 등.
+      </div>
+    </section>
+
+    <!-- ───── ch6 ───── -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">FRAMEWORK 04</div>
+      <h2>혁신의 성격 진단 — Barriers × Benefits 2×2</h2>
+
+      <p>
+        모든 혁신은 두 축에서 측정됩니다 — <strong>고객이 치러야 할 비용(FUD)</strong>과 <strong>고객이 얻는 효익</strong>. 두 축을 교차하면 4개 사분면.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Benefits 낮음</th>
+              <th>Benefits 높음</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Barriers/FUD 높음</th>
+              <td style="background:#fee2e2"><strong>Strike Out</strong><br/>출시하지 마라. 거의 무조건 실패.</td>
+              <td style="background:#fef9c3"><strong>Long Haul</strong><br/>장기전. 가치는 있지만 채택까지 오래.</td>
+            </tr>
+            <tr>
+              <th>Barriers/FUD 낮음</th>
+              <td style="background:#e0e7ff"><strong>Tinkering</strong><br/>소소한 개선. 많이 빠르게 출시.</td>
+              <td style="background:#d1fae5"><strong>Home Run</strong><br/>잭팟. 무조건 출시.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · 신제품 진단 4질문</strong>
+        <ul>
+          <li>① 얻는 효익(기능·정서·경험)을 1줄로 쓸 수 있나</li>
+          <li>② 잃는 것(돈·시간·습관·사회적 위험)을 1줄로 쓸 수 있나</li>
+          <li>③ 위 둘을 2×2에 찍었을 때 어느 사분면인가</li>
+          <li>④ Long Haul이면 장기 자금·신뢰 자산이 있나? Strike Out이면 출시 보류·축소</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch7 ───── -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">FRAMEWORK 05</div>
+      <h2>Consumer Resistance — 5가지 Barriers (FUD)</h2>
+
+      <p>
+        고객이 신제품을 거절하는 이유는 5가지로 분류됩니다. 모두 합쳐 <strong>FUD(Fear · Uncertainty · Doubt)</strong>라고 부르죠.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">5 Barriers to Adoption</div>
+        <ol>
+          <li><strong>Financial Barrier</strong> — 살 돈이 부족하다, 가격이 부담된다</li>
+          <li><strong>Functional Barrier</strong>
+            <ul>
+              <li>Value Barrier — 효익이 가격에 비해 부족하다</li>
+              <li>Usage Barrier — 사용법이 복잡하다</li>
+              <li>Risk Barrier — 고장·하자·보안 우려</li>
+            </ul>
+          </li>
+          <li><strong>Psychological Barrier</strong>
+            <ul>
+              <li>Traditional Barrier — "옛날 방식이 맞다" (Betty Crocker 케이크믹스 초기 실패)</li>
+              <li>Image Barrier — 카테고리·브랜드 이미지에 거부감</li>
+            </ul>
+          </li>
+          <li><strong>FUD</strong> — Fear, Uncertainty, Doubt 통합</li>
+          <li><strong>Social Barrier</strong> — 안전·규제·사회적 시선 (UAM, 자율주행)</li>
+        </ol>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · DRYEL (P&amp;G 가정용 드라이클리닝)</strong>
+        Functional Barrier(써본 적 없음) + Traditional Barrier(드라이클리닝은 전문점에서) + Risk Barrier(옷 망가질까봐) 3중 저항. 결과 — 출시 실패.
+        <br/><br/>
+        <strong>Case · Betty Crocker Cake Mix</strong> 초기 실패: 모든 게 다 들어 있어서 물만 부으면 됐는데, 주부들이 "내가 정성을 안 들이는 것 같다"는 Psychological Barrier로 거절. 계란 한 알을 직접 넣게 만든 뒤 폭발.
+      </div>
+    </section>
+
+    <!-- ───── ch8 ───── -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">FRAMEWORK 06</div>
+      <h2>Rogers' ACCORD Model — 채택률을 결정하는 6요소</h2>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">ACCORD — Rogers의 6가지 채택 요인</div>
+        <ul>
+          <li><strong>A — Relative Advantage</strong>: "기존 대안보다 더 나은가?" (being better than the idea it supersedes)</li>
+          <li><strong>C — Compatibility</strong>: "기존 가치·경험·습관과 호환되는가?"</li>
+          <li><strong>C — Complexity (Ease of Use)</strong>: "이해하고 쓰기 쉬운가?"</li>
+          <li><strong>O — Observability</strong>: "타인에게 보이는가? 자랑할 수 있는가?"</li>
+          <li><strong>R — Perceived Risk</strong>: "신체적·경제적으로 위험한가?"</li>
+          <li><strong>D — Divisibility (Trialability)</strong>: "조금만 시험해 볼 수 있나?"</li>
+        </ul>
+        <div class="when-to-use"><strong>언제 쓰나:</strong> 신제품 컨셉 진단, 출시 전 마케팅 메시지 보강 영역 파악</div>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · ACCORD 진단표</strong>
+        각 요소에 1~10점 매기고, 7점 미만은 마케팅·제품 보강 필요. 6개 모두 7점 이상이면 채택 가능성 매우 높음.
+        <ul>
+          <li>iPhone 2007 — A:10 / C:7 / C(use):9 / O:10 / R:6 / D:5 → 평균 7.8 ✓</li>
+          <li>VR 헤드셋 — A:7 / C:4 / C(use):5 / O:6 / R:5 / D:4 → 평균 5.2 ✗ 채택 지연</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch9 ───── -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">FRAMEWORK 07</div>
+      <h2>4 Frictions — Loran Nordgren의 저항력 4가지</h2>
+
+      <p>
+        Nordgren &amp; Schonthal의 <em>The Human Element</em>가 제안한 새 프레임 — 신제품 채택의 적은 4가지 마찰력. 로켓에 연료를 더 넣는 것보다 <strong>저항을 줄이는 게 더 효과적</strong>.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>Friction</th>
+              <th>본질</th>
+              <th>해소 방법</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Inertia<br/>(관성)</th>
+              <td>익숙한 것을 계속 하려는 힘</td>
+              <td><strong>Familiarity</strong> — 신제품을 익숙한 형태·언어로 포장</td>
+            </tr>
+            <tr>
+              <th>Effort<br/>(노력)</th>
+              <td>새로 배우고 설정하는 부담</td>
+              <td><strong>Ease</strong> — 진입 장벽 제거, 첫 사용 5분 안에 가치 전달</td>
+            </tr>
+            <tr>
+              <th>Emotion<br/>(감정)</th>
+              <td>두려움·불안·자기 정체성 위협</td>
+              <td><strong>Empathy</strong> — 감정을 인정하고 공감하는 메시지</td>
+            </tr>
+            <tr>
+              <th>Reactance<br/>(반발)</th>
+              <td>"강요당한다"는 거부 반응</td>
+              <td><strong>Involvement</strong> — 고객이 선택·공동창조하게 만들기</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Apple Trade In · Tesla Resale Guarantee</strong>
+        Apple Trade In은 Effort + Emotion 마찰 해소 ("쓰던 기기 그대로 가져오면 자동으로 가치 환산").
+        Tesla Resale Value Guarantee는 Financial Risk 해소 ("3년 후 43% 보장").
+        모두 <em>"바꿔도 잃을 게 없다"</em>는 신호.
+      </div>
+    </section>
+
+    <!-- ───── ch10 ───── -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CASE STUDY</div>
+      <h2>Warby Parker — 모든 프레임을 적용한 모범 사례</h2>
+
+      <p>
+        2010년 안경 시장의 도전자 Warby Parker. Luxottica 독점($500+) 시장을 깨고 $95 안경으로 진입. 16년 뒤 2026년 Google AI Smart Glasses 파트너로 $75M 투자 받음.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>적용 프레임</th>
+              <th>Warby Parker의 적용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Painkiller 세그먼트</td>
+              <td>안경값($500+)이 부담스러운 도시 청년·학생 — 가장 아픈 사람</td>
+            </tr>
+            <tr>
+              <td>Solution &gt; Tech</td>
+              <td>"눈 검사" 기술이 아니라 "$95에 처방안경"이라는 솔루션</td>
+            </tr>
+            <tr>
+              <td>ACCORD · Trialability</td>
+              <td><strong>Home Try-On</strong> — 5개 무료 배송, 5일 써보고 결정</td>
+            </tr>
+            <tr>
+              <td>ACCORD · Compatibility</td>
+              <td>친숙한 빈티지 디자인 (Made in NY · Greene Street)</td>
+            </tr>
+            <tr>
+              <td>4 Frictions · Effort</td>
+              <td>온라인 주문 5분, 무료 배송, 무료 반품</td>
+            </tr>
+            <tr>
+              <td>4 Frictions · Emotion</td>
+              <td>"Buy a Pair, Give a Pair" — 구매에 의미 부여</td>
+            </tr>
+            <tr>
+              <td>Influencer · Kingpin</td>
+              <td>창업자 4명의 와튼 MBA 인맥 + Mickey Drexler (J.Crew CEO) 이사회 영입</td>
+            </tr>
+            <tr>
+              <td>Mind &amp; Heart Share</td>
+              <td>Market share보다 브랜드 사랑 우선 — 환경·사회 캠페인 일관</td>
+            </tr>
+            <tr>
+              <td>Status Quo Bias 해소</td>
+              <td>가격 천칭을 시각화 ($95 vs $610 비교표 공개)</td>
+            </tr>
+            <tr>
+              <td>Chasm 건너기</td>
+              <td>온라인 → 플래그십 매장 (Eye Exams 코너) → 전국 → AI Glasses 파트너십</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <strong>Warby Parker 교훈</strong> — 단일 프레임으로 시장을 잡을 수 없다. <strong>11개 프레임을 동시에 일관성 있게 적용</strong>해야 Chasm을 건넌다. 그리고 그게 가능한 회사는 결국 다음 카테고리의 파트너가 된다 (Google AI Glasses 2026).
+      </div>
+    </section>
+
+    <!-- ───── ch11 ───── -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">PRINCIPLE 03</div>
+      <h2>Loss Aversion &amp; Adoption — 손실의 3가지 변수</h2>
+
+      <p>
+        같은 손실이라도 어떻게 제시되느냐에 따라 채택률이 크게 달라집니다. 3가지 변수를 다뤄야 해요.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">PRINCIPLE</div>
+        <div class="def-name">손실의 3가지 변수</div>
+        <ul>
+          <li><strong>① Timing of losses versus gains</strong>
+            <ul><li>지금 비용 + 나중 효익 → 채택 어려움</li><li>지금 효익 + 나중 비용 → 채택 쉬움</li></ul>
+          </li>
+          <li><strong>② Certainty of losses versus gains</strong>
+            <ul><li>확실한 손실 + 불확실한 효익 → 채택 어려움</li><li>확실한 효익 + 불확실한 손실 → 채택 쉬움</li></ul>
+          </li>
+          <li><strong>③ Ability to quantify losses versus gains</strong>
+            <ul><li>측정 가능한 손실(가격) + 측정 어려운 효익(만족감) → 채택 어려움</li><li>측정 가능한 효익(전기료 82% 절감) + 측정 어려운 손실 → 채택 쉬움</li></ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · LED 전구 캠페인</strong>
+        삼성 LED는 <em>"전기료 82% 절감, 유지보수 84% 절감"</em>이라는 측정 가능한 효익으로 손실(높은 단가)을 누름. 효익을 숫자로 quantify하는 게 핵심.
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Microsoft Teams Free</strong>
+        Slack 대비 채택 마찰 — Teams는 <em>"is free"</em>라는 한 단어로 Financial Risk 제거. 손실의 확실성을 zero로 만든 거죠.
+      </div>
+
+      <div class="definition">
+        <div class="def-label">KEY TAKEAWAY</div>
+        <div class="def-name">Customer-Oriented Differentiation 5계명</div>
+        <ol>
+          <li>Identify what customers <strong>want &amp; do NOT want</strong></li>
+          <li>Provide a <strong>killer application</strong> focusing on customer-centered benefits</li>
+          <li><strong>Communicate right</strong> to motivate customers</li>
+          <li>Find <strong>influential customers (kingpin)</strong> — Gatorade ↔ Football, Margaux ↔ Sommelier</li>
+          <li>Drop <strong>barriers &amp; costs (FUD)</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ───── ch12 ───── -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">FIELD CHECKLIST</div>
+      <h2>신제품 출시 마스터 체크리스트 30항목</h2>
+
+      <p>출시 전·중·후 단계별 점검표. 빠뜨리면 Chasm에 떨어집니다.</p>
+
+      <div class="table-scroll">
+        <table class="center checklist">
+          <thead>
+            <tr><th style="width:60px">No.</th><th>점검 항목</th><th style="width:120px">단계</th><th style="width:80px">✓</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>이 제품은 Vitamin인가 Painkiller인가</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>2</td><td>"가장 아픈 사람"이 누구인지 명시했나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>3</td><td>솔루션을 1문장으로 표현 가능한가 (Tech가 아니라)</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>4</td><td>"Killer Application" 한 가지가 명확한가</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>5</td><td>2×2 매트릭스(Barriers×Benefits) 어느 사분면인가</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>6</td><td>Strike Out 사분면이면 출시 보류·축소 검토</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>7</td><td>ACCORD 6요소 점수를 매기고 약점을 보강했나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>8</td><td>5 Barriers(Financial/Functional/Psych/FUD/Social) 각각 대응책이 있나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>9</td><td>4 Frictions(Inertia/Effort/Emotion/Reactance) 각각 해소책이 있나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>10</td><td>손실의 3변수(Timing/Certainty/Quantify)를 효익에 유리하게 설계했나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>11</td><td>9X Effect를 의식하고 효익 표현을 3배 강화했나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>12</td><td>Trialability(체험·무료·환불·Trade-In) 장치가 있나</td><td>출시 전</td><td>☐</td></tr>
+            <tr><td>13</td><td>Innovator·Early Adopter 타깃 명단이 있나</td><td>출시 직전</td><td>☐</td></tr>
+            <tr><td>14</td><td>Kingpin(영향력 있는 첫 고객) 1~3명을 확보했나</td><td>출시 직전</td><td>☐</td></tr>
+            <tr><td>15</td><td>Reference Customer 케이스(1~2개)를 명확한 산업에 만들었나</td><td>출시 직전</td><td>☐</td></tr>
+            <tr><td>16</td><td>커뮤니케이션 메시지를 솔루션 중심으로 통일했나</td><td>출시 직전</td><td>☐</td></tr>
+            <tr><td>17</td><td>Visionary와 Pragmatist용 메시지를 분리 준비했나</td><td>출시 직전</td><td>☐</td></tr>
+            <tr><td>18</td><td>Pragmatist 검증 채널(전문 미디어·컨퍼런스)을 식별했나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>19</td><td>"Whole Product"(부속·서비스·교육·표준) 준비됐나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>20</td><td>Chasm 신호(Early Adopter 정체)를 모니터링하고 있나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>21</td><td>Reactance(반발)를 일으키는 강요·푸시는 자제하고 있나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>22</td><td>인플루언서·Bandwagon Effect를 활용할 계획이 있나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>23</td><td>채택 후 첫 사용 5분 안에 가치를 느끼게 설계했나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>24</td><td>실패 사례(DRYEL·Betty Crocker 등)의 함정을 회피했나</td><td>확산</td><td>☐</td></tr>
+            <tr><td>25</td><td>Repositioning·Retargeting이 필요한 시점인지 분기별 점검</td><td>운영</td><td>☐</td></tr>
+            <tr><td>26</td><td>Brand가 Mind &amp; Heart Share를 얻고 있는지(NPS) 측정</td><td>운영</td><td>☐</td></tr>
+            <tr><td>27</td><td>Early Market 성공을 Mainstream 일반화로 착각하지 않았나</td><td>운영</td><td>☐</td></tr>
+            <tr><td>28</td><td>경쟁사·대체재의 등장으로 손실 천칭이 바뀌지 않았나</td><td>운영</td><td>☐</td></tr>
+            <tr><td>29</td><td>고객 데이터(채택률·이탈률·NPS)를 정기 리포팅하나</td><td>운영</td><td>☐</td></tr>
+            <tr><td>30</td><td>다음 카테고리 확장을 위한 Whole Product 자산을 축적하나</td><td>운영</td><td>☐</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <strong>마지막 한 줄</strong> — Geoffrey Moore 식으로 말하면, "혁신은 발명되는 게 아니라 <strong>채택되는 것</strong>이다." 좋은 제품을 만드는 일과 그 제품을 시장이 받아들이게 하는 일은 별개의 게임이며, 후자가 훨씬 더 어렵습니다.
+      </div>
+    </section>
+
+    <nav class="next-lecture">
+      <a href="lecture07.html">
+        <span class="next-label">다음 강의</span>
+        <span class="next-title">Lecture 7 · 전략적 브랜드 매니지먼트 — Keller CBBE</span>
+        <span class="next-arrow">▶</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

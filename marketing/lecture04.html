@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lecture 4 · 소비자 인사이트 — Marketing Information &amp; Consumer Insight</title>
+  <meta name="description" content="고객 인사이트를 뽑아내는 리서치 도구함과 점검표 모음" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<!-- ════════ TOP BAR ════════ -->
+<header class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="목차 열기">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="brand-mark">M</span>
+    <span class="brand-text">마케팅 학습 노트</span>
+  </a>
+  <nav class="nav-lec">
+    <a href="lecture03.html" class="nav-prev" aria-label="이전 강의">◀</a>
+    <span class="nav-current">Lecture 4</span>
+    <a href="lecture05.html" class="nav-next" aria-label="다음 강의">▶</a>
+  </nav>
+</header>
+
+<div class="reading-progress"><div class="bar"></div></div>
+
+<div class="layout">
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">강의 목록</div>
+      <ul class="lec-list">
+        <li><a href="lecture01.html"><span class="num">01</span> 변화의 시대 마케팅</a></li>
+        <li><a href="lecture02.html"><span class="num">02</span> 마케팅 프로세스</a></li>
+        <li><a href="lecture03.html"><span class="num">03</span> 전략 기획</a></li>
+        <li class="active"><a href="lecture04.html"><span class="num">04</span> 소비자 인사이트</a></li>
+        <li><a href="lecture05.html"><span class="num">05</span> STP 전략</a></li>
+        <li><a href="lecture06.html"><span class="num">06</span> 신제품 수용 전략</a></li>
+        <li><a href="lecture07.html"><span class="num">07</span> 전략적 브랜드 매니지먼트</a></li>
+        <li><a href="lecture08.html"><span class="num">08</span> 옴니채널 &amp; 경험형 리테일</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">이 강의의 프레임 11개</div>
+      <ol class="chap-list">
+        <li><a href="#ch0">PROLOGUE · 전쟁의 90%는 정보</a></li>
+        <li><a href="#ch1">FRAMEWORK 01 · Data→Insight 4단 파이프라인</a></li>
+        <li><a href="#ch2">FRAMEWORK 02 · Big Data vs Thick Data</a></li>
+        <li><a href="#ch3">FRAMEWORK 03 · Marketing Research 4단계</a></li>
+        <li><a href="#ch4">FRAMEWORK 04 · Domain Knowledge 5요소</a></li>
+        <li><a href="#ch5">PRINCIPLE 01 · 혁신 유형 × 리서치 방식</a></li>
+        <li><a href="#ch6">FRAMEWORK 05 · 정성 리서치 도구함</a></li>
+        <li><a href="#ch7">FRAMEWORK 06 · Empathic Design 4단계</a></li>
+        <li><a href="#ch8">PRINCIPLE 02 · Listen vs Read</a></li>
+        <li><a href="#ch9">FRAMEWORK 07 · 3M Lead User Process</a></li>
+        <li><a href="#ch10">CASE · Amazon 헬스케어 M&amp;A 시리즈</a></li>
+        <li><a href="#ch11">PRINCIPLE 03 · What is Next?</a></li>
+        <li><a href="#ch12">FIELD CHECKLIST · 30개 항목</a></li>
+      </ol>
+    </div>
+  </aside>
+
+  <!-- ════════ MAIN ════════ -->
+  <main>
+    <div class="hero">
+      <div class="kicker">Lecture 4 · Marketing Information &amp; Consumer Insight</div>
+      <h1>소비자 인사이트, <br/>어떻게 뽑아내는가</h1>
+      <p class="lead">데이터는 흔하다. 인사이트는 드물다. 무엇을 보고 듣고 읽어야 진짜 신호가 잡히는지, 정성·정량 도구함과 점검표를 정리합니다.</p>
+    </div>
+
+    <!-- ───── ch0 PROLOGUE ───── -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>전쟁의 90%는 정보다</h2>
+
+      <blockquote class="pull">
+        "War is ninety percent information."<br/>
+        <span class="cite">— Napoleon Bonaparte</span>
+      </blockquote>
+
+      <p>
+        나폴레옹이 200년 전에 한 말이지만, 오늘 시장에 그대로 옮겨도 어색하지 않습니다.
+        <strong>경쟁사보다 먼저 시장 신호를 잡는 회사가 이깁니다.</strong>
+        제품·가격·채널은 따라잡을 수 있어도, "고객이 진짜 원하는 것을 먼저 안다"는 자산은 복제하기 어렵죠.
+      </p>
+
+      <p>
+        그런데 정보의 양은 폭증했는데 인사이트는 오히려 더 희소해졌습니다.
+        Nate Silver는 이걸 <em>"신호와 소음(The Signal and the Noise)"</em>의 문제라고 불렀어요.
+        Christian Madsbjerg는 <em>"센스메이킹(Sensemaking)"</em>이 사라지는 게 더 큰 문제라고 봤고요.
+        이번 강의는 그 둘을 분리해 내는 도구함을 정리합니다.
+      </p>
+
+      <div class="take-away">
+        이번 강의의 목표 한 줄 — <strong>"무엇을 보고, 무엇을 묻고, 무엇을 읽어낼 것인가"</strong>에 대한 11개의 프레임과 30개의 체크리스트.
+      </div>
+    </section>
+
+    <!-- ───── ch1 FRAMEWORK 01 ───── -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">FRAMEWORK 01</div>
+      <h2>Data → Information → Meaning → Insight 4단 파이프라인</h2>
+
+      <p>
+        "데이터가 많다"는 말과 "인사이트가 있다"는 말은 전혀 다른 이야기입니다.
+        둘 사이에는 <strong>4번의 변환 과정</strong>이 있어요.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">Translating Data Into Insights — 4단 파이프라인</div>
+        <ul>
+          <li><strong>① Data</strong> — 흩어진 숫자·기록·관찰. 그 자체로는 의미 없음.</li>
+          <li><strong>② Information</strong> — Data를 <em>비교(COMPARE)</em>하면 정리됨. "남자 30%, 여자 70%" 같이 패턴이 보이는 상태.</li>
+          <li><strong>③ Meaning</strong> — Information에 <em>맥락(CONTEXT)</em>을 더하면 뜻이 생김. "왜 여자 비중이 7배 높지?"</li>
+          <li><strong>④ Insight</strong> — 여러 Meaning을 <em>통합(COMPILATION)</em>하면 행동 가능한 통찰이 나옴.</li>
+        </ul>
+        <div class="when-to-use"><strong>언제 쓰나:</strong> 리서치 데이터를 받고 "그래서 뭘 해야 한다는 거지?"라는 질문이 떠오를 때 — 어느 단계에서 멈춰 있는지 진단</div>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · Data &ne; Insight</strong>
+        대시보드만 잘 만들어 놓고 인사이트가 자동으로 나올 거라 기대하는 함정.
+        Compare·Context·Compilation 3번의 변환은 <strong>사람이 해야 하는 일</strong>입니다.
+        BI 툴은 ②단계까지만 도와줍니다.
+      </div>
+    </section>
+
+    <!-- ───── ch2 FRAMEWORK 02 ───── -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">FRAMEWORK 02</div>
+      <h2>Big Data vs Thick Data — What과 Why를 분리하라</h2>
+
+      <p>
+        같은 "데이터"라도 답하는 질문이 다릅니다. 둘은 보완재이지 대체재가 아닙니다.
+      </p>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">Big Data</div>
+          <div class="card-title">"무엇을 하고 있는가?"</div>
+          <ul>
+            <li>매일 자동 수집되는 대량 행동 데이터</li>
+            <li>What are my customers doing?</li>
+            <li>로그·결제·클릭·POS·센서</li>
+            <li>강점: 규모, 정확성, 실시간</li>
+            <li>한계: 동기·감정 못 읽음</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Thick Data</div>
+          <div class="card-title">"왜 그렇게 하는가?"</div>
+          <ul>
+            <li>정성 리서치로 모으는 의미 데이터</li>
+            <li>Why are they doing this?</li>
+            <li>인터뷰·관찰·일기·다이어리</li>
+            <li>강점: 동기·감정·맥락 포착</li>
+            <li>한계: 표본 작음, 일반화 어려움</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Netflix의 두 바퀴</strong>
+        Netflix가 "House of Cards"를 1억 달러 투자할 때 근거는 두 가지 — 시청 시간·검색 패턴 같은 <em>Big Data</em>와, 이용자 인터뷰에서 잡힌 "정치 드라마를 진지하게 다뤄줬으면" 같은 <em>Thick Data</em>. 둘 중 하나만 봤다면 결정 못 했을 일.
+      </div>
+
+      <div class="take-away">
+        <strong>빠뜨리지 마라</strong> — Big Data만 보고 인사이트를 찾는 회사는 "왜?"를 영원히 풀지 못합니다. Thick Data만 의존하면 규모 검증이 안 됩니다. <strong>두 바퀴를 같이 굴려라.</strong>
+      </div>
+    </section>
+
+    <!-- ───── ch3 FRAMEWORK 03 ───── -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">FRAMEWORK 03</div>
+      <h2>Marketing Research 4단계 프로세스</h2>
+
+      <p>
+        Kotler의 정의 — <em>"Marketing research is the systematic design, collection, analysis, and reporting of data relevant to a specific marketing situation facing an organization."</em>
+        핵심 단어는 <strong>systematic</strong>입니다. 즉흥적인 설문은 리서치가 아닙니다.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">Marketing Research Process · 4단계</div>
+        <ol>
+          <li><strong>Defining the problem &amp; research objectives</strong> — "무엇을 알고 싶은가?" 가장 어려운 단계. 여기서 잘못되면 뒤가 다 무너짐.</li>
+          <li><strong>Developing the research plan for collecting information</strong> — 정성·정량 선택, 표본 설계, 질문지 작성, 예산 분배.</li>
+          <li><strong>Implementing the research plan — collecting and analyzing the data</strong> — 현장 수집, 데이터 정제, 분석.</li>
+          <li><strong>Interpreting and reporting the findings</strong> — 의사결정으로 연결되는 형태로 정리. "그래서 뭘 해야 하는가?"</li>
+        </ol>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · 좋은 리서치의 4가지 조건</strong>
+        리서치 결과를 받기 전에 미리 확인할 4개 기준:
+        <ul>
+          <li>① <strong>Objective</strong> — 회사 입장이 결과에 묻어나지 않는가</li>
+          <li>② <strong>Accurate / Reliable</strong> — 표본·방법·반복 가능성이 확보됐는가</li>
+          <li>③ <strong>Cost Efficient</strong> — 알게 될 가치 &gt; 들이는 비용인가</li>
+          <li>④ <strong>Timely</strong> — 의사결정 시점에 맞춰 결과가 나오는가</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch4 FRAMEWORK 04 ───── -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">FRAMEWORK 04</div>
+      <h2>Domain Specific Knowledge — 데이터 분석가의 5가지 책임</h2>
+
+      <p>
+        AI·머신러닝 시대일수록 도메인 지식이 <em>더</em> 중요해집니다.
+        모델은 도메인을 모르기 때문이죠. 분석 프로젝트에서 도메인 전문가가 꼭 답해야 할 5가지 질문을 정리합니다.
+      </p>
+
+      <div class="study-map">
+        <div class="map-title">Field Checklist · 분석 프로젝트 5요소</div>
+        <div class="mini-flow" style="flex-direction:column;align-items:flex-start;gap:8px">
+          <div><strong>① Project Objective</strong> — "어떤 질문에 답해야 하는가?" 도메인 전문가가 가장 먼저 정의</div>
+          <div><strong>② Data Collection</strong> — "어떤 변수가 필요한가?" 모델이 모르는 도메인 변수를 식별</div>
+          <div><strong>③ Data Preprocessing</strong> — "이 데이터는 우리 목적과 어떻게 연결되는가?" 결측·이상치 판단</div>
+          <div><strong>④ Model Selection</strong> — "어떤 모델이 가장 적절한가?" 도메인 제약을 모델 선택에 반영</div>
+          <div><strong>⑤ Model Training</strong> — "Sanity check 규칙은 무엇인가?" 도메인 상식으로 결과 검증</div>
+          <div><strong>⑥ Results Interpretation</strong> — "어떤 결과가 실제 행동으로 이어지는가?"</div>
+        </div>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · "AI가 알아서"</strong>
+        도메인 지식 없이 ML 엔지니어에게 데이터만 던지면, 통계적으로는 그럴듯하지만 비즈니스적으로 무의미한 결과가 나옵니다. <strong>마케터의 역할 = ①·⑥을 책임지는 것.</strong>
+      </div>
+    </section>
+
+    <!-- ───── ch5 PRINCIPLE 01 ───── -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">PRINCIPLE 01</div>
+      <h2>혁신 유형 × 리서치 방식 매트릭스</h2>
+
+      <p>
+        "리서치는 무조건 해야 한다"는 통념과 "고객은 무시해야 한다"는 통념, 둘 다 반만 맞습니다.
+        <strong>혁신의 유형에 따라 리서치 방식이 달라져야 합니다.</strong>
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Incremental Innovation<br/>(점진적 혁신 · Fine-tuning)</th>
+              <th>Breakthrough Innovation<br/>(혁신적 돌파 · Ideation)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>주된 리서치 방식</th>
+              <td>Traditional Market Research<br/>(설문·FGI·Conjoint)</td>
+              <td>Market Intuition<br/>(관찰·Empathic Design·Lead User)</td>
+            </tr>
+            <tr>
+              <th>핵심 질문</th>
+              <td>"이 제품의 어디를 개선할까?"</td>
+              <td>"무엇이 다음일까?"</td>
+            </tr>
+            <tr>
+              <th>고객의 역할</th>
+              <td>피드백 제공자</td>
+              <td>관찰 대상 · 영감의 원천</td>
+            </tr>
+            <tr>
+              <th>예시 제품</th>
+              <td>치약 새 향, 라면 매운맛, 노트북 두께</td>
+              <td>Fax · VCR · FedEx · CNN · Smartphone</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · "Ignore your customer!"</strong>
+        Fortune誌 표지 기사 — <em>"It is time to start ignoring the customer. That's the only way to create the kind of breakthrough products and services that can catapult you far ahead of the competition."</em>
+        <br/><br/>
+        Steve Jobs도 같은 결을 말했죠 — <em>"It's really hard to design products by focus groups. A lot of times, people don't know what they want until you show it to them."</em>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · Serendipity의 환상</strong>
+        Post-it과 Viagra는 우연한 발견(Serendipity)이라고 알려져 있지만, 그 배경에는 <em>3M의 15% Time</em>과 <em>Pfizer의 임상 데이터 재해석</em>이라는 구조가 있었습니다.
+        "행운"은 준비된 자에게만 옵니다. 우연을 전략으로 착각하지 마세요.
+      </div>
+    </section>
+
+    <!-- ───── ch6 FRAMEWORK 05 ───── -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">FRAMEWORK 05</div>
+      <h2>정성 리서치 도구함 — 4가지 칼을 골라 써라</h2>
+
+      <p>
+        셰프가 식재료에 따라 칼을 다르게 쓰듯, 리서처도 알고자 하는 것에 따라 도구를 다르게 써야 합니다.
+        가장 자주 쓰는 4가지를 정리합니다.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>도구</th>
+              <th>방식</th>
+              <th>알아낼 수 있는 것</th>
+              <th>한계</th>
+              <th>적합한 상황</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>FGI<br/>(Focus Group Interview)</th>
+              <td>6~10명 좌담회, 모더레이터 진행</td>
+              <td>의식적 의견, 그룹 다이내믹, 표현·언어</td>
+              <td>의견 동조 현상, 의식 안 되는 행동 못 봄</td>
+              <td>네이밍·패키지·광고 시안 평가</td>
+            </tr>
+            <tr>
+              <th>Ethnography<br/>(현장 관찰)</th>
+              <td>고객의 일상 공간에 들어가서 며칠 함께 지냄</td>
+              <td>무의식적 사용 행동, 환경과의 상호작용</td>
+              <td>시간·비용 큼, 분석가 편향 위험</td>
+              <td>완전히 새로운 카테고리 진입</td>
+            </tr>
+            <tr>
+              <th>Observation</th>
+              <td>매장·사용 현장에서 행동 관찰 (개입 안 함)</td>
+              <td>실제 동선, 망설이는 순간, 포기 지점</td>
+              <td>"왜" 물어볼 수 없음</td>
+              <td>리테일 동선·UX 진단</td>
+            </tr>
+            <tr>
+              <th>Projection Technique</th>
+              <td>이미지·단어 자극으로 무의식 끌어냄</td>
+              <td>브랜드 이미지, 잠재 연상, 표현 못 하는 감정</td>
+              <td>해석 주관성 큼</td>
+              <td>브랜드 진단·포지셔닝 탐색</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · GE MRI를 Fantasy Trip으로</strong>
+        어린이 환자들이 MRI 촬영실에 들어가기를 무서워해 진정제를 써야 했던 문제.
+        디자이너 Doug Dietz가 <em>병원에서 아이들을 직접 관찰(Observation)</em>한 뒤, MRI를 우주선·해적선 테마의 "Adventure Series"로 디자인. 진정제 사용률 급감, 환자 만족도 90%↑.
+        <strong>FGI로는 절대 안 나왔을 인사이트.</strong>
+      </div>
+    </section>
+
+    <!-- ───── ch7 FRAMEWORK 06 ───── -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">FRAMEWORK 06</div>
+      <h2>Empathic Design — 사용자의 세계로 들어가라</h2>
+
+      <p>
+        Empathic Design은 <strong>"고객의 환경 속에서 고객을 관찰한다"</strong>는 원칙으로 출발한 사용자 중심 디자인 방법론입니다.
+        FGI가 회의실에서 고객을 만난다면, Empathic Design은 고객의 집·사무실·차에서 만납니다.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">FRAMEWORK</div>
+        <div class="def-name">Empathic Design — 5가지 발견 영역</div>
+        <ul>
+          <li><strong>① Trigger of use</strong> — 이 제품을 언제·왜 쓰기 시작하나?</li>
+          <li><strong>② Interactions with environment</strong> — 다른 물건·공간·사람과 어떻게 함께 쓰이나?</li>
+          <li><strong>③ User customization</strong> — 사용자가 임의로 개조·변형·재구성하는 부분은?</li>
+          <li><strong>④ Importance of intangible attributes</strong> — 스펙으로 안 잡히는 감정·정서적 가치는?</li>
+          <li><strong>⑤ Unarticulated user needs</strong> — 본인은 말 못 하지만 행동에 나타나는 욕구는?</li>
+        </ul>
+        <div class="when-to-use"><strong>언제 쓰나:</strong> 새 카테고리 진입, 사용 빈도가 높지만 사용자가 "당연하다"고 느끼는 제품 개선, B2B 워크플로 재설계</div>
+      </div>
+
+      <div class="definition">
+        <div class="def-label">PROCESS</div>
+        <div class="def-name">Empathic Design 4단계 절차</div>
+        <ol>
+          <li><strong>Observation &amp; Capture</strong> — 고객 일상 공간에 들어가서 보고, 사진·영상·메모로 기록</li>
+          <li><strong>Reflection &amp; Analysis</strong> — 팀이 모여서 관찰 내용을 패턴화. "왜 이렇게 했지?"</li>
+          <li><strong>Brainstorm for Solutions</strong> — 발견한 문제에 대해 다양한 해법 발산</li>
+          <li><strong>Develop Prototypes</strong> — 빠르게 만들어 다시 고객 앞에 가져가기</li>
+        </ol>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · Customer Visit Program 체크리스트</strong>
+        고객 방문 전 점검:
+        <ul>
+          <li>방문 목적·가설을 1장으로 정리했나</li>
+          <li>관찰할 5영역(Trigger·Environment·Customization·Intangible·Unarticulated)을 분담했나</li>
+          <li>녹화·사진·노트 도구는 준비됐나 (고객 동의 포함)</li>
+          <li>방문 직후 30분 안에 팀 디브리핑할 시간이 잡혔나</li>
+          <li>고객을 "정답 제공자"가 아니라 "관찰 대상"으로 대할 마음 준비가 됐나</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch8 PRINCIPLE 02 ───── -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">PRINCIPLE 02</div>
+      <h2>Listen vs Read — 하이테크 시장지향성</h2>
+
+      <p>
+        하이테크 기업의 고민 — 고객은 아직 존재하지 않는 기술을 상상하지 못합니다.
+        Henry Ford가 말했다고 흔히 인용되죠 — <em>"If I had asked people what they wanted, they would have said faster horses."</em>
+        그래서 하이테크는 전통 리서치와는 다른 자세가 필요합니다.
+      </p>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">Traditional Marketing Research</div>
+          <div class="card-title">"Listen"</div>
+          <p>고객이 말하는 것을 듣고, 그걸 제품에 반영한다.</p>
+          <ul>
+            <li>FGI·설문·Conjoint</li>
+            <li>의식된 의견 중심</li>
+            <li>점진적 개선에 적합</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">High-Tech Market Orientation</div>
+          <div class="card-title">"Read"</div>
+          <p>고객이 말하는 것보다 행동·환경을 "읽어낸다". 말 못 하는 욕구를 찾는다.</p>
+          <ul>
+            <li>관찰·Empathic Design·Lead User</li>
+            <li>무의식·잠재 욕구 중심</li>
+            <li>혁신 돌파에 적합</li>
+          </ul>
+        </div>
+      </div>
+
+      <blockquote class="pull">
+        "Fit between technology and market — Technology push vs Market pull.<br/>
+        Judiciously ignore what customers say, and rather, watch and read what they do."
+      </blockquote>
+
+      <div class="callout yellow">
+        <strong>Trap to Avoid · 기존 고객의 딜레마</strong>
+        기존 고객에게 "다음 제품에 뭐가 필요하냐"고 물으면, 그들은 <em>지난 구매</em>를 기준으로 답합니다.
+        "이미 산 사람"의 머릿속에 다음 혁신은 안 들어 있어요. 그래서 Lead User와 Non-customer도 함께 봐야 합니다.
+      </div>
+    </section>
+
+    <!-- ───── ch9 FRAMEWORK 07 ───── -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">FRAMEWORK 07</div>
+      <h2>Lead User Process — 3M의 4단계 방법론</h2>
+
+      <p>
+        MIT의 Eric Von Hippel이 개념화한 Lead User Process는, <strong>"평균 고객 대신 시장 트렌드를 한참 앞서 가는 사용자에게서 배우라"</strong>는 전략입니다.
+      </p>
+
+      <div class="definition">
+        <div class="def-label">DEFINITION</div>
+        <div class="def-name">Lead Users (Eric Von Hippel)</div>
+        <p>
+          <em>"Lead users have needs that are well ahead of market trends and go far beyond those of average users. Over time, more and more people feel the same need."</em>
+        </p>
+        <p>
+          <strong>특징 2가지</strong> — ① 트렌드를 미리 경험하고 있다, ② 본인이 해법을 만들어 쓰고 있다(직접 개조·자작·해킹).
+        </p>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · GoPro의 출발</strong>
+        설립자 Nick Woodman 본인이 서퍼였고, "파도 타는 모습을 직접 찍고 싶다"는 욕구를 다른 서퍼들이 손목에 카메라를 묶어서 해결하는 모습을 봤습니다.
+        그 Lead User들이 만든 임시 솔루션이 GoPro라는 카테고리가 됐죠. <strong>제품 기획서가 아니라 행동 관찰에서 시작.</strong>
+      </div>
+
+      <div class="definition">
+        <div class="def-label">PROCESS</div>
+        <div class="def-name">3M Lead User Process · 4단계</div>
+        <ol>
+          <li><strong>Step 1 — Start of the LUR Process</strong>
+            <ul><li>학제간(interdisciplinary) 팀 구성, 타깃 시장 정의, 팀 목표 설정</li></ul>
+          </li>
+          <li><strong>Step 2 — Identification of Needs &amp; Trends</strong>
+            <ul><li>전문가 인터뷰, 지식·정보 스캐닝, 가장 매력적인 트렌드 선별</li></ul>
+          </li>
+          <li><strong>Step 3 — Concept Generation</strong>
+            <ul><li>네트워크 기반 Lead User 탐색, 시장 조사, 초기 아이디어·솔루션 스크리닝</li></ul>
+          </li>
+          <li><strong>Step 4 — Final Concept Design</strong>
+            <ul><li>Lead User 워크숍에서 컨셉 발산·개선, 평가·문서화</li></ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · 3M Scotch Surgical Drapes</strong>
+        3M이 일반 테이프 사업에서 출발해 의료용 드레이프(수술 부위 덮개)로 확장한 시작점이 Lead User Process였습니다.
+        외과의·간호사 중에서 자체적으로 테이프를 변형해 쓰고 있던 사람들을 찾아내 협업한 결과, 수십 년에 걸친 헬스케어 혁신 라인이 만들어졌어요.
+        <em>3M Medical Solutions Director Ken Hanley</em>: "Our culture is to be curious and explore. We have an appetite for solutions."
+      </div>
+
+      <div class="take-away">
+        <strong>빠뜨리지 마라</strong> — Lead User는 검색으로 안 나옵니다. 학회·동호회·DIY 커뮤니티·GitHub·Reddit 같은 곳에서 <strong>"본인이 직접 만들어 쓰는 사람"</strong>을 찾아야 합니다.
+      </div>
+    </section>
+
+    <!-- ───── ch10 CASE STUDY ───── -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CASE STUDY</div>
+      <h2>Amazon 헬스케어 인사이트 시리즈 — 4번의 M&amp;A로 무엇을 사들였나</h2>
+
+      <p>
+        Amazon이 2018년부터 헬스케어로 진입하면서 한 M&amp;A들은,
+        "정보가 부족한 분야에 들어갈 때 정보를 사들이는 방식"의 교과서적 사례입니다.
+      </p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr>
+              <th>시기</th>
+              <th>거래</th>
+              <th>금액</th>
+              <th>Amazon이 산 것은 정보? 자산? 고객?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2018</td>
+              <td>PillPack 인수</td>
+              <td>$753M</td>
+              <td>"복약 패키지 사용 데이터" · 만성질환 환자 행동 패턴</td>
+            </tr>
+            <tr>
+              <td>2019</td>
+              <td>Amazon Care 자체 출시</td>
+              <td>—</td>
+              <td>임직원 대상 베타테스트 → 데이터 수집</td>
+            </tr>
+            <tr>
+              <td>2022</td>
+              <td>One Medical 인수</td>
+              <td>$3.9B</td>
+              <td>오프라인 1차 진료 클리닉 네트워크 + 환자 의료 데이터</td>
+            </tr>
+            <tr>
+              <td>2022</td>
+              <td>Amazon Care 중단</td>
+              <td>—</td>
+              <td>"우리 자체 서비스로는 부족" 판단 → One Medical로 통합</td>
+            </tr>
+            <tr>
+              <td>2023</td>
+              <td>Prime 회원 One Medical $9/월 통합</td>
+              <td>—</td>
+              <td>"Healthcare just got less painful" — Prime 생태계 연결</td>
+            </tr>
+            <tr>
+              <td>2025</td>
+              <td>Cleveland Clinic과 합작 진료 오픈</td>
+              <td>—</td>
+              <td>최고 등급 의료 브랜드 협업</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <strong>Field-Ready Template · 인사이트 격차를 메우는 M&amp;A 의사결정 체크리스트</strong>
+        새 카테고리 진입 시 자체 개발 vs 인수 결정 기준:
+        <ul>
+          <li>① 카테고리 도메인 지식을 사내에 모으는 데 몇 년 걸리나?</li>
+          <li>② 그 사이 경쟁사가 선점할 위험은?</li>
+          <li>③ 인수 대상이 가진 <em>고객 행동 데이터</em>는 우리가 자체적으로 모을 수 있나?</li>
+          <li>④ 기존 자산(Prime·물류·AWS)과 결합 시 1+1&gt;2가 되는가?</li>
+          <li>⑤ 통합 후 우리가 자체 운영 중인 유사 서비스는 어떻게 정리할 것인가?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───── ch11 PRINCIPLE 03 ───── -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">PRINCIPLE 03</div>
+      <h2>What is Next? — 다음을 읽는 3가지 자세</h2>
+
+      <p>
+        리서치의 최종 목적은 "지금"이 아니라 "다음"을 아는 것입니다.
+        세 가지 인용으로 마무리합니다.
+      </p>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="card-label">자세 ①</div>
+          <div class="card-title">Gretzky's Rule</div>
+          <blockquote>
+            "A good hockey player plays where the puck is.<br/>
+            A great hockey player plays where the puck <em>is going to be</em>."<br/>
+            — Wayne Gretzky
+          </blockquote>
+          <p>지금 시장이 아니라, 시장이 향해 가는 곳에 미리 가 있어라.</p>
+        </div>
+        <div class="card">
+          <div class="card-label">자세 ②</div>
+          <div class="card-title">不治已病, 治未病</div>
+          <blockquote>
+            "이미 발생한 병을 고치지 않고, 아직 오지 않은 병을 고친다."<br/>
+            — 황제내경
+          </blockquote>
+          <p>최고의 의사는 병이 생기기 전에 막는다. 최고의 마케터도 마찬가지.</p>
+        </div>
+      </div>
+
+      <div class="definition">
+        <div class="def-label">PRINCIPLE</div>
+        <div class="def-name">Arthur C. Clarke's 3 Stages of Revolutionary Ideas</div>
+        <p>
+          모든 혁신적 아이디어는 다음 3단계 반응을 거칩니다 —
+        </p>
+        <ol>
+          <li><strong>"It's completely impossible."</strong> (절대 불가능하다)</li>
+          <li><strong>"It's possible, but it's not worth doing."</strong> (가능하긴 한데, 할 가치는 없다)</li>
+          <li><strong>"I said it was a good idea all along."</strong> (내가 처음부터 좋은 아이디어라고 했지)</li>
+        </ol>
+        <div class="when-to-use"><strong>언제 떠올리나:</strong> 사내에서 새 아이디어를 거부당했을 때 — "1단계 반응"인지 "정말 안 되는 것"인지 구분</div>
+      </div>
+
+      <div class="callout blue">
+        <strong>Case In Action · Bill Gates의 1999년 15가지 예측</strong>
+        가격 비교 사이트, 모바일 디바이스, 온라인 결제, 개인 비서·IoT, 홈 모니터링, 소셜 미디어, 개인화 광고, 라이브 TV 링크…
+        25년 전 거의 다 맞췄습니다. 그가 본 건 기술 자체가 아니라 <em>인간 본성과 도구의 만남</em>이었어요.
+        Machiavelli의 한 문장 — <em>"시대가 변해도 인간의 본성은 변하지 않는다."</em>
+      </div>
+
+      <div class="take-away">
+        <strong>Test, Test &amp; Test</strong> — 미래를 안다는 확신은 위험합니다. 작은 실험을 빨리·여러 번 돌리는 게 유일한 안전장치예요.
+      </div>
+    </section>
+
+    <!-- ───── ch12 FIELD CHECKLIST ───── -->
+    <section class="chapter" id="ch12">
+      <div class="chap-num">FIELD CHECKLIST</div>
+      <h2>소비자 인사이트 마스터 체크리스트 30항목</h2>
+
+      <p>리서치 프로젝트를 시작·진행·종료할 때마다 항목별로 ✓ 표시하면서 진행하세요.</p>
+
+      <div class="table-scroll">
+        <table class="center checklist">
+          <thead>
+            <tr>
+              <th style="width:60px">No.</th>
+              <th>점검 항목</th>
+              <th style="width:120px">단계</th>
+              <th style="width:80px">✓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>리서치 목적이 의사결정과 직접 연결되어 있는가</td><td>기획</td><td>☐</td></tr>
+            <tr><td>2</td><td>"답이 나오면 어떤 행동을 할 것인가"가 미리 정해져 있나</td><td>기획</td><td>☐</td></tr>
+            <tr><td>3</td><td>이 문제는 점진적 혁신인가, 혁신적 돌파인가</td><td>기획</td><td>☐</td></tr>
+            <tr><td>4</td><td>위 판단에 맞게 리서치 방식(전통/관찰)을 선택했나</td><td>기획</td><td>☐</td></tr>
+            <tr><td>5</td><td>Big Data와 Thick Data 둘 다 동원할 계획인가</td><td>기획</td><td>☐</td></tr>
+            <tr><td>6</td><td>도메인 전문가가 ①목적 ②변수정의 ⑥결과해석에 참여하는가</td><td>기획</td><td>☐</td></tr>
+            <tr><td>7</td><td>Lead User·Non-customer도 표본에 포함했나</td><td>기획</td><td>☐</td></tr>
+            <tr><td>8</td><td>예산 안에서 "발견할 가치"가 "들이는 비용"을 넘는가</td><td>기획</td><td>☐</td></tr>
+            <tr><td>9</td><td>의사결정 일정에 맞춰 결과가 나오는 일정인가</td><td>기획</td><td>☐</td></tr>
+            <tr><td>10</td><td>가설 1·2개를 사전에 명시했나 (검증 가능한 형태로)</td><td>기획</td><td>☐</td></tr>
+            <tr><td>11</td><td>FGI vs Ethnography 선택 근거를 댈 수 있나</td><td>설계</td><td>☐</td></tr>
+            <tr><td>12</td><td>관찰 시 5가지 발견 영역(Trigger·Env·Custom·Intangible·Unartic)을 분담했나</td><td>설계</td><td>☐</td></tr>
+            <tr><td>13</td><td>질문지에서 "유도 질문(leading question)"을 제거했나</td><td>설계</td><td>☐</td></tr>
+            <tr><td>14</td><td>표본의 다양성(연령·소득·지역·사용 수준)이 확보됐나</td><td>설계</td><td>☐</td></tr>
+            <tr><td>15</td><td>녹화·사진·노트 도구가 준비됐고 동의 받았나</td><td>설계</td><td>☐</td></tr>
+            <tr><td>16</td><td>모더레이터·관찰자가 사전 트레이닝됐나</td><td>설계</td><td>☐</td></tr>
+            <tr><td>17</td><td>고객이 "말하는 것"과 "행동하는 것"을 따로 기록하는가</td><td>실행</td><td>☐</td></tr>
+            <tr><td>18</td><td>"왜 그렇게 하셨어요?"를 3번 이상 따라가는가</td><td>실행</td><td>☐</td></tr>
+            <tr><td>19</td><td>고객이 직접 만들어 쓰는 임시 솔루션(workaround)을 찾고 있나</td><td>실행</td><td>☐</td></tr>
+            <tr><td>20</td><td>망설이는 순간·포기하는 순간을 포착했나</td><td>실행</td><td>☐</td></tr>
+            <tr><td>21</td><td>방문 직후 30분 안에 팀 디브리핑을 했나</td><td>실행</td><td>☐</td></tr>
+            <tr><td>22</td><td>관찰 내용을 Data→Information→Meaning→Insight 4단으로 정리했나</td><td>분석</td><td>☐</td></tr>
+            <tr><td>23</td><td>다른 인터뷰·다른 관찰과 교차 비교했나 (triangulation)</td><td>분석</td><td>☐</td></tr>
+            <tr><td>24</td><td>"우리가 듣고 싶은 답"으로 해석을 끌고 가지 않았나</td><td>분석</td><td>☐</td></tr>
+            <tr><td>25</td><td>Sanity check — 도메인 상식과 결과가 충돌하지 않는가</td><td>분석</td><td>☐</td></tr>
+            <tr><td>26</td><td>발견을 1줄 인사이트로 요약할 수 있나</td><td>분석</td><td>☐</td></tr>
+            <tr><td>27</td><td>인사이트마다 다음 행동(action item)이 명시됐나</td><td>리포팅</td><td>☐</td></tr>
+            <tr><td>28</td><td>의사결정자에게 5분 안에 핵심을 전달할 수 있나</td><td>리포팅</td><td>☐</td></tr>
+            <tr><td>29</td><td>다음 리서치에서 보완해야 할 한계를 명시했나</td><td>리포팅</td><td>☐</td></tr>
+            <tr><td>30</td><td>리서치 결과가 6개월 뒤에도 유효할지 재검토 일정을 잡았나</td><td>리포팅</td><td>☐</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <strong>마무리 한 줄</strong> — 좋은 리서처는 "고객이 한 말"을 보고하지 않습니다. <strong>고객이 하지 못한 말</strong>을 찾아내 보고합니다.
+      </div>
+    </section>
+
+    <!-- ════════ NEXT LECTURE ════════ -->
+    <nav class="next-lecture">
+      <a href="lecture05.html">
+        <span class="next-label">다음 강의</span>
+        <span class="next-title">Lecture 5 · STP 전략 — 누구에게 무엇을 어떻게</span>
+        <span class="next-arrow">▶</span>
+      </a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
