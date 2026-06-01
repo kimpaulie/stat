@@ -559,11 +559,12 @@ ul li:last-child, ol li:last-child { margin-bottom: 0; }
   padding-left: 12px;
   min-width: 0; /* grid 항목이 내용에 의해 강제 확장되지 않게 */
 }
-.study-map strong,
-.study-map span {
+/* map-row 카드 안의 헤더(strong)와 부제(span)만 block 처리 — KaTeX 내부 span 보호 */
+.study-map .map-row > div > strong,
+.study-map .map-row > div > span {
   display: block;
 }
-.study-map span {
+.study-map .map-row > div > span {
   color: var(--muted);
   font-size: var(--t-caption);
   line-height: var(--lh-snug);
