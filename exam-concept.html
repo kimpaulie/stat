@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>핵심 개념 정리 — 시험 단골 이론 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">핵심 개념 정리</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="exam-predict.html" aria-label="이전">◀</a>
+    <a class="disabled" aria-label="다음">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>가설 검정</a></li>
+      <li><a href="lecture09.html"><span class="num">09</span>회귀분석 I</a></li>
+      <li><a href="lecture10.html"><span class="num">10</span>회귀분석 II</a></li>
+      <li><a href="problems.html"><span class="num">★</span>연습문제 1</a></li>
+      <li><a href="problems2.html"><span class="num">★</span>연습문제 2</a></li>
+      <li><a href="exam-formula.html"><span class="num">📝</span>기말 공식 시트</a></li>
+      <li><a href="exam-practice.html"><span class="num">📚</span>기말 연습 Q1~Q6</a></li>
+      <li><a href="goodbelly.html"><span class="num">🥤</span>GoodBelly 사례</a></li>
+      <li><a href="exam-predict.html"><span class="num">🎯</span>시험 예상 문제</a></li>
+      <li><a href="exam-concept.html" class="active"><span class="num">💡</span>핵심 개념 정리</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">핵심 개념 10가지</div>
+    <ol class="chap-list">
+      <li><a href="#c1">① CLT의 3가지 조건</a></li>
+      <li><a href="#c2">② 표본분포 — 통계량이 확률변수</a></li>
+      <li><a href="#c3">③ 표준편차 vs 표준오차</a></li>
+      <li><a href="#c4">④ Q1과 Q2 — 같은 식, 다른 해석</a></li>
+      <li><a href="#c5">⑤ 신뢰구간 "95%"의 진짜 의미</a></li>
+      <li><a href="#c6">⑥ p-값의 정확한 정의</a></li>
+      <li><a href="#c7">⑦ 유의수준 α — 1종 오류 허용 한도</a></li>
+      <li><a href="#c8">⑧ 1종/2종 오류 (Type I/II)</a></li>
+      <li><a href="#c9">⑨ 양측 vs 단측 — 언제 어떻게</a></li>
+      <li><a href="#c10">⑩ 짝 표본 vs 독립 표본</a></li>
+      <li><a href="#c11">⑪ R² vs Adjusted R²</a></li>
+      <li><a href="#c12">⑫ 더미변수 해석법</a></li>
+    </ol>
+
+    <div class="side-footer">
+      💡 문제 풀이 말고<br>
+      이론 핵심만 모은 곳.
+    </div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Core Concepts for the Final Exam<br>BIZ500 · Management Statistical Analysis</div>
+      <h1>핵심 개념 정리
+        <span class="small">— 문제 말고 "이론" 단골 출제 모음</span>
+      </h1>
+      <p class="story">
+        시험에는 계산 문제만 나오는 게 아니에요. <strong>"CLT의 조건은?", "95% 신뢰구간이 정확히 뭘 뜻해?", "1종 오류와 2종 오류 차이는?"</strong>
+        같은 <em>이론적 정의·조건·해석</em>이 단답형이나 서술형으로 자주 출제됩니다.
+        <br><br>
+        이 페이지는 그런 이론 단골 12개를 한 곳에 모았어요. 외우는 게 아니라 <em>왜 그런지</em> 이해하는 게 목표.
+      </p>
+
+      <div class="callout blue">
+        <div class="label">이 페이지 사용법</div>
+        <p>각 개념에는 <strong>"한 줄 정의"</strong> + <strong>"왜 그런가"</strong> + <strong>"흔한 오해"</strong> 3박자로 정리. 시험 직전에 빠르게 훑기 좋아요.</p>
+      </div>
+    </div>
+
+    <!-- ═══════ C1 ═══════ -->
+    <section class="chapter" id="c1">
+      <div class="chap-num">CONCEPT 01</div>
+      <h2>① 중심극한정리 (CLT)의 3가지 조건</h2>
+      <div class="chap-sub">언제 X̄가 정규분포에 가까워지는가</div>
+
+      <div class="definition">
+        <div class="term">한 줄 정의</div>
+        <p>표본 \(X_1, X_2, \ldots, X_n\)이 <strong>독립이고 같은 분포</strong>를 따른다면, \(n\)이 충분히 클 때 표본평균 \(\bar{X}\)의 분포는 <strong>정규분포</strong>에 가까워진다.</p>
+        <div class="formula">
+          \[ \bar{X} \approx N\!\left(\mu,\ \frac{\sigma^2}{n}\right) \]
+        </div>
+      </div>
+
+      <h3>조건 3가지 (외우기)</h3>
+
+      <div class="study-map">
+        <div class="label">CLT 적용 조건 — i.i.d. + 큰 n</div>
+        <ol>
+          <li><strong>독립 (Independent)</strong> — 각 \(X_i\)가 서로 영향을 주지 않음. 복원추출 또는 충분히 큰 모집단에서 무작위 추출하면 보장.</li>
+          <li><strong>동일분포 (Identically Distributed)</strong> — 모든 \(X_i\)가 같은 평균 \(\mu\)와 같은 분산 \(\sigma^2\)를 가진 모집단에서 나옴.</li>
+          <li><strong>충분한 \(n\) (Large Enough)</strong> — 경험적으로 \(n \ge 30\). 모집단이 이미 정규에 가까우면 \(n = 10\)도 OK, 심하게 찌그러지면 \(n = 50\) 이상 권장.</li>
+        </ol>
+      </div>
+
+      <h3>왜 작동하는가</h3>
+
+      <div class="callout">
+        <div class="label">직관적 설명</div>
+        <p>표본평균은 여러 관측치를 <em>합산해서 나누는</em> 과정. 합산할 때 각 \(X_i\)의 극단값이 서로 상쇄됩니다.
+        분포가 어떻게 생겼든 — 치우쳐 있어도, 이봉우리여도 — 충분히 많은 수를 합치면 양 끝의 극단이 평균 쪽으로 끌려오고,
+        결과적으로 <strong>종 모양</strong>이 되는 게 수학적으로 증명됨.</p>
+      </div>
+
+      <h3>흔한 오해 3가지</h3>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ CLT 잘못 이해하기</div>
+        <ul>
+          <li><strong>오해 1</strong> — "모집단이 정규여야 CLT가 작동한다" → ❌ <strong>모집단이 어떻든 OK</strong>. CLT의 기적은 바로 이 점.</li>
+          <li><strong>오해 2</strong> — "n이 작아도 X̄가 정규다" → ❌ <strong>충분히 큰 n이 필수</strong>. n=5에서는 적용 안 됨.</li>
+          <li><strong>오해 3</strong> — "한 개의 관측치 X도 정규에 가까워진다" → ❌ CLT는 <strong>표본평균(또는 합)</strong>의 분포에 대한 정리. 단일 X에는 적용 안 됨.</li>
+        </ul>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        CLT 한 줄 — "독립 i.i.d. 표본 + n ≥ 30 → 표본평균은 정규." 모집단 모양 무관.
+      </div>
+    </section>
+
+    <!-- ═══════ C2 ═══════ -->
+    <section class="chapter" id="c2">
+      <div class="chap-num">CONCEPT 02</div>
+      <h2>② 표본분포 — 통계량은 확률변수다</h2>
+      <div class="chap-sub">Sampling Distribution</div>
+
+      <div class="definition">
+        <div class="term">한 줄 정의</div>
+        <p>같은 모집단에서 무작위로 표본을 뽑을 때마다 \(\bar{X}\) 값은 달라진다. 이때 \(\bar{X}\)의 <strong>값 분포 자체</strong>를 <em>표본분포(sampling distribution)</em>라 한다.</p>
+      </div>
+
+      <h3>왜 중요한가</h3>
+
+      <p>표본평균 \(\bar{X}\)를 "한 번 뽑은 값"으로 보면 그냥 숫자죠. 하지만 <strong>"어떤 표본이 뽑힐지 미리 모르는 시점"</strong>에서는 \(\bar{X}\) 자체가 <em>확률변수</em>입니다. 어떤 값들이 얼마의 확률로 나올지 분포가 있어요.</p>
+
+      <p>이 분포를 알아야 — "지금 본 \(\bar{X}\)가 얼마나 흔한가 / 희귀한가"를 판단할 수 있고, 그래야 신뢰구간·가설검정이 가능합니다.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h3>모집단 분포</h3>
+          <ul>
+            <li>개별 \(X\)의 값 분포</li>
+            <li>평균 \(\mu\), 분산 \(\sigma^2\)</li>
+            <li>모양은 무엇이든 가능</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>표본분포 (\(\bar{X}\)의 분포)</h3>
+          <ul>
+            <li>표본을 뽑을 때마다 변하는 \(\bar{X}\)의 분포</li>
+            <li>평균 \(\mu\), 분산 \(\sigma^2/n\)</li>
+            <li>CLT로 정규에 근사</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ 자주 헷갈리는 점</div>
+        <p>모집단 분포와 표본분포는 <strong>전혀 다른 개념</strong>. 모집단 분포는 "한 개체 X의 분포", 표본분포는 "표본통계량 \(\bar{X}\)의 분포". 둘이 같은 평균 \(\mu\)를 갖지만 분산이 \(\sigma^2\) vs \(\sigma^2/n\)로 다름.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C3 ═══════ -->
+    <section class="chapter" id="c3">
+      <div class="chap-num">CONCEPT 03</div>
+      <h2>③ 표준편차 vs 표준오차</h2>
+      <div class="chap-sub">Standard Deviation vs Standard Error</div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th></th><th>표준편차 (SD)</th><th>표준오차 (SE)</th></tr></thead>
+          <tbody>
+            <tr><td>대상</td><td>모집단의 개별 X</td><td>표본통계량 (예: \(\bar{X}\))</td></tr>
+            <tr><td>의미</td><td>"한 개체가 평균에서 얼마나 떨어지나"</td><td>"표본통계량이 모수에서 얼마나 떨어지나"</td></tr>
+            <tr><td>공식</td><td>\(\sigma\) (모집단) / \(S\) (표본)</td><td>\(\sigma/\sqrt{n}\) (또는 \(S/\sqrt{n}\))</td></tr>
+            <tr><td>표본 크기 \(n\) 영향</td><td>없음 (모집단 특성)</td><td><strong>\(n\)이 클수록 작아짐</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="label">한 줄 차이</div>
+        <p>SD는 <em>데이터의 흩어짐</em>. SE는 <em>추정량의 흩어짐</em>. 같은 모집단(\(\sigma\) 고정)에서 표본을 크게 뽑으면 SD는 그대로지만 SE는 \(\sqrt{n}\)에 비례해 작아진다.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">왜 SE가 \(\sigma/\sqrt{n}\)인가</div>
+        <p>분산의 성질: \(\text{Var}[\bar{X}] = \text{Var}\!\left[\frac{1}{n}\sum X_i\right] = \frac{1}{n^2}\sum \text{Var}[X_i] = \frac{n \sigma^2}{n^2} = \frac{\sigma^2}{n}\).</p>
+        <p>표준편차는 분산의 제곱근이므로 \(\text{SE}[\bar{X}] = \sqrt{\sigma^2/n} = \sigma/\sqrt{n}\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C4 ═══════ -->
+    <section class="chapter" id="c4">
+      <div class="chap-num">CONCEPT 04</div>
+      <h2>④ Q1과 Q2 — 같은 식, 다른 해석</h2>
+      <div class="chap-sub">교수님의 결정적 프레임</div>
+
+      <p>같은 부등식 \(|\bar{X} - \mu| \le 1.96 \cdot \sigma/\sqrt{n}\) 인데 — <strong>무엇을 변수로 보느냐</strong>에 따라 두 가지 완전히 다른 해석이 나옵니다.</p>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>구분</th><th>Q1 — μ 알 때</th><th>Q2 — X̄ 관측 후 (CI)</th></tr></thead>
+          <tbody>
+            <tr><td>모평균 \(\mu\)</td><td>알려져 있음 (고정값)</td><td>알 수 없음 (목표)</td></tr>
+            <tr><td>표본평균 \(\bar{X}\)</td><td>아직 안 뽑음 (확률변수)</td><td>한 번 뽑아 관측한 값 (고정)</td></tr>
+            <tr><td>질문</td><td>\(\bar{X}\)이 어디 있을까?</td><td>\(\mu\)는 어디 있을까?</td></tr>
+            <tr><td>중심</td><td>\(\mu\) 중심</td><td>\(\bar{X}\) 중심</td></tr>
+            <tr><td>구간 식</td><td>\(\mu \pm 1.96 \cdot \sigma/\sqrt{n}\)</td><td>\(\bar{X} \pm 1.96 \cdot \sigma/\sqrt{n}\)</td></tr>
+            <tr><td>이름</td><td>예측 구간</td><td><strong>신뢰구간 (CI)</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="analogy">
+        <p><strong>등댓불과 배 이야기.</strong></p>
+        <p><strong>Q1</strong>: 등대(\(\mu\))는 거기 있고, 배(\(\bar{X}\))가 95% 확률로 들어가는 영해를 그림.<br>
+        <strong>Q2</strong>: 내가 본 배(\(\bar{X}\)) 옆에, 등대(\(\mu\))가 95% 확률로 있을 영해를 그림.<br>
+        같은 거리 \(1.96 \cdot \sigma/\sqrt{n}\)을 두 방향으로 다르게 활용.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C5 ═══════ -->
+    <section class="chapter" id="c5">
+      <div class="chap-num">CONCEPT 05</div>
+      <h2>⑤ 신뢰구간 "95%"의 진짜 의미</h2>
+      <div class="chap-sub">자주 잘못 해석되는 부분</div>
+
+      <div class="callout yellow">
+        <div class="label">🚨 가장 흔한 오해</div>
+        <p><strong>틀린 해석</strong>: "95% 신뢰구간 (30.4, 33.6)이 있다면, 진짜 모평균 \(\mu\)가 (30.4, 33.6) 안에 있을 확률이 95%다."</p>
+        <p>이 해석은 <strong>틀렸어요</strong>. 왜?</p>
+      </div>
+
+      <p>한 번 표본을 뽑고 CI를 계산하면, 그 CI는 <em>고정된 숫자 구간</em>. 모평균 \(\mu\)도 (알 수 없지만) <em>고정된 숫자</em>. 두 고정된 것 사이에 "확률"이 들어갈 자리가 없어요.</p>
+
+      <div class="definition">
+        <div class="term">95% CI의 정확한 의미 — 빈도주의 해석</div>
+        <p>"같은 절차로 표본을 여러 번 뽑아 CI를 매번 계산한다면, 그 CI들 중 <strong>약 95%가 진짜 \(\mu\)를 포함</strong>한다."</p>
+        <p>즉 "확률"은 <em>모평균이 어디 있는가</em>가 아니라 <em>이 절차가 얼마나 자주 맞히는가</em>에 대한 것.</p>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h3>❌ 틀린 해석</h3>
+          <ul>
+            <li>"\(\mu\)가 95% 확률로 이 구간에 있다"</li>
+            <li>"이 구간을 보면 \(\mu\) 위치가 95% 확정된다"</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>✅ 맞는 해석</h3>
+          <ul>
+            <li>"이 절차로 100번 CI를 만들면 95개는 \(\mu\)를 포함"</li>
+            <li>"이 구간이 \(\mu\)를 놓칠 확률은 처음부터 5% 였음"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="label">실무에서는 어떻게?</div>
+        <p>실무·시험에서는 <strong>"95% 확률로 \(\mu\)가 이 구간에 있다"라고 자주 말하지만</strong> — 학문적으로 엄밀하면 위의 빈도주의 해석이 정답. 시험 서술형에서 "신뢰구간의 정확한 의미"를 물으면 빈도주의 표현을 쓰세요.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C6 ═══════ -->
+    <section class="chapter" id="c6">
+      <div class="chap-num">CONCEPT 06</div>
+      <h2>⑥ p-값의 정확한 정의</h2>
+      <div class="chap-sub">"H₀가 참일 확률"이 아니다</div>
+
+      <div class="definition">
+        <div class="term">한 줄 정의</div>
+        <p>p-값 = <strong>\(H_0\)가 참이라는 가정 하에, 관측된 표본보다 더 극단적인 결과가 나올 확률.</strong></p>
+      </div>
+
+      <div class="formula">
+        \[ p\text{-value} = P(\text{관측보다 더 극단} \mid H_0 \text{ true}) \]
+      </div>
+
+      <h3>오해와 진짜</h3>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>흔한 오해</th><th>실제 의미</th></tr></thead>
+          <tbody>
+            <tr><td>"p-값 = \(H_0\)가 참일 확률"</td><td>❌ 아님. 그건 사후확률 \(P(H_0 \mid \text{data})\)이고, 베이즈 정리 필요.</td></tr>
+            <tr><td>"p-값 = \(H_0\)가 거짓일 확률"</td><td>❌ 아님. 위와 마찬가지.</td></tr>
+            <tr><td>"p-값이 작으면 효과 크기가 크다"</td><td>❌ 아님. p-값은 <em>표본 크기</em>에도 강하게 의존. 큰 \(n\)에서는 작은 효과도 매우 작은 p-값.</td></tr>
+            <tr class="hi"><td><strong>p-값의 정확한 정의</strong></td><td><strong>\(H_0\)가 참인 가상의 세계에서, 우리 표본이 얼마나 희귀한가의 척도.</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">한 줄로 정리</div>
+        <p>p-값 = "\(H_0\)가 진짜 맞다면, 이런 표본이 우연으로 일어날 확률." 매우 작으면 → "우연이라기엔 너무 희귀하다" → \(H_0\) 기각.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C7 ═══════ -->
+    <section class="chapter" id="c7">
+      <div class="chap-num">CONCEPT 07</div>
+      <h2>⑦ 유의수준 α — 1종 오류의 허용 한도</h2>
+      <div class="chap-sub">"의심을 시작하는 기준선"</div>
+
+      <div class="definition">
+        <div class="term">한 줄 정의</div>
+        <p>\(\alpha\) = "\(H_0\)가 참인데도 우리가 운 나쁘게 기각해버릴 확률"의 허용 한도.</p>
+      </div>
+
+      <h3>왜 0.05를 자주 쓰나</h3>
+
+      <p>관행입니다 — 1925년 R.A. Fisher가 책에서 자주 쓴 이후 사회과학 전반에 정착. 의학·약품처럼 더 엄격해야 하는 분야는 0.01, 탐색적 연구는 0.10을 쓰기도 함.</p>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>\(\alpha\)</th><th>의미</th><th>분야</th></tr></thead>
+          <tbody>
+            <tr><td>0.10</td><td>10% 실수 허용</td><td>탐색 연구, 사전 분석</td></tr>
+            <tr><td>0.05</td><td>5% 실수 허용 (기본)</td><td>사회과학, 비즈니스, 일반</td></tr>
+            <tr><td>0.01</td><td>1% 실수 허용 (엄격)</td><td>의학, 약품 임상시험</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>판정 규칙</h3>
+
+      <div class="callout blue">
+        <div class="label">결정 룰</div>
+        <p>p-값 < \(\alpha\) → <strong>Reject \(H_0\)</strong> (\(H_0\) 기각, \(H_1\) 채택)</p>
+        <p>p-값 ≥ \(\alpha\) → <strong>Fail to Reject \(H_0\)</strong> (\(H_0\) 보류)</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ "Accept H₀"가 아닌 이유</div>
+        <p>"Fail to reject"는 "\(H_0\)가 참임이 증명됐다"는 뜻이 <em>아니에요</em>. 단지 "기각할 만한 증거가 부족하다"는 뜻. 법정 비유로 — "무죄 입증"이 아니라 "유죄 입증 실패".</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C8 ═══════ -->
+    <section class="chapter" id="c8">
+      <div class="chap-num">CONCEPT 08</div>
+      <h2>⑧ 1종 오류 vs 2종 오류 (Type I/II)</h2>
+      <div class="chap-sub">잘못될 수 있는 두 방향</div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th></th><th>\(H_0\)가 진짜 참</th><th>\(H_1\)이 진짜 참</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Reject \(H_0\)</strong></td><td style="color:#c0392b">❌ <strong>1종 오류 (Type I)</strong> 확률 \(\alpha\)</td><td>✅ 정답</td></tr>
+            <tr><td><strong>Fail to Reject \(H_0\)</strong></td><td>✅ 정답</td><td style="color:#c0392b">❌ <strong>2종 오류 (Type II)</strong> 확률 \(\beta\)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h3>Type I (1종)</h3>
+          <ul>
+            <li><strong>"멀쩡한 \(H_0\)를 잘못 기각"</strong></li>
+            <li>확률 = \(\alpha\) (유의수준 자체)</li>
+            <li>법정 비유: 무고한 사람을 유죄 판결</li>
+            <li>가설검정은 이걸 \(\alpha\) 이하로 통제하는 게 최우선</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Type II (2종)</h3>
+          <ul>
+            <li><strong>"맞는 \(H_1\)을 놓침"</strong></li>
+            <li>확률 = \(\beta\)</li>
+            <li>법정 비유: 진짜 범인을 풀어줌</li>
+            <li>\(1 - \beta\)를 <strong>검정력 (Power)</strong>이라 함</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="label">α와 β의 트레이드오프</div>
+        <p>\(\alpha\)를 작게 잡으면 1종 오류는 줄지만 2종 오류는 늘어남. 둘 다 줄이려면 <strong>표본 크기 \(n\)을 늘려야</strong> 함. 그래서 임상시험은 충분한 \(n\) 확보가 중요.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C9 ═══════ -->
+    <section class="chapter" id="c9">
+      <div class="chap-num">CONCEPT 09</div>
+      <h2>⑨ 양측 vs 단측 — 언제 어떻게</h2>
+      <div class="chap-sub">검정 방향 선택의 기준</div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th></th><th>양측 검정 (Two-tailed)</th><th>단측 검정 (One-tailed)</th></tr></thead>
+          <tbody>
+            <tr><td>\(H_1\)</td><td>\(\mu \ne \mu_0\)</td><td>\(\mu > \mu_0\) 또는 \(\mu < \mu_0\)</td></tr>
+            <tr><td>관심</td><td>"다른가?" — 방향 무관</td><td>"한쪽으로 큰가/작은가?"</td></tr>
+            <tr><td>임계값 (5%)</td><td>\(z_{0.025} = 1.96\)</td><td>\(z_{0.05} = 1.65\)</td></tr>
+            <tr><td>p-값</td><td>한쪽 꼬리 × 2</td><td>한쪽 꼬리만</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>어느 걸 쓸까</h3>
+
+      <div class="callout green">
+        <div class="label">선택 기준</div>
+        <ul>
+          <li><strong>양측</strong> — 차이만 알고 싶을 때 ("다른가?"). 안전한 기본 선택.</li>
+          <li><strong>단측</strong> — <em>방향이 사전에 정해진 경우만</em> ("기존보다 좋은가?" 같이 "이쪽보다 클 때만 의미 있음"). 데이터를 보고 단측으로 바꾸면 안 됨.</li>
+        </ul>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ 단측의 함정</div>
+        <p>단측 검정은 같은 데이터에 대해 양측보다 p-값이 <strong>절반</strong>. 그래서 기각이 더 쉬워짐.</p>
+        <p>이걸 악용해 "원래는 양측인데 단측으로 바꿔서 통과"하는 행위는 <strong>통계 부정</strong>. 단측은 처음부터 사전등록 (pre-registered) 되어야 정당함.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C10 ═══════ -->
+    <section class="chapter" id="c10">
+      <div class="chap-num">CONCEPT 10</div>
+      <h2>⑩ 짝 표본 vs 독립 표본</h2>
+      <div class="chap-sub">두 평균 비교의 두 갈래</div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th></th><th>독립 표본 (Independent)</th><th>짝 표본 (Paired)</th></tr></thead>
+          <tbody>
+            <tr><td>설정</td><td>서로 다른 두 그룹</td><td>같은 개체를 두 번 측정 (또는 자연스럽게 짝지어진)</td></tr>
+            <tr><td>예</td><td>A반 vs B반 성적</td><td>같은 학생의 다이어트 전·후 체중</td></tr>
+            <tr><td>SE 공식</td><td>\(\sqrt{\sigma_X^2/n_X + \sigma_Y^2/n_Y}\)</td><td>\(S_D / \sqrt{n}\) (D = X − Y 새 변수)</td></tr>
+            <tr><td>가설</td><td>\(\mu_X = \mu_Y\) (or \(\mu_X - \mu_Y = 0\))</td><td>\(\mu_D = 0\)</td></tr>
+            <tr><td>왜 다른가</td><td>두 측정이 서로 무관</td><td>두 측정이 강하게 상관 — 공분산 항 필요</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>구별 기준</h3>
+
+      <div class="callout">
+        <div class="label">결정 트리</div>
+        <ol>
+          <li><strong>"같은 사람·매장·물건을 두 번 측정했는가?"</strong> → 짝 표본</li>
+          <li><strong>"두 개의 별개 그룹에서 한 번씩 측정했는가?"</strong> → 독립 표본</li>
+          <li><strong>매칭 (성별·연령 등 비슷한 사람을 짝지어)</strong> → 짝 표본으로 처리</li>
+        </ol>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ 잘못 적용하면</div>
+        <p>짝 표본인데 독립 공식을 쓰면 → SE를 <strong>과대평가</strong>해서 효과를 놓침 (2종 오류 ↑).<br>
+        독립인데 짝 공식을 쓰면 → 일반적으로 잘못된 가정이라 검정 자체가 무효.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ C11 ═══════ -->
+    <section class="chapter" id="c11">
+      <div class="chap-num">CONCEPT 11</div>
+      <h2>⑪ R² vs Adjusted R²</h2>
+      <div class="chap-sub">설명력과 페널티</div>
+
+      <div class="definition">
+        <div class="term">\(R^2\) — 결정계수</div>
+        <div class="formula">
+          \[ R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}} \]
+        </div>
+        <p>회귀모형이 \(Y\)의 변동 중 몇 %를 설명하는지. 0 ~ 1 사이. 1에 가까울수록 모형 적합도 높음.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ \(R^2\)의 결정적 함정</div>
+        <p>설명변수를 <strong>아무거나 추가해도 \(R^2\)는 떨어지지 않음</strong> (대부분 올라감). 의미 없는 변수를 넣어도 자동으로 올라가니, 모형 비교에 \(R^2\)만 보면 안 됨.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">Adjusted \(R^2\) — 변수 수 페널티</div>
+        <div class="formula">
+          \[ \bar{R}^2 = 1 - \frac{\text{SSE}/(n - k - 1)}{\text{SST}/(n - 1)} \]
+        </div>
+        <p>분모·분자에 자유도(\(n - k - 1\), \(n - 1\))로 정규화. 변수 \(k\)가 늘어나도 적합도가 좋아진 만큼 보상받지 못하면 오히려 떨어짐.</p>
+      </div>
+
+      <h3>해석 가이드</h3>
+
+      <div class="callout green">
+        <div class="label">변수 추가의 가치를 판단하는 법</div>
+        <ul>
+          <li><strong>\(R^2\) ↑, Adjusted \(R^2\) ↑</strong> → 추가한 변수가 의미 있음. 유지.</li>
+          <li><strong>\(R^2\) ↑, Adjusted \(R^2\) ↓</strong> → 변수 추가가 통계적으로 무의미. 제거 고려.</li>
+          <li><strong>\(R^2\)와 Adjusted \(R^2\) 거의 같음</strong> → 모든 변수가 의미 있음 (군더더기 없음).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════ C12 ═══════ -->
+    <section class="chapter" id="c12">
+      <div class="chap-num">CONCEPT 12</div>
+      <h2>⑫ 더미변수 해석법</h2>
+      <div class="chap-sub">0/1로 카테고리를 회귀에 넣기</div>
+
+      <div class="definition">
+        <div class="term">한 줄 정의</div>
+        <p>더미변수 = <strong>0 또는 1</strong>만 갖는 변수. 카테고리(성별, 요일, 프로모션 유무 등)를 회귀모형에 넣는 표준 방법.</p>
+      </div>
+
+      <h3>해석 예</h3>
+
+      <div class="formula">
+        \[ \hat{\text{Sales}} = 50 + 8.5 \cdot \text{Promo} \]
+      </div>
+
+      <p>Promo = 1 (프로모션 진행) 일 때 매출 = 58.5 / Promo = 0 (없음) 일 때 매출 = 50.</p>
+
+      <div class="callout">
+        <div class="label">계수의 의미</div>
+        <p>더미 계수 \(\beta\) = "그 카테고리가 켜졌을 때 \(Y\)에 추가되는 양 (기준 카테고리 대비)." 기본값(0)이 <strong>비교 기준</strong>이 됨.</p>
+      </div>
+
+      <h3>여러 카테고리 — k-1개 더미</h3>
+
+      <p>요일이 5개라면 더미는 4개 (월·화·수·목, 금요일이 기준). 만약 5개 모두 더미로 넣으면 <strong>다중공선성 발생</strong> (Dummy variable trap).</p>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ Dummy Variable Trap</div>
+        <p>k개 카테고리를 k개 더미로 모두 넣으면 → 더미들의 합이 항상 1 → 절편과 완전히 겹침 → 회귀 추정 불가.</p>
+        <p>해결: <strong>항상 하나는 빼고 (k-1개만 더미로)</strong>. 빠진 것이 기준 (reference) 카테고리.</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">교차항 (Interaction) 응용</div>
+        <p>더미와 연속변수를 곱해 새 변수로 추가하면 — "프로모션 여부에 따라 가격 효과가 다른가?" 같은 상호작용을 모형에 넣을 수 있음. (출제 가능성 ✏️ 가끔.)</p>
+      </div>
+    </section>
+
+    <!-- ═══════ 마무리 ═══════ -->
+    <section class="chapter" id="wrap">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>시험 직전 — 5분 점검</h2>
+
+      <div class="study-map">
+        <div class="label">개념 셀프 체크 12개</div>
+        <ul>
+          <li>① CLT 조건 3가지 즉답 가능? (i.i.d. + 큰 n)</li>
+          <li>② "표본분포"와 "모집단 분포"의 차이?</li>
+          <li>③ SD vs SE — 표본 크기에 영향받는 건?</li>
+          <li>④ Q1과 Q2 — 중심이 \(\mu\)인 것과 \(\bar{X}\)인 것?</li>
+          <li>⑤ 95% CI의 빈도주의 해석 한 줄?</li>
+          <li>⑥ p-값 = "\(H_0\) 참일 확률"이 아닌 이유?</li>
+          <li>⑦ \(\alpha\) = 1종 오류 허용 한도?</li>
+          <li>⑧ 1종(\(\alpha\)) vs 2종(\(\beta\)) 오류 — 어느 게 더 치명적?</li>
+          <li>⑨ 단측을 쓰면 안 되는 상황?</li>
+          <li>⑩ 짝 표본인데 독립 공식을 쓰면?</li>
+          <li>⑪ \(R^2\)와 Adjusted \(R^2\)의 차이?</li>
+          <li>⑫ Dummy Variable Trap이란?</li>
+        </ul>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        시험 단답형·서술형 단골은 "조건·정의·차이·오해". 계산보다 <em>이해의 깊이</em>를 묻는 문제는 결국 이 12개에서 다 나옵니다.
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <a href="exam-predict.html" class="prev">◀ 시험 예상 문제</a>
+      <a href="index.html" class="next">전체 강의 목록 ▶</a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
