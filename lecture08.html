@@ -215,15 +215,15 @@
         <div class="term">Null Hypothesis · 귀무가설 (\(H_0\))</div>
         <div class="kor">"지금까지 믿어온 얘기"</div>
         <p>기존 상태(status quo). 우리가 새 증거가 없다면 그대로 받아들일 가설.
-        보통 등호(=, \(\le\), \(\ge\))가 들어가요.</p>
-        <p>예: \(H_0\) : \(\mu\) = 100</p>
+        보통 등호(=, \(\le , \ge\))가 들어가요.</p>
+        <p>예: \(H_0 : \mu\) = 100</p>
       </div>
 
       <div class="definition">
         <div class="term">Alternative Hypothesis · 대립가설 (\(H_1\))</div>
         <div class="kor">"우리가 증명하고 싶은 새 얘기"</div>
         <p>귀무가설의 정반대. \(H_0\)를 부정하면 \(H_1\)이에요.</p>
-        <p>예: \(H_1\) : \(\mu\) \(\ne\) 100</p>
+        <p>예: \(H_1 : \mu \ne\) 100</p>
       </div>
 
       <div class="analogy">
@@ -241,13 +241,13 @@
 
       <div class="mini-flow">
         <div>
-          <span class="tag">\(H_0\) : \(\mu\) = 100</span>
+          <span class="tag">\(H_0 : \mu\) = 100</span>
           <strong>지금까지의 믿음</strong>
           <p>증거가 없으면 그대로 유지</p>
         </div>
         <div class="arrow">vs</div>
         <div>
-          <span class="tag">\(H_1\) : \(\mu\) \(\ne\) 100</span>
+          <span class="tag">\(H_1 : \mu \ne\) 100</span>
           <strong>증명하고 싶은 새 얘기</strong>
           <p>강력한 증거가 있을 때만 채택</p>
         </div>
@@ -262,9 +262,9 @@
           <tr><th>이름</th><th>\(H_0\)</th><th>\(H_1\)</th><th>언제 써요?</th></tr>
         </thead>
         <tbody>
-          <tr><td>양측 (two-sided)</td><td>\(\mu\) = 100</td><td>\(\mu\) \(\ne\) 100</td><td>"어쨌든 다르냐?"가 궁금할 때</td></tr>
-          <tr><td>오른쪽 단측 (right-tail)</td><td>\(\mu\) \(\le 100\)</td><td>\(\mu\) &gt; 100</td><td>"커졌냐?"만 궁금할 때</td></tr>
-          <tr><td>왼쪽 단측 (left-tail)</td><td>\(\mu\) \(\ge 100\)</td><td>\(\mu\) &lt; 100</td><td>"작아졌냐?"만 궁금할 때</td></tr>
+          <tr><td>양측 (two-sided)</td><td>\(\mu\) = 100</td><td>\(\mu \ne\) 100</td><td>"어쨌든 다르냐?"가 궁금할 때</td></tr>
+          <tr><td>오른쪽 단측 (right-tail)</td><td>\(\mu \le 100\)</td><td>\(\mu\) &gt; 100</td><td>"커졌냐?"만 궁금할 때</td></tr>
+          <tr><td>왼쪽 단측 (left-tail)</td><td>\(\mu \ge 100\)</td><td>\(\mu\) &lt; 100</td><td>"작아졌냐?"만 궁금할 때</td></tr>
         </tbody>
       </table>
       </div>
@@ -433,7 +433,7 @@
 
       <h3>1단계 · 표본평균을 z-값으로 바꿔요</h3>
 
-      <p>\(\bar{X}\)은 정규분포 N(\(\mu\), \(\sigma^2/n\))을 따르죠. 이걸 표준정규 N(0, 1)로 옮겨요.</p>
+      <p>\(\bar{X}\)은 정규분포 N(\(\mu , \sigma^2/n\))을 따르죠. 이걸 표준정규 N(0, 1)로 옮겨요.</p>
 
       <div class="formula wide">
         \[ z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \]
@@ -463,11 +463,11 @@
 
       <div class="callout yellow">
         <div class="label">예시 문제</div>
-        <p>\(H_0\) : \(\mu\) = 100. 표본 n = 36, \(\bar{X}\) = 105. \(\sigma\) = 12라고 알려져 있어요.
+        <p>\(H_0 : \mu\) = 100. 표본 n = 36, \(\bar{X}\) = 105. \(\sigma\) = 12라고 알려져 있어요.
         양측 검정에서 p-값은?</p>
       </div>
 
-      <p><strong>① 표준오차:</strong> \(\sigma /\sqrt{n}\) = 12/√36 = 12/6 = 2.</p>
+      <p><strong>① 표준오차:</strong> \(\sigma /\sqrt{n}\) = 12/\(\sqrt{36}\) = 12/6 = 2.</p>
       <p><strong>② z-값:</strong> z = (105 − 100) / 2 = 2.5.</p>
       <p><strong>③ 꼬리 확률:</strong> Z-표에서 P(Z &gt; 2.5) \(\approx\) 0.0062.</p>
       <p><strong>④ p-값(양측):</strong> 2 × 0.0062 \(\approx\) <strong>0.0124</strong> = 1.24%.</p>
@@ -557,7 +557,7 @@
       <div class="callout blue">
         <div class="label">기각 규칙</div>
         <p><strong>p-값 &lt; \(\alpha\)</strong> &nbsp;→&nbsp; Reject \(H_0\) (\(H_0\) 기각, \(H_1\) 채택)</p>
-        <p><strong>p-값 \(\ge\) \(\alpha\)</strong> &nbsp;→&nbsp; Fail to Reject \(H_0\) (\(H_0\) 보류)</p>
+        <p><strong>p-값 \(\ge \alpha\)</strong> &nbsp;→&nbsp; Fail to Reject \(H_0\) (\(H_0\) 보류)</p>
       </div>
 
       <h3>\(\alpha\)의 진짜 의미 — "1종 오류 허용 한도"</h3>
@@ -655,9 +655,9 @@
         \(\bar{X}\) = 173cm. 모표준편차는 \(\sigma\) = 7로 알려져 있어요. \(\alpha = 5\)%에서 검정하세요.</p>
       </div>
 
-      <p><strong>① 설정:</strong> \(H_0\) : \(\mu\) = 170, \(H_1\) : \(\mu\) \(\ne\) 170 (양측).</p>
+      <p><strong>① 설정:</strong> \(H_0 : \mu\) = 170, \(H_1 : \mu \ne\) 170 (양측).</p>
       <p><strong>② 표본:</strong> n = 50, \(\bar{X}\) = 173, \(\sigma\) = 7.</p>
-      <p><strong>③ 표준화:</strong> 표준오차 = 7/√50 \(\approx\) 0.99. z = (173 − 170)/0.99 \(\approx\) 3.03.</p>
+      <p><strong>③ 표준화:</strong> 표준오차 = 7/\(\sqrt{50} \approx\) 0.99. z = (173 − 170)/0.99 \(\approx\) 3.03.</p>
       <p><strong>④ p-값:</strong> P(Z &gt; 3.03) \(\approx\) 0.00122. 양측이니 × 2 \(\approx\) <strong>0.00244</strong>.</p>
       <p><strong>⑤ 결론:</strong> p = 0.00244 &lt; 0.05 = \(\alpha\) → <strong>\(Reject H_0\)</strong>.</p>
 
@@ -737,7 +737,7 @@
 
       <div class="callout">
         <div class="label">예: "이 약은 혈압을 변화시키나?"</div>
-        <p>\(H_0\) : \(\mu\) = 120, \(H_1\) : \(\mu\) \(\ne\) 120.</p>
+        <p>\(H_0 : \mu\) = 120, \(H_1 : \mu \ne\) 120.</p>
         <p>혈압이 <strong>오르든 내리든</strong>, 어쨌든 달라졌다면 의미 있어요. 양쪽이 다 "극단".</p>
       </div>
 
@@ -745,13 +745,13 @@
 
       <div class="callout">
         <div class="label">예: "이 광고를 하면 매출이 늘어나는가?"</div>
-        <p>\(H_0\) : \(\mu\) \(\le 100\), \(H_1\) : \(\mu\) &gt; 100.</p>
+        <p>\(H_0 : \mu \le 100 , H_1 : \mu\) &gt; 100.</p>
         <p>"줄어든다"는 우리가 관심도 없죠. 오로지 <strong>"늘었냐?"</strong>만 본다 → 오른쪽 단측.</p>
       </div>
 
       <div class="callout">
         <div class="label">예: "이 다이어트로 체중이 줄어드는가?"</div>
-        <p>\(H_0\) : \(\mu\) \(\ge 70\), \(H_1\) : \(\mu\) &lt; 70.</p>
+        <p>\(H_0 : \mu \ge 70 , H_1 : \mu\) &lt; 70.</p>
         <p>왼쪽 단측이에요. "줄어드는가?"만 묻는 경우.</p>
       </div>
 
@@ -799,7 +799,7 @@
           <tr><th>검정 종류</th><th>\(H_1\)</th><th>p-값 (z = \(z_{\text{관측}}\))</th></tr>
         </thead>
         <tbody>
-          <tr><td>양측</td><td>\(\mu\) \(\ne\) \(\mu_0\)</td><td>2 × P(Z &gt; |z|)</td></tr>
+          <tr><td>양측</td><td>\(\mu \ne \mu_0\)</td><td>2 × P(Z &gt; |z|)</td></tr>
           <tr><td>오른쪽 단측</td><td>\(\mu\) &gt; \(\mu_0\)</td><td>P(Z &gt; z)</td></tr>
           <tr><td>왼쪽 단측</td><td>\(\mu\) &lt; \(\mu_0\)</td><td>P(Z &lt; z)</td></tr>
         </tbody>
@@ -832,7 +832,7 @@
       <h3>경우 A · \(\bar{X}\)이 \(H_1\) 방향으로 빠짐 (의심 가능)</h3>
 
       <div class="callout">
-        <div class="label">예시: \(H_0\) : \(\mu\) \(\le 100\), \(H_1\) : \(\mu\) &gt; 100</div>
+        <div class="label">예시: \(H_0 : \mu \le 100 , H_1 : \mu\) &gt; 100</div>
         <p>\(\bar{X}\) = 115가 나왔어요. \(H_1\)이 "100보다 커?"를 묻고 있죠. \(\bar{X}\)도 100보다 큰 쪽. → <strong>의심 가능</strong>.</p>
         <p>이제 "얼마나 더 큰가"를 따져서 p-값을 계산해요.</p>
       </div>
@@ -840,7 +840,7 @@
       <h3>경우 B · \(\bar{X}\)이 반대쪽으로 빠짐 (의심 불가능)</h3>
 
       <div class="callout">
-        <div class="label">예시: \(H_0\) : \(\mu\) \(\le 100\), \(H_1\) : \(\mu\) &gt; 100</div>
+        <div class="label">예시: \(H_0 : \mu \le 100 , H_1 : \mu\) &gt; 100</div>
         <p>\(\bar{X}\) = 30이 나왔어요. \(H_1\)은 "100보다 커?"를 묻는데 \(\bar{X}\)이 한참 작아요. →
         <strong>\(H_0\)("작거나 같다")를 부정할 증거가 전혀 안 됨</strong>.</p>
         <p>이런 경우는 p-값 계산할 필요도 없어요. 자동으로 "Fail to Reject \(H_0\)".</p>
@@ -848,7 +848,7 @@
 
       <h3>왜 "등호 케이스(\(\mu\) = \(\mu_0\))만" 계산해도 충분?</h3>
 
-      <p>단측에서 \(H_0\)는 보통 "\(\mu\) \(\le\) \(\mu_0\)" 처럼 <em>여러 값을 포함</em>해요. 그럼 모든 가능한 \(\mu\)값을
+      <p>단측에서 \(H_0\)는 보통 "\(\mu \le \mu_0\)" 처럼 <em>여러 값을 포함</em>해요. 그럼 모든 가능한 \(\mu\)값을
       다 따져야 하는 거 아닌가? 라는 생각이 들 수 있어요. 다행히 그럴 필요가 없어요.</p>
 
       <div class="callout blue">
@@ -946,7 +946,7 @@
         z-값을 구하고, \(\alpha = 5\)%에서 검정하세요.</p>
       </div>
 
-      <p><strong>① 표준오차:</strong> √(0.75 × 0.25 / 50) = √(0.00375) \(\approx\) 0.0612.</p>
+      <p><strong>① 표준오차:</strong> \(\sqrt{0.75  \times  0.25 / 50}\) = \(\sqrt{0.00375} \approx\) 0.0612.</p>
       <p><strong>② z-값:</strong> (0.78 − 0.75) / 0.0612 \(\approx\) <strong>0.49</strong>.</p>
       <p><strong>③ p-값(양측):</strong> P(Z &gt; 0.49) \(\approx\) 0.312. × 2 \(\approx\) <strong>0.624</strong>.</p>
       <p><strong>④ 결론:</strong> 0.624 ≫ 0.05 → Fail to reject. p = 75%일 가능성을 부정할 증거 없음.</p>
@@ -1004,7 +1004,7 @@
         </div>
         <div class="card">
           <h5>④ 표준오차</h5>
-          <p>SE = √(\(\sigma^2_S\)/\(n_S\) + \(\sigma^2_T\)/\(n_T\))</p>
+          <p>SE = \(\sqrt{\sigma^2_S/n_S + \sigma^2_T/n_T}\)</p>
           <p class="kor-sub">분산의 √. 흔들림의 크기</p>
         </div>
       </div>
@@ -1023,11 +1023,11 @@
         <div class="label">문제</div>
         <p>서울: \(\bar{X}_S\) = 155, \(n_S\) = 50, \(\sigma^2_S\) = 250.<br>
         도쿄: \(\bar{X}_T\) = 157, \(n_T\) = 70, \(\sigma^2_T\) = 400.<br>
-        \(H_0\) : \(\mu_S\) − \(\mu_T\) = 0. 양측 검정.</p>
+        \(H_0 : \mu_S\) − \(\mu_T\) = 0. 양측 검정.</p>
       </div>
 
       <p><strong>① 차이:</strong> 155 − 157 = −2.</p>
-      <p><strong>② 표준오차:</strong> √(250/50 + 400/70) = √(5 + 5.71) = √10.71 \(\approx\) 3.27.</p>
+      <p><strong>② 표준오차:</strong> \(\sqrt{250/50 + 400/70}\) = \(\sqrt{5 + 5.71}\) = \(\sqrt{10.71} \approx\) 3.27.</p>
       <p><strong>③ z-값:</strong> −2 / 3.27 \(\approx\) <strong>\(-0.61\)</strong>.</p>
       <p><strong>④ p-값(양측):</strong> 2 × P(Z &gt; 0.61) \(\approx\) 2 × 0.271 \(\approx\) <strong>0.542</strong>.</p>
       <p><strong>⑤ 결론:</strong> 0.542 ≫ 0.05 → Fail to reject. 두 도시 평균에 차이 있다는 증거 없음.</p>
@@ -1040,7 +1040,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        두 평균 비교 = (차이) / (두 SE를 √(a + b)로 합친 값). 한 집단 검정의 자연스러운 확장.
+        두 평균 비교 = (차이) / (두 SE를 \(\sqrt{a + b}\)로 합친 값). 한 집단 검정의 자연스러운 확장.
       </div>
     </section>
 
@@ -1058,8 +1058,8 @@
 
       <h3>SE에 들어가는 p가 문제</h3>
 
-      <p>두 평균 때처럼 SE = √(\(p_S\)(1−\(p_S\))/\(n_S\) + \(p_T\)(1−\(p_T\))/\(n_T\)) 로 쓰고 싶어요.
-      그런데 우리는 진짜 \(p_S\), \(p_T\)를 모르잖아요. 어떻게 처리해야 할까요?</p>
+      <p>두 평균 때처럼 SE = \(\sqrt{p_S(1-p_S)/n_S + p_T(1-p_T)/n_T}\) 로 쓰고 싶어요.
+      그런데 우리는 진짜 \(p_S , p_T\)를 모르잖아요. 어떻게 처리해야 할까요?</p>
 
       <div class="callout blue">
         <div class="label">핵심 통찰</div>
@@ -1088,14 +1088,14 @@
         <div class="label">문제</div>
         <p>서울: \(\bar{p}_S\) = 62%, \(n_S\) = 50.<br>
         도쿄: \(\bar{p}_T\) = 65%, \(n_T\) = 80. 독립 표본.<br>
-        \(H_0\) : \(p_S\) = \(p_T\). 양측 검정.</p>
+        \(H_0 : p_S\) = \(p_T\). 양측 검정.</p>
       </div>
 
       <p><strong>① 합친 비율:</strong></p>
       <p>\(\bar{p}\) = (50 × 0.62 + 80 × 0.65) / (50 + 80) = (31 + 52) / 130 = 83/130 \(\approx\) <strong>0.6385</strong>.</p>
 
       <p><strong>② 표준오차:</strong></p>
-      <p>SE = \(\sqrt{ 0.6385 \times 0.3615 \times (1/50 + 1/80) }\) = \(\sqrt{ 0.2308 \times 0.0325 }\) = √0.0075 \(\approx\) <strong>0.0866</strong>.</p>
+      <p>SE = \(\sqrt{ 0.6385 \times 0.3615 \times (1/50 + 1/80) }\) = \(\sqrt{ 0.2308 \times 0.0325 }\) = \(\sqrt{0.0075} \approx\) <strong>0.0866</strong>.</p>
 
       <p><strong>③ z-값:</strong> (0.62 − 0.65) / 0.0866 \(\approx\) <strong>\(-0.347\)</strong>.</p>
       <p><strong>④ p-값(양측):</strong> 2 × P(Z &gt; 0.347) \(\approx\) 2 × 0.364 \(\approx\) <strong>0.728</strong>.</p>
@@ -1168,9 +1168,9 @@
         </thead>
         <tbody>
           <tr><td>표본 단위</td><td>서로 다른 그룹의 다른 사람</td><td>같은 사람의 두 측정</td></tr>
-          <tr><td>표본 크기</td><td>\(n_S\), \(n_T\) 각각</td><td>n (쌍의 개수)</td></tr>
+          <tr><td>표본 크기</td><td>\(n_S , n_T\) 각각</td><td>n (쌍의 개수)</td></tr>
           <tr><td>통계량</td><td>\(\bar{X}_S\) − \(\bar{X}_T\)</td><td>\(\bar{D}\) (\(D_i\)의 평균)</td></tr>
-          <tr><td>SE</td><td>√(\(\sigma^2_S\)/\(n_S\) + \(\sigma^2_T\)/\(n_T\))</td><td>\(S_D\) / √n</td></tr>
+          <tr><td>SE</td><td>\(\sqrt{\sigma^2_S/n_S + \sigma^2_T/n_T}\)</td><td>\(S_D\) / \(\sqrt{n}\)</td></tr>
           <tr><td class="hi">핵심 트릭</td><td class="hi">두 SE를 합침</td><td class="hi">D로 한 표본 만들기</td></tr>
         </tbody>
       </table>
@@ -1209,7 +1209,7 @@
         <li>1종 오류 = \(\alpha\). 2종 오류 = \(\beta\).</li>
         <li>양측 / 오른쪽 단측 / 왼쪽 단측 — \(H_1\)의 부등호 방향이 결정</li>
         <li>비율: \(\sigma^2\) ↔ p(1−p), 나머지는 똑같음</li>
-        <li>두 평균 비교: 차이 / √(SE 두 개 합)</li>
+        <li>두 평균 비교: 차이 / \(\sqrt{SE 두 개 합}\)</li>
         <li>두 비율 비교: 합친 비율 \(\bar{p}\)로 SE 계산</li>
         <li>짝 표본: D = X − Y 만들면 한 표본 문제로 환원</li>
       </ul>

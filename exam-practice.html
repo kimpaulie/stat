@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>기말 연습 Q1~Q6 정석 풀이 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">기말 연습 Q1~Q6</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="exam-formula.html" aria-label="이전">◀</a>
+    <a href="goodbelly.html" aria-label="다음">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>가설 검정</a></li>
+      <li><a href="lecture09.html"><span class="num">09</span>회귀분석 I</a></li>
+      <li><a href="lecture10.html"><span class="num">10</span>회귀분석 II</a></li>
+      <li><a href="problems.html"><span class="num">★</span>연습문제 1</a></li>
+      <li><a href="problems2.html"><span class="num">★</span>연습문제 2</a></li>
+      <li><a href="exam-formula.html"><span class="num">📝</span>기말 공식 시트</a></li>
+      <li><a href="exam-practice.html" class="active"><span class="num">📚</span>기말 연습 Q1~Q6</a></li>
+      <li><a href="goodbelly.html"><span class="num">🥤</span>GoodBelly 사례</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">정석 풀이 목차</div>
+    <ol class="chap-list">
+      <li><a href="#intro">시작: 임계 z값 정의</a></li>
+      <li><a href="#q1">Q1 · kaistshop p 추정</a></li>
+      <li><a href="#q2">Q2 · 우리은행 ATM</a></li>
+      <li><a href="#q3">Q3 · GS25 생수 수요</a></li>
+      <li><a href="#q4">Q4 · 한식/양식 메뉴 (서울·대전)</a></li>
+      <li><a href="#q5">Q5 · CK푸드 두 캠퍼스 (독립)</a></li>
+      <li><a href="#q6">Q6 · 본관 vs 기타 (짝 표본)</a></li>
+    </ol>
+
+    <div class="side-footer">
+      📚 강의 공식 답안을<br>
+      그대로 옮긴 정석 풀이.
+    </div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Practice Problems · CI &amp; H.T. — Official Solutions<br>BIZ500 · Management Statistical Analysis</div>
+      <h1>기말 연습 Q1~Q6 정석 풀이
+        <span class="small">— 강의 답안 그대로</span>
+      </h1>
+      <p class="story">
+        강의에서 배포한 PDF 풀이를 단계별로 정리했습니다. 시험 답안지 톤 — 가설을 명시하고, 표준화·p값·결론을 단계 순서대로.
+        <br><br>
+        연습문제 1·2의 친구체 풀이와 한 쌍으로 보세요. 같은 문제도 더 압축적이고 정확한 답안 작성법이 보입니다.
+      </p>
+    </div>
+
+    <!-- ═══════ INTRO ═══════ -->
+    <section class="chapter" id="intro">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>시작 · 임계 z값 정의</h2>
+      <div class="chap-sub">Critical z-values</div>
+
+      <div class="definition">
+        <div class="term">단측 임계값 \(z_\alpha\)</div>
+        <p>수학적 정의: \(P(Z > z_\alpha) = \alpha\). 따라서 \(P(Z \le z_\alpha) = 1 - \alpha\).</p>
+        <p>양수 \(z_\alpha\)보다 양의 방향으로 더 멀리 떨어진 \(Z\)들이 가지는 확률이 정확히 \(\alpha\)인 경계점.
+        <strong>단측 가설 검정의 기준점</strong>이라 critical value라 부릅니다.</p>
+      </div>
+
+      <div class="definition">
+        <div class="term">양측 임계값 \(z_{\alpha/2}\)</div>
+        <p>수학적 정의: \(P(Z > z_{\alpha/2}) = \alpha/2\). 따라서 \(P(-z_{\alpha/2} \le Z \le z_{\alpha/2}) = 1 - \alpha\).</p>
+        <p>유의수준 \(\alpha\)에서 양쪽 꼬리 합이 \(\alpha\)가 되는 경계점.
+        <strong>신뢰도 \(1 - \alpha\) 신뢰구간</strong>과 <strong>양측 가설 검정</strong>의 기준점.</p>
+      </div>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr><th>\(\alpha\)</th><th>\(1 - \alpha\)</th><th>\(z_\alpha\)</th><th>\(z_{\alpha/2}\)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0.10</td><td>90%</td><td>1.28</td><td>1.65</td></tr>
+            <tr><td>0.05</td><td>95%</td><td>1.65</td><td>1.96</td></tr>
+            <tr><td>0.01</td><td>99%</td><td>2.33</td><td>2.58</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════ Q1 ═══════ -->
+    <section class="chapter" id="q1">
+      <div class="chap-num">QUESTION 01 — Proportion CI &amp; H.T.</div>
+      <h2>Q1. kaistshop 구매 확률 p 추정</h2>
+      <div class="chap-sub">n=900, 구매 27 / 비율 CI · 양측·단측 H.T. · CI vs H.T. SE 함정</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>고객이 kaistshop.com을 방문할 때마다 구매로 이어질 확률을 \(p\)라 한다.
+        900회 무작위 방문 표본 중 27번이 구매로 이어졌다.</p>
+        <p>(a) \(p\)의 95% 신뢰구간을 구하시오.</p>
+        <p>(b) \(\alpha = 5\%\)에서 \(p \ne 2\%\) 를 뒷받침할 통계적 증거가 되는가?</p>
+        <p>(c) \(\alpha = 5\%\)에서 \(p > 2\%\) 를 뒷받침할 통계적 증거가 되는가?</p>
+      </div>
+
+      <h3>(a) 95% 신뢰구간</h3>
+
+      <p><strong>① 표본평균:</strong> \(\bar{p} = \dfrac{27}{900} = 0.03 = 3\%\)</p>
+
+      <p><strong>② 표준오차 (표본 평균의 표준편차):</strong></p>
+      <div class="formula">
+        \[ \sigma_{\bar{p}} = \sqrt{\frac{p(1-p)}{n}} \simeq \sqrt{\frac{\bar{p}(1-\bar{p})}{n}} = \sqrt{\frac{0.03 \times 0.97}{900}} = 0.0057 = 0.57\% \]
+      </div>
+
+      <p><strong>③ 신뢰구간:</strong></p>
+      <div class="formula">
+        \[ \left(\bar{p} - z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}},\ \bar{p} + z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}\right) \]
+      </div>
+      <div class="formula">
+        \[ = (0.03 - 1.96 \times 0.0057,\ 0.03 + 1.96 \times 0.0057) = (0.019,\ 0.041) = (1.9\%,\ 4.1\%) \]
+      </div>
+
+      <div class="callout green">
+        <div class="label">(a) 답</div>
+        <p>95% 신뢰구간 \(\approx (1.9\%, 4.1\%)\). 진짜 구매 비율이 약 95% 확률로 이 사이에 있음.</p>
+      </div>
+
+      <h3>(b) 양측 검정 · p ≠ 2%</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : p = 2\%, \quad H_1 : p \ne 2\%\)</p>
+
+      <p><strong>② z-통계량 (H₀ 하에서 표준 거리):</strong></p>
+      <div class="formula">
+        \[ z = \frac{\bar{p} - p}{\sqrt{p(1-p)/n}} = \frac{0.03 - 0.02}{\sqrt{0.02 \times 0.98 / 900}} = \frac{0.01}{0.00467} = 2.14 \]
+      </div>
+
+      <p><strong>③ p-값 (양측):</strong> \(p\text{-value} = 2 \cdot P(Z > 2.14) = 2 \times 0.0162 = 0.0324\)</p>
+
+      <p><strong>④ 결론:</strong> \(0.0324 < 0.05 = \alpha\) → <strong>\(H_0\) 기각.</strong></p>
+
+      <p>임계값 비교로도 같은 결론: \(1.65 < 1.96 < 2.14 < 2.58\). 즉, 5%·10% 수준에서는 기각, 1% 수준에서는 기각 못 함.</p>
+
+      <div class="callout green">
+        <div class="label">(b) 답</div>
+        <p>5% 유의수준에서 \(p \ne 2\%\) 라는 증거가 통계적으로 충분함 — 진짜 구매 비율이 2%가 아니라고 결론 가능.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">[주의!] CI 결과와 H.T. 결과의 불일치</div>
+        <p>2%는 (a)의 95% CI \((1.9\%, 4.1\%)\) <em>안에 들어가는데</em>, (b)의 H.T.는 기각한다고 결론냈죠. 모순이에요.</p>
+        <p>원인: <strong>CI의 SE는 \(\bar{p} = 3\%\) 기반 근사</strong> (진짜 \(p\)를 모르니까), 반면
+        <strong>H.T.의 SE는 \(H_0\)의 \(p = 2\%\) 기반 정확치</strong>. 두 SE가 다르기 때문에 결론도 갈릴 수 있습니다.</p>
+        <p>이번처럼 결론이 갈리면 <strong>H.T. 결과(기각)가 옳습니다</strong> — H.T.가 \(H_0\) 하에서 정확한 SE를 쓰니까.</p>
+      </div>
+
+      <h3>(c) 단측 검정 · p > 2%</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : p \le 2\%, \quad H_1 : p > 2\%\)</p>
+
+      <p><strong>② z-값:</strong> 같음. \(z = 2.14\)</p>
+
+      <p><strong>③ p-값 (단측):</strong> \(p\text{-value} = P(Z > 2.14) = 0.0162 < 0.05 = \alpha\)</p>
+
+      <p><strong>④ 결론:</strong> <strong>\(H_0\) 기각, \(H_1\) 채택.</strong></p>
+
+      <p>또는 임계값으로: \(2.14 > 1.65\) 이므로 5% 유의수준에서 기각.</p>
+
+      <div class="callout green">
+        <div class="label">(c) 답</div>
+        <p>5%에서 \(p > 2\%\) 라는 통계적 증거가 충분함.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ Q2 ═══════ -->
+    <section class="chapter" id="q2">
+      <div class="chap-num">QUESTION 02 — Mean CI (3 levels)</div>
+      <h2>Q2. 우리은행 ATM 평균 인출액</h2>
+      <div class="chap-sub">n=50, X̄=45,000, σ=12,000 / 90·95·99% CI + 양측·단측 H.T.</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>KAIST 캠퍼스 ATM의 50명 고객 표본 평균이 45,000원, 모표준편차 \(\sigma = 12{,}000\)원으로 알려져 있다.</p>
+        <p>(a) 평균의 표준오차는?</p>
+        <p>(b) 90%, 95%, 99% 신뢰구간을 구하시오.</p>
+        <p>(c) 작년 평균 42,000원이 아니라는 증거를 \(\alpha = 1\%, 5\%, 10\%\)에서 검정.</p>
+        <p>(d) 평균이 42,000보다 크다는 증거를 \(\alpha = 1\%, 5\%, 10\%\)에서 검정 (경영지원팀 권고).</p>
+      </div>
+
+      <h3>(a) 평균의 표준오차</h3>
+
+      <div class="formula">
+        \[ \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{12{,}000}{\sqrt{50}} = 1{,}700 \]
+      </div>
+
+      <div class="callout green">
+        <div class="label">(a) 답</div>
+        <p>\(\sigma_{\bar{X}} = 1{,}700\)원</p>
+      </div>
+
+      <h3>(b) 신뢰구간 3종</h3>
+
+      <p>공식: \(\left(\bar{X} - z_{\alpha/2}\sigma_{\bar{X}},\ \bar{X} + z_{\alpha/2}\sigma_{\bar{X}}\right)\)</p>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>ME</th><th>CI</th></tr></thead>
+          <tbody>
+            <tr><td>90%</td><td>1.65</td><td>2,805</td><td>(42,195, 47,805)</td></tr>
+            <tr><td>95%</td><td>1.96</td><td>3,332</td><td>(41,668, 48,332)</td></tr>
+            <tr><td>99%</td><td>2.58</td><td>4,386</td><td>(40,614, 49,386)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>(c) 양측 검정 · μ ≠ 42,000</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu = 42{,}000, \quad H_1 : \mu \ne 42{,}000\)</p>
+
+      <p><strong>② z-통계량:</strong></p>
+      <div class="formula">
+        \[ z = \frac{\bar{X} - \mu}{\sigma_{\bar{X}}} = \frac{45{,}000 - 42{,}000}{1{,}700} = 1.76 \]
+      </div>
+
+      <p><strong>③ p-값 (양측):</strong> \(p\text{-value} = 0.0392 \times 2 = 0.0784 = 7.84\%\)</p>
+
+      <p><strong>④ 결론:</strong></p>
+      <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>\(\alpha\)</th><th>비교</th><th>결정</th></tr></thead>
+          <tbody>
+            <tr><td>10%</td><td>0.0784 &lt; 0.10</td><td><strong>\(H_0\) 기각</strong></td></tr>
+            <tr><td>5%</td><td>0.0784 &gt; 0.05</td><td>기각 못 함</td></tr>
+            <tr><td>1%</td><td>0.0784 &gt; 0.01</td><td>기각 못 함</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>(d) 단측 검정 · μ &gt; 42,000</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu \le 42{,}000, \quad H_1 : \mu > 42{,}000\)</p>
+
+      <p><strong>② z-값:</strong> 경계상황 \(\mu = 42{,}000\)에서 \(z = 1.76\) (같음).</p>
+
+      <p><strong>③ p-값 (단측):</strong> \(p\text{-value} = 0.0392 = 3.92\%\) (양측의 절반)</p>
+
+      <p><strong>④ 결론:</strong></p>
+      <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>\(\alpha\)</th><th>비교</th><th>결정</th></tr></thead>
+          <tbody>
+            <tr><td>10%</td><td>0.0392 &lt; 0.10</td><td><strong>\(H_0\) 기각</strong></td></tr>
+            <tr><td>5%</td><td>0.0392 &lt; 0.05</td><td><strong>\(H_0\) 기각</strong></td></tr>
+            <tr><td>1%</td><td>0.0392 &gt; 0.01</td><td>기각 못 함</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <div class="label">(d) 경영지원팀 권고</div>
+        <p>5%, 10%에서 평균 인출액이 42,000원보다 크다는 증거 충분. → <strong>준비 금액 증가 고려 권고.</strong> 단, 1%에선 결정 보류.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ Q3 ═══════ -->
+    <section class="chapter" id="q3">
+      <div class="chap-num">QUESTION 03 — Three methods for H.T.</div>
+      <h2>Q3. GS25 생수 일일 평균 수요</h2>
+      <div class="chap-sub">n=100, Σ=150,000, σ=397 / p-value · z-value · CI 세 방법</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>GS25 매장 100일간 생수 판매량 합계 150,000병, 모표준편차 \(\sigma = 397\)병/일.</p>
+        <p>(a) 표본평균과 표준오차.</p>
+        <p>(b) 90·95·99% CI.</p>
+        <p>(c) \(\mu = 1{,}425\) 인지 \(\alpha = 1\%, 5\%, 10\%\)에서 (i) p-값 (ii) z-값 (iii) CI 세 방법으로 검정.</p>
+        <p>(d) CI로만 \(\mu = 1{,}580\) 검정. p-값에 대해 어떤 결론?</p>
+      </div>
+
+      <h3>(a) 표본평균과 표준오차</h3>
+
+      <div class="formula">
+        \[ \bar{X} = \frac{\sum X_i}{n} = \frac{150{,}000}{100} = 1{,}500 \]
+      </div>
+
+      <div class="formula">
+        \[ \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{397}{\sqrt{100}} = 39.7 \quad \text{(근사 아닌 정확치)} \]
+      </div>
+
+      <h3>(b) 신뢰구간 3종</h3>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>ME</th><th>CI</th></tr></thead>
+          <tbody>
+            <tr><td>90%</td><td>1.65</td><td>65.5</td><td>(1,434.5, 1,565.5)</td></tr>
+            <tr><td>95%</td><td>1.96</td><td>77.8</td><td>(1,422.2, 1,577.8)</td></tr>
+            <tr><td>99%</td><td>2.58</td><td>102.4</td><td>(1,397.6, 1,602.4)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>(c) μ = 1,425 검정 — 세 방법</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu = 1{,}425, \quad H_1 : \mu \ne 1{,}425\)</p>
+
+      <p><strong>② z-통계량:</strong></p>
+      <div class="formula">
+        \[ z = \frac{1{,}500 - 1{,}425}{39.7} = 1.89 \]
+      </div>
+
+      <p><strong>방법 i) p-값:</strong> \(P(Z > 1.89) \times 2 = 0.029 \times 2 = 0.058 = 5.8\%\)</p>
+      <p>→ 10%에서 \(H_0\) 기각, 5%·1%에서 기각 못 함.</p>
+
+      <p><strong>방법 ii) z-값 비교:</strong> 임계 z = 2.58, 1.96, 1.65. \(z = 1.89\) 이므로 1.65 보다 큼 → 10%에서 기각, 1.96·2.58 못 넘음 → 5%·1% 못 함.</p>
+
+      <p><strong>방법 iii) CI:</strong> 90% CI 만 1,425가 안 들어감 → 10%에서 기각. 95%·99% CI에는 들어감 → 5%·1% 못 함.</p>
+
+      <div class="callout green">
+        <div class="label">(c) 답 — 세 방법 모두 같은 결론</div>
+        <p>10% 유의수준에서 \(H_0\) 기각, 5%·1%에서 기각 못 함. 세 방법의 결론이 일치하는 것이 검정의 일관성.</p>
+      </div>
+
+      <h3>(d) CI로만 μ = 1,580 검정</h3>
+
+      <p>1,580이 어느 CI에 들어가는지:</p>
+      <ul>
+        <li>90% CI: (1,434.5, 1,565.5) — 1,580 <strong>안 들어감</strong> → 10% 기각</li>
+        <li>95% CI: (1,422.2, 1,577.8) — 1,580 <strong>안 들어감</strong> → 5% 기각</li>
+        <li>99% CI: (1,397.6, 1,602.4) — 1,580 <strong>들어감</strong> → 1% 기각 못 함</li>
+      </ul>
+
+      <p><strong>p-값에 대한 추론:</strong> 5%에서 기각, 1%에서 기각 못 함 → \(0.01 < p\text{-value} < 0.05\).</p>
+
+      <div class="callout green">
+        <div class="label">(d) 답</div>
+        <p>5%·10%에서 기각, 1%에서 기각 못 함. p-값은 1%보다 크고 5%보다 작은 사이에 위치.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ Q4 ═══════ -->
+    <section class="chapter" id="q4">
+      <div class="chap-num">QUESTION 04 — Proportions: one and two</div>
+      <h2>Q4. 한식/양식 메뉴 선호 (서울·대전)</h2>
+      <div class="chap-sub">n_S=850, 양식 365 / n_D=620, 양식 237 — 한 비율 + 두 비율</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>서울 캠퍼스 850명 중 485명이 한식, 365명이 양식 선호. 대전 캠퍼스 620명 중 237명이 양식 선호.</p>
+        <p>(a) 양식 선호 비율의 CI 3종 (서울).</p>
+        <p>(b) 서울 양식 비율 ≠ 40% 검정 (\(\alpha = 5\%\)).</p>
+        <p>(c) 서울 양식 비율 &gt; 40% 검정 (\(\alpha = 5\%\)).</p>
+        <p>(d) 두 집단 비율 비교 — 한눈에 충분히 다른가?</p>
+        <p>(e) 두 비율 차이의 CI 3종.</p>
+        <p>(f) \(p_S \ne p_D\) 검정 (\(\alpha = 5\%\)).</p>
+        <p>(g) \(p_S > p_D\) 검정 (\(\alpha = 5\%\)).</p>
+      </div>
+
+      <h3>0단계 · 기호 정리</h3>
+
+      <div class="data-strip">
+        서울: \(n_S = 850\), 양식 365 → \(\hat{p}_S = 365/850 = 0.429 = 42.9\%\)<br>
+        대전: \(n_D = 620\), 양식 237 → \(\hat{p}_D = 237/620 = 0.382 = 38.2\%\)
+      </div>
+
+      <h3>(a) 서울 양식 선호 비율 CI</h3>
+
+      <p>표준오차:</p>
+      <div class="formula">
+        \[ \text{SE} = \sqrt{\frac{0.429 \times (1 - 0.429)}{850}} = 0.017 \]
+      </div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>CI</th></tr></thead>
+          <tbody>
+            <tr><td>90%</td><td>1.65</td><td>(40.1%, 45.7%)</td></tr>
+            <tr><td>95%</td><td>1.96</td><td>(39.6%, 46.2%)</td></tr>
+            <tr><td>99%</td><td>2.58</td><td>(38.5%, 47.3%)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>(b) 양측 검정 · p_S ≠ 40%</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : p_S = 40\%, \quad H_1 : p_S \ne 40\%\)</p>
+
+      <p><strong>② z-통계량 (H₀ 하):</strong></p>
+      <div class="formula">
+        \[ z = \frac{0.429 - 0.40}{\sqrt{0.4 \times 0.6 / 850}} = 1.73 \]
+      </div>
+
+      <p><strong>③ p-값 (양측):</strong> \(0.0418 \times 2 = 0.0836 > 5\%\)</p>
+
+      <p><strong>④ 결론:</strong> 5%에서 \(H_0\) 기각 못 함.</p>
+
+      <h3>(c) 단측 검정 · p_S &gt; 40%</h3>
+
+      <p>같은 \(z = 1.73\). 단측 p-값 \(= 0.0418 < 5\%\) → <strong>\(H_0\) 기각.</strong></p>
+
+      <div class="callout blue">
+        <div class="label">(b)와 (c)의 차이</div>
+        <p>같은 데이터·같은 z. 양측에서는 기각 못 했지만 단측에서는 기각. 방향을 미리 정해두면 같은 신호가 두 배 강한 증거로 인정되는 것 — 그래서 단측은 사전에 방향이 정해진 경우에만 사용.</p>
+      </div>
+
+      <h3>(d) 두 집단 한눈 비교</h3>
+
+      <p>\(\hat{p}_S - \hat{p}_D = 0.429 - 0.382 = 4.7\%p\). 언뜻 보면 다른 집단으로 볼 만큼 차이가 있어 보임. (e)~(g)에서 통계로 검증.</p>
+
+      <h3>(e) 두 비율 차이의 CI</h3>
+
+      <p>표준오차 (분리 추정):</p>
+      <div class="formula">
+        \[ \text{SE} = \sqrt{\frac{\hat{p}_S(1-\hat{p}_S)}{n_S} + \frac{\hat{p}_D(1-\hat{p}_D)}{n_D}} = \sqrt{\frac{0.429 \times 0.571}{850} + \frac{0.382 \times 0.618}{620}} = 2.59\% \]
+      </div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>CI</th><th>0 포함?</th></tr></thead>
+          <tbody>
+            <tr><td>90%</td><td>1.65</td><td>(0.43%, 8.97%)</td><td>안 들어감</td></tr>
+            <tr><td>95%</td><td>1.96</td><td>(−0.37%, 9.77%)</td><td>들어감</td></tr>
+            <tr><td>99%</td><td>2.58</td><td>(−1.97%, 11.37%)</td><td>들어감</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>10%에서만 두 비율이 다르다는 신호. 5%·1%에서는 증거 부족.</p>
+
+      <h3>(f) 양측 검정 · p_S ≠ p_D</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : p_S = p_D, \quad H_1 : p_S \ne p_D\)</p>
+
+      <p><strong>② Pooled 표준오차 (H₀ 하):</strong></p>
+      <p>\(H_0\)가 참이면 \(p_S = p_D = p\)이므로 두 집단을 합쳐 \(p\)를 추정:</p>
+      <div class="formula">
+        \[ \bar{p} = \frac{365 + 237}{850 + 620} = \frac{602}{1{,}470} = 0.4095 \]
+      </div>
+      <div class="formula">
+        \[ \text{SE} \simeq \sqrt{\frac{\bar{p}(1-\bar{p})}{n_S} + \frac{\bar{p}(1-\bar{p})}{n_D}} = \sqrt{\frac{0.4095 \times 0.5905}{850} + \frac{0.4095 \times 0.5905}{620}} = 0.0260 \]
+      </div>
+
+      <p><strong>③ z-통계량:</strong></p>
+      <div class="formula">
+        \[ z = \frac{\hat{p}_S - \hat{p}_D}{\text{SE}} = \frac{0.0472}{0.0260} = 1.816 < 1.96 \]
+      </div>
+
+      <p><strong>④ p-값 (양측):</strong> \(0.0347 \times 2 = 0.0694 = 6.94\% > 5\%\)</p>
+
+      <p><strong>⑤ 결론:</strong> 5%에서 \(H_0\) 기각 못 함.</p>
+
+      <h3>(g) 단측 검정 · p_S &gt; p_D</h3>
+
+      <p>같은 \(z = 1.816\). \(1.816 > 1.65\) (단측 임계값) 이므로 5%에서 <strong>\(H_0\) 기각.</strong></p>
+      <p>p-값: \(0.0347 < 5\%\) → 같은 결론.</p>
+
+      <div class="callout green">
+        <div class="label">Q4 정리</div>
+        <p>두 비율 비교에서 CI는 분리 추정, H.T.는 pooled \(\bar{p}\). 양측과 단측의 결론이 다르게 나올 수 있음에 유의.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ Q5 ═══════ -->
+    <section class="chapter" id="q5">
+      <div class="chap-num">QUESTION 05 — Two independent means</div>
+      <h2>Q5. CK푸드 KAIST vs B대학 월 식비</h2>
+      <div class="chap-sub">n_x=n_y=500 / 독립 표본 — 두 평균 차이</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>KAIST 식당: \(\bar{X} = 255{,}200\)원, \(\sigma_x = 78{,}500\)원. B대학: \(\bar{Y} = 242{,}800\)원, \(\sigma_y = 94{,}700\)원. 각각 \(n = 500\), 독립.</p>
+        <p>(a) \(\mu_x - \mu_y\)의 90·95·99% CI.</p>
+        <p>(b) \(\mu_x - \mu_y \ne 0\) 검정 (1%).</p>
+        <p>(c) \(\mu_x - \mu_y > 0\) 검정 (1%).</p>
+      </div>
+
+      <h3>(a) 두 평균 차이의 CI</h3>
+
+      <p><strong>① 표본 평균 차이:</strong> \(\bar{X} - \bar{Y} = 12{,}400\)원</p>
+
+      <p><strong>② 표준오차:</strong></p>
+      <div class="formula">
+        \[ \sigma_{\bar{X} - \bar{Y}} = \sqrt{\frac{\sigma_x^2}{n_x} + \frac{\sigma_y^2}{n_y}} = \sqrt{\frac{78{,}500^2}{500} + \frac{94{,}700^2}{500}} = 5{,}501 \]
+      </div>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>CI</th></tr></thead>
+          <tbody>
+            <tr><td>90%</td><td>1.65</td><td>(3,323, 21,477)</td></tr>
+            <tr><td>95%</td><td>1.96</td><td>(1,618, 23,182)</td></tr>
+            <tr><td>99%</td><td>2.58</td><td>(−1,793, 26,593)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>(b) 양측 검정 · μ_x − μ_y ≠ 0</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu_x - \mu_y = 0, \quad H_1 : \mu_x - \mu_y \ne 0\)</p>
+
+      <p><strong>② z-통계량:</strong></p>
+      <div class="formula">
+        \[ z = \frac{\bar{X} - \bar{Y}}{\sigma_{\bar{X}-\bar{Y}}} = \frac{255{,}200 - 242{,}800}{5{,}501} = 2.25 \]
+      </div>
+
+      <p><strong>③ 비교:</strong> \(2.25 < 2.58 = z_{0.005}\). p-값 \(= P(Z > 2.25) \times 2 = 0.012 \times 2 = 2.4\% > 1\%\).</p>
+
+      <p><strong>④ 결론:</strong> 1%에서 \(H_0\) 기각 못 함.</p>
+
+      <h3>(c) 단측 검정 · μ_x − μ_y &gt; 0</h3>
+
+      <p>같은 \(z = 2.25 < 2.33 = z_{0.01}\). 단측 p-값 \(= 1.2\% > 1\%\) → 1%에서 기각 못 함.</p>
+
+      <div class="callout green">
+        <div class="label">Q5 정리</div>
+        <p>두 독립 평균 차이는 SE에 \(\sqrt{\sigma_x^2/n_x + \sigma_y^2/n_y}\). 같은 z=2.25라도 \(\alpha\) 기준이 엄격하면 기각 못 함 — 5%였다면 양측·단측 모두 기각이었을 것.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ Q6 ═══════ -->
+    <section class="chapter" id="q6">
+      <div class="chap-num">QUESTION 06 — Paired sample</div>
+      <h2>Q6. 본관 vs 기타 학생식당 (짝 표본)</h2>
+      <div class="chap-sub">n=500, D=X−Y / 짝지은 표본 — S_D 사용</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>같은 학생 500명에게 본관 식당(X)과 기타 식당(Y) 월 식비를 각각 조사.</p>
+        <p>표본 평균: \(\bar{X} = 298{,}100\)원, \(\bar{Y} = 289{,}200\)원.</p>
+        <p>표본 표준편차: \(S_X = 63{,}100\)원, \(S_Y = 49{,}400\)원.</p>
+        <p>차이 \(D = X - Y\)의 표본 표준편차 \(S_D = 88{,}700\)원.</p>
+        <p>(a) \(\mu_x - \mu_y \ne 0\) 검정 (\(\alpha = 1\%\)).</p>
+        <p>(b) \(\mu_x - \mu_y < 0\) 검정 (\(\alpha = 1\%\)).</p>
+      </div>
+
+      <h3>핵심 · 짝 표본의 특수성</h3>
+
+      <div class="callout">
+        <div class="label">왜 독립 공식 못 씀?</div>
+        <p>같은 사람에서 \(X\)와 \(Y\)를 둘 다 측정 — 두 측정값이 서로 상관됨. 그래서 \(\text{Var}[\bar{X} - \bar{Y}]\)에 공분산 항이 들어가야 함.</p>
+        <p>해결: \(D = X - Y\)를 새 변수로 만들면 한 표본 문제로 환원. \(S_D\)는 데이터에서 직접 측정 (\(S_X, S_Y\)로 계산 불가).</p>
+      </div>
+
+      <h3>(a) 양측 검정 · μ_x − μ_y ≠ 0</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu_x - \mu_y = 0, \quad H_1 : \mu_x - \mu_y \ne 0\)</p>
+
+      <p><strong>② \(\bar{D}\) 계산:</strong> \(\bar{D} = \bar{X} - \bar{Y} = 298{,}100 - 289{,}200 = 8{,}900\)</p>
+
+      <p><strong>③ 표준오차 (\(\sigma_D\) 모르니 \(S_D\)로 근사):</strong></p>
+      <div class="formula">
+        \[ \text{SE}_{\bar{D}} \simeq \frac{S_D}{\sqrt{n}} = \frac{88{,}700}{\sqrt{500}} = \frac{88{,}700}{22.36} = 3{,}966 \]
+      </div>
+
+      <p><strong>④ z-통계량:</strong></p>
+      <div class="formula">
+        \[ z = \frac{\bar{D} - 0}{S_D / \sqrt{n}} = \frac{8{,}900}{3{,}966} = 2.24 \]
+      </div>
+
+      <p><strong>⑤ p-값 (양측):</strong> \(p\text{-value} = 2 \cdot P(Z > 2.24) = 2.49\% > 1\%\)</p>
+
+      <p><strong>⑥ 결론:</strong> 1%에서 \(H_0\) 기각 못 함.</p>
+
+      <h3>(b) 단측 검정 · μ_x − μ_y &lt; 0</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu_x - \mu_y \ge 0, \quad H_1 : \mu_x - \mu_y < 0\)</p>
+
+      <p><strong>② 관찰값 검토:</strong> \(\bar{X} - \bar{Y} = 8{,}900 \ge 0\) — 이미 \(H_0\)에 부합!</p>
+
+      <p>관찰된 표본 자체가 "본관이 기타보다 큼" 방향이므로, \(H_1\)("본관 < 기타") 을 뒷받침할 증거가 처음부터 없음. p-값을 계산할 필요조차 없이 결론 가능.</p>
+
+      <p><strong>③ 결론:</strong> 어떤 유의수준에서도 \(H_0\) 기각 못 함.</p>
+
+      <div class="callout green">
+        <div class="label">Q6 정리</div>
+        <p>짝 표본: \(D = X - Y\)로 변환 후 한 표본 검정. SE에 \(S_D / \sqrt{n}\). 그리고 단측 검정에서는 관측 방향이 \(H_1\)과 반대면 계산 없이 기각 못 함을 알 수 있음.</p>
+      </div>
+    </section>
+
+    <div class="take-away">
+      <div class="label">KEY TAKEAWAY</div>
+      Q1~Q6 풀이의 흐름은 모두 같음 — <em>① 가설 설정 → ② 표준오차 계산 → ③ z-통계량 → ④ p-값 (또는 임계값 비교) → ⑤ 결론.</em>
+      차이는 SE 공식 (한 비율 vs 두 비율, 독립 vs 짝, σ 알려짐 vs 추정) 뿐. 시험장에선 <strong>SE만 정확히 골라쓰면 절반 완성.</strong>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="exam-formula.html" class="prev">◀ 기말 공식 시트</a>
+      <a href="goodbelly.html" class="next">GoodBelly 사례 ▶</a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

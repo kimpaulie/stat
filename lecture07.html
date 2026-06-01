@@ -242,7 +242,7 @@
           <line x1="280" y1="165" x2="400" y2="165" stroke="#1e3a8a" stroke-width="2"/>
           <line x1="280" y1="160" x2="280" y2="170" stroke="#1e3a8a" stroke-width="2"/>
           <line x1="400" y1="160" x2="400" y2="170" stroke="#1e3a8a" stroke-width="2"/>
-          <text x="340" y="157" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">σ / √n</text>
+          <text x="340" y="157" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">σ / \(\sqrt{n}\)</text>
           <text x="600" y="245" text-anchor="end" font-size="11" fill="#6b6b6b" font-style="italic">n이 커지면 폭은 좁아져요.</text>
         </svg>
       </div>
@@ -285,7 +285,7 @@
 
       <div class="callout green">
         <div class="label">Q1 답</div>
-        <p><strong>표본평균은 95% 확률로 모평균 \(\mu\)를 중심으로 \(\pm\)\(1.96\cdot \sigma /\sqrt{n}\) 안에 있다.</strong></p>
+        <p><strong>표본평균은 95% 확률로 모평균 \(\mu\)를 중심으로 \(\pm 1.96\cdot \sigma /\sqrt{n}\) 안에 있다.</strong></p>
       </div>
 
       <h3>추정 오차 — Estimation Error</h3>
@@ -302,7 +302,7 @@
       <div class="cards-2">
         <div class="card">
           <h5>95% — 가까운 경우</h5>
-          <p>\(\bar{X}\)이 \(\mu\) 근처. 추정 오차 \(\le\) \(1.96\cdot \sigma /\sqrt{n}\).<br>
+          <p>\(\bar{X}\)이 \(\mu\) 근처. 추정 오차 \(\le 1.96\cdot \sigma /\sqrt{n}\).<br>
           → 안심!</p>
         </div>
         <div class="card">
@@ -321,7 +321,7 @@
         <p>이번엔 \(\bar{X}\)이 고정값, \(\mu\)가 알 수 없는 진짜 값. 정반대 방향이에요.</p>
       </div>
 
-      <p>발상은 똑같아요. Q1에서 \(|\bar{X} - \mu |\) \(\le\) \(1.96\cdot \sigma /\sqrt{n}\) 이 95% 성립한다고 했죠?
+      <p>발상은 똑같아요. Q1에서 \(|\bar{X} - \mu | \le 1.96\cdot \sigma /\sqrt{n}\) 이 95% 성립한다고 했죠?
       이걸 부등식 정리만 다시 하면:</p>
 
       <div class="formula wide">
@@ -330,7 +330,7 @@
 
       <div class="callout green">
         <div class="label">Q2 답 = 신뢰구간</div>
-        <p><strong>관찰된 \(\bar{X}\)을 중심으로 \(\pm\)\(1.96\cdot \sigma /\sqrt{n}\) 안에, 진짜 \(\mu\)가 95% 확률로 있다.</strong></p>
+        <p><strong>관찰된 \(\bar{X}\)을 중심으로 \(\pm 1.96\cdot \sigma /\sqrt{n}\) 안에, 진짜 \(\mu\)가 95% 확률로 있다.</strong></p>
         <p>이 구간이 바로 <em>"95% 신뢰구간"</em>이에요!</p>
       </div>
 
@@ -517,7 +517,7 @@
       <div class="definition">
         <div class="term">Margin of Error · 오차범위 (ME)</div>
         <div class="kor">띠의 반지름</div>
-        <p>ME = \(Z_{\alpha /2}\) · \(\sigma /\sqrt{n}\). CI는 "\(\bar{X}\) \(\pm\) ME" 형태로 써요.
+        <p>ME = \(Z_{\alpha /2}\) · \(\sigma /\sqrt{n}\). CI는 "\(\bar{X} \pm\) ME" 형태로 써요.
         ME가 작을수록 구간이 좁고, 정보가 날카로워요.</p>
       </div>
 
@@ -713,7 +713,7 @@
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         \(\sigma\) 모르면 그 자리에 표본 표준편차 S를 넣어 근사 CI.
-        구조 그대로 — Z = 1.96, \(\pm\)\(1.96\cdot S/\sqrt{n}\).
+        구조 그대로 — Z = 1.96, \(\pm 1.96\cdot S/\sqrt{n}\).
       </div>
 
     </section>
@@ -878,7 +878,7 @@
 
       <ol class="steps">
         <li><strong>자유도.</strong> df = \(n - 1\) = 24.</li>
-        <li><strong>임계값.</strong> \(t_{0.025, 24}\) \(\approx\) <strong>2.064</strong> (t 표에서).</li>
+        <li><strong>임계값.</strong> \(t_{0.025, 24} \approx\) <strong>2.064</strong> (t 표에서).</li>
         <li><strong>표준오차.</strong> \(s/\sqrt{n}\) = 1.2/5 = 0.24.</li>
         <li><strong>오차범위.</strong> ME = 2.064 × 0.24 \(\approx\) 0.495.</li>
         <li><strong>CI.</strong> 10.5 \(\pm\) 0.495 → <strong>(10.005, 10.995)</strong> 시간.</li>
@@ -921,7 +921,7 @@
 
       <h3>n이 4배 되면 폭은 반으로</h3>
 
-      <p>√n이 분모이기 때문에 n을 4배로 키우면 표준오차는 √4 = 2배만큼 작아져요.
+      <p>\(\sqrt{n}\)이 분모이기 때문에 n을 4배로 키우면 표준오차는 \(\sqrt{4}\) = 2배만큼 작아져요.
       즉 <strong>구간 폭이 절반</strong>이 돼요.</p>
 
       <div class="data-strip">
@@ -955,7 +955,7 @@
             <line x1="80" y1="68" x2="620" y2="68"/>
           </g>
 
-          <!-- 곡선: ME = 1.96 * σ / √n (σ=10) -->
+          <!-- 곡선: ME = 1.96 * σ / \(\sqrt{n}\) (σ=10) -->
           <!-- n=10 → 6.20 / n=25 → 3.92 / n=50 → 2.77 / n=100 → 1.96 / n=200 → 1.39 -->
           <path d="M 140 104 Q 200 140, 230 154 Q 300 180, 330 180 Q 380 195, 430 197 Q 490 207, 530 213"
                 fill="none" stroke="#1e3a8a" stroke-width="2.5"/>
@@ -1031,7 +1031,7 @@
         \[ \hat{p} \pm Z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
       </div>
 
-      <p>즉, 표본비율 \(\hat{p}\) 중심으로 양옆 "Z × √(\(\hat{p} (1-\hat{p} )/n\))" 만큼 펼치면 끝.</p>
+      <p>즉, 표본비율 \(\hat{p}\) 중심으로 양옆 "Z × \(\sqrt{\(\hat{p} (1-\hat{p} )/n\)}\)" 만큼 펼치면 끝.</p>
 
       <p>제곱근 안쪽 <strong>\(\hat{p} (1 - \hat{p} )\)</strong>이 분산 역할을 해요.
       비율에서는 이 값이 \(\sigma^2\) 자리를 대신하는 거죠.</p>
@@ -1112,7 +1112,7 @@
         <tbody>
           <tr><td>df</td><td>29</td></tr>
           <tr><td>\(t_{0.025, 29}\)</td><td>2.045</td></tr>
-          <tr><td>SE = \(s/\sqrt{n}\)</td><td>0.5 / √30 \(\approx\) 0.0913</td></tr>
+          <tr><td>SE = \(s/\sqrt{n}\)</td><td>0.5 / \(\sqrt{30} \approx\) 0.0913</td></tr>
           <tr><td>ME = t · SE</td><td>2.045 × 0.0913 \(\approx\) 0.187</td></tr>
           <tr><td class="hi">95% CI</td><td class="hi">(1.913, 2.287) 일</td></tr>
         </tbody>
@@ -1157,7 +1157,7 @@
 
       <ol class="steps">
         <li>조건 확인: \(n\hat{p} = 15\), \(n(1-\hat{p} ) = 485\). 살짝 아슬하지만 OK.</li>
-        <li>SE = √(0.03 × 0.97 / 500) \(\approx\) √0.0000582 \(\approx\) 0.00763.</li>
+        <li>SE = \(\sqrt{0.03  \times  0.97 / 500} \approx \sqrt{0.0000582} \approx\) 0.00763.</li>
         <li>ME = 1.96 × 0.00763 \(\approx\) 0.01495.</li>
         <li>CI = 0.03 \(\pm\) 0.015 → <strong>(0.015, 0.045)</strong> = (1.5%, 4.5%).</li>
       </ol>
@@ -1247,7 +1247,7 @@
           공분산은 0이라 빠져요.
         </li>
         <li><strong>분포 (Distribution).</strong>
-          \(n_S\), \(n_T\)가 충분히 크면 <strong>CLT</strong>에 의해
+          \(n_S , n_T\)가 충분히 크면 <strong>CLT</strong>에 의해
           각 표본평균이 정규분포에 가까워지고,
           <em>정규끼리의 차</em>도 여전히 정규예요.
           <div class="formula">
@@ -1287,7 +1287,7 @@
 
       <div class="callout blue">
         <div class="label">\(\sigma\)를 모를 때</div>
-        <p>\(\sigma_S\), \(\sigma_T\)를 모르면 (거의 항상 모르죠)
+        <p>\(\sigma_S , \sigma_T\)를 모르면 (거의 항상 모르죠)
         표본 분산 <strong>\(S_S^2\)</strong>, <strong>\(S_T^2\)</strong>로 바꿔 넣어요.</p>
         <div class="formula wide">
           \[ (\bar{X}_S - \bar{X}_T) \pm 1.96 \cdot \sqrt{S_S^2/n_S + S_T^2/n_T} \]
@@ -1341,7 +1341,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        두 평균 차이의 CI는 (\(\bar{X}_S\)−\(\bar{X}_T\)) \(\pm\) 1.96·√(\(\sigma^2_S\)/\(n_S\) + \(\sigma^2_T\)/\(n_T\)).
+        두 평균 차이의 CI는 (\(\bar{X}_S\)−\(\bar{X}_T\)) \(\pm\) 1.96·\(\sqrt{\sigma^2_S/n_S + \sigma^2_T/n_T}\).
         \(\sigma\) 모르면 S로.
       </div>
 
@@ -1389,7 +1389,7 @@
 
       <div class="callout blue">
         <div class="label">실제로는 \(\hat{p}\)로 근사</div>
-        <p>진짜 \(p_S\), \(p_T\)를 모르니까
+        <p>진짜 \(p_S , p_T\)를 모르니까
         <strong>표본비율 \(\hat{p}\)</strong>로 대체해서 계산해요.</p>
         <div class="formula wide">
           \[ (\hat{p}_S - \hat{p}_T) \pm 1.96 \cdot \sqrt{\hat{p}_S(1-\hat{p}_S)/n_S + \hat{p}_T(1-\hat{p}_T)/n_T} \]
@@ -1417,7 +1417,7 @@
             \[ = 0.000493 + 0.000461 \approx 0.000954 \]
           </div>
         </li>
-        <li><strong>SE.</strong> √0.000954 \(\approx\) <strong>0.0309</strong>.</li>
+        <li><strong>SE.</strong> \(\sqrt{0.000954} \approx\) <strong>0.0309</strong>.</li>
         <li><strong>ME.</strong> 1.96 × 0.0309 \(\approx\) 0.0606.</li>
         <li><strong>95% CI.</strong> 0.08 \(\pm\) 0.0606 → <strong>(0.019, 0.141)</strong>.</li>
       </ol>
@@ -1459,7 +1459,7 @@
         <div class="term">Paired Samples · 짝 표본</div>
         <div class="kor">한 대상에서 두 측정값이 나오는 표본</div>
         <p>학생 1명에게서 (수학 점수, 통계 점수)를 함께 받는 식.
-        각 학생이 <em>한 쌍의 숫자</em> (\(X_i\), \(Y_i\))를 내요.</p>
+        각 학생이 <em>한 쌍의 숫자</em> (\(X_i , Y_i\))를 내요.</p>
       </div>
 
       <div class="analogy">
@@ -1479,13 +1479,13 @@
         \[ \mathrm{Var}[\bar{X} - \bar{Y}] = \sigma_X^2/n + \sigma_Y^2/n + 2 \cdot \mathrm{Cov}[\bar{X}, \bar{Y}] \]
       </div>
 
-      <p>즉, 뒤에 <strong>공분산 2·Cov[\(\bar{X}\), \(\bar{Y}\)]</strong>가 달라붙어요.
+      <p>즉, 뒤에 <strong>공분산 2·Cov[\(\bar{X} , \bar{Y}\)]</strong>가 달라붙어요.
       독립이었으면 이게 0이어서 깔끔했는데,
       여기선 같은 사람에서 나온 숫자라 <em>연관</em>돼 있어 0이 아니에요.</p>
 
       <div class="callout yellow">
         <div class="label">왜 문제인가</div>
-        <p>공분산 Cov[\(\bar{X}\), \(\bar{Y}\)]를 <em>어떻게 추정하지?</em> 까다로워요.
+        <p>공분산 Cov[\(\bar{X} , \bar{Y}\)]를 <em>어떻게 추정하지?</em> 까다로워요.
         그래서 다른 길을 찾아야 해요. 다행히 아주 예쁜 트릭이 있어요.</p>
       </div>
 
@@ -1528,7 +1528,7 @@
           </div>
           즉, D값들의 표본분산만 구하면 끝이에요.
         </li>
-        <li><strong>분포.</strong> n이 충분히 크면 CLT에 의해 \(\bar{D}\) \(\approx\) 정규.
+        <li><strong>분포.</strong> n이 충분히 크면 CLT에 의해 \(\bar{D} \approx\) 정규.
           정규분포 이야기로 복귀.
         </li>
       </ol>
@@ -1542,7 +1542,7 @@
       </div>
 
       <p>즉, <em>차이값 \(D_i\)들의 평균</em>을 중심으로,
-      <em>차이값들의 표준편차</em>를 √n으로 나눈 만큼 펼치면 돼요.
+      <em>차이값들의 표준편차</em>를 \(\sqrt{n}\)으로 나눈 만큼 펼치면 돼요.
       \(\mu_X\) − \(\mu_Y\)의 95% CI 완성.</p>
 
       <div class="callout green">
@@ -1562,8 +1562,8 @@
 
       <ol class="steps">
         <li><strong>자유도.</strong> df = \(n - 1\) = 9.</li>
-        <li><strong>임계값.</strong> \(t_{0.025, 9}\) \(\approx\) <strong>2.262</strong>.</li>
-        <li><strong>표준오차.</strong> \(S_D\)/√n = 6/√10 \(\approx\) 1.897.</li>
+        <li><strong>임계값.</strong> \(t_{0.025, 9} \approx\) <strong>2.262</strong>.</li>
+        <li><strong>표준오차.</strong> \(S_D\)/\(\sqrt{n}\) = 6/\(\sqrt{10} \approx\) 1.897.</li>
         <li><strong>오차범위.</strong> ME = 2.262 × 1.897 \(\approx\) 4.29.</li>
         <li><strong>95% CI.</strong> 5 \(\pm\) 4.29 → <strong>(0.71, 9.29)</strong> 점.</li>
       </ol>
@@ -1604,7 +1604,7 @@
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         짝 표본은 \(D_i\) = \(X_i\) − \(Y_i\) 변환으로 한 표본 문제가 돼요.
-        \(\bar{D}\) \(\pm\) 1.96·\(S_D\)/√n.
+        \(\bar{D} \pm\) 1.96·\(S_D\)/\(\sqrt{n}\).
       </div>
 
     </section>
@@ -1635,10 +1635,10 @@
         <li>t는 정규의 사촌 — 꼬리가 두껍고 df 커지면 수렴</li>
         <li>신뢰 높을수록 구간 넓어요 — Z 1.645 / 1.96 / 2.576</li>
         <li>n 4배 → 폭 절반. n 결정 공식도 배웠어요</li>
-        <li>모비율 CI: \(\hat{p}\) \(\pm\) Z · √(\(\hat{p} (1-\hat{p} )/n\))</li>
+        <li>모비율 CI: \(\hat{p} \pm\) Z · \(\sqrt{\(\hat{p} (1-\hat{p} )/n\)}\)</li>
         <li>"95% 신뢰"의 올바른 해석 — 100번 중 95번</li>
-        <li><strong>두 평균 차이</strong>: (\(\bar{X}_S\)−\(\bar{X}_T\)) \(\pm\) 1.96·√(\(\sigma^2/n\) 합)</li>
-        <li><strong>두 비율 차이</strong>: (\(\hat{p}_S\)−\(\hat{p}_T\)) \(\pm\) 1.96·√(\(p(1-p)/n\) 합)</li>
+        <li><strong>두 평균 차이</strong>: (\(\bar{X}_S\)−\(\bar{X}_T\)) \(\pm\) 1.96·\(\sqrt{\sigma^2/n 합}\)</li>
+        <li><strong>두 비율 차이</strong>: (\(\hat{p}_S\)−\(\hat{p}_T\)) \(\pm\) 1.96·\(\sqrt{\(p(1-p)/n\) 합}\)</li>
         <li><strong>짝 표본</strong>: \(D_i\) = \(X_i\) − \(Y_i\) 변환 → 한 표본 문제로 환원</li>
       </ul>
 

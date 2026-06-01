@@ -6,7 +6,9 @@
 <title>연습문제 2 · 풀이 노트 | 통계 학습 노트</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<\(script defer src=\)\(https\)\(//cdn.jsdelivr.net/npm/katex\)ist/katex.min.js"><\(/script\)<\(script defer src=\)\(https\)\(//cdn.jsdelivr.net/npm/katex\)ist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$'\(,display\)e},{left:'\\[',right:'\\]'\(,display\)e},{left:'\\(',right:'\\)'\(,display\)se}],throwOnError:false});"><\(/script\)</head>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+</head>
 <body>
 
 <header class="topbar">
@@ -119,11 +121,11 @@
         <div class="map-row">
           <div>
             <strong>평균의 CI</strong>
-            <span>\(\bar{X}\) \(\pm\) \(z_{\alpha/2}\) · \(\sigma\)/√n</span>
+            <span>\(\bar{X} \pm z_{\alpha/2} \cdot \sigma/\sqrt{n}\)</span>
           </div>
           <div>
             <strong>비율의 CI</strong>
-            <span>\(\hat{p}\) \(\pm\) \(z_{\alpha/2}\) · √[\(\hat{p}\)(1−\(\hat{p}\))/n]</span>
+            <span>\(\hat{p} \pm z_{\alpha/2} \cdot \sqrt{\hat{p}(1-\hat{p})/n}\)</span>
           </div>
           <div>
             <strong>z-통계량</strong>
@@ -174,7 +176,7 @@
       </div>
 
       <p><strong>① SE 계산:</strong></p>
-      <p>SE = √(0.03 × 0.97 / 900) = √(0.0291/900) = √0.0000323 \(\approx\) <strong>0.005686</strong></p>
+      <p>SE = \(\sqrt{0.03  \times  0.97 / 900}\) = \(\sqrt{0.0291/900}\) = \(\sqrt{0.0000323} \approx\) <strong>0.005686</strong></p>
 
       <p><strong>② 오차범위 ME:</strong></p>
       <p>ME = 1.96 × 0.005686 \(\approx\) <strong>0.01115</strong></p>
@@ -193,7 +195,7 @@
       <p>\(H_0\) : p = 0.02 &nbsp; vs &nbsp; \(H_1\) : p \(\ne\) 0.02</p>
 
       <p><strong>② SE under \(H_0\):</strong> 분모의 p에 \(H_0\) 값 0.02를 써요.</p>
-      <p>\(SE_{\(H_0\)}\) = √(0.02 × 0.98 / 900) = √(0.0196/900) = √0.0000218 \(\approx\) <strong>0.004667</strong></p>
+      <p>\(SE_{H_0}\) = \(\sqrt{0.02  \times  0.98 / 900}\) = \(\sqrt{0.0196/900}\) = \(\sqrt{0.0000218} \approx\) <strong>0.004667</strong></p>
 
       <p><strong>③ z-값:</strong></p>
       <p>z = (0.03 − 0.02) / 0.004667 = 0.01 / 0.004667 \(\approx\) <strong>2.143</strong></p>
@@ -261,7 +263,7 @@
 
       <h3>(b) 90% · 95% · 99% 신뢰구간</h3>
 
-      <p>공식: <strong>\(\bar{X}\) \(\pm\) \(z_{\alpha/2}\) · SE</strong>.</p>
+      <p>공식: <strong>\(\bar{X} \pm z_{\alpha/2}\) · SE</strong>.</p>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -280,9 +282,9 @@
         <p>신뢰수준이 올라갈수록 CI가 넓어져요. 90% → 99%로 가면서 폭이 약 5,584 → 8,742로 늘어났죠.</p>
       </div>
 
-      <h3>(c) 양측 검정 · \(\mu\) \(\ne\) 42,000</h3>
+      <h3>(c) 양측 검정 · \(\mu \ne\) 42,000</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu\) = 42,000 &nbsp; vs &nbsp; \(H_1\) : \(\mu\) \(\ne\) 42,000</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu\) = 42,000 &nbsp; vs &nbsp; \(H_1 : \mu \ne\) 42,000</p>
 
       <p><strong>② z-값:</strong> z = (45,000 − 42,000) / 1,697 = 3,000 / 1,697 \(\approx\) <strong>1.768</strong></p>
 
@@ -307,7 +309,7 @@
 
       <h3>(d) 단측 검정 · \(\mu\) &gt; 42,000</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu\) \(\le\) 42,000 &nbsp; vs &nbsp; \(H_1\) : \(\mu\) &gt; 42,000</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu \le\) 42,000 &nbsp; vs &nbsp; \(H_1 : \mu\) &gt; 42,000</p>
 
       <p><strong>② z-값:</strong> z \(\approx\) 1.768 (같음).</p>
 
@@ -378,7 +380,7 @@
 
       <h3>(c) \(\mu\) = 1,425? — 세 방법으로</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu\) = 1,425 &nbsp; vs &nbsp; \(H_1\) : \(\mu\) \(\ne\) 1,425</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu\) = 1,425 &nbsp; vs &nbsp; \(H_1 : \mu \ne\) 1,425</p>
 
       <p><strong>② z-값:</strong> z = (1,500 − 1,425) / 39.7 = 75 / 39.7 \(\approx\) <strong>1.889</strong></p>
 
@@ -486,13 +488,13 @@
       <h3>0단계 · 기호 정리</h3>
 
       <div class="data-strip">
-        서울: n<sub>S</sub> = 850, 양식 = 365, \(\hat{p}_{S}\) = 365/850 \(\approx\) <strong>0.4294</strong> (42.94%)<br>
-        대전: n<sub>D</sub> = 620, 양식 = 237, \(\hat{p}_{D}\) = 237/620 \(\approx\) <strong>0.3823</strong> (38.23%)
+        서울: \(n_S\) = 850, 양식 = 365, \(\hat{p}_{S}\) = 365/850 \(\approx\) <strong>0.4294</strong> (42.94%)<br>
+        대전: \(n_D\) = 620, 양식 = 237, \(\hat{p}_{D}\) = 237/620 \(\approx\) <strong>0.3823</strong> (38.23%)
       </div>
 
       <h3>(a) 양식 선호 비율의 CI (서울)</h3>
 
-      <p>SE = √(0.4294 × 0.5706 / 850) = √(0.2451/850) = √0.000288 \(\approx\) <strong>0.01697</strong></p>
+      <p>SE = \(\sqrt{0.4294  \times  0.5706 / 850}\) = \(\sqrt{0.2451/850}\) = \(\sqrt{0.000288} \approx\) <strong>0.01697</strong></p>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -510,7 +512,7 @@
 
       <p><strong>① 가설:</strong> \(H_0\) : p = 0.40 &nbsp; vs &nbsp; \(H_1\) : p \(\ne\) 0.40</p>
 
-      <p><strong>② SE under \(H_0\):</strong> √(0.40 × 0.60 / 850) = √(0.24/850) \(\approx\) <strong>0.01681</strong></p>
+      <p><strong>② SE under \(H_0\):</strong> \(\sqrt{0.40  \times  0.60 / 850}\) = \(\sqrt{0.24/850} \approx\) <strong>0.01681</strong></p>
 
       <p><strong>③ z-값:</strong> (0.4294 − 0.40) / 0.01681 \(\approx\) <strong>1.749</strong></p>
 
@@ -560,16 +562,15 @@
       <p>두 비율 차이 = 0.4294 − 0.3823 = <strong>0.0471</strong>.</p>
 
       <p>SE (CI용, 분리 추정):</p>
-      <p>SE = √[ \(\hat{p}_{S}\)(1−\(\hat{p}_{S}\))/n<sub>S</sub> + \(\hat{p}_{D}\)(1−\(\hat{p}_{D}\))/n<sub>D</sub> ]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;= √(0.000288 + 0.4294 × — wait, recalc)</p>
+      <p>\(\text{SE} = \sqrt{\hat{p}_S(1-\hat{p}_S)/n_S + \hat{p}_D(1-\hat{p}_D)/n_D}\)</p>
 
       <p>대전 SE 항: 0.3823 × 0.6177 / 620 = 0.2362/620 \(\approx\) 0.000381</p>
 
-      <p>SE = √(0.000288 + 0.000381) = √0.000669 \(\approx\) <strong>0.02586</strong></p>
+      <p>SE = \(\sqrt{0.000288 + 0.000381}\) = \(\sqrt{0.000669} \approx\) <strong>0.02586</strong></p>
 
       <div class="table-scroll">
       <table class="blue-head center">
-        <caption>두 비율 차이(p<sub>S</sub> − p<sub>D</sub>)의 CI</caption>
+        <caption>두 비율 차이(\(p_S\) − \(p_D\))의 CI</caption>
         <thead><tr><th>신뢰수준</th><th>ME</th><th>CI</th><th>0 포함?</th></tr></thead>
         <tbody>
           <tr><td>90%</td><td>0.0425</td><td>[0.0046, 0.0896]</td><td>안 들어감 ❌</td></tr>
@@ -586,7 +587,7 @@
         <p>즉 "통계적으로 분명히 다르다"고 단언하기엔 증거가 살짝 부족해요. 신뢰수준에 따라 결론이 갈리는 미묘한 경우.</p>
       </div>
 
-      <h3>(f) 양측 검정 · p<sub>S</sub> \(\ne\) p<sub>D</sub>?</h3>
+      <h3>(f) 양측 검정 · \(p_S \ne p_D\)?</h3>
 
       <p>두 비율 H.T.에서는 <strong>pooled \(\bar{p}\)</strong>를 써요. (8강 14장)</p>
 
@@ -594,9 +595,9 @@
       <p>\(\bar{p}\) = (365 + 237) / (850 + 620) = 602 / 1,470 \(\approx\) <strong>0.4095</strong></p>
 
       <p><strong>② SE (pooled):</strong></p>
-      <p>SE = √[ 0.4095 × 0.5905 × (1/850 + 1/620) ]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;= √[ 0.2418 × (0.001176 + 0.001613) ]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;= √[ 0.2418 × 0.002789 ] = √0.000674 \(\approx\) <strong>0.02597</strong></p>
+      <p>SE = \(\sqrt{0.4095  \times  0.5905  \times  (1/850 + 1/620)}\)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;= \(\sqrt{0.2418  \times  (0.001176 + 0.001613)}\)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;= \(\sqrt{0.2418  \times  0.002789}\) = \(\sqrt{0.000674} \approx\) <strong>0.02597</strong></p>
 
       <p><strong>③ z-값:</strong> 0.0471 / 0.02597 \(\approx\) <strong>1.814</strong></p>
 
@@ -609,11 +610,11 @@
         <p>5%에서 두 캠퍼스 양식 선호 비율이 다르다는 증거 부족. <strong>같다고 봐도 무방</strong>.</p>
       </div>
 
-      <h3>(g) 단측 검정 · p<sub>D</sub> &lt; p<sub>S</sub>?</h3>
+      <h3>(g) 단측 검정 · \(p_D\) &lt; \(p_S\)?</h3>
 
-      <p>"대전이 서울보다 작다" = "(p<sub>S</sub> − p<sub>D</sub>) &gt; 0".</p>
+      <p>"대전이 서울보다 작다" = "(\(p_S\) − \(p_D\)) &gt; 0".</p>
 
-      <p><strong>① 가설:</strong> \(H_0\) : p<sub>S</sub> − p<sub>D</sub> \(\le\) 0 &nbsp; vs &nbsp; \(H_1\) : p<sub>S</sub> − p<sub>D</sub> &gt; 0</p>
+      <p><strong>① 가설:</strong> \(H_0 : p_S\) − \(p_D \le\) 0 &nbsp; vs &nbsp; \(H_1 : p_S\) − \(p_D\) &gt; 0</p>
 
       <p><strong>② z-값:</strong> 1.814 (같음).</p>
 
@@ -654,9 +655,9 @@
         \[ SE = \sqrt{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \]
       </div>
 
-      <p>\(\sigma^2\)<sub>X</sub>/n<sub>X</sub> = 78,500² / 500 = 6,162,250,000 / 500 = 12,324,500</p>
-      <p>\(\sigma^2\)<sub>Y</sub>/n<sub>Y</sub> = 94,700² / 500 = 8,968,090,000 / 500 = 17,936,180</p>
-      <p>합 \(\approx\) 30,260,680. √30,260,680 \(\approx\) <strong>5,501</strong>.</p>
+      <p>\(\sigma^2_X\)/\(n_X\) = 78,500² / 500 = 6,162,250,000 / 500 = 12,324,500</p>
+      <p>\(\sigma^2_Y\)/\(n_Y\) = 94,700² / 500 = 8,968,090,000 / 500 = 17,936,180</p>
+      <p>합 \(\approx\) 30,260,680. \(\sqrt{30{,}260{,}680} \approx\) <strong>5,501</strong>.</p>
 
       <p>차이: \(\bar{X}\) − \(\bar{Y}\) = 255,200 − 242,800 = <strong>12,400원</strong>.</p>
 
@@ -676,7 +677,7 @@
 
       <h3>(b) 양측 검정 · 차이 \(\ne\) 0?</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu_{X}\) − \(\mu_{Y}\) = 0 &nbsp; vs &nbsp; \(H_1\) : \(\mu_{X}\) − \(\mu_{Y}\) \(\ne\) 0</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu_{X}\) − \(\mu_{Y}\) = 0 &nbsp; vs &nbsp; \(H_1 : \mu_{X}\) − \(\mu_{Y} \ne\) 0</p>
 
       <p><strong>② z-값:</strong> 12,400 / 5,501 \(\approx\) <strong>2.254</strong></p>
 
@@ -692,7 +693,7 @@
 
       <h3>(c) 단측 검정 · 차이 &gt; 0?</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu_{X}\) − \(\mu_{Y}\) \(\le\) 0 &nbsp; vs &nbsp; \(H_1\) : \(\mu_{X}\) − \(\mu_{Y}\) &gt; 0</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu_{X}\) − \(\mu_{Y} \le\) 0 &nbsp; vs &nbsp; \(H_1 : \mu_{X}\) − \(\mu_{Y}\) &gt; 0</p>
 
       <p><strong>② z-값:</strong> 2.254 (같음).</p>
 
@@ -713,7 +714,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        독립 두 평균: SE는 √(\(\sigma^2\)/n + \(\sigma^2\)/n). 같은 z값이라도 \(\alpha\) 기준이 엄격하면 기각 못 함.
+        독립 두 평균: SE는 \(\sqrt{\sigma_X^2/n_X + \sigma_Y^2/n_Y}\). 같은 z값이라도 \(\alpha\) 기준이 엄격하면 기각 못 함.
       </div>
     </section>
 
@@ -726,9 +727,9 @@
       <div class="callout yellow">
         <div class="label">문제 (Q6)</div>
         <p>같은 학생 500명에게 한 달간 두 가지 식당 지출을 조사.<br>
-        본관(X): \(\bar{X}\) = 298,100, S<sub>X</sub> = 63,100<br>
-        기타(Y): \(\bar{Y}\) = 289,200, S<sub>Y</sub> = 49,400<br>
-        각 학생의 차이 D = X − Y의 표본 표준편차 S<sub>D</sub> = 88,700.</p>
+        본관(X): \(\bar{X}\) = 298,100, \(S_X\) = 63,100<br>
+        기타(Y): \(\bar{Y}\) = 289,200, \(S_Y\) = 49,400<br>
+        각 학생의 차이 D = X − Y의 표본 표준편차 \(S_D\) = 88,700.</p>
         <p>(a) 두 지출 평균 차이 \(\ne\) 0이라는 증거 (\(\alpha\)=1%, 양측).</p>
         <p>(b) 두 지출 평균 차이 &lt; 0이라는 증거 (\(\alpha\)=1%, 단측).</p>
       </div>
@@ -744,13 +745,13 @@
 
       <p><strong>\(\bar{D}\) = \(\bar{X}\) − \(\bar{Y}\)</strong> = 298,100 − 289,200 = <strong>8,900원</strong></p>
 
-      <p><strong>S<sub>D</sub></strong> = 88,700 (문제에서 주어짐. S<sub>X</sub>와 S<sub>Y</sub>로 추측 못 하는 값임! 짝 표본의 특수성.)</p>
+      <p><strong>\(S_D\)</strong> = 88,700 (문제에서 주어짐. \(S_X\)와 \(S_Y\)로 추측 못 하는 값임! 짝 표본의 특수성.)</p>
 
-      <p><strong>\(SE_{\(\bar{D}\)}\)</strong> = S<sub>D</sub> / √n = 88,700 / √500 = 88,700 / 22.36 \(\approx\) <strong>3,966원</strong></p>
+      <p><strong>\(SE_{\bar{D}}\)</strong> = \(S_D\) / \(\sqrt{n}\) = 88,700 / \(\sqrt{500}\) = 88,700 / 22.36 \(\approx\) <strong>3,966원</strong></p>
 
-      <h3>(a) 양측 검정 · \(\mu_{D}\) \(\ne\) 0?</h3>
+      <h3>(a) 양측 검정 · \(\mu_{D} \ne\) 0?</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu_{D}\) = 0 &nbsp; vs &nbsp; \(H_1\) : \(\mu_{D}\) \(\ne\) 0</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu_{D}\) = 0 &nbsp; vs &nbsp; \(H_1 : \mu_{D} \ne\) 0</p>
 
       <p><strong>② z-값:</strong> 8,900 / 3,966 \(\approx\) <strong>2.244</strong></p>
 
@@ -765,7 +766,7 @@
 
       <h3>(b) 단측 검정 · \(\mu_{D}\) &lt; 0?</h3>
 
-      <p><strong>① 가설:</strong> \(H_0\) : \(\mu_{D}\) \(\ge\) 0 &nbsp; vs &nbsp; \(H_1\) : \(\mu_{D}\) &lt; 0 (왼쪽 단측)</p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu_{D} \ge\) 0 &nbsp; vs &nbsp; \(H_1 : \mu_{D}\) &lt; 0 (왼쪽 단측)</p>
 
       <p><strong>잠깐, 이상한데?</strong> \(\bar{D}\) = 8,900으로 <em>양수</em>잖아요. \(H_1\)이 "음수"를 주장하는데 데이터는 양수.</p>
 
@@ -791,7 +792,7 @@
 
       <p>만약 같은 데이터를 Q5처럼 "독립"으로 풀었으면 SE가 어떻게 다를까요? 비교용으로 잠깐 계산해봐요.</p>
 
-      <p>SE(독립 가정) = √(63,100²/500 + 49,400²/500) = √(7,963,220 + 4,880,720) \(\approx\) √12,843,940 \(\approx\) 3,584</p>
+      <p>SE(독립 가정) = \(\sqrt{63,100²/500 + 49,400²/500}\) = \(\sqrt{7,963,220 + 4,880,720} \approx \sqrt{12{,}843{,}940} \approx\) 3,584</p>
 
       <p>실제 짝 SE = 3,966.</p>
 
@@ -805,7 +806,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        짝 표본: D = X − Y로 변환 후 한 표본 검정. SE = S<sub>D</sub>/√n. \(H_1\) 방향 확인 필수!
+        짝 표본: D = X − Y로 변환 후 한 표본 검정. SE = \(S_D\)/\(\sqrt{n}\). \(H_1\) 방향 확인 필수!
       </div>
     </section>
 
@@ -833,12 +834,12 @@
         <caption>6문제 요약표</caption>
         <thead><tr><th>문제</th><th>유형</th><th>SE 공식</th><th>결정적 트릭</th></tr></thead>
         <tbody>
-          <tr><td>Q1</td><td>한 비율 CI + H.T.</td><td>√[p(1−p)/n]</td><td>CI는 \(\hat{p}\), H.T.는 p₀</td></tr>
-          <tr><td>Q2</td><td>한 평균 H.T.</td><td>\(\sigma\)/√n</td><td>3가지 \(\alpha\) 동시 검정</td></tr>
-          <tr><td>Q3</td><td>한 평균 (3방법)</td><td>\(\sigma\)/√n</td><td>p-값 · z-값 · CI 모두 같은 결론</td></tr>
+          <tr><td>Q1</td><td>한 비율 CI + H.T.</td><td>\(\sqrt{p(1-p)/n}\)</td><td>CI는 \(\hat{p}\), H.T.는 p₀</td></tr>
+          <tr><td>Q2</td><td>한 평균 H.T.</td><td>\(\sigma/\sqrt{n}\)</td><td>3가지 \(\alpha\) 동시 검정</td></tr>
+          <tr><td>Q3</td><td>한 평균 (3방법)</td><td>\(\sigma/\sqrt{n}\)</td><td>p-값 · z-값 · CI 모두 같은 결론</td></tr>
           <tr><td>Q4</td><td>두 비율 비교</td><td>pooled \(\bar{p}\) 사용</td><td>H.T.에선 pooled, CI에선 분리</td></tr>
-          <tr><td>Q5</td><td>두 평균 (독립)</td><td>√(\(\sigma^2\)/n + \(\sigma^2\)/n)</td><td>두 SE를 √으로 합침</td></tr>
-          <tr><td>Q6</td><td>짝 표본</td><td>S<sub>D</sub>/√n</td><td>D 만들어 한 표본 문제로</td></tr>
+          <tr><td>Q5</td><td>두 평균 (독립)</td><td>\(\sqrt{\sigma_X^2/n_X + \sigma_Y^2/n_Y}\)</td><td>두 분산을 더한 뒤 제곱근</td></tr>
+          <tr><td>Q6</td><td>짝 표본</td><td>\(S_D/\sqrt{n}\)</td><td>D 만들어 한 표본 문제로</td></tr>
         </tbody>
       </table>
       </div>
@@ -848,7 +849,7 @@
       <ul>
         <li>비율 CI는 SE에 <strong>\(\hat{p}\)</strong>, 비율 H.T.는 SE에 <strong>\(H_0\)의 p</strong>.</li>
         <li>두 비율 H.T.는 <strong>pooled \(\bar{p}\)</strong> 만들기 잊지 말기.</li>
-        <li>짝 표본은 SE에 <strong>S<sub>D</sub></strong> (X와 Y 표준편차 따로 안 씀).</li>
+        <li>짝 표본은 SE에 <strong>\(S_D\)</strong> (X와 Y 표준편차 따로 안 씀).</li>
         <li>양측 p-값 = 2 × 단측 p-값 (방향이 맞을 때만).</li>
         <li>단측 검정에서 \(\bar{X}\)이 \(H_1\) 반대로 빠지면 → <em>p-값이 0.5보다 큼 → Fail to Reject 확정</em>.</li>
       </ul>
@@ -867,5 +868,5 @@
 
 <div class="drawer-backdrop"></div>
 
-<\(script src=\)\(assets/app\)\(/script\)</body>
+<\(script src= assets/app /script\)</body>
 </html>

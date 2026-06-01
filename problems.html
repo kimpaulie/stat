@@ -128,7 +128,7 @@
         <div class="map-row">
           <div>
             <strong>상황 번역</strong>
-            <span>문장을 \(X\), \(Y\), \(U\) 같은 사건으로 바꾸기</span>
+            <span>문장을 \(X , Y , U\) 같은 사건으로 바꾸기</span>
           </div>
           <div>
             <strong>공식 선택</strong>
@@ -694,7 +694,7 @@
         <div class="label">시험 답안</div>
         <p>\(E[XY] = \sum\sum xy P(x,y) = 2.49\)<br>
         \(\mathrm{Cov}[X,Y] = E[XY] - E[X]E[Y] = 2.49 - (1.80)(1.55) = -0.30\)<br>
-        \(\sigma_X = \sqrt{0.96}\), \(\sigma_Y = \sqrt{1.0675}\)<br>
+        \(\sigma_X = \sqrt{0.96} , \sigma_Y = \sqrt{1.0675}\)<br>
         \(\rho = \mathrm{Cov}[X,Y] / (\sigma_X \sigma_Y) = -0.30 / (\sqrt{0.96} \cdot \sqrt{1.0675}) \approx\) <strong>\(-0.296\)</strong></p>
       </div>
 
@@ -1019,7 +1019,7 @@
         <p>D = X − 2Y로 두면 P(X \(\ge\) 2Y) = P(D \(\ge\) 0).<br>
         E[D] = 9000 − 2(8000) = −7000.<br>
         독립이므로 Var[D] = Var[X] + 4Var[Y] = 1500² + 4(2500²) = 27,250,000.<br>
-        \(\sigma_{D}\) \(\approx\) 5220.<br>
+        \(\sigma_{D} \approx\) 5220.<br>
         z = (0 − (−7000))/5220 \(\approx\) 1.34.<br>
         P(D \(\ge\) 0) = P(Z \(\ge\) 1.34) = 1 − 0.9099 \(\approx\) <strong>0.0901</strong>.</p>
       </div>
@@ -1145,8 +1145,8 @@
           <p>표본평균의 평균은 <em>모평균과 같다</em>. 편향 없음.</p>
         </div>
         <div class="card">
-          <h5>SD[\(\bar{X}\)] = \(\sigma\)/√n</h5>
-          <p>표본 크기 n이 커지면 흔들림이 √n 비율로 줄어요.</p>
+          <h5>SD[\(\bar{X}\)] = \(\sigma\)/\(\sqrt{n}\)</h5>
+          <p>표본 크기 n이 커지면 흔들림이 \(\sqrt{n}\) 비율로 줄어요.</p>
         </div>
       </div>
 
@@ -1162,7 +1162,7 @@
 
       <div class="data-strip">
         E[\(\bar{X}\)] = \(\mu\) = <strong>100</strong><br>
-        SD[\(\bar{X}\)] = \(\sigma\)/√n = 20/√100 = 20/10 = <strong>2</strong><br>
+        SD[\(\bar{X}\)] = \(\sigma\)/\(\sqrt{n}\) = 20/\(\sqrt{100}\) = 20/10 = <strong>2</strong><br>
         Var[\(\bar{X}\)] = (20)²/100 = <strong>4</strong>
       </div>
 
@@ -1193,7 +1193,7 @@
 
       <h3>(c) 두 확률 계산</h3>
 
-      <p>n = 100이라 CLT 적용. \(\bar{X}\) \(\approx\) N(100, 2²). 표준화하면 Z = (\(\bar{X}\) − 100)/2.</p>
+      <p>n = 100이라 CLT 적용. \(\bar{X} \approx\) N(100, 2²). 표준화하면 Z = (\(\bar{X}\) − 100)/2.</p>
 
       <h4>① P(\(\bar{X}\) &lt; 95)</h4>
 
@@ -1229,7 +1229,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        E[\(\bar{X}\)] = \(\mu\), SD[\(\bar{X}\)] = \(\sigma\)/√n. n이 커지면 √n으로 폭이 좁아지는 게 핵심.
+        E[\(\bar{X}\)] = \(\mu\), SD[\(\bar{X}\)] = \(\sigma\)/\(\sqrt{n}\). n이 커지면 \(\sqrt{n}\)으로 폭이 좁아지는 게 핵심.
       </div>
 
     </section>
@@ -1267,7 +1267,7 @@
           <p>표본비율의 평균은 모비율과 같다.</p>
         </div>
         <div class="card">
-          <h5>SD[\(\bar{p}\)] = √[ p(1−p)/n ]</h5>
+          <h5>SD[\(\bar{p}\)] = \(\sqrt{p(1-p)/n}\)</h5>
           <p>"베르누이의 분산 p(1−p)"를 n으로 나눠 √.</p>
         </div>
       </div>
@@ -1280,7 +1280,7 @@
 
       <div class="data-strip">
         Var[\(\bar{p}\)] = 0.45 × 0.55 / 100 = 0.2475 / 100 = 0.002475<br>
-        SD[\(\bar{p}\)] = √0.002475 \(\approx\) <strong>0.0497</strong>
+        SD[\(\bar{p}\)] = \(\sqrt{0.002475} \approx\) <strong>0.0497</strong>
       </div>
 
       <h3>(b) p = 0.15, n = 100</h3>
@@ -1291,7 +1291,7 @@
 
       <div class="data-strip">
         Var[\(\bar{p}\)] = 0.15 × 0.85 / 100 = 0.1275 / 100 = 0.001275<br>
-        SD[\(\bar{p}\)] = √0.001275 \(\approx\) <strong>0.0357</strong>
+        SD[\(\bar{p}\)] = \(\sqrt{0.001275} \approx\) <strong>0.0357</strong>
       </div>
 
       <h3>(c) 같은 n인데 왜 다르지?</h3>
@@ -1336,7 +1336,7 @@
 
       <div class="callout blue">
         <div class="label">시험 답안 (c)</div>
-        <p>표본 크기 n이 같아도 표준오차는 √[p(1−p)/n]에서 p의 영향을 받는다.
+        <p>표본 크기 n이 같아도 표준오차는 \(\sqrt{p(1-p)/n}\)에서 p의 영향을 받는다.
         p(1−p)는 p = 0.5에서 최대이므로, p가 0.5에 가까울수록 표준오차가 커진다.</p>
         <p>여기서 p = 0.45는 p = 0.15보다 0.5에 더 가까워, p(1−p)가 크다(0.2475 vs 0.1275).
         따라서 (a)의 표준오차가 (b)보다 크다.</p>
@@ -1344,7 +1344,7 @@
 
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
-        SD[\(\bar{p}\)] = √(p(1−p)/n). 분자의 p(1−p)는 0.5에서 최대.
+        SD[\(\bar{p}\)] = \(\sqrt{p(1-p)/n}\). 분자의 p(1−p)는 0.5에서 최대.
         "p가 0.5에 가까울수록 더 흔들린다"는 한 문장이면 (c)는 만점.
       </div>
 
@@ -1368,14 +1368,14 @@
           <tr><td>4장 베이즈</td><td>P(X|U) = P(X)P(U|X) / P(U)</td><td class="hi">\(\approx\) 0.667 (X가 더 높음)</td></tr>
           <tr><td>5a 독립</td><td>P(X\(\cap\)Y) ?= P(X)P(Y)</td><td class="hi">독립 아님</td></tr>
           <tr><td>5b 평균·분산</td><td>Var = E[X²] − (E[X])²</td><td class="hi">E=1.80,1.55 / Var=0.96,1.0675</td></tr>
-          <tr><td>5c 공분산·\(\rho\)</td><td>Cov = E[XY] − E[X]E[Y]</td><td class="hi">Cov = −0.30, \(\rho\) \(\approx\) −0.296</td></tr>
+          <tr><td>5c 공분산·\(\rho\)</td><td>Cov = E[XY] − E[X]E[Y]</td><td class="hi">Cov = −0.30, \(\rho \approx\) −0.296</td></tr>
           <tr><td>5d 총수요</td><td>Var[X+Y] = V<sub>X</sub>+V<sub>Y</sub>+2Cov</td><td class="hi">E = 3.35, Var = 1.4275</td></tr>
           <tr><td>6 Q1</td><td>z = (X−\(\mu\))/\(\sigma\)</td><td class="hi">\(\approx\) 4.75%</td></tr>
           <tr><td>6 Q2</td><td>P → z → x</td><td class="hi">\(\approx\) 28,500원</td></tr>
           <tr><td>6 Q3</td><td>D = X − 2Y</td><td class="hi">\(\approx\) 0.0901</td></tr>
           <tr><td>6 Q4</td><td>P(A\(\cup\)B) = P(A)+P(B)−P(A\(\cap\)B)</td><td class="hi">0.75</td></tr>
-          <tr><td>7 Q1</td><td>SD[\(\bar{X}\)] = \(\sigma\)/√n</td><td class="hi">SE=2, 0.62%, 98.76%</td></tr>
-          <tr><td>7 Q2</td><td>SD[\(\bar{p}\)] = √(p(1−p)/n)</td><td class="hi">0.0497 / 0.0357</td></tr>
+          <tr><td>7 Q1</td><td>SD[\(\bar{X}\)] = \(\sigma\)/\(\sqrt{n}\)</td><td class="hi">SE=2, 0.62%, 98.76%</td></tr>
+          <tr><td>7 Q2</td><td>SD[\(\bar{p}\)] = \(\sqrt{p(1-p)/n}\)</td><td class="hi">0.0497 / 0.0357</td></tr>
         </tbody>
       </table>
       </div>
@@ -1386,8 +1386,8 @@
         <li><strong>베이즈:</strong> P(원인|결과) = P(원인)·P(결과|원인) / P(결과)</li>
         <li><strong>분산 단축식:</strong> Var[X] = E[X²] − (E[X])²</li>
         <li><strong>두 변수 분산:</strong> Var[X+Y] = Var[X] + Var[Y] + 2Cov[X,Y]</li>
-        <li><strong>표본평균:</strong> E[\(\bar{X}\)] = \(\mu\), SD[\(\bar{X}\)] = \(\sigma\)/√n</li>
-        <li><strong>표본비율:</strong> E[\(\bar{p}\)] = p, SD[\(\bar{p}\)] = √(p(1−p)/n)</li>
+        <li><strong>표본평균:</strong> E[\(\bar{X}\)] = \(\mu\), SD[\(\bar{X}\)] = \(\sigma\)/\(\sqrt{n}\)</li>
+        <li><strong>표본비율:</strong> E[\(\bar{p}\)] = p, SD[\(\bar{p}\)] = \(\sqrt{p(1-p)/n}\)</li>
       </ol>
 
       <blockquote class="pull">

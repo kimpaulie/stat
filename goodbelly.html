@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>GoodBelly 사례 — 마케팅 비용을 정당화하라 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">GoodBelly 사례</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="exam-practice.html" aria-label="이전">◀</a>
+    <a class="disabled" aria-label="다음">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>가설 검정</a></li>
+      <li><a href="lecture09.html"><span class="num">09</span>회귀분석 I</a></li>
+      <li><a href="lecture10.html"><span class="num">10</span>회귀분석 II</a></li>
+      <li><a href="problems.html"><span class="num">★</span>연습문제 1</a></li>
+      <li><a href="problems2.html"><span class="num">★</span>연습문제 2</a></li>
+      <li><a href="exam-formula.html"><span class="num">📝</span>기말 공식 시트</a></li>
+      <li><a href="exam-practice.html"><span class="num">📚</span>기말 연습 Q1~Q6</a></li>
+      <li><a href="goodbelly.html" class="active"><span class="num">🥤</span>GoodBelly 사례</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">사례 목차</div>
+    <ol class="chap-list">
+      <li><a href="#ch0">사례 한 줄</a></li>
+      <li><a href="#ch1">회사 소개 · NextFoods</a></li>
+      <li><a href="#ch2">제품 차별점</a></li>
+      <li><a href="#ch3">프로모션 1 · In-Store Demo</a></li>
+      <li><a href="#ch4">프로모션 2 · Endcap 경쟁</a></li>
+      <li><a href="#ch5">의사결정 상황</a></li>
+      <li><a href="#ch6">데이터셋 (Exhibit 1)</a></li>
+      <li><a href="#ch7">분석 접근법 · 다중회귀</a></li>
+      <li><a href="#ch8">회귀 결과 해석 가이드</a></li>
+      <li><a href="#ch9">R² 해석</a></li>
+      <li><a href="#ch10">권고안 5단계</a></li>
+      <li><a href="#ch11">FIELD CHECKLIST</a></li>
+    </ol>
+
+    <div class="side-footer">
+      🥤 회귀분석으로<br>
+      마케팅 효과 증명하기.
+    </div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Case W92C52 · WDI Publishing · University of Michigan<br>"GoodBelly: Using Statistics to Justify the Marketing Expense"</div>
+      <h1>GoodBelly 사례
+        <span class="small">— 회귀분석으로 마케팅 비용을 정당화하라</span>
+      </h1>
+      <p class="story">
+        프로바이오틱 음료 스타트업 GoodBelly. 매출은 늘었지만 CFO는 마케팅 비용 삭감을 압박합니다.
+        매장 시연(in-store demo)과 진열대 경쟁(endcap)이 정말 매출을 끌어올렸는지, 우연인지 — <strong>통계로 증명할 수 있을까요?</strong>
+      </p>
+    </div>
+
+    <!-- ═══════ ch0 ═══════ -->
+    <section class="chapter" id="ch0">
+      <div class="chap-num">PROLOGUE</div>
+      <h2>사례 한 줄</h2>
+
+      <blockquote class="pull">
+        "Marketing department의 예산을 지키려면, 시연(demo)·진열대(endcap) 활동이 매출에 통계적으로 유의한 영향을 미친다는 증거를 댄다."
+      </blockquote>
+
+      <p>10주간 126개 Whole Foods 매장에서 모은 <strong>1,386개 관측치</strong>로 다중회귀를 돌리면 답이 나옵니다. 어떤 변수를 넣고, 어떤 계수를 보고, 어떻게 해석할지가 이 사례의 핵심.</p>
+
+      <div class="take-away">
+        <div class="label">학습 목표</div>
+        다중회귀 모형을 비즈니스 의사결정에 활용하는 전체 흐름을 익힌다 — 변수 선택 → 모형 추정 → 계수 검정 → 권고안 작성.
+      </div>
+    </section>
+
+    <!-- ═══════ ch1 ═══════ -->
+    <section class="chapter" id="ch1">
+      <div class="chap-num">CHAPTER 01</div>
+      <h2>회사 소개 · NextFoods</h2>
+      <div class="chap-sub">Steve Demos · WhiteWave 출신 · 2008.1 출시</div>
+
+      <p>GoodBelly는 콜로라도에 본사를 둔 <strong>NextFoods Inc.</strong>가 만든 프로바이오틱 음료 브랜드.
+      Steve Demos (WhiteWave Inc. 창업자, Silk 두유)와 Todd Beckman (WhiteWave 전 부사장)이 함께 설립.</p>
+
+      <p>2008년 1월 첫 출시 이후 <strong>Whole Foods Market</strong>·<strong>Safeway</strong> 같은 전국 체인에 입점.</p>
+
+      <div class="callout blue">
+        <div class="label">시장 규모 (2008)</div>
+        <p>전 세계 프로바이오틱·프리바이오틱 식음료 시장: <strong>$15.4B</strong>, 여전히 성장 중.</p>
+        <p>프로바이오틱 부문 성장률: 5~30% (전체 식품 시장 1~2% 대비 압도적).</p>
+        <p>경쟁 브랜드: Dannon의 <strong>Activia</strong> 요거트 라인 — Bifidobacterium animalis DN 173 010 균주로 미국 프로바이오틱 인지도 견인.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ ch2 ═══════ -->
+    <section class="chapter" id="ch2">
+      <div class="chap-num">CHAPTER 02</div>
+      <h2>제품 차별점</h2>
+      <div class="chap-sub">Juice-based · dairy-free · vegan / Lp299v</div>
+
+      <div class="cards-2">
+        <div class="card">
+          <h3>기존 프로바이오틱 제품</h3>
+          <ul>
+            <li>대부분 <strong>유제품 기반</strong> (요거트)</li>
+            <li>균주: 다양 (브랜드마다 다름)</li>
+            <li>채식·유당불내증 소비자 배제</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>GoodBelly</h3>
+          <ul>
+            <li><strong>유기농 주스 기반</strong></li>
+            <li>Dairy-free · Soy-free · Vegan</li>
+            <li>균주: <strong>Lactobacillus plantarum 299v</strong> (Lp299v) — 유럽에서 15년 이상 사용, 17건 임상 검증</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">포지셔닝 한 줄</div>
+        <p>"채식주의자와 유당불내증을 위한, 임상 검증된 프로바이오틱 주스."</p>
+      </div>
+    </section>
+
+    <!-- ═══════ ch3 ═══════ -->
+    <section class="chapter" id="ch3">
+      <div class="chap-num">CHAPTER 03</div>
+      <h2>프로모션 1 · In-Store Demo</h2>
+      <div class="chap-sub">2009.11 시작 / Whole Foods 75% 매출 집중</div>
+
+      <p>초기 GoodBelly의 도전 — <strong>"인지도가 낮다"</strong>. 전국 광고를 할 예산이 없으니, 작은 마케팅 예산 대부분을 <strong>매장 시연</strong>에 투입.</p>
+
+      <h3>왜 시연인가</h3>
+      <p>"제품을 팔려면 고객이 직접 맛봐야 한다"는 가설. 시연은 (1) 만남, (2) 프로바이오틱 교육, (3) 시음 — 세 효과를 한 번에.</p>
+
+      <h3>운영 진화</h3>
+      <ol class="steps">
+        <li>2009.11 — 모든 GoodBelly 취급 매장 대상</li>
+        <li>몇 달 후 — 소형 매장에선 효과 미미 / 큰 매장에서만 효과 확인</li>
+        <li>이후 — <strong>Whole Foods 매장만</strong> 시연 (전체 매출의 75% 차지)</li>
+      </ol>
+
+      <h3>시연 표준 절차</h3>
+      <p>외주 인력 (시간제) — 사전 교육 (Lp299v·제품 지식) — 매장 도착 후 테이블 셋업 (제품 진열대 근처) — 3시간 시연 (샘플 배포 + 설명 + 쿠폰 제공) — 보고서 작성 (매장·일시·판매·샘플 사용량·고객 질문) — GoodBelly 본사 fax 송부.</p>
+    </section>
+
+    <!-- ═══════ ch4 ═══════ -->
+    <section class="chapter" id="ch4">
+      <div class="chap-num">CHAPTER 04</div>
+      <h2>프로모션 2 · Endcap 경쟁</h2>
+      <div class="chap-sub">매장 통로 끝 황금 진열대 차지 게임</div>
+
+      <p><strong>Endcap</strong> = 매장 통로 끝 진열대 (the hub at the end of an aisle) — 트래픽이 가장 많은 매장 명당.</p>
+
+      <div class="cards-2">
+        <div class="card">
+          <h3>영업 담당자 경쟁</h3>
+          <ul>
+            <li>5명 sales rep이 경쟁</li>
+            <li>가장 많은 매장의 endcap을 따낸 사람</li>
+            <li>상품: 대형 TV</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>매장 간 경쟁</h3>
+          <ul>
+            <li>Whole Foods 매장끼리 best-decorated endcap 경쟁</li>
+            <li>상품: GoodBelly 후드티 + 직원용 제품 박스 + 기프트카드</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">관리진의 의심</div>
+        <p>"Endcap이 매출에 영향은 주는 것 같지만 — sales rep의 사기 진작 효과를 빼고도 그 정도 비용을 정당화할 만큼인가?"</p>
+      </div>
+    </section>
+
+    <!-- ═══════ ch5 ═══════ -->
+    <section class="chapter" id="ch5">
+      <div class="chap-num">CHAPTER 05</div>
+      <h2>의사결정 상황</h2>
+      <div class="chap-sub">2010.7 — 마케팅 예산 삭감 압박</div>
+
+      <p>2010년 7월 senior 회의. 마케팅 매니저 <strong>Marty Wellbeing</strong>은 CFO <strong>Maggie Mathedoittir</strong>로부터 강한 압박을 받음 — "Demo와 endcap 같은 활동이 정말 매출에 기여하는지 통계적으로 증명해라. 아니면 예산 삭감이다."</p>
+
+      <p>Wellbeing은 자신의 부서가 통계 분석에 강하지 않다고 자평하던 차, 인턴 <strong>Caroline Dickerson</strong>이 통계 코스를 들었음을 기억함. 그녀에게 데이터 분석과 권고안 작성을 위임.</p>
+
+      <div class="callout blue">
+        <div class="label">Dickerson의 도전 과제</div>
+        <ol>
+          <li>Demo가 매출에 미친 영향 — 즉시 효과? 지연 효과?</li>
+          <li>Endcap이 매출에 미친 영향 — 비용 대비 가치?</li>
+          <li>Sales rep 직접 방문이 미친 영향</li>
+          <li>외생 요인 (가격·주변 경쟁·트래픽) 통제 후에도 위 효과가 유의한가?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════ ch6 ═══════ -->
+    <section class="chapter" id="ch6">
+      <div class="chap-num">CHAPTER 06</div>
+      <h2>데이터셋 (Exhibit 1)</h2>
+      <div class="chap-sub">126 stores × 10 weeks = 1,386 obs / 9 variables</div>
+
+      <div class="data-strip">
+        기간: 2010.5.4 ~ 7.13 (10주)<br>
+        매장: 126개 Whole Foods<br>
+        관측치: <strong>1,386개</strong> (= 126 × 10주 + 결측 보정)
+      </div>
+
+      <h3>변수 정의</h3>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr><th>#</th><th>변수명</th><th>유형</th><th>의미</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Weekly Sales (Volume)</strong></td><td>연속 — 종속변수</td><td>매장당 주당 판매량 (단위 수)</td></tr>
+            <tr><td>2</td><td>Average Retail Price</td><td>연속 — 통제변수</td><td>매장당 주당 평균 소매가</td></tr>
+            <tr><td>3</td><td>Sales Rep</td><td>더미 0/1</td><td>1 = 지역 영업담당 face-to-face 방문, 0 = 전국 담당만</td></tr>
+            <tr><td>4</td><td>Endcap</td><td>더미 0/1</td><td>1 = endcap 프로모션 참여 매장</td></tr>
+            <tr><td>5</td><td>Demo</td><td>더미 0/1</td><td>1 = 해당 주에 시연 진행</td></tr>
+            <tr><td>6</td><td>Demo1-3</td><td>더미 0/1</td><td>1 = 시연이 1~3주 전 진행 (이월 효과)</td></tr>
+            <tr><td>7</td><td>Demo4-5</td><td>더미 0/1</td><td>1 = 시연이 4~5주 전 진행 (장기 효과)</td></tr>
+            <tr><td>8</td><td>Natural Retailers</td><td>연속</td><td>매장 5마일 반경 내 자연식품 소매점 수 (경쟁)</td></tr>
+            <tr><td>9</td><td>Fitness Centers</td><td>연속</td><td>매장 5마일 반경 내 피트니스 센터 수 (수요 대리지표)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="label">변수 디자인의 영리한 점</div>
+        <p><strong>Demo의 시간 분해</strong> — 시연을 단일 더미가 아니라 "당주" / "1~3주 전" / "4~5주 전" 세 더미로 쪼갰음. 이렇게 하면 즉시·이월·장기 효과를 각각 분리해 측정 가능.</p>
+        <p><strong>매장 환경 통제</strong> — Natural Retailers와 Fitness Centers는 매장 특성을 잡아내 demo 효과를 정확히 분리.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ ch7 ═══════ -->
+    <section class="chapter" id="ch7">
+      <div class="chap-num">CHAPTER 07</div>
+      <h2>분석 접근법 · 다중회귀</h2>
+      <div class="chap-sub">Multiple linear regression with dummy variables</div>
+
+      <h3>모형 설정</h3>
+
+      <div class="formula wide">
+        \[
+        \begin{aligned}
+        \text{Sales}_i = \beta_0 &+ \beta_1 \text{Price}_i + \beta_2 \text{SalesRep}_i + \beta_3 \text{Endcap}_i \\
+        &+ \beta_4 \text{Demo}_i + \beta_5 \text{Demo1\text{-}3}_i + \beta_6 \text{Demo4\text{-}5}_i \\
+        &+ \beta_7 \text{NaturalRetailers}_i + \beta_8 \text{FitnessCenters}_i + \varepsilon_i
+        \end{aligned}
+        \]
+      </div>
+
+      <h3>각 변수의 비즈니스 의미</h3>
+
+      <div class="study-map">
+        <div class="label">각 β의 해석</div>
+        <ul>
+          <li><strong>\(\beta_0\)</strong> (절편) — 모든 변수가 0일 때 평균 매출. 실무에선 큰 의미 없음.</li>
+          <li><strong>\(\beta_1\) Price</strong> — 가격이 \(1\)원 오를 때 매출 변화. <em>음수 예상</em>. <strong>가격 효과 통제용.</strong></li>
+          <li><strong>\(\beta_2\) SalesRep</strong> — 지역 영업담당이 다녀가면 매출이 얼마나 변하나. <em>양수 기대.</em></li>
+          <li><strong>\(\beta_3\) Endcap</strong> — endcap 진열 시 매출 증가량. <em>양수 기대. 클수록 endcap 프로그램 정당화 강함.</em></li>
+          <li><strong>\(\beta_4\) Demo</strong> — 시연 당주의 즉시 효과. <em>양수 기대.</em></li>
+          <li><strong>\(\beta_5\) Demo1-3</strong> — 시연 후 1~3주 잔존 효과. <em>0보다 크면 "지속 효과" 증명.</em></li>
+          <li><strong>\(\beta_6\) Demo4-5</strong> — 시연 후 4~5주 잔존 효과. <em>0과 가까우면 효과 사라짐.</em></li>
+          <li><strong>\(\beta_7\) NaturalRetailers</strong> — 주변 경쟁점 수. <em>음수 예상.</em></li>
+          <li><strong>\(\beta_8\) FitnessCenters</strong> — 건강 의식 소비자 밀도. <em>양수 예상.</em></li>
+        </ul>
+      </div>
+
+      <h3>핵심 검정 — 마케팅 변수의 유의성</h3>
+
+      <p>Wellbeing이 정당화해야 하는 변수는 SalesRep·Endcap·Demo·Demo1-3·Demo4-5. 각각에 대해:</p>
+
+      <div class="formula">
+        \[ H_0 : \beta_j = 0 \quad \text{vs} \quad H_1 : \beta_j \ne 0 \]
+      </div>
+
+      <p>회귀 산출물에서 각 계수의 <strong>t-stat</strong>과 <strong>p-value</strong>를 본다 (회귀에서는 z-stat 대신 t-stat 사용, 큰 표본에선 거의 같음).</p>
+
+      <div class="formula">
+        \[ t\text{-stat} = \frac{\hat{\beta}_j - 0}{\text{SE of } \hat{\beta}_j} \]
+      </div>
+
+      <p>p-value &lt; 0.05 → \(\beta_j\) 유의함 → 그 활동은 매출에 영향 있음을 통계적으로 증명.</p>
+    </section>
+
+    <!-- ═══════ ch8 ═══════ -->
+    <section class="chapter" id="ch8">
+      <div class="chap-num">CHAPTER 08</div>
+      <h2>회귀 결과 해석 가이드</h2>
+      <div class="chap-sub">계수 부호·크기·유의성 3박자</div>
+
+      <p>회귀 산출물을 받으면 각 변수에 대해 <strong>세 가지</strong>를 동시에 검토:</p>
+
+      <div class="study-map">
+        <div class="label">변수별 점검 3단계</div>
+        <ol>
+          <li><strong>부호</strong>: 예상과 일치하는가? (Price 음수, Demo 양수 등) — 어긋나면 모형 점검.</li>
+          <li><strong>크기</strong>: 비즈니스적으로 의미 있는가? Demo 계수가 +50이라면 시연 1회당 매장당 50단위 증가. 비용 대비 큰가?</li>
+          <li><strong>유의성</strong>: p-value &lt; 0.05? p-value &lt; 0.10? — 5%는 강한 증거, 10%는 약한 증거.</li>
+        </ol>
+      </div>
+
+      <h3>의사결정 매트릭스</h3>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr><th>p-value</th><th>계수 크기</th><th>판단</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>&lt; 0.05</td><td>크다</td><td><strong>유지 (효과 입증 + 가치 있음)</strong></td></tr>
+            <tr><td>&lt; 0.05</td><td>작다</td><td>유지 단, 비용 대비 ROI 재검토</td></tr>
+            <tr><td>0.05 ~ 0.10</td><td>크다</td><td>유지 권고 단, 표본 더 확보해 재검정</td></tr>
+            <tr><td>0.05 ~ 0.10</td><td>작다</td><td>중단 또는 축소 검토</td></tr>
+            <tr><td>&gt; 0.10</td><td>관계없음</td><td><strong>중단 — 통계적 증거 없음</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>시연 효과의 시간 분해 해석</h3>
+
+      <div class="callout blue">
+        <div class="label">Demo 3개 더미를 같이 보는 이유</div>
+        <ul>
+          <li><strong>Demo만 유의</strong> + 나머지 안 유의 → 시연은 당주에만 즉시 효과, 곧 사라짐. → 매주 새로 시연해야 함.</li>
+          <li><strong>Demo + Demo1-3 둘 다 유의</strong> → 시연 효과가 4주까지 지속. → 시연 빈도를 줄여도 됨.</li>
+          <li><strong>Demo4-5도 유의</strong> → 6주 가까이 지속 (장기 효과). → 한 번 시연이 매우 가치 있음.</li>
+        </ul>
+        <p>이런 시간 분해 덕에 단순히 "시연이 효과 있다/없다"가 아니라 <strong>"얼마나 자주 해야 효율적인가"</strong>까지 답할 수 있음.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ ch9 ═══════ -->
+    <section class="chapter" id="ch9">
+      <div class="chap-num">CHAPTER 09</div>
+      <h2>R² 해석</h2>
+      <div class="chap-sub">모형 적합도 — 마케팅 비용 정당화의 근거</div>
+
+      <h3>변동의 분해</h3>
+
+      <div class="formula">
+        \[ \text{SST} = \text{SSR} + \text{SSE} \]
+      </div>
+      <p>Weekly Sales의 전체 변동(SST)은 모형이 설명하는 부분(SSR)과 설명 못 하는 잔차(SSE)로 분해됩니다.</p>
+
+      <div class="formula">
+        \[ R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}} \]
+      </div>
+
+      <h3>이 사례에서 \(R^2\) 해석</h3>
+
+      <div class="table-scroll">
+        <table class="center">
+          <thead>
+            <tr><th>\(R^2\) 범위</th><th>의미</th><th>마케팅 의사결정에 미치는 영향</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>&lt; 0.20</td><td>모형 설명력 낮음</td><td>다른 외생 요인 존재 — 변수 추가 필요. 단정 어려움.</td></tr>
+            <tr><td>0.20 ~ 0.40</td><td>중간</td><td>마케팅 변수 영향은 보이나 큰 그림의 일부일 뿐. 결론에 유의.</td></tr>
+            <tr><td>0.40 ~ 0.60</td><td>꽤 높음</td><td>모형이 매출 변동의 절반쯤 설명. 마케팅 계수에 어느 정도 신뢰 가능.</td></tr>
+            <tr><td>&gt; 0.60</td><td>매우 높음</td><td>예측 모형으로도 활용 가능. 권고안에 강한 근거.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">주의 — \(R^2\) 함정</div>
+        <p>변수를 많이 넣을수록 \(R^2\)는 자동으로 올라감. 그래서 <strong>Adjusted \(R^2\)</strong>를 함께 보는 게 정석.</p>
+        <div class="formula">
+          \[ \bar{R}^2 = 1 - \frac{\text{SSE}/(n - k - 1)}{\text{SST}/(n - 1)} \]
+        </div>
+        <p>변수 수 \(k\)에 페널티. 의미 없는 변수를 추가하면 \(\bar{R}^2\)는 오히려 떨어짐.</p>
+      </div>
+
+      <h3>오차 분산 추정</h3>
+
+      <div class="formula">
+        \[ S_e^2 = \frac{\text{SSE}}{n - k - 1} = \frac{\text{SSE}}{1{,}386 - 8 - 1} = \frac{\text{SSE}}{1{,}377} \]
+      </div>
+      <p>\(\sqrt{S_e^2}\) = 잔차 표준편차. 모형이 예측하는 매출의 평균 오차 크기.</p>
+    </section>
+
+    <!-- ═══════ ch10 ═══════ -->
+    <section class="chapter" id="ch10">
+      <div class="chap-num">CHAPTER 10</div>
+      <h2>권고안 만들기 — 5단계</h2>
+      <div class="chap-sub">Dickerson이 senior 회의에 가져갈 안</div>
+
+      <div class="mini-flow">
+        <div class="step">
+          <div class="step-label">① 데이터 요약</div>
+          <div class="step-body">기간·매장 수·관측치 수·변수 정의를 한 슬라이드로</div>
+        </div>
+        <div class="step">
+          <div class="step-label">② 모형 식과 \(R^2\)</div>
+          <div class="step-body">"매출의 X%를 9개 변수로 설명함"</div>
+        </div>
+        <div class="step">
+          <div class="step-label">③ 마케팅 변수별 효과</div>
+          <div class="step-body">Demo·Endcap·SalesRep 계수와 p-value를 표로 — 시간 분해 효과 강조</div>
+        </div>
+        <div class="step">
+          <div class="step-label">④ 비용 대비 효익 계산</div>
+          <div class="step-body">Demo 1회 = 추정 매출 증가량 × 단위 가격 vs 시연 비용. ROI 산출.</div>
+        </div>
+        <div class="step">
+          <div class="step-label">⑤ 권고안 한 줄</div>
+          <div class="step-body">"Demo 프로그램 — Whole Foods 한정으로 격주 운영 권고 / Endcap 경쟁 — 유지 권고 / 외주 시연 인력 — 사전 교육 강화"</div>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <div class="label">설득의 포인트</div>
+        <p>CFO Mathedoittir는 숫자로 말한다. 단순히 "효과 있다"가 아니라 <strong>"p-value 0.02, 계수 +X, 비용 대비 Y배"</strong>처럼 정량적으로 정리해야 통과.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ ch11 FIELD CHECKLIST ═══════ -->
+    <section class="chapter" id="ch11">
+      <div class="chap-num">FIELD CHECKLIST</div>
+      <h2>회귀로 마케팅 효과 검증할 때 점검 15개</h2>
+
+      <p>이 사례에서 배운 회귀-기반 마케팅 분석 프레임을 실무에 그대로 적용할 때 빠뜨리지 말 것:</p>
+
+      <div class="table-scroll">
+        <table class="center checklist">
+          <thead>
+            <tr><th>#</th><th>점검 항목</th><th>✅</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>종속변수가 매출인지 매출액인지 명확? (단가 변동 시 차이 큼)</td><td></td></tr>
+            <tr><td>2</td><td>가격은 통제변수로 포함했는가?</td><td></td></tr>
+            <tr><td>3</td><td>마케팅 활동마다 dummy 변수로 분리되어 있나?</td><td></td></tr>
+            <tr><td>4</td><td>지연 효과 (1-3주, 4-5주 등) 시간 분해 변수가 있나?</td><td></td></tr>
+            <tr><td>5</td><td>매장 특성 통제 (주변 경쟁·트래픽·소득 등) 변수가 있나?</td><td></td></tr>
+            <tr><td>6</td><td>표본 크기가 \(n &gt; 30 \times k\) 이상인가? (자유도 확보)</td><td></td></tr>
+            <tr><td>7</td><td>각 계수의 <strong>부호</strong>가 비즈니스 직관과 일치하는가?</td><td></td></tr>
+            <tr><td>8</td><td>각 계수의 <strong>크기</strong>가 의사결정에 영향을 줄 만한가?</td><td></td></tr>
+            <tr><td>9</td><td>각 계수의 <strong>p-value</strong>를 보고 5% / 10% 기준 모두 확인했나?</td><td></td></tr>
+            <tr><td>10</td><td>\(R^2\)와 Adjusted \(R^2\) 모두 보고 변수 추가가 의미 있었는지 확인했나?</td><td></td></tr>
+            <tr><td>11</td><td>잔차 진단 (정규성·등분산성·독립성) 수행했나?</td><td></td></tr>
+            <tr><td>12</td><td>다중공선성 점검 (VIF) 했는가?</td><td></td></tr>
+            <tr><td>13</td><td>이상치·영향점 (high leverage) 확인했나?</td><td></td></tr>
+            <tr><td>14</td><td>비용 대비 효익 (ROI) 계산까지 가져갔나?</td><td></td></tr>
+            <tr><td>15</td><td>한 줄 권고안과 정량적 근거가 일치하는가?</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        회귀는 마케팅 비용 정당화의 가장 강력한 도구. 다만 <em>"통계가 말하더라"</em>로 끝내면 안 되고, <strong>비용 대비 효익까지 정량적으로 이어 가야</strong> 경영진을 설득할 수 있음.
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <a href="exam-practice.html" class="prev">◀ 기말 연습 Q1~Q6</a>
+      <a href="index.html" class="next">전체 강의 목록 ▶</a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
