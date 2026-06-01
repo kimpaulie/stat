@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>시험 예상 문제 — 전 범위 핵심 12유형 | 통계 학습 노트</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="hamburger" aria-label="메뉴 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <a href="index.html" class="brand">
+    <span class="site-name">통계 학습 노트</span>
+    <span class="dot">·</span>
+    <span class="current">시험 예상 문제</span>
+  </a>
+  <div class="spacer"></div>
+  <div class="nav-lec">
+    <a href="goodbelly.html" aria-label="이전">◀</a>
+    <a class="disabled" aria-label="다음">▶</a>
+  </div>
+</header>
+<div class="reading-progress"></div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a href="index.html" class="home-link">← 전체 강의 목록</a>
+
+    <div class="side-title">전체 강의</div>
+    <ul class="lec-list">
+      <li><a href="lecture01.html"><span class="num">01</span>통계 첫걸음</a></li>
+      <li><a href="lecture02.html"><span class="num">02</span>숫자로 요약하기</a></li>
+      <li><a href="lecture03.html"><span class="num">03</span>확률의 세계</a></li>
+      <li><a href="lecture04.html"><span class="num">04</span>이산 확률분포</a></li>
+      <li><a href="lecture05.html"><span class="num">05</span>정규분포</a></li>
+      <li><a href="lecture06.html"><span class="num">06</span>표본분포와 CLT</a></li>
+      <li><a href="lecture07.html"><span class="num">07</span>신뢰구간</a></li>
+      <li><a href="lecture08.html"><span class="num">08</span>가설 검정</a></li>
+      <li><a href="lecture09.html"><span class="num">09</span>회귀분석 I</a></li>
+      <li><a href="lecture10.html"><span class="num">10</span>회귀분석 II</a></li>
+      <li><a href="problems.html"><span class="num">★</span>연습문제 1</a></li>
+      <li><a href="problems2.html"><span class="num">★</span>연습문제 2</a></li>
+      <li><a href="exam-formula.html"><span class="num">📝</span>기말 공식 시트</a></li>
+      <li><a href="exam-practice.html"><span class="num">📚</span>기말 연습 Q1~Q6</a></li>
+      <li><a href="goodbelly.html"><span class="num">🥤</span>GoodBelly 사례</a></li>
+      <li><a href="exam-predict.html" class="active"><span class="num">🎯</span>시험 예상 문제</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="side-title">예상 문제 12유형</div>
+    <ol class="chap-list">
+      <li><a href="#p1">① 정규 표준화 (확률 계산)</a></li>
+      <li><a href="#p2">② 정규 역방향 (임계값 찾기)</a></li>
+      <li><a href="#p3">③ CLT — 표본평균 분포</a></li>
+      <li><a href="#p4">④ CLT — 표본비율 분포</a></li>
+      <li><a href="#p5">⑤ 한 평균 CI (σ 알려짐)</a></li>
+      <li><a href="#p6">⑥ 한 비율 CI</a></li>
+      <li><a href="#p7">⑦ 한 평균 H.T. (양측)</a></li>
+      <li><a href="#p8">⑧ 한 비율 H.T. (단측)</a></li>
+      <li><a href="#p9">⑨ 두 평균 H.T. (독립)</a></li>
+      <li><a href="#p10">⑩ 짝지은 표본 H.T.</a></li>
+      <li><a href="#p11">⑪ 단순회귀 해석</a></li>
+      <li><a href="#p12">⑫ 다중회귀 + 더미변수</a></li>
+    </ol>
+
+    <div class="side-footer">
+      🎯 전 범위 핵심을<br>
+      12문제로 압축.
+    </div>
+  </aside>
+
+  <main>
+
+    <div class="hero">
+      <div class="kicker">시험 예상 문제 · 전 범위 핵심 12유형<br>BIZ500 · Management Statistical Analysis</div>
+      <h1>시험 예상 문제 12유형
+        <span class="small">— 정규분포부터 회귀까지 한 번에</span>
+      </h1>
+      <p class="story">
+        Lecture 5~10에서 다룬 모든 핵심 유형을 12개 예상 문제로 압축했습니다. 각 문제는 시험에서 자주 나오는 패턴을 대표하고,
+        풀이는 <strong>① 가설/식 → ② SE/표준화 → ③ p-값/CI → ④ 결론</strong> 4단계로 통일.
+        <br><br>
+        이 12문제를 손으로 풀 수 있으면 기말 문제의 80%는 같은 틀로 풀립니다.
+      </p>
+
+      <div class="callout blue">
+        <div class="label">출제 빈도 표시</div>
+        <p>각 문제 헤더에 🔥(매년 출제) / ⭐(자주 출제) / ✏️(가끔 출제) 로 표시했어요.</p>
+      </div>
+    </div>
+
+    <!-- ═══════ P1 ═══════ -->
+    <section class="chapter" id="p1">
+      <div class="chap-num">PROBLEM 01 · 정규분포 표준화</div>
+      <h2>① 다운로드 시간 — 확률 계산 🔥</h2>
+      <div class="chap-sub">X ~ N(8, 2²) / 시간 임계 확률</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>MyTVLab 영화 한 편의 다운로드 시간 \(X\)는 평균 8분, 표준편차 2분인 정규분포를 따른다.</p>
+        <p>(a) 다운로드가 10분 이상 걸릴 확률은?</p>
+        <p>(b) 다운로드가 5분 미만으로 끝날 확률은?</p>
+        <p>(c) 다운로드가 6~9분 사이일 확률은?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p>표준화: \(Z = \dfrac{X - \mu}{\sigma} = \dfrac{X - 8}{2}\) ~ \(N(0, 1)\).</p>
+
+      <p><strong>(a)</strong> \(X = 10\) → \(z = (10-8)/2 = 1.0\). \(P(X > 10) = P(Z > 1.0) = 1 - 0.8413 = \mathbf{0.1587}\) (15.87%)</p>
+
+      <p><strong>(b)</strong> \(X = 5\) → \(z = (5-8)/2 = -1.5\). \(P(X < 5) = P(Z < -1.5) = 1 - 0.9332 = \mathbf{0.0668}\) (6.68%)</p>
+
+      <p><strong>(c)</strong> \(X = 6\) → \(z_1 = -1.0\), \(X = 9\) → \(z_2 = 0.5\).</p>
+      <p>\(P(6 \le X \le 9) = P(-1 \le Z \le 0.5) = 0.6915 - (1 - 0.8413) = 0.6915 - 0.1587 = \mathbf{0.5328}\) (53.28%)</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 15.87% / (b) 6.68% / (c) 53.28%</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">핵심 패턴</div>
+        <p>Z-표는 <strong>왼쪽 꼬리 확률</strong> \(P(Z \le z)\)를 줌. 음수 \(z\)는 대칭성 \(P(Z \le -z) = 1 - P(Z \le z)\)로 변환.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P2 ═══════ -->
+    <section class="chapter" id="p2">
+      <div class="chap-num">PROBLEM 02 · 정규분포 역방향</div>
+      <h2>② 호텔 객실 — 임계값 찾기 ⭐</h2>
+      <div class="chap-sub">상위 N% 컷오프 / Z⁻¹</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>한 호텔 체인의 일일 객실 예약 수 \(X\) ~ \(N(\mu = 200, \sigma^2 = 30^2)\).</p>
+        <p>(a) 예약이 상위 5%인 "고객수일"은 몇 건 이상인가?</p>
+        <p>(b) 매니저가 "하루 예약 90%를 처리할 객실"을 미리 준비하려면 객실을 몇 개로 잡아야 하나?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>(a)</strong> \(P(X > k) = 0.05\) → \(P(Z > z) = 0.05\) → \(z = 1.65\) (단측 임계값).</p>
+      <p>\(z = (k - 200)/30 = 1.65\) → \(k = 200 + 1.65 \times 30 = 249.5\). <strong>249.5건 이상</strong>이면 상위 5%에 해당.</p>
+
+      <p><strong>(b)</strong> 매니저는 "예약을 처리할 객실"이 부족할 확률을 10% 이하로 → \(P(X \le k) = 0.90\) → \(z = 1.28\).</p>
+      <p>\(k = 200 + 1.28 \times 30 = 238.4\) → <strong>239개 객실</strong> 준비.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 249.5건 이상 / (b) 239개</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">핵심 패턴</div>
+        <p>"확률 → 임계값" 문제는 임계 z값 표 (1.28 / 1.65 / 1.96 / 2.33 / 2.58) 외워두면 즉시 해결.
+        식: \(k = \mu + z \cdot \sigma\).</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P3 ═══════ -->
+    <section class="chapter" id="p3">
+      <div class="chap-num">PROBLEM 03 · CLT 응용</div>
+      <h2>③ 카페 음료 분량 — 표본평균의 분포 🔥</h2>
+      <div class="chap-sub">CLT — X̄ ~ N(μ, σ²/n)</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>한 카페가 판매하는 라떼 한 잔의 분량 \(X\)는 평균 250ml, 표준편차 15ml로 알려져 있다. 분포 모양은 모른다.</p>
+        <p>(a) 한 잔이 240ml 미만일 확률은? (계산 가능?)</p>
+        <p>(b) 무작위 36잔의 평균 분량이 245ml 미만일 확률은?</p>
+        <p>(c) 무작위 100잔의 평균 분량이 248~252ml 사이일 확률은?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>(a)</strong> 한 잔 \(X\)의 분포 모양을 모르므로 정규분포 가정 불가 → <strong>계산 불가</strong> (혹은 분포 가정 명시 필요).</p>
+
+      <p><strong>(b)</strong> CLT: \(n = 36 \ge 30\)이므로 \(\bar{X} \sim N(250, 15^2/36) = N(250, 6.25)\), 표준편차 \(15/\sqrt{36} = 2.5\).</p>
+      <p>\(z = (245 - 250)/2.5 = -2\). \(P(\bar{X} < 245) = P(Z < -2) = 1 - 0.9772 = \mathbf{0.0228}\) (2.28%)</p>
+
+      <p><strong>(c)</strong> \(n = 100\), SE \(= 15/\sqrt{100} = 1.5\). \(z_1 = (248-250)/1.5 = -1.33\), \(z_2 = (252-250)/1.5 = 1.33\).</p>
+      <p>\(P(248 \le \bar{X} \le 252) = P(-1.33 \le Z \le 1.33) = 0.9082 - 0.0918 = \mathbf{0.8164}\) (81.64%)</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 계산 불가 / (b) 2.28% / (c) 81.64%</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ 함정</div>
+        <p>(a)는 "한 잔"의 확률 — CLT 적용 X. CLT는 <strong>표본평균</strong>(여러 잔의 평균)의 분포를 알려주는 정리. 단일 관측치에는 적용 안 됨.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P4 ═══════ -->
+    <section class="chapter" id="p4">
+      <div class="chap-num">PROBLEM 04 · CLT 비율</div>
+      <h2>④ 광고 클릭률 — 표본비율의 분포 ⭐</h2>
+      <div class="chap-sub">p̂ ~ N(p, p(1-p)/n)</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>광고 한 번 노출 시 클릭으로 이어질 확률 \(p = 0.10\). 광고를 \(n = 400\)명에게 노출했다.</p>
+        <p>(a) 표본비율 \(\hat{p}\)의 평균과 표준오차는?</p>
+        <p>(b) 표본비율 \(\hat{p}\)이 12% 이상일 확률은?</p>
+        <p>(c) 표본비율 \(\hat{p}\)이 8%~12% 사이일 확률은?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>(a)</strong> \(E[\hat{p}] = p = 0.10\). SE \(= \sqrt{p(1-p)/n} = \sqrt{0.10 \times 0.90 / 400} = \sqrt{0.000225} = 0.015\).</p>
+
+      <p>CLT: \(np = 40 \ge 5\) and \(n(1-p) = 360 \ge 5\) → \(\hat{p} \sim N(0.10, 0.015^2)\) 근사.</p>
+
+      <p><strong>(b)</strong> \(z = (0.12 - 0.10)/0.015 = 1.33\). \(P(\hat{p} > 0.12) = P(Z > 1.33) = 1 - 0.9082 = \mathbf{0.0918}\) (9.18%)</p>
+
+      <p><strong>(c)</strong> \(z_1 = -1.33\), \(z_2 = 1.33\) (대칭). \(P(0.08 \le \hat{p} \le 0.12) = 2 \times 0.9082 - 1 = \mathbf{0.8164}\) (81.64%)</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 평균 0.10, SE 0.015 / (b) 9.18% / (c) 81.64%</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">핵심 패턴</div>
+        <p>표본비율의 CLT 조건: \(np \ge 5\) 그리고 \(n(1-p) \ge 5\). 둘 다 만족하면 정규 근사 가능.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P5 ═══════ -->
+    <section class="chapter" id="p5">
+      <div class="chap-num">PROBLEM 05 · 한 평균 CI</div>
+      <h2>⑤ 배달 시간 신뢰구간 🔥</h2>
+      <div class="chap-sub">σ 알려진 경우 — z-CI</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>배달 앱 사용자 100명의 평균 배달 시간이 32분으로 측정됨. 모표준편차 \(\sigma = 8\)분.</p>
+        <p>(a) 95% 신뢰구간을 구하시오.</p>
+        <p>(b) 99% 신뢰구간을 구하시오.</p>
+        <p>(c) 90% 신뢰구간을 구하시오.</p>
+        <p>(d) 신뢰수준이 높을수록 구간이 어떻게 변하는가? 이유는?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p>SE \(= \sigma/\sqrt{n} = 8/\sqrt{100} = 0.8\). 식: \(\bar{X} \pm z_{\alpha/2} \cdot \text{SE}\).</p>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>ME</th><th>CI</th></tr></thead>
+          <tbody>
+            <tr><td>(c) 90%</td><td>1.65</td><td>1.32</td><td>(30.68, 33.32)</td></tr>
+            <tr><td>(a) 95%</td><td>1.96</td><td>1.568</td><td>(30.43, 33.57)</td></tr>
+            <tr><td>(b) 99%</td><td>2.58</td><td>2.064</td><td>(29.94, 34.06)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>(d)</strong> 신뢰수준이 높을수록 구간이 <em>넓어진다</em>. 이유: 더 많은 모평균 값을 "포함 가능"으로 받아들이려면 구간이 커져야 함. 99% CI는 1% 위험만 감수하므로 90% CI(10% 위험)보다 훨씬 큼.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 95% CI = (30.43, 33.57) / (b) 99% CI = (29.94, 34.06) / (c) 90% CI = (30.68, 33.32)</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P6 ═══════ -->
+    <section class="chapter" id="p6">
+      <div class="chap-num">PROBLEM 06 · 한 비율 CI</div>
+      <h2>⑥ 만족도 조사 — 비율 신뢰구간 ⭐</h2>
+      <div class="chap-sub">p̂ ± z·√[p̂(1-p̂)/n]</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>500명 고객을 대상으로 한 만족도 조사에서 320명이 "만족"이라 답했다.</p>
+        <p>(a) 만족 비율의 95% 신뢰구간을 구하시오.</p>
+        <p>(b) "전체 고객의 65%가 만족한다"는 주장은 통계적으로 지지되는가? (CI 기반 판단)</p>
+        <p>(c) 신뢰구간의 폭을 절반으로 줄이려면 표본을 몇 배로 늘려야 하나?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p>\(\hat{p} = 320/500 = 0.64\). SE \(= \sqrt{\hat{p}(1-\hat{p})/n} = \sqrt{0.64 \times 0.36 / 500} = \sqrt{0.000461} = 0.0215\).</p>
+
+      <p><strong>(a)</strong> 95% CI: \(0.64 \pm 1.96 \times 0.0215 = (0.598, 0.682)\). 즉 <strong>(59.8%, 68.2%)</strong>.</p>
+
+      <p><strong>(b)</strong> 0.65는 95% CI \((0.598, 0.682)\) <em>안에 있음</em> → "만족 비율 = 65%" 주장을 5% 유의수준에서 <strong>기각할 수 없음</strong>. 65%일 가능성을 지지함.</p>
+
+      <p><strong>(c)</strong> CI 폭은 \(2 \cdot z \cdot \sigma/\sqrt{n}\)에 비례. 폭을 절반으로 → \(\sqrt{n}\)을 2배로 → <strong>\(n\)을 4배로</strong> (= 2,000명).</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) (59.8%, 68.2%) / (b) 기각 못 함 — 65%가 CI에 포함됨 / (c) 4배 (2,000명)</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">핵심 패턴</div>
+        <p>CI 폭 ↓ <strong>4배 룰</strong> — 정밀도를 2배로 올리려면 표본을 4배. SE에 \(\sqrt{n}\)이 들어가서 그렇습니다.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P7 ═══════ -->
+    <section class="chapter" id="p7">
+      <div class="chap-num">PROBLEM 07 · 한 평균 H.T. 양측</div>
+      <h2>⑦ 신제품 무게 검정 🔥</h2>
+      <div class="chap-sub">양측 검정 — μ ≠ 표시값</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>한 과자 봉지에 "내용량 200g"으로 표시되어 있다. 품질 관리팀이 무작위 64봉지의 무게를 잰 결과 표본평균 \(\bar{X} = 197.5\)g.
+        모표준편차 \(\sigma = 8\)g으로 알려져 있다.</p>
+        <p>표시된 200g과 실제 평균이 다른지 \(\alpha = 5\%\)에서 검정하시오.</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu = 200, \quad H_1 : \mu \ne 200\) (양측).</p>
+
+      <p><strong>② SE:</strong> \(\sigma/\sqrt{n} = 8/\sqrt{64} = 1\).</p>
+
+      <p><strong>③ z-통계량:</strong> \(z = (197.5 - 200)/1 = -2.5\).</p>
+
+      <p><strong>④ p-값 (양측):</strong> \(2 \cdot P(Z < -2.5) = 2 \times 0.0062 = 0.0124\) (1.24%).</p>
+
+      <p><strong>⑤ 결론:</strong> \(0.0124 < 0.05\) → <strong>\(H_0\) 기각</strong>. 표시된 200g과 실제 평균이 다르다는 증거 충분.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>5% 유의수준에서 \(H_0\) 기각. 평균 무게가 200g이 아니라는 통계적 증거 있음. (관측값이 작으니 "표시보다 적음" 의심.)</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">임계값 비교법</div>
+        <p>5% 양측 임계값 \(z_{0.025} = 1.96\). \(|z| = 2.5 > 1.96\) → 같은 결론 (기각).</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P8 ═══════ -->
+    <section class="chapter" id="p8">
+      <div class="chap-num">PROBLEM 08 · 한 비율 H.T. 단측</div>
+      <h2>⑧ 신약 효능 — 단측 검정 ⭐</h2>
+      <div class="chap-sub">기존 치료율 대비 신약이 더 좋은가?</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>기존 치료법의 완치율은 70%로 알려져 있다. 신약을 \(n = 200\)명에게 투여한 결과 152명이 완치되었다.</p>
+        <p>신약이 기존 치료법보다 더 효과적이라는 증거가 \(\alpha = 5\%\)에서 충분한가?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : p \le 0.70, \quad H_1 : p > 0.70\) (오른쪽 단측).</p>
+
+      <p><strong>② 표본 통계량:</strong> \(\hat{p} = 152/200 = 0.76\).</p>
+
+      <p><strong>③ SE (H₀ 하 — 경계값 \(p = 0.70\) 사용):</strong> \(\sqrt{0.70 \times 0.30 / 200} = \sqrt{0.00105} = 0.0324\).</p>
+
+      <p><strong>④ z-통계량:</strong> \(z = (0.76 - 0.70)/0.0324 = 1.85\).</p>
+
+      <p><strong>⑤ p-값 (단측):</strong> \(P(Z > 1.85) = 1 - 0.9678 = 0.0322\) (3.22%).</p>
+
+      <p><strong>⑥ 결론:</strong> \(0.0322 < 0.05\) → <strong>\(H_0\) 기각</strong>. 신약이 더 효과적이라는 증거 충분.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>5% 유의수준에서 \(H_0\) 기각. 신약의 완치율이 기존 70%보다 통계적으로 더 높다고 결론.</p>
+      </div>
+
+      <div class="callout yellow">
+        <div class="label">⚠️ 단측 vs 양측</div>
+        <p>같은 데이터라도 양측에서는 p-값이 \(0.0322 \times 2 = 0.0644 > 0.05\) → <strong>기각 불가</strong>. 단측을 쓰려면 <em>방향이 사전에 정해져 있어야</em> 함 — "기존보다 좋다" 같은 명확한 가설.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P9 ═══════ -->
+    <section class="chapter" id="p9">
+      <div class="chap-num">PROBLEM 09 · 두 평균 H.T.</div>
+      <h2>⑨ A/B 광고 노출 비교 ⭐</h2>
+      <div class="chap-sub">독립 표본 — μ_A vs μ_B</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>두 광고 A, B의 클릭 후 페이지 체류시간(초)을 비교. 각각 \(n_A = n_B = 200\)명 무작위 노출.</p>
+        <p>광고 A: \(\bar{X}_A = 45\), \(\sigma_A = 12\). 광고 B: \(\bar{X}_B = 41\), \(\sigma_B = 15\).</p>
+        <p>두 광고의 평균 체류시간이 다른지 \(\alpha = 1\%\)에서 검정하시오.</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu_A - \mu_B = 0, \quad H_1 : \mu_A - \mu_B \ne 0\) (양측).</p>
+
+      <p><strong>② 표본 평균 차:</strong> \(\bar{X}_A - \bar{X}_B = 45 - 41 = 4\).</p>
+
+      <p><strong>③ SE (독립 표본):</strong></p>
+      <div class="formula">
+        \[ \text{SE} = \sqrt{\frac{\sigma_A^2}{n_A} + \frac{\sigma_B^2}{n_B}} = \sqrt{\frac{12^2}{200} + \frac{15^2}{200}} = \sqrt{0.72 + 1.125} = \sqrt{1.845} = 1.358 \]
+      </div>
+
+      <p><strong>④ z-통계량:</strong> \(z = 4 / 1.358 = 2.95\).</p>
+
+      <p><strong>⑤ p-값 (양측):</strong> \(2 \cdot P(Z > 2.95) = 2 \times 0.0016 = 0.0032\) (0.32%).</p>
+
+      <p><strong>⑥ 결론:</strong> \(0.0032 < 0.01\) → <strong>\(H_0\) 기각</strong>. 두 광고의 평균 체류시간이 다르다는 강한 증거.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>1% 유의수준에서 기각. 광고 A의 체류시간이 광고 B보다 통계적으로 더 길다고 결론 가능 (\(\bar{X}_A > \bar{X}_B\)이므로 방향까지).</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">두 평균 SE 공식</div>
+        <p>독립 표본: \(\sqrt{\sigma_A^2/n_A + \sigma_B^2/n_B}\). 두 분산을 표본크기로 나눠 더한 뒤 제곱근.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P10 ═══════ -->
+    <section class="chapter" id="p10">
+      <div class="chap-num">PROBLEM 10 · 짝지은 표본</div>
+      <h2>⑩ 다이어트 전후 비교 ✏️</h2>
+      <div class="chap-sub">Paired sample — D = X - Y</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>다이어트 프로그램 효과 검증. 같은 \(n = 50\)명을 대상으로 시작 시점과 8주 후 체중 측정.</p>
+        <p>시작: \(\bar{X}_1 = 72.5\)kg. 8주 후: \(\bar{X}_2 = 70.8\)kg. 차이 \(D = X_1 - X_2\)의 표본 표준편차 \(S_D = 3.2\)kg.</p>
+        <p>다이어트 효과가 있다는 (체중이 감소했다는) 증거가 \(\alpha = 5\%\)에서 충분한가?</p>
+      </div>
+
+      <h3>풀이 — 짝 표본의 특수성</h3>
+
+      <div class="callout">
+        <div class="label">왜 독립 공식 못 씀?</div>
+        <p>같은 사람의 시작·종료 체중은 강한 양의 상관관계. 독립이라 가정하면 SE를 과대평가하게 됨. 해결: 차이 \(D\)를 새 변수로 만들어 <strong>한 표본 문제</strong>로 환원.</p>
+      </div>
+
+      <p><strong>① 가설:</strong> \(H_0 : \mu_D = 0, \quad H_1 : \mu_D > 0\) (오른쪽 단측 — "체중 감소" 방향).</p>
+
+      <p><strong>② \(\bar{D}\) 계산:</strong> \(\bar{D} = 72.5 - 70.8 = 1.7\)kg.</p>
+
+      <p><strong>③ SE:</strong> \(\text{SE}_{\bar{D}} = S_D/\sqrt{n} = 3.2/\sqrt{50} = 3.2/7.07 = 0.453\).</p>
+
+      <p><strong>④ z-통계량:</strong> \(z = 1.7 / 0.453 = 3.76\).</p>
+
+      <p><strong>⑤ p-값 (단측):</strong> \(P(Z > 3.76) \approx 0.00008\) (0.008%) — 매우 작음.</p>
+
+      <p><strong>⑥ 결론:</strong> p-값 \(\ll 0.05\) → <strong>\(H_0\) 강하게 기각</strong>. 다이어트 효과 있음 (체중 감소).</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>5% (사실 1% 이하 어떤 수준에서도) 유의수준에서 기각. 8주간 평균 1.7kg 감량이 통계적으로 유의함.</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">핵심 패턴</div>
+        <p>"같은 사람을 두 번 측정" → 짝 표본. 차이 \(D = X_1 - X_2\)를 만들어 한 표본 검정. SE에는 <strong>\(S_D / \sqrt{n}\)</strong> (개별 \(S_X, S_Y\)는 못 씀).</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P11 ═══════ -->
+    <section class="chapter" id="p11">
+      <div class="chap-num">PROBLEM 11 · 단순회귀 해석</div>
+      <h2>⑪ 아파트 가격 vs 평수 🔥</h2>
+      <div class="chap-sub">β₁, R², 예측</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>서울 아파트 100채 데이터로 단순회귀 추정 결과:</p>
+        <div class="formula">
+          \[ \hat{\text{Price}} = 2.5 + 0.85 \cdot \text{Area} \quad (\text{Price: 억원, Area: 평}) \]
+        </div>
+        <p>표준오차 \(\text{SE}(\hat{\beta}_1) = 0.12\), \(R^2 = 0.72\).</p>
+        <p>(a) \(\hat{\beta}_1 = 0.85\)의 비즈니스 의미는?</p>
+        <p>(b) "평수는 가격에 영향이 없다(\(\beta_1 = 0\))"를 \(\alpha = 5\%\)에서 검정.</p>
+        <p>(c) \(R^2 = 0.72\)의 의미는?</p>
+        <p>(d) 40평 아파트의 예상 가격은?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>(a)</strong> 평수가 1평 늘 때 가격이 평균 <strong>0.85억(8,500만원) 오른다</strong>는 의미. 다른 모든 조건 동일.</p>
+
+      <p><strong>(b)</strong> \(H_0 : \beta_1 = 0, \quad H_1 : \beta_1 \ne 0\).</p>
+      <div class="formula">
+        \[ t\text{-stat} = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{0.85}{0.12} = 7.08 \]
+      </div>
+      <p>큰 표본 (\(n = 100\))이므로 t ≈ Z. \(|z| = 7.08 \gg 1.96\) → <strong>\(H_0\) 강하게 기각</strong>. 평수는 가격에 통계적으로 유의한 영향 있음.</p>
+
+      <p><strong>(c)</strong> \(R^2 = 0.72\) → "가격의 변동 중 <strong>72%</strong>를 평수가 설명함." 매우 강한 설명력.</p>
+
+      <p><strong>(d)</strong> Area = 40 → \(\hat{\text{Price}} = 2.5 + 0.85 \times 40 = 2.5 + 34 = \mathbf{36.5}\)억원.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 1평당 +0.85억 / (b) 기각 (z=7.08) — 평수 영향 유의함 / (c) 가격 변동의 72% 설명 / (d) 36.5억원</p>
+      </div>
+
+      <div class="callout">
+        <div class="label">회귀 해석 3박자</div>
+        <p>① <strong>부호</strong> (예상대로?) ② <strong>크기</strong> (실무 의미 있는?) ③ <strong>유의성</strong> (t-stat or p-value &lt; 0.05?). 셋 다 통과해야 의사결정에 활용.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ P12 ═══════ -->
+    <section class="chapter" id="p12">
+      <div class="chap-num">PROBLEM 12 · 다중회귀 + 더미</div>
+      <h2>⑫ 매출 회귀 — 가격·프로모션·요일 ⭐</h2>
+      <div class="chap-sub">연속변수 + 더미변수 해석</div>
+
+      <div class="callout yellow">
+        <div class="label">문제</div>
+        <p>편의점 1년 매출 데이터로 회귀 추정:</p>
+        <div class="formula wide">
+          \[ \hat{\text{Sales}} = 50 - 1.2 \cdot \text{Price} + 8.5 \cdot \text{Promo} + 12.3 \cdot \text{Weekend} \]
+        </div>
+        <p>Promo = 1 (프로모션 진행), 0 (없음). Weekend = 1 (토·일), 0 (평일). \(n = 365\), \(R^2 = 0.58\), Adjusted \(R^2 = 0.57\).</p>
+        <p>모든 계수의 t-stat은 절댓값 3 이상.</p>
+        <p>(a) 각 계수의 비즈니스 의미를 한 줄씩.</p>
+        <p>(b) 프로모션 진행 + 주말일 때 (가격 5,000원 가정) 예상 매출은?</p>
+        <p>(c) Adjusted \(R^2\)와 \(R^2\)의 차이가 거의 없다. 이게 의미하는 것은?</p>
+      </div>
+
+      <h3>풀이</h3>
+
+      <p><strong>(a) 각 계수 해석:</strong></p>
+      <ul>
+        <li>\(\beta_0 = 50\) — 모든 변수가 0일 때 (가격 0, 프로모션 없음, 평일) 매출 50. 실무 의미 적음 (절편).</li>
+        <li>\(\beta_1 = -1.2\) — 가격이 1원 오를 때 매출 평균 1.2 단위 <strong>감소</strong>. 부호 음수 — 합리적 (수요 법칙).</li>
+        <li>\(\beta_2 = +8.5\) — 프로모션을 진행하면 매출이 평균 <strong>+8.5 단위 증가</strong> (가격·요일 통제 후).</li>
+        <li>\(\beta_3 = +12.3\) — 주말에는 매출이 평균 <strong>+12.3 단위 더 높음</strong> (가격·프로모션 통제 후).</li>
+      </ul>
+
+      <p><strong>(b) 예측:</strong></p>
+      <div class="formula">
+        \[ \hat{\text{Sales}} = 50 - 1.2 \times 5{,}000 + 8.5 \times 1 + 12.3 \times 1 \]
+      </div>
+      <p>주의 — 가격 단위에 따라 계수 해석이 다름. 위 식이 단위 정합하려면 Price를 천원 단위로 가정해야 합리적. Price = 5 (천원)로 가정:</p>
+      <div class="formula">
+        \[ \hat{\text{Sales}} = 50 - 1.2 \times 5 + 8.5 + 12.3 = 50 - 6 + 8.5 + 12.3 = 64.8 \]
+      </div>
+
+      <p><strong>(c)</strong> Adjusted \(R^2\)와 \(R^2\)의 차이가 거의 없음 → 포함된 변수들이 <strong>모두 의미 있음</strong> (불필요한 변수 추가가 없음). 변수마다 페널티가 작용했지만 거의 안 떨어졌으니 모두 기여한다는 신호.</p>
+
+      <div class="callout green">
+        <div class="label">정답</div>
+        <p>(a) 가격↑ 매출↓, 프로모션 +8.5, 주말 +12.3 / (b) 약 64.8 단위 / (c) 모든 변수가 모형에 기여하고 있음 (군더더기 없음)</p>
+      </div>
+
+      <div class="callout blue">
+        <div class="label">더미변수의 의미</div>
+        <p>Promo·Weekend는 <strong>0/1 더미</strong>. 계수는 "그 조건이 켜졌을 때 추가되는 매출". 0이면 그 항 자체가 사라지므로 절편이 기본값이 됨. 더미는 카테고리 효과를 회귀에 넣는 표준 방법.</p>
+      </div>
+    </section>
+
+    <!-- ═══════ 마무리 ═══════ -->
+    <section class="chapter" id="wrap">
+      <div class="chap-num">EPILOGUE</div>
+      <h2>이 12문제가 다 풀린다면</h2>
+
+      <p>기말 시험에 나올 문제는 결국 이 12개 유형의 변형입니다. 시험장에서 새로운 문제를 만나면 <strong>"이건 어느 유형이지?"</strong>부터 분류해보세요.</p>
+
+      <div class="table-scroll">
+        <table class="center blue-head">
+          <caption>유형 분류 체크리스트</caption>
+          <thead><tr><th>문제에 이런 단어가 나오면…</th><th>유형</th></tr></thead>
+          <tbody>
+            <tr><td>"평균 μ, 표준편차 σ가 알려진 정규분포"</td><td>① ②</td></tr>
+            <tr><td>"표본을 뽑았는데 n이 큰 경우" / "X̄의 분포"</td><td>③</td></tr>
+            <tr><td>"성공률·비율·p̂"</td><td>④</td></tr>
+            <tr><td>"진짜 평균(또는 비율)이 어디?" / "신뢰구간"</td><td>⑤ ⑥</td></tr>
+            <tr><td>"~인가 아닌가?" / "증거가 충분한가?"</td><td>⑦ ⑧</td></tr>
+            <tr><td>"두 집단 비교" / "독립 표본"</td><td>⑨</td></tr>
+            <tr><td>"같은 사람을 두 번 측정" / "전후 비교"</td><td>⑩</td></tr>
+            <tr><td>"두 변수의 관계" / "기울기 β₁"</td><td>⑪</td></tr>
+            <tr><td>"여러 변수 모형" / "더미변수" / "R²"</td><td>⑫</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="take-away">
+        <div class="label">KEY TAKEAWAY</div>
+        시험장 두뇌 순서: <em>① 유형 분류 → ② 가설 설정 → ③ SE 골라쓰기 → ④ z 또는 t-stat → ⑤ p-값 또는 임계값 비교 → ⑥ 결론 한 줄.</em>
+        이 흐름만 외워두면 12문제 모두 같은 틀로 풀립니다.
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <a href="goodbelly.html" class="prev">◀ GoodBelly 사례</a>
+      <a href="index.html" class="next">전체 강의 목록 ▶</a>
+    </nav>
+
+  </main>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
