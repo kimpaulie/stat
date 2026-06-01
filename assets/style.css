@@ -550,13 +550,14 @@ ul li:last-child, ol li:last-child { margin-bottom: 0; }
 }
 .study-map .map-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 14px;
   margin-top: 12px;
 }
 .study-map .map-row div {
   border-left: 3px solid var(--rule);
   padding-left: 12px;
+  min-width: 0; /* grid 항목이 내용에 의해 강제 확장되지 않게 */
 }
 .study-map strong,
 .study-map span {
@@ -567,6 +568,9 @@ ul li:last-child, ol li:last-child { margin-bottom: 0; }
   font-size: var(--t-caption);
   line-height: var(--lh-snug);
   margin-top: 4px;
+  /* 길어지는 수식은 가로 스크롤 (글자 단위 깨짐 방지) */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .mini-flow {
   display: grid;
@@ -814,6 +818,22 @@ table.kv td:first-child, table.kv th:first-child {
 /* KaTeX 폰트 사이즈 — 디스플레이 수식은 살짝 키우고, 인라인은 본문에 자연스럽게 */
 .formula .katex { font-size: 1.1em; }
 .katex { font-size: 1.05em; }
+/* 인라인 KaTeX 는 절대 글자 단위로 깨지지 않게 — word-break/overflow-wrap 무력화 */
+.katex {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+.katex * {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+/* 디스플레이 수식 (\[ ... \]) 만 wrap 허용 — 너무 긴 식에서 줄바꿈 */
+.formula .katex-display,
+.katex-display > .katex {
+  white-space: normal;
+}
 /* 인라인 KaTeX 가 1.85 line-height 본문에서 위로 솟아 보이지 않게 살짝 내림 */
 p .katex, li .katex, td .katex, th .katex, .callout .katex,
 .definition .katex, .study-map .katex, h2 .katex, h3 .katex, h4 .katex,
