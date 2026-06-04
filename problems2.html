@@ -238,6 +238,21 @@
         <em>미리 방향이 정해져 있어야</em> 해요. 데이터 보고 단측으로 바꾸면 안 돼요!</p>
       </div>
 
+      <div class="callout green">
+        <div class="label">📋 Q1 정답 한눈에 보기</div>
+        <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>소문제</th><th>핵심 수치</th><th>결론</th></tr></thead>
+          <tbody>
+            <tr><td>(a) 95% CI</td><td>\(\hat{p} = 0.03\), SE \(\approx\) 0.005686, ME \(\approx\) 0.01115</td><td><strong>[1.89%, 4.11%]</strong></td></tr>
+            <tr><td>(b) 양측 \(\ne\) 2%</td><td>z \(\approx\) 2.14, p-값 \(\approx\) 0.0324</td><td>5%에서 <strong>Reject \(H_0\)</strong> — 2%가 아님</td></tr>
+            <tr><td>(c) 단측 &gt; 2%</td><td>z \(\approx\) 2.14, p-값 \(\approx\) 0.0162</td><td>5%에서 <strong>Reject \(H_0\)</strong> — 2%보다 큼</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:10px"><strong>주의 포인트:</strong> (a)의 95% CI에는 2%가 안 들어가는 게 아니지만, (b)의 양측 검정은 SE 계산에 \(H_0\)의 \(p = 0.02\)를 써서 더 정확함. 그래서 결론은 H.T.를 따름.</p>
+      </div>
+
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         비율 CI는 SE에 \(\hat{p}\)를. 비율 H.T.는 SE에 \(H_0\)의 p를. 단측 p-값은 양측의 ½.
@@ -340,6 +355,24 @@
         유의한 증거가 발견됐어요.</p>
         <p>→ <strong>ATM의 일일 준비금액을 현 수준에서 늘리는 방향으로 조정하는 것을 검토</strong>해야 해요.</p>
         <p>단, 매우 엄격한 1% 기준에서는 증거가 아직 부족해요. 추가 데이터 수집 후 재검정도 좋아요.</p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">📋 Q2 정답 한눈에 보기</div>
+        <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>소문제</th><th>핵심 수치</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>(a) SE</td><td>\(\sigma/\sqrt{n} = 12{,}000/\sqrt{50}\)</td><td><strong>≈ 1,697원</strong></td></tr>
+            <tr><td>(b) 90% CI</td><td>1.645 × 1,697 ≈ 2,792</td><td><strong>[42,208, 47,792]</strong></td></tr>
+            <tr><td>(b) 95% CI</td><td>1.96 × 1,697 ≈ 3,326</td><td><strong>[41,674, 48,326]</strong></td></tr>
+            <tr><td>(b) 99% CI</td><td>2.576 × 1,697 ≈ 4,371</td><td><strong>[40,629, 49,371]</strong></td></tr>
+            <tr><td>(c) 양측 \(\mu \ne\) 42,000</td><td>z ≈ 1.768, p ≈ 0.0772</td><td>10%만 기각 / 5%·1% 보류</td></tr>
+            <tr><td>(d) 단측 \(\mu &gt;\) 42,000</td><td>z ≈ 1.768, p ≈ 0.0386</td><td>10%·5% 기각 / 1% 보류</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:10px"><strong>실무 권고:</strong> 5%에서 단측 검정이 기각되므로 ATM 일일 준비 금액 상향 조정 검토.</p>
       </div>
 
       <div class="take-away">
@@ -463,6 +496,24 @@
         1%에서 fail to reject = p \(\ge\) 0.01.</p>
         <p>따라서 <strong>0.01 \(\le\) p-값 &lt; 0.05</strong>. (실제로 계산하면 p \(\approx\) 0.0438.)</p>
         <p>이렇게 CI 결과들만으로도 p-값의 <em>대략적인 범위</em>를 추론할 수 있어요. 멋지죠?</p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">📋 Q3 정답 한눈에 보기</div>
+        <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>소문제</th><th>핵심 수치</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>(a) \(\bar{X}\), SE</td><td>150,000/100 = 1,500; 397/√100 = 39.7</td><td><strong>1,500 / 39.7</strong></td></tr>
+            <tr><td>(b) 90% CI</td><td>ME ≈ 65.3</td><td><strong>[1,434.7, 1,565.3]</strong></td></tr>
+            <tr><td>(b) 95% CI</td><td>ME ≈ 77.8</td><td><strong>[1,422.2, 1,577.8]</strong></td></tr>
+            <tr><td>(b) 99% CI</td><td>ME ≈ 102.3</td><td><strong>[1,397.7, 1,602.3]</strong></td></tr>
+            <tr><td>(c) \(\mu\) = 1,425?</td><td>z ≈ 1.889, p ≈ 0.0588 (양측)</td><td>10%만 Reject / 5%·1% 보류 (세 방법 동일)</td></tr>
+            <tr><td>(d) \(\mu\) = 1,580?</td><td>CI만으로</td><td>10%·5% Reject / 1% 보류 → \(0.01 \le p &lt; 0.05\)</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:10px"><strong>(c) 핵심:</strong> p-값·z-값·CI 세 방법 모두 같은 결론. <strong>(d) 응용:</strong> 여러 신뢰수준 CI만 비교해도 p-값 범위 추론 가능.</p>
       </div>
 
       <div class="take-away">
@@ -632,6 +683,29 @@
         <p>5%에서 대전 캠퍼스가 서울보다 양식 선호 비율이 더 작다는 증거 충분.</p>
       </div>
 
+      <div class="callout green">
+        <div class="label">📋 Q4 정답 한눈에 보기</div>
+        <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>소문제</th><th>핵심 수치</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>(a) 서울 양식 비율 90% CI</td><td>\(\hat{p}_S = 0.4294\), SE ≈ 0.01697</td><td><strong>[0.4015, 0.4573]</strong></td></tr>
+            <tr><td>(a) 95% CI</td><td>—</td><td><strong>[0.3961, 0.4627]</strong></td></tr>
+            <tr><td>(a) 99% CI</td><td>—</td><td><strong>[0.3857, 0.4731]</strong></td></tr>
+            <tr><td>(b) 양측 p \(\ne\) 40%</td><td>z ≈ 1.749, p ≈ 0.0802</td><td>5%에서 <strong>Fail to Reject</strong></td></tr>
+            <tr><td>(c) 단측 p &gt; 40%</td><td>z ≈ 1.749, p ≈ 0.0401</td><td>5%에서 <strong>Reject \(H_0\)</strong></td></tr>
+            <tr><td>(d) 한눈 비교</td><td>4.7%p 차이</td><td>통계 검정 필요한 미묘한 차이</td></tr>
+            <tr><td>(e) 두 비율 차 95% CI</td><td>SE ≈ 0.02586</td><td><strong>[−0.0036, 0.0978]</strong>, 0 포함 → 차이 단언 불가</td></tr>
+            <tr><td>(f) 양측 \(p_S \ne p_D\)</td><td>pooled \(\bar{p}\)=0.4095, z≈1.814, p≈0.0698</td><td>5%에서 <strong>Fail to Reject</strong></td></tr>
+            <tr><td>(g) 단측 \(p_S &gt; p_D\)</td><td>z≈1.814, p≈0.0349</td><td>5%에서 <strong>Reject \(H_0\)</strong></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:10px"><strong>두 가지 큰 교훈:</strong>
+        ① (b)와 (c)처럼 양측·단측 결론이 갈리는 미묘한 영역 — 단측은 <em>사전 방향</em>이 있어야만.
+        ② (e)·(f)·(g) — 두 비율 비교의 CI(분리 SE)와 H.T.(pooled SE)는 SE 계산이 다름.</p>
+      </div>
+
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         한 비율과 두 비율, 양측과 단측. \(H_1\)의 방향에 따라 같은 데이터의 결론이 달라져요.
@@ -715,6 +789,25 @@
         <div class="label">\(\alpha\) 기준선의 위력</div>
         <p>양측 p=0.0242, 단측 p=0.0121. 둘 다 5%에서는 명백히 기각될 텐데, <strong>1%에서는 둘 다 보류</strong>.</p>
         <p>α를 어떻게 잡느냐가 검정의 결론을 좌우해요. 분야의 관행을 따르되, 자기 결론에 책임을 져야 해요.</p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">📋 Q5 정답 한눈에 보기</div>
+        <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>소문제</th><th>핵심 수치</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>SE 사전 계산</td><td>√(78,500²/500 + 94,700²/500)</td><td><strong>≈ 5,501원</strong></td></tr>
+            <tr><td>표본 평균 차</td><td>255,200 − 242,800</td><td><strong>12,400원</strong></td></tr>
+            <tr><td>(a) 90% CI</td><td>ME ≈ 9,049</td><td><strong>[3,351, 21,449]</strong></td></tr>
+            <tr><td>(a) 95% CI</td><td>ME ≈ 10,782</td><td><strong>[1,618, 23,182]</strong></td></tr>
+            <tr><td>(a) 99% CI</td><td>ME ≈ 14,171</td><td><strong>[−1,771, 26,571]</strong> (0 포함!)</td></tr>
+            <tr><td>(b) 양측 차 \(\ne\) 0</td><td>z ≈ 2.254, p ≈ 0.0242</td><td>1%에서 <strong>Fail to Reject</strong> (5%면 기각될 수치)</td></tr>
+            <tr><td>(c) 단측 차 &gt; 0</td><td>z ≈ 2.254, p ≈ 0.0121</td><td>1%에서 <strong>Fail to Reject</strong> (5%면 기각될 수치)</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:10px"><strong>α 기준선의 위력:</strong> 같은 z=2.254라도 5%에서는 기각, 1%에서는 둘 다 보류 — 의학·임상처럼 엄격한 기준에서는 더 강한 증거가 필요.</p>
       </div>
 
       <div class="take-away">
@@ -807,6 +900,22 @@
         <p>일반적으로는 짝 표본 SE가 <em>더 작은 경우</em>가 많은데, 그건 짝 사이에 차이의 변동이 더 적기 때문이에요.
         (예: 다이어트 전후 같은 사람 체중 비교.)</p>
         <p>핵심: 짝과 독립은 SE 계산 자체가 달라요. 데이터의 구조에 맞는 방법을 골라야 정확한 결론을 얻어요.</p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">📋 Q6 정답 한눈에 보기</div>
+        <div class="table-scroll">
+        <table class="center">
+          <thead><tr><th>소문제</th><th>핵심 수치</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>D 통계량</td><td>\(\bar{D}\) = 8,900, \(S_D\) = 88,700, SE = 88,700/√500</td><td>SE ≈ <strong>3,966원</strong></td></tr>
+            <tr><td>(a) 양측 \(\mu_D \ne\) 0</td><td>z ≈ 2.244, p ≈ 0.0250</td><td>1%에서 <strong>Fail to Reject</strong></td></tr>
+            <tr><td>(b) 단측 \(\mu_D &lt;\) 0</td><td>z ≈ 2.244 (양수!), p ≈ 0.9875</td><td><strong>전혀 기각 못 함</strong> — 데이터가 \(H_1\) 반대 방향</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top:10px"><strong>(b)의 함정:</strong> 표본 차이 \(\bar{D}\) = 8,900으로 <em>양수</em>인데 \(H_1\)이 "음수"를 주장하면 데이터가 \(H_1\)에 반대 방향. p-값이 0.5보다 크게 나와 어떤 α에서도 기각 불가. 단측 방향을 데이터 보기 전에 정해야 하는 이유.</p>
+        <p><strong>짝 vs 독립 비교:</strong> 같은 데이터를 독립으로 계산하면 SE ≈ 3,584, 실제 짝 SE = 3,966. 두 방식이 다른 SE를 줌 → 데이터 구조 (같은 사람 두 번 측정인가?)에 맞는 공식 선택이 정답률 좌우.</p>
       </div>
 
       <div class="take-away">

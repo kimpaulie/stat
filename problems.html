@@ -461,6 +461,12 @@
         \(\therefore 0.30 \ne 0.22\)이므로 \(X, Y\)는 독립이 아니다.</p>
       </div>
 
+      <div class="callout green">
+        <div class="label">📋 정답 정리</div>
+        <p><strong>코로나(\(X\))와 삿포로(\(Y\))는 독립이 아니다.</strong></p>
+        <p>근거: \(P(Y=3 \mid X=1) = 0.30 \ne 0.22 = P(Y=3)\). 한쪽 정보가 다른 쪽 확률을 바꾸므로 독립의 정의 위배.</p>
+      </div>
+
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         독립 판정 = "한 칸이라도 \(P(x,y) \ne P(x)P(y)\)면 끝." 가장 의심스러운 칸 한 개 골라 확인하면 충분.
@@ -588,6 +594,12 @@
       </table>
       </div>
 
+      <div class="callout green">
+        <div class="label">📋 정답 정리</div>
+        <p>코로나 \(X\): <strong>\(E[X] = 1.80\), \(\mathrm{Var}[X] = 0.96\)</strong> → 표준편차 \(\sigma_X = \sqrt{0.96} \approx 0.9798\)</p>
+        <p>삿포로 \(Y\): <strong>\(E[Y] = 1.55\), \(\mathrm{Var}[Y] = 1.0675\)</strong> → 표준편차 \(\sigma_Y \approx 1.0332\)</p>
+      </div>
+
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         시험에선 <strong>\(\mathrm{Var} = E[X^2] - (E[X])^2\)</strong>가 정답.
@@ -695,6 +707,13 @@
 
       <p>그러니까 <strong>"살짝 반대로 움직이는 두 맥주"</strong>라고 보면 돼요. 강하진 않아요.</p>
 
+      <div class="callout green">
+        <div class="label">📋 정답 정리</div>
+        <p><strong>공분산 \(\mathrm{Cov}[X, Y] = -0.30\)</strong> — 음수, 약한 역방향 관계.</p>
+        <p><strong>상관계수 \(\rho_{XY} \approx -0.296\)</strong> — 약한 음의 직선 관계 (\(-1\)도 \(0\)도 아닌 중간).</p>
+        <p>해석: 코로나가 많이 팔리는 날 삿포로는 조금 덜 팔리는 경향이 있지만, 그 관계가 강하지는 않음.</p>
+      </div>
+
       <div class="callout blue">
         <div class="label">시험 답안</div>
         <p>\(E[XY] = \sum\sum xy P(x,y) = 2.49\)<br>
@@ -782,6 +801,13 @@
         &nbsp;&nbsp;\(=\) <strong>1.4275</strong></p>
       </div>
 
+      <div class="callout green">
+        <div class="label">📋 정답 정리</div>
+        <p>총 수요 \(X + Y\)의 평균: <strong>\(E[X+Y] = 3.35\)</strong></p>
+        <p>총 수요 \(X + Y\)의 분산: <strong>\(\mathrm{Var}[X+Y] = 1.4275\)</strong></p>
+        <p>분산을 단순 합 \(0.96 + 1.0675 = 2.0275\)과 비교하면, 음의 공분산 효과로 약 \(0.60\)이 깎임.</p>
+      </div>
+
       <div class="take-away">
         <div class="label">KEY TAKEAWAY</div>
         평균은 더하기, 분산은 공분산까지. 음의 공분산은 총 분산을 줄여줘요.
@@ -838,16 +864,20 @@
 
       <h3>3단계 · 표 보기</h3>
 
-      <p>표준정규분포표에서:</p>
+      <p>표준정규분포표에서 \(z = -1.67\)에 해당하는 왼쪽 꼬리 면적을 찾아요.</p>
+
+      <p><strong>표 읽기 요령:</strong> 표는 \(z \ge 0\)인 경우만 보통 제공해요.
+      \(z = -1.67\)은 음수니까 대칭성을 이용 — \(P(Z < -1.67) = 1 - P(Z < 1.67) = 1 - 0.9525 = 0.0475\).</p>
 
       <div class="formula">
         \[ P(Z < -1.67) \approx \mathbf{0.0475} \]
       </div>
 
       <div class="callout green">
-        <div class="label">최종 답</div>
-        <p>P(X &lt; 20000) \(\approx\) <strong>0.0475</strong> \(\approx\) 약 4.75%</p>
-        <p>주간 식사비 20,000원 미만은 <em>대학생 100명 중 약 5명</em>이라는 뜻.</p>
+        <div class="label">📋 정답 정리</div>
+        <p>주간 식사비 20,000원 미만 학생 비율 \(\approx\) <strong>0.0475 = 4.75%</strong></p>
+        <p>풀이 흐름: \(X = 20{,}000\) → 표준화 \(z = -1.67\) → 표 조회 → \(P(Z < -1.67) \approx 0.0475\).</p>
+        <p>해석: 대학생 100명 중 약 5명만 식비가 2만원 미만 — 평균(3만원)에서 −1.67σ만큼 멀어 꽤 드문 경우.</p>
       </div>
 
       <h3>왜 이렇게 작은가?</h3>
@@ -900,13 +930,22 @@
 
       <h3>Z값 거꾸로 찾기</h3>
 
-      <p>왼쪽 면적 0.40을 만드는 z값을 표준정규분포표에서 찾으면…</p>
+      <p>왼쪽 면적 0.40을 만드는 z값을 표준정규분포표에서 찾는 단계는 두 번 꼬여 있어요.</p>
+
+      <p><strong>① 표는 양수 z만 있다.</strong> 0.40은 평균 왼쪽이라 z가 음수. 대신 대칭으로
+      "오른쪽 면적 0.60 = 왼쪽 면적 0.60"을 만드는 양수 z를 먼저 찾기.</p>
+
+      <p><strong>② 표에서 0.60 가까운 행 찾기.</strong> \(P(Z \le 0.25) = 0.5987 \approx 0.60\). 즉 양수 z \(\approx\) 0.25.</p>
+
+      <p><strong>③ 대칭 적용.</strong> 왼쪽 면적 0.40을 만드는 z = −(양수 z) = <strong>−0.25</strong>.</p>
 
       <div class="formula">
-        \[ z \approx \mathbf{-0.25} \quad \text{(정확히는 } -0.253 \text{)} \]
+        \[ z \approx \mathbf{-0.25} \quad \text{(더 정밀히는 } -0.253 \text{)} \]
       </div>
 
       <h3>금액 x 풀기</h3>
+
+      <p>이제 표준화 식을 거꾸로 풀어요. \(z = (X - \mu)/\sigma\)에서 \(X\)를 분리.</p>
 
       <div class="formula">
         \[ (x - 30000) / 6000 = -0.25 \]
@@ -926,6 +965,12 @@
         <div class="label">시험 답안</div>
         <p>P(X &lt; x) = 0.40 ⇒ 표준정규분포표에서 왼쪽 면적이 0.40이 되는 z \(\approx\) −0.25.</p>
         <p>(x − 30000)/6000 = −0.25 ⇒ x = 30000 − 0.25(6000) = <strong>28,500원</strong></p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">📋 정답 정리</div>
+        <p>하위 40% 지점 식사비: <strong>약 28,500원</strong> (정밀 값 ≈ 28,480원)</p>
+        <p>풀이 흐름: 확률 0.40 → 대칭 이용해 양수 z 찾기 → z ≈ −0.25 → \(x = 30{,}000 + (-0.25)(6{,}000) = 28{,}500\).</p>
       </div>
 
       <div class="take-away">
@@ -1345,6 +1390,15 @@
         p(1−p)는 p = 0.5에서 최대이므로, p가 0.5에 가까울수록 표준오차가 커진다.</p>
         <p>여기서 p = 0.45는 p = 0.15보다 0.5에 더 가까워, p(1−p)가 크다(0.2475 vs 0.1275).
         따라서 (a)의 표준오차가 (b)보다 크다.</p>
+      </div>
+
+      <div class="callout green">
+        <div class="label">📋 정답 정리</div>
+        <p>(a) p=0.45, n=100: <strong>\(E[\bar{p}] = 0.45\), \(SD[\bar{p}] \approx 0.0497\)</strong></p>
+        <p>(b) p=0.15, n=100: <strong>\(E[\bar{p}] = 0.15\), \(SD[\bar{p}] \approx 0.0357\)</strong></p>
+        <p>(c) 같은 n인데 SD가 다른 이유: \(p(1-p)\)가 \(p = 0.5\)에서 최대이므로,
+        \(0.5\)에 더 가까운 \(p=0.45\)의 표본비율 분포가 더 넓게 흔들린다.
+        (0.45×0.55 = 0.2475 &gt; 0.15×0.85 = 0.1275)</p>
       </div>
 
       <div class="take-away">
