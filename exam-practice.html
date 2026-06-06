@@ -142,19 +142,54 @@
 
       <h3>(a) 95% 신뢰구간</h3>
 
-      <p><strong>① 표본평균:</strong> \(\bar{p} = \dfrac{27}{900} = 0.03 = 3\%\)</p>
+      <p><strong>① 표본평균:</strong> 900회 중 27회 구매 → \(\bar{p} = \dfrac{27}{900} = 0.03 = 3\%\)</p>
 
-      <p><strong>② 표준오차 (표본 평균의 표준편차):</strong></p>
+      <p><strong>② 표준오차 (표본 비율의 표준편차):</strong></p>
+
+      <div class="callout">
+        <div class="label">왜 이 공식?</div>
+        <p>한 사람의 구매 여부는 베르누이 분포 — 평균 \(p\), 분산 \(p(1-p)\). 900명을 평균낸 \(\bar{p}\)의 분산은 \(p(1-p)/n\) (분산 가법성). 표준편차는 √.</p>
+        <p>진짜 \(p\)를 모르니까 표본에서 본 \(\bar{p}\) = 0.03을 대신 사용 (\(\simeq\) 표시).</p>
+      </div>
+
       <div class="formula">
         \[ \sigma_{\bar{p}} = \sqrt{\frac{p(1-p)}{n}} \simeq \sqrt{\frac{\bar{p}(1-\bar{p})}{n}} = \sqrt{\frac{0.03 \times 0.97}{900}} = 0.0057 = 0.57\% \]
       </div>
 
+      <p>해석: 표본비율 3%는 진짜 비율에서 평균 약 0.57%p 흔들릴 거예요.</p>
+
       <p><strong>③ 신뢰구간:</strong></p>
+
+      <div class="callout">
+        <div class="label">왜 ±1.96?</div>
+        <p>95% 신뢰수준이라 양 끝 2.5%씩 자르는 위치. \(z_{\alpha/2} = z_{0.025} = 1.96\). 표본비율 좌우로 \(z \cdot \text{SE}\)만큼 펼치면 그 안에 진짜 \(p\)가 95% 확률로 포함.</p>
+      </div>
+
       <div class="formula">
         \[ \left(\bar{p} - z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}},\ \bar{p} + z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}\right) \]
       </div>
       <div class="formula">
         \[ = (0.03 - 1.96 \times 0.0057,\ 0.03 + 1.96 \times 0.0057) = (0.019,\ 0.041) = (1.9\%,\ 4.1\%) \]
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">95% 신뢰구간 — 표본비율 중심으로 ME 펼침</div>
+        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="120" x2="540" y2="120" stroke="#1d1d1f" stroke-width="1.5"/>
+          <line x1="60"  y1="115" x2="60"  y2="125" stroke="#1d1d1f"/>
+          <line x1="300" y1="115" x2="300" y2="125" stroke="#1d1d1f"/>
+          <line x1="540" y1="115" x2="540" y2="125" stroke="#1d1d1f"/>
+          <text x="60"  y="142" text-anchor="middle" font-size="11" fill="#585858">0%</text>
+          <text x="300" y="142" text-anchor="middle" font-size="11" fill="#585858">3% (p̂)</text>
+          <text x="540" y="142" text-anchor="middle" font-size="11" fill="#585858">6%</text>
+          <rect x="170" y="100" width="260" height="20" fill="#e7f2eb" stroke="#2f6d4a" stroke-width="1.5"/>
+          <line x1="170" y1="95"  x2="170" y2="125" stroke="#2f6d4a" stroke-width="2"/>
+          <line x1="430" y1="95"  x2="430" y2="125" stroke="#2f6d4a" stroke-width="2"/>
+          <text x="170" y="88" text-anchor="middle" font-size="12" fill="#2f6d4a" font-weight="700">1.9%</text>
+          <text x="430" y="88" text-anchor="middle" font-size="12" fill="#2f6d4a" font-weight="700">4.1%</text>
+          <circle cx="300" cy="110" r="5" fill="#c0392b"/>
+          <text x="300" y="173" text-anchor="middle" font-size="11" fill="#585858">95% 확률로 진짜 p가 이 띠 안</text>
+        </svg>
       </div>
 
       <div class="callout green">
@@ -165,13 +200,43 @@
       <h3>(b) 양측 검정 · p ≠ 2%</h3>
 
       <p><strong>① 가설:</strong> \(H_0 : p = 2\%, \quad H_1 : p \ne 2\%\)</p>
+      <p>증명하고 싶은 것 ("≠ 2%")을 \(H_1\)에. \(H_0\)는 그 반대 ("정확히 2%").</p>
 
       <p><strong>② z-통계량 (H₀ 하에서 표준 거리):</strong></p>
+
+      <div class="callout">
+        <div class="label">CI의 SE와 다른 점</div>
+        <p>(a)의 CI는 진짜 \(p\)를 모르니 \(\bar{p}\)=0.03 사용. (b)의 H.T.는 \(H_0\)가 참이라 가정하니 그 가정값 \(p\)=0.02 사용. 가정의 일관성을 지키는 거예요.</p>
+        <p>그래서 같은 데이터에 두 SE 값이 다름 — CI: 0.0057 / H.T.: 0.00467.</p>
+      </div>
+
       <div class="formula">
         \[ z = \frac{\bar{p} - p}{\sqrt{p(1-p)/n}} = \frac{0.03 - 0.02}{\sqrt{0.02 \times 0.98 / 900}} = \frac{0.01}{0.00467} = 2.14 \]
       </div>
 
+      <p>해석: 관측 표본이 \(H_0\) 평균에서 약 <em>2.14 SE</em> 떨어짐.</p>
+
       <p><strong>③ p-값 (양측):</strong> \(p\text{-value} = 2 \cdot P(Z > 2.14) = 2 \times 0.0162 = 0.0324\)</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">양측 검정 — 양쪽 꼬리 합이 p-값</div>
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 60 200 Q 100 200 140 195 T 220 170 T 300 60 T 380 170 T 460 195 T 540 200"
+                fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <path d="M 60 200 Q 100 200 140 197 L 140 200 Z" fill="#c0392b" opacity="0.6"/>
+          <path d="M 460 197 Q 500 199 540 200 L 460 200 Z" fill="#c0392b" opacity="0.6"/>
+          <line x1="40" y1="200" x2="560" y2="200" stroke="#1d1d1f"/>
+          <line x1="140" y1="195" x2="140" y2="210" stroke="#1d1d1f"/>
+          <line x1="300" y1="55"  x2="300" y2="210" stroke="#1d1d1f" stroke-dasharray="3 3" opacity="0.4"/>
+          <line x1="460" y1="195" x2="460" y2="210" stroke="#1d1d1f"/>
+          <text x="140" y="225" text-anchor="middle" font-size="11" fill="#585858">−2.14</text>
+          <text x="300" y="225" text-anchor="middle" font-size="11" fill="#585858">0</text>
+          <text x="460" y="225" text-anchor="middle" font-size="11" fill="#585858">+2.14</text>
+          <text x="100" y="185" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">0.0162</text>
+          <text x="500" y="185" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">0.0162</text>
+          <text x="300" y="35" text-anchor="middle" font-size="13" fill="#1d1d1f" font-weight="700">p-값 = 0.0162 × 2 = 0.0324</text>
+        </svg>
+      </div>
 
       <p><strong>④ 결론:</strong> \(0.0324 < 0.05 = \alpha\) → <strong>\(H_0\) 기각.</strong></p>
 
@@ -193,10 +258,28 @@
       <h3>(c) 단측 검정 · p > 2%</h3>
 
       <p><strong>① 가설:</strong> \(H_0 : p \le 2\%, \quad H_1 : p > 2\%\)</p>
+      <p>관심 방향: "2%보다 큰가" → 오른쪽 단측. \(H_0\)는 그 반대 영역 전체 (\(p \le 2\%\)).</p>
 
-      <p><strong>② z-값:</strong> 같음. \(z = 2.14\)</p>
+      <p><strong>② z-값:</strong> \(H_0\) 경계값(0.02)에서 표준화하니 (b)와 동일. \(z = 2.14\)</p>
 
-      <p><strong>③ p-값 (단측):</strong> \(p\text{-value} = P(Z > 2.14) = 0.0162 < 0.05 = \alpha\)</p>
+      <p><strong>③ p-값 (단측):</strong> 한 방향만 — 오른쪽 꼬리만 셈. \(p\text{-value} = P(Z > 2.14) = 0.0162 < 0.05 = \alpha\)</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">단측 검정 — 오른쪽 꼬리만</div>
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 60 200 Q 100 200 140 195 T 220 170 T 300 60 T 380 170 T 460 195 T 540 200"
+                fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <path d="M 460 197 Q 500 199 540 200 L 460 200 Z" fill="#c0392b" opacity="0.7"/>
+          <line x1="40" y1="200" x2="560" y2="200" stroke="#1d1d1f"/>
+          <line x1="300" y1="55"  x2="300" y2="210" stroke="#1d1d1f" stroke-dasharray="3 3" opacity="0.4"/>
+          <line x1="460" y1="195" x2="460" y2="210" stroke="#1d1d1f"/>
+          <text x="300" y="225" text-anchor="middle" font-size="11" fill="#585858">0</text>
+          <text x="460" y="225" text-anchor="middle" font-size="11" fill="#585858">+2.14</text>
+          <text x="100" y="190" text-anchor="middle" font-size="10" fill="#888" font-style="italic">왼쪽 안 셈</text>
+          <text x="500" y="185" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">0.0162</text>
+          <text x="300" y="35" text-anchor="middle" font-size="13" fill="#1d1d1f" font-weight="700">p-값 = 0.0162 (양측의 ½)</text>
+        </svg>
+      </div>
 
       <p><strong>④ 결론:</strong> <strong>\(H_0\) 기각, \(H_1\) 채택.</strong></p>
 
@@ -225,9 +308,17 @@
 
       <h3>(a) 평균의 표준오차</h3>
 
+      <div class="callout">
+        <div class="label">왜 SE = σ/√n?</div>
+        <p>모집단에서 한 사람 인출액의 표준편차는 \(\sigma\) = 12,000. 하지만 50명을 뽑아 평균낸 \(\bar{X}\)는 훨씬 안정적이에요.</p>
+        <p>분산 가법성: \(\mathrm{Var}[\bar{X}] = \sigma^2/n\). 표준편차는 √ → \(\sigma/\sqrt{n}\). 표본을 키우면(\(n\)↑) SE는 \(\sqrt{n}\) 비율로 작아짐.</p>
+      </div>
+
       <div class="formula">
         \[ \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{12{,}000}{\sqrt{50}} = 1{,}700 \]
       </div>
+
+      <p>해석: 표본평균은 진짜 모평균에서 평균 약 1,700원 정도 흔들릴 것.</p>
 
       <div class="callout green">
         <div class="label">(a) 답</div>
@@ -238,6 +329,12 @@
 
       <p>공식: \(\left(\bar{X} - z_{\alpha/2}\sigma_{\bar{X}},\ \bar{X} + z_{\alpha/2}\sigma_{\bar{X}}\right)\)</p>
 
+      <div class="callout">
+        <div class="label">신뢰수준 ↑ = 폭 ↑</div>
+        <p>표준정규 \(N(0,1)\)에서 가운데 90%가 들어가는 양 끝은 ±1.65, 95%는 ±1.96, 99%는 ±2.58.</p>
+        <p>"더 확실하게 잡고 싶다" = 양 끝을 더 좁게 = z가 커짐 = ME 커짐 = CI 넓어짐.</p>
+      </div>
+
       <div class="table-scroll">
         <table class="center blue-head">
           <thead><tr><th>신뢰수준</th><th>\(z_{\alpha/2}\)</th><th>ME</th><th>CI</th></tr></thead>
@@ -247,6 +344,34 @@
             <tr><td>99%</td><td>2.58</td><td>4,386</td><td>(40,614, 49,386)</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-title">3 CI 비교 — X̄ = 45,000 중심</div>
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="170" x2="560" y2="170" stroke="#1d1d1f"/>
+          <line x1="40"  y1="165" x2="40"  y2="175" stroke="#1d1d1f"/>
+          <line x1="144" y1="165" x2="144" y2="175" stroke="#1d1d1f"/>
+          <line x1="300" y1="165" x2="300" y2="175" stroke="#1d1d1f"/>
+          <line x1="456" y1="165" x2="456" y2="175" stroke="#1d1d1f"/>
+          <line x1="560" y1="165" x2="560" y2="175" stroke="#1d1d1f"/>
+          <text x="40"  y="190" text-anchor="middle" font-size="10" fill="#585858">40,000</text>
+          <text x="144" y="190" text-anchor="middle" font-size="10" fill="#585858">42,000</text>
+          <text x="300" y="190" text-anchor="middle" font-size="10" fill="#585858">45,000</text>
+          <text x="456" y="190" text-anchor="middle" font-size="10" fill="#585858">48,000</text>
+          <text x="560" y="190" text-anchor="middle" font-size="10" fill="#585858">50,000</text>
+          <line x1="144" y1="20" x2="144" y2="170" stroke="#c0392b" stroke-dasharray="4 3" opacity="0.6"/>
+          <text x="144" y="14" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">μ=42,000 (가설)</text>
+          <rect x="154" y="32" width="218" height="14" fill="#fff6d6" stroke="#d6a800" stroke-width="1.5"/>
+          <text x="430" y="44" font-size="11" fill="#8a6d00" font-weight="700">90% CI (42,195~47,805)</text>
+          <rect x="127" y="60" width="299" height="14" fill="#e7f2eb" stroke="#2f6d4a" stroke-width="1.5"/>
+          <text x="455" y="72" font-size="11" fill="#2f6d4a" font-weight="700">95% CI (41,668~48,332)</text>
+          <rect x="72" y="88" width="455" height="14" fill="#e8eefc" stroke="#1e3a8a" stroke-width="1.5"/>
+          <text x="178" y="118" font-size="11" fill="#1e3a8a" font-weight="700">99% CI (40,614~49,386)</text>
+          <circle cx="300" cy="140" r="5" fill="#c0392b"/>
+          <text x="300" y="158" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">X̄ = 45,000</text>
+        </svg>
+        <p class="chart-caption">42,000은 90% CI에는 살짝 안 들어가지만 95%·99% CI에는 들어감. (c)·(d) 결론이 갈리는 이유.</p>
       </div>
 
       <h3>(c) 양측 검정 · μ ≠ 42,000</h3>
@@ -336,7 +461,50 @@
         </table>
       </div>
 
+      <div class="chart-wrap">
+        <div class="chart-title">3 CI 비교 — X̄ = 1,500 중심 · 1,425와 1,580 두 가설점</div>
+        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="180" x2="560" y2="180" stroke="#1d1d1f"/>
+          <!-- 1,397.6 ~ 1,602.4 범위를 40~560에 매핑 -->
+          <!-- x_scale: (val - 1397.6) / (1602.4 - 1397.6) * 520 + 40 -->
+          <!-- 1425 → (27.4/204.8)*520 + 40 = 109.6 -->
+          <!-- 1500 → (102.4/204.8)*520 + 40 = 300 -->
+          <!-- 1580 → (182.4/204.8)*520 + 40 = 503 -->
+          <!-- 1434.5 → 132 / 1565.5 → 468 -->
+          <!-- 1422.2 → 102 / 1577.8 → 498 -->
+          <!-- 1397.6 → 40 / 1602.4 → 560 -->
+          <line x1="40"  y1="175" x2="40"  y2="185" stroke="#1d1d1f"/>
+          <line x1="300" y1="175" x2="300" y2="185" stroke="#1d1d1f"/>
+          <line x1="560" y1="175" x2="560" y2="185" stroke="#1d1d1f"/>
+          <text x="40"  y="200" text-anchor="middle" font-size="10" fill="#585858">1,397.6</text>
+          <text x="300" y="200" text-anchor="middle" font-size="10" fill="#585858">1,500</text>
+          <text x="560" y="200" text-anchor="middle" font-size="10" fill="#585858">1,602.4</text>
+          <!-- 두 가설 -->
+          <line x1="109.6" y1="20" x2="109.6" y2="180" stroke="#c0392b" stroke-dasharray="4 3" opacity="0.6"/>
+          <text x="109.6" y="14" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">μ=1,425</text>
+          <line x1="503" y1="20" x2="503" y2="180" stroke="#1e3a8a" stroke-dasharray="4 3" opacity="0.6"/>
+          <text x="503" y="14" text-anchor="middle" font-size="10" fill="#1e3a8a" font-weight="700">μ=1,580</text>
+          <!-- 3 CI -->
+          <rect x="132" y="32" width="336" height="14" fill="#fff6d6" stroke="#d6a800" stroke-width="1.5"/>
+          <text x="495" y="44" font-size="10" fill="#8a6d00" font-weight="700">90%</text>
+          <rect x="102" y="60" width="396" height="14" fill="#e7f2eb" stroke="#2f6d4a" stroke-width="1.5"/>
+          <text x="525" y="72" font-size="10" fill="#2f6d4a" font-weight="700">95%</text>
+          <rect x="40" y="88" width="520" height="14" fill="#e8eefc" stroke="#1e3a8a" stroke-width="1.5" opacity="0.7"/>
+          <text x="240" y="118" font-size="10" fill="#1e3a8a" font-weight="700">99%</text>
+          <circle cx="300" cy="150" r="5" fill="#c0392b"/>
+          <text x="300" y="170" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">X̄ = 1,500</text>
+        </svg>
+        <p class="chart-caption">1,425 — 90% CI 밖, 95%·99% CI 안. 1,580 — 90%·95% CI 밖, 99% CI 안. 각 CI 결과가 (c)·(d) 검정의 결론과 일치.</p>
+      </div>
+
       <h3>(c) μ = 1,425 검정 — 세 방법</h3>
+
+      <div class="callout">
+        <div class="label">세 방법이 같은 결론을 주는 이유</div>
+        <p>p-값, z-값 비교, CI에 가설값 포함 여부 — 셋은 결국 <em>같은 부등식</em>을 다르게 표현한 것뿐이에요.</p>
+        <p>예: \(\alpha\) = 0.05 양측에서 — "p-값 &lt; 0.05" ⇔ "|z| &gt; 1.96" ⇔ "1,425가 95% CI 밖에 있음". 셋 다 같은 의미.</p>
+        <p>실전에선 한 방법만 풀어도 OK. 이 문제는 셋의 동등성을 시각화하는 연습.</p>
+      </div>
 
       <p><strong>① 가설:</strong> \(H_0 : \mu = 1{,}425, \quad H_1 : \mu \ne 1{,}425\)</p>
 
@@ -512,7 +680,13 @@
 
       <h3>(a) 두 평균 차이의 CI</h3>
 
-      <p><strong>① 표본 평균 차이:</strong> \(\bar{X} - \bar{Y} = 12{,}400\)원</p>
+      <div class="callout">
+        <div class="label">두 독립 평균 차이의 SE</div>
+        <p>두 표본이 독립이라 차이 \(\bar{X} - \bar{Y}\)의 분산 = 각 표본평균 분산의 합 = \(\sigma_x^2/n_x + \sigma_y^2/n_y\).</p>
+        <p>SE는 그 √. <strong>주의:</strong> σ를 그냥 더하지 않고, σ²을 더해서 √. 분산을 더하는 게 핵심.</p>
+      </div>
+
+      <p><strong>① 표본 평균 차이:</strong> \(\bar{X} - \bar{Y} = 255{,}200 - 242{,}800 = 12{,}400\)원</p>
 
       <p><strong>② 표준오차:</strong></p>
       <div class="formula">
@@ -604,6 +778,28 @@
       <p><strong>② 관찰값 검토:</strong> \(\bar{X} - \bar{Y} = 8{,}900 \ge 0\) — 이미 \(H_0\)에 부합!</p>
 
       <p>관찰된 표본 자체가 "본관이 기타보다 큼" 방향이므로, \(H_1\)("본관 < 기타") 을 뒷받침할 증거가 처음부터 없음. p-값을 계산할 필요조차 없이 결론 가능.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">단측 "잘못된 방향" 함정</div>
+        <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 60 200 Q 100 200 140 195 T 220 170 T 300 60 T 380 170 T 460 195 T 540 200"
+                fill="#fbecea" stroke="#c0392b" stroke-width="2"/>
+          <!-- H₁ 방향: 왼쪽 (D < 0) — 옅게 -->
+          <path d="M 60 200 Q 100 200 140 195 T 220 170 T 300 60 L 300 200 Z" fill="#1e3a8a" opacity="0.12"/>
+          <line x1="40" y1="200" x2="560" y2="200" stroke="#1d1d1f"/>
+          <line x1="300" y1="55" x2="300" y2="210" stroke="#1d1d1f" stroke-dasharray="3 3" opacity="0.4"/>
+          <text x="300" y="225" text-anchor="middle" font-size="11" fill="#585858">0 (H₀)</text>
+          <!-- 관측 z=2.24 (오른쪽 멀리) -->
+          <line x1="479" y1="200" x2="479" y2="148" stroke="#c0392b" stroke-width="2"/>
+          <circle cx="479" cy="148" r="5" fill="#c0392b"/>
+          <text x="479" y="138" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="700">관측 z = 2.24</text>
+          <text x="170" y="100" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">H₁: μ_D &lt; 0</text>
+          <text x="170" y="115" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">(이 방향이 증거)</text>
+          <text x="430" y="100" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">데이터가 정반대!</text>
+          <text x="300" y="18" text-anchor="middle" font-size="13" fill="#1d1d1f" font-weight="700">왼쪽 단측 p-값 = P(Z &lt; 2.24) ≈ 0.9875</text>
+        </svg>
+        <p class="chart-caption">왼쪽 단측 p-값은 "Z가 관측보다 작을 확률" — 관측이 양수 쪽으로 멀리 가버려 면적이 거의 1. 절대 기각 불가.</p>
+      </div>
 
       <p><strong>③ 결론:</strong> 어떤 유의수준에서도 \(H_0\) 기각 못 함.</p>
 
