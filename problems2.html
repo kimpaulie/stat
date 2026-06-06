@@ -174,24 +174,44 @@
 
       <h3>(a) 95% 신뢰구간</h3>
 
-      <p>비율의 CI 공식이에요. SE에는 진짜 p를 모르니 \(\hat{p}\)으로 대신 써요.</p>
+      <p>비율의 신뢰구간 공식은 이렇게 생겼어요.</p>
 
       <div class="formula wide">
         \[ \text{CI}: \quad \hat{p} \pm z_{0.025} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
       </div>
 
-      <p><strong>① SE 계산:</strong></p>
-      <p>SE = \(\sqrt{0.03  \times  0.97 / 900}\) = \(\sqrt{0.0291/900}\) = \(\sqrt{0.0000323} \approx\) <strong>0.005686</strong></p>
+      <div class="callout">
+        <div class="label">왜 이 공식이 나왔지?</div>
+        <p>한 사람이 구매할 확률이 \(p\)일 때, 한 번 방문의 결과는 베르누이 분포 — 평균 \(p\), 분산 \(p(1-p)\).</p>
+        <p>900명을 평균낸 \(\hat{p}\)의 분산은 \(p(1-p)/n\) (분산 가법성). 표준편차(=SE)는 그 제곱근 \(\sqrt{p(1-p)/n}\).</p>
+        <p>진짜 \(p\)를 모르니까 표본에서 본 \(\hat{p}\)을 대신 넣어요. 이게 SE 공식의 정체.</p>
+      </div>
 
-      <p><strong>② 오차범위 ME:</strong></p>
-      <p>ME = 1.96 × 0.005686 \(\approx\) <strong>0.01115</strong></p>
+      <p><strong>① SE 계산</strong> — \(\hat{p}\)이 평균적으로 진짜 \(p\)에서 얼마나 떨어져 있는지의 척도예요.</p>
+      <p>SE = \(\sqrt{0.03  \times  0.97 / 900}\) — 분자에 \(\hat{p}(1-\hat{p})\) = 0.0291을 두고, \(n\) = 900으로 나눠요.</p>
+      <p>= \(\sqrt{0.0291/900}\) = \(\sqrt{0.0000323}\) \(\approx\) <strong>0.005686</strong>.</p>
+      <p>해석: 표본비율 \(\hat{p}\) = 3%는 진짜 \(p\)에서 평균 약 <em>0.57%p</em> 정도 떨어져 있을 거라는 뜻이에요.</p>
 
-      <p><strong>③ CI:</strong></p>
-      <p>0.03 \(\pm\) 0.01115 → <strong>[0.0189, 0.0411]</strong> 즉 약 [1.89%, 4.11%].</p>
+      <p><strong>② 오차범위 ME</strong> — SE에 임계값을 곱해 "95% 확률로 들어갈 폭"으로 변환.</p>
+
+      <div class="callout">
+        <div class="label">왜 1.96?</div>
+        <p>표준정규분포 \(N(0,1)\)에서 가운데 95%가 들어가는 양쪽 경계가 \(\pm 1.96\). 양 끝 꼬리에 각각 2.5%씩 남겨두는 위치예요.</p>
+        <p>90%면 1.645, 99%면 2.576. 신뢰수준이 높을수록 임계값이 커지고, ME가 넓어집니다.</p>
+      </div>
+
+      <p>ME = 1.96 × 0.005686 \(\approx\) <strong>0.01115</strong> (= 약 1.115%p)</p>
+
+      <p><strong>③ CI</strong> — 표본비율 좌우로 ME만큼 펼친 구간이 신뢰구간.</p>
+      <p>왜 ± (양쪽으로): 진짜 \(p\)가 \(\hat{p}\)보다 클 수도, 작을 수도 있으니 좌우 대칭으로 펼쳐요.</p>
+      <p>0.03 − 0.01115 = 0.01885 \(\approx\) 0.0189 (하한)<br>
+      0.03 + 0.01115 = 0.04115 \(\approx\) 0.0411 (상한)<br>
+      → <strong>[0.0189, 0.0411]</strong> 즉 약 [1.89%, 4.11%].</p>
 
       <div class="callout green">
         <div class="label">(a) 답</div>
-        <p>95% 신뢰구간 \(\approx\) <strong>[0.0189, 0.0411]</strong>. 진짜 구매 비율은 약 95% 확률로 이 사이에 있어요.</p>
+        <p>95% 신뢰구간 \(\approx\) <strong>[0.0189, 0.0411]</strong>.</p>
+        <p>해석: 진짜 구매 비율 \(p\)가 약 95% 확률로 이 구간 안에 있어요. (정확한 해석: 같은 절차로 표본 100번 뽑아 CI 100개 만들면 약 95개가 진짜 \(p\)를 포함.)</p>
       </div>
 
       <h3>(b) 양측 검정 · p \(\ne\) 2%</h3>
@@ -199,16 +219,40 @@
       <p><strong>① 가설:</strong></p>
       <p>\(H_0\) : p = 0.02 &nbsp; vs &nbsp; \(H_1\) : p \(\ne\) 0.02</p>
 
-      <p><strong>② SE under \(H_0\):</strong> 분모의 p에 \(H_0\) 값 0.02를 써요.</p>
+      <div class="callout">
+        <div class="label">왜 이렇게 가설을 세웠지?</div>
+        <p>우리가 <em>증명하고 싶은 것</em>은 항상 \(H_1\)(대립가설)에 둬요. 문제가 "p ≠ 2%라는 증거가 충분한가"를 묻고 있으니 \(H_1\): p ≠ 2%.</p>
+        <p>\(H_0\)(귀무가설)는 그 반대 — "p가 정확히 2%". 일단 이게 참이라고 가정하고, 표본이 얼마나 "이상한" 결과인지를 확률로 봅니다.</p>
+      </div>
+
+      <p><strong>② SE under \(H_0\)</strong> — H₀가 참이라 가정하면 진짜 \(p\) = 0.02. 그래서 SE 공식의 분자 \(p(1-p)\)에 0.02를 넣어요.</p>
+
+      <div class="callout">
+        <div class="label">CI의 SE와 다른 이유</div>
+        <p>(a)의 CI에서는 진짜 \(p\)를 <em>모르니까</em> \(\hat{p}\) = 0.03 사용.</p>
+        <p>(b)의 H.T.에서는 \(H_0\)이 참이라 <em>가정</em>하니까 그 가정값 \(p\) = 0.02 사용. 가정의 일관성을 지키는 거죠.</p>
+        <p>그래서 같은 데이터에 두 SE가 달라요 — CI는 0.005686, H.T.는 0.004667.</p>
+      </div>
+
       <p>\(SE_{H_0}\) = \(\sqrt{0.02  \times  0.98 / 900}\) = \(\sqrt{0.0196/900}\) = \(\sqrt{0.0000218} \approx\) <strong>0.004667</strong></p>
 
-      <p><strong>③ z-값:</strong></p>
-      <p>z = (0.03 − 0.02) / 0.004667 = 0.01 / 0.004667 \(\approx\) <strong>2.143</strong></p>
+      <p><strong>③ z-값</strong> — 관측값 \(\hat{p}\)이 H₀의 \(p\)에서 SE 단위로 몇 칸 떨어졌는지.</p>
+      <p>z = (관측 − 가설) / SE = (0.03 − 0.02) / 0.004667 = 0.01 / 0.004667 \(\approx\) <strong>2.143</strong></p>
+      <p>해석: 우리 표본은 \(H_0\)에서 약 <em>2.14 표준오차</em>만큼 떨어져 있어요. "흔한 거리"라기엔 좀 멀어요.</p>
 
-      <p><strong>④ p-값 (양측):</strong></p>
-      <p>P(Z &gt; 2.143) \(\approx\) 0.0162. × 2 \(\approx\) <strong>0.0324</strong>.</p>
+      <p><strong>④ p-값 (양측)</strong> — "\(H_0\)가 참인 세상"에서 관측만큼 또는 더 극단적인 값이 나올 확률.</p>
+      <p>P(Z &gt; 2.143) \(\approx\) 0.0162 (오른쪽 꼬리만)</p>
+
+      <div class="callout">
+        <div class="label">왜 ×2?</div>
+        <p>양측 검정은 \(H_1\)이 "≠"(다르다) — 즉 위로 멀어지든 아래로 멀어지든 둘 다 \(H_0\) 반박 증거. 그래서 양쪽 꼬리를 모두 세어야 해요.</p>
+        <p>표준정규분포는 대칭이라 양쪽 꼬리 면적이 같으니 한 쪽 × 2.</p>
+      </div>
+
+      <p>p-값 = 0.0162 × 2 \(\approx\) <strong>0.0324</strong>.</p>
 
       <p><strong>⑤ 결론:</strong> 0.0324 &lt; 0.05 = \(\alpha\) → <strong>Reject \(H_0\)</strong>.</p>
+      <p>해석: \(H_0\)이 참이라면 우리 표본 같은 결과가 약 3.24% 확률로 나옵니다 — 5% 기준선보다 작아서 "흔치 않다"고 판단. \(H_0\) 기각.</p>
 
       <div class="callout green">
         <div class="label">(b) 답</div>
@@ -220,9 +264,23 @@
       <p><strong>① 가설:</strong></p>
       <p>\(H_0\) : p \(\le\) 0.02 &nbsp; vs &nbsp; \(H_1\) : p &gt; 0.02 (오른쪽 단측)</p>
 
-      <p><strong>② z-값:</strong> 같음. z \(\approx\) 2.143.</p>
+      <div class="callout">
+        <div class="label">왜 H₀에 ≤를 넣었을까?</div>
+        <p>"\(p\)가 2%보다 큰지"가 우리 관심이니 \(H_1\): \(p\) &gt; 0.02. 그러면 \(H_0\)는 그 반대 영역 — \(p\) ≤ 0.02 전체.</p>
+        <p>실제 z 계산은 \(H_0\) 경계값 \(p\) = 0.02에서 합니다. 가장 \(H_1\)에 가까운 경계가 가장 "보수적인 검정" 조건이라서요.</p>
+      </div>
 
-      <p><strong>③ p-값 (단측):</strong> P(Z &gt; 2.143) \(\approx\) <strong>0.0162</strong>. (×2를 안 함!)</p>
+      <p><strong>② z-값:</strong> \(H_0\) 경계값(0.02)에서 SE를 계산하면 (b)와 똑같음. z \(\approx\) <strong>2.143</strong>.</p>
+
+      <p><strong>③ p-값 (단측)</strong> — \(H_1\)이 한 방향(&gt;)이라 한쪽 꼬리만 봄.</p>
+
+      <div class="callout">
+        <div class="label">왜 ×2 안 함?</div>
+        <p>\(H_1\): \(p\) &gt; 0.02 — 오른쪽으로 멀어지는 것만 \(H_0\) 반박 증거. 왼쪽(p &lt; 0.02)으로 빠지는 건 \(H_0\)에 부합하는 결과예요.</p>
+        <p>그래서 오른쪽 꼬리 면적만 p-값. 양측의 절반이 됩니다.</p>
+      </div>
+
+      <p>p-값 = P(Z &gt; 2.143) \(\approx\) <strong>0.0162</strong>.</p>
 
       <p><strong>④ 결론:</strong> 0.0162 &lt; 0.05 = \(\alpha\) → <strong>Reject \(H_0\)</strong>.</p>
 
@@ -277,13 +335,41 @@
 
       <h3>(a) 표준오차 SE</h3>
 
+      <p>표본평균 \(\bar{X}\)의 흔들림 크기를 SE로 표현해요.</p>
+
+      <div class="callout">
+        <div class="label">왜 SE = σ/√n 일까?</div>
+        <p>모집단에서 한 사람을 뽑으면 그 사람 인출액은 평균 \(\mu\), 표준편차 \(\sigma\)로 흔들려요. 그런데 <em>50명을 뽑아 평균을 낸 \(\bar{X}\)</em>는 훨씬 안정적이에요.</p>
+        <p>분산 가법성: \(\mathrm{Var}[\bar{X}] = \sigma^2 / n\). 표준편차는 그 제곱근 → \(\sigma/\sqrt{n}\).</p>
+        <p>표본을 키울수록(\(n\) ↑) SE는 \(\sqrt{n}\) 비율로 작아져요. 더 많은 사람을 보면 평균이 진짜 모평균에 더 가까워지는 거죠.</p>
+      </div>
+
       <div class="formula wide">
         \[ SE = \sigma / \sqrt{n} = 12{,}000 / \sqrt{50} = 12{,}000 / 7.071 \approx \mathbf{1{,}697} \text{ 원} \]
       </div>
 
+      <p>해석: 50명을 뽑아 만든 표본평균은 진짜 모평균에서 평균 약 <em>1,697원</em> 정도 떨어져 있을 거예요.</p>
+
       <h3>(b) 90% · 95% · 99% 신뢰구간</h3>
 
-      <p>공식: <strong>\(\bar{X} \pm z_{\alpha/2}\) · SE</strong>.</p>
+      <p>공식: <strong>\(\bar{X} \pm z_{\alpha/2}\) · SE</strong></p>
+
+      <div class="callout">
+        <div class="label">왜 z 값이 신뢰수준마다 다른가</div>
+        <p>표준정규분포의 가운데에 90%가 들어가는 구간 — 양 끝 5%씩 자르는 위치가 \(\pm 1.645\).</p>
+        <p>95%면 양 끝 2.5%씩 → \(\pm 1.96\). 99%면 양 끝 0.5%씩 → \(\pm 2.576\).</p>
+        <p>신뢰수준 ↑ = 양 끝을 더 좁게 잘라야 함 = z가 더 큼 = 구간이 더 넓어짐. <em>"확실하게 잡고 싶을수록 그물을 넓게"</em>.</p>
+      </div>
+
+      <p>이제 한 행씩 풀어볼게요 — 90% CI 계산을 예시로:</p>
+      <ul>
+        <li>ME = 1.645 × 1,697 ≈ 2,792원 (오차범위)</li>
+        <li>하한 = 45,000 − 2,792 = 42,208원</li>
+        <li>상한 = 45,000 + 2,792 = 47,792원</li>
+        <li>→ 90% CI = [42,208, 47,792]</li>
+      </ul>
+
+      <p>95%·99%도 같은 방식, z값만 바꿔요.</p>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -300,18 +386,23 @@
       <div class="callout green">
         <div class="label">(b) 관찰</div>
         <p>신뢰수준이 올라갈수록 CI가 넓어져요. 90% → 99%로 가면서 폭이 약 5,584 → 8,742로 늘어났죠.</p>
+        <p><strong>왜 작년 평균 42,000원과의 관계가 미묘?</strong> 42,000은 90% CI(42,208~)에는 살짝 안 들어가지만, 95%·99% CI에는 들어가요. 이게 (c)에서 신뢰수준별로 결론이 갈리는 이유의 복선.</p>
       </div>
 
       <h3>(c) 양측 검정 · \(\mu \ne\) 42,000</h3>
 
       <p><strong>① 가설:</strong> \(H_0 : \mu\) = 42,000 &nbsp; vs &nbsp; \(H_1 : \mu \ne\) 42,000</p>
+      <p>증명하고 싶은 것: "올해 평균이 42,000과 다른가" → \(H_1\)에 넣음.</p>
 
-      <p><strong>② z-값:</strong> z = (45,000 − 42,000) / 1,697 = 3,000 / 1,697 \(\approx\) <strong>1.768</strong></p>
+      <p><strong>② z-값</strong> — 관측 평균 45,000이 가설 평균 42,000에서 SE 단위로 얼마나 떨어졌나.</p>
+      <p>z = (관측 − 가설) / SE = (45,000 − 42,000) / 1,697 = 3,000 / 1,697 \(\approx\) <strong>1.768</strong></p>
+      <p>해석: 약 <em>1.77 SE</em> 떨어짐. 임계값(95% 양측: 1.96)보다 살짝 작아서 5%에서는 모자라요.</p>
 
-      <p><strong>③ p-값 (양측):</strong></p>
-      <p>P(Z &gt; 1.768) \(\approx\) 0.0386. × 2 \(\approx\) <strong>0.0772</strong>.</p>
+      <p><strong>③ p-값 (양측)</strong> — \(H_0\) 참이라고 가정했을 때, 우리 표본만큼 또는 더 극단으로 떨어진 결과가 나올 확률.</p>
+      <p>한쪽 꼬리: P(Z &gt; 1.768) \(\approx\) 0.0386.</p>
+      <p>양측이라 양쪽 꼬리 합 = 0.0386 × 2 \(\approx\) <strong>0.0772</strong>.</p>
 
-      <p><strong>④ 결론 (세 유의수준):</strong></p>
+      <p><strong>④ 결론 (세 유의수준 비교):</strong> 같은 p-값이라도 \(\alpha\) 기준선이 다르면 결론이 갈려요.</p>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -327,13 +418,17 @@
 
       <p>유의수준 10%에서만 \(H_0\)를 버릴 만한 증거예요. 5%, 1%에서는 부족해요.</p>
 
+      <p><strong>CI 결과와 일관성 체크:</strong> 90% CI에는 42,000이 안 들어감 → 10%에서 기각 (일치). 95%·99% CI에는 들어감 → 5%·1%에서 보류 (일치). CI ↔ H.T. 두 도구가 같은 결론을 줍니다.</p>
+
       <h3>(d) 단측 검정 · \(\mu\) &gt; 42,000</h3>
 
       <p><strong>① 가설:</strong> \(H_0 : \mu \le\) 42,000 &nbsp; vs &nbsp; \(H_1 : \mu\) &gt; 42,000</p>
+      <p>경영지원팀의 진짜 관심: "작년보다 늘었나? (= 42,000보다 큰가?)" — 한 방향이므로 단측.</p>
 
-      <p><strong>② z-값:</strong> z \(\approx\) 1.768 (같음).</p>
+      <p><strong>② z-값:</strong> \(H_0\)의 경계값(42,000)에서 표준화하니 (c)와 같음. z \(\approx\) <strong>1.768</strong>.</p>
 
-      <p><strong>③ p-값 (단측):</strong> P(Z &gt; 1.768) \(\approx\) <strong>0.0386</strong>.</p>
+      <p><strong>③ p-값 (단측):</strong> 한 방향만 보는 거라 ×2 안 함.</p>
+      <p>p-값 = P(Z &gt; 1.768) \(\approx\) <strong>0.0386</strong> (양측의 정확히 절반).</p>
 
       <p><strong>④ 결론 (세 유의수준):</strong></p>
 
@@ -398,11 +493,19 @@
 
       <h3>(a) 표본평균과 SE</h3>
 
+      <p><strong>표본평균</strong>은 총량을 개수로 나눠요. "100일 동안 총 150,000병"이니까 하루 평균 = 150,000 / 100 = 1,500병.</p>
+
+      <p><strong>표준오차</strong>는 Q2와 같은 공식. \(\sigma\)가 알려져 있으니 \(\sigma/\sqrt{n}\) 그대로 사용.</p>
+
       <div class="formula wide">
         \[ \bar{X} = 150{,}000 / 100 = \mathbf{1{,}500} \text{ (병/일)} \quad \cdot \quad SE = 397 / \sqrt{100} = 397 / 10 = \mathbf{39.7} \]
       </div>
 
+      <p>해석: 100일 평균 1,500병이 진짜 모평균에서 평균 약 39.7병 정도 떨어져 있을 거예요. SE가 작아서 정밀한 추정 가능.</p>
+
       <h3>(b) 90% · 95% · 99% CI</h3>
+
+      <p>공식은 Q2와 동일 — \(\bar{X} \pm z_{\alpha/2} \cdot SE\). 표본평균 1,500 중심으로 ME만큼 펼친 구간.</p>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -416,13 +519,24 @@
       </table>
       </div>
 
+      <p>예시로 90%: 1,500 − 65.3 = 1,434.7 (하한), 1,500 + 65.3 = 1,565.3 (상한).</p>
+
       <h3>(c) \(\mu\) = 1,425? — 세 방법으로</h3>
 
-      <p><strong>① 가설:</strong> \(H_0 : \mu\) = 1,425 &nbsp; vs &nbsp; \(H_1 : \mu \ne\) 1,425</p>
+      <div class="callout">
+        <div class="label">왜 세 방법이 다 같은 결론?</div>
+        <p>p-값, z-값, CI는 결국 <em>같은 부등식</em>을 다르게 표현한 것뿐이에요.</p>
+        <p>예: \(\alpha\) = 0.05 양측 검정에서 — "p-값 &lt; 0.05" ⇔ "|z| &gt; 1.96" ⇔ "1,425가 95% CI에 안 들어감". 셋 다 같은 의미.</p>
+        <p>한 방법으로 풀어도 충분하지만, Q3는 세 도구의 동등성을 시각적으로 보여주는 연습.</p>
+      </div>
 
-      <p><strong>② z-값:</strong> z = (1,500 − 1,425) / 39.7 = 75 / 39.7 \(\approx\) <strong>1.889</strong></p>
+      <p><strong>① 가설:</strong> \(H_0 : \mu\) = 1,425 &nbsp; vs &nbsp; \(H_1 : \mu \ne\) 1,425 (양측, 방향 무관)</p>
 
-      <p><strong>③ p-값 (양측):</strong> P(Z &gt; 1.889) \(\approx\) 0.0294. × 2 \(\approx\) <strong>0.0588</strong>.</p>
+      <p><strong>② z-값:</strong> 관측 1,500이 가설 1,425에서 SE 단위로 얼마나 떨어졌나.</p>
+      <p>z = (1,500 − 1,425) / 39.7 = 75 / 39.7 \(\approx\) <strong>1.889</strong></p>
+
+      <p><strong>③ p-값 (양측):</strong> H₀ 참 가정 시 1.889 SE 이상 떨어진 결과가 나올 확률.</p>
+      <p>한쪽 꼬리 P(Z &gt; 1.889) \(\approx\) 0.0294. 양측이라 × 2 \(\approx\) <strong>0.0588</strong>.</p>
 
       <h4>방법 1 · p-값 비교</h4>
 
@@ -550,7 +664,14 @@
 
       <h3>(a) 양식 선호 비율의 CI (서울)</h3>
 
-      <p>SE = \(\sqrt{0.4294  \times  0.5706 / 850}\) = \(\sqrt{0.2451/850}\) = \(\sqrt{0.000288} \approx\) <strong>0.01697</strong></p>
+      <p>비율 CI라 Q1과 같은 공식 — \(\hat{p} \pm z_{\alpha/2} \sqrt{\hat{p}(1-\hat{p})/n}\). 진짜 \(p\)를 모르니 SE 공식에 \(\hat{p}\) = 0.4294 사용.</p>
+
+      <p>SE 계산을 한 단계씩 풀어보면:</p>
+      <ul>
+        <li>\(\hat{p}(1-\hat{p})\) = 0.4294 × 0.5706 = 0.2451 (베르누이 분산)</li>
+        <li>÷ \(n\) = 0.2451 / 850 = 0.000288 (표본평균의 분산)</li>
+        <li>√ = √0.000288 \(\approx\) <strong>0.01697</strong> (표본평균의 표준오차)</li>
+      </ul>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -615,14 +736,25 @@
 
       <h3>(e) 두 비율 차이의 CI</h3>
 
-      <p>두 비율 차이 = 0.4294 − 0.3823 = <strong>0.0471</strong>.</p>
+      <div class="callout">
+        <div class="label">두 비율 차의 SE는 왜 합을 √?</div>
+        <p>두 표본이 서로 독립이면 차이 \(\hat{p}_S - \hat{p}_D\)의 분산 = \(\mathrm{Var}[\hat{p}_S] + \mathrm{Var}[\hat{p}_D]\) (독립이라 부호 무관).</p>
+        <p>표준편차(SE)는 그 제곱근 — \(\sqrt{\hat{p}_S(1-\hat{p}_S)/n_S + \hat{p}_D(1-\hat{p}_D)/n_D}\).</p>
+        <p>핵심: 각각의 분산을 더하고 √을 씌우는 것. 두 SE를 그냥 더하는 게 아니에요.</p>
+      </div>
+
+      <p>두 비율 차이 = 0.4294 − 0.3823 = <strong>0.0471</strong> (점추정).</p>
 
       <p>SE (CI용, 분리 추정):</p>
       <p>\(\text{SE} = \sqrt{\hat{p}_S(1-\hat{p}_S)/n_S + \hat{p}_D(1-\hat{p}_D)/n_D}\)</p>
 
-      <p>대전 SE 항: 0.3823 × 0.6177 / 620 = 0.2362/620 \(\approx\) 0.000381</p>
-
-      <p>SE = \(\sqrt{0.000288 + 0.000381}\) = \(\sqrt{0.000669} \approx\) <strong>0.02586</strong></p>
+      <p>한 단계씩:</p>
+      <ul>
+        <li>서울 분산 항 (이미 (a)에서): 0.000288</li>
+        <li>대전 분산 항: 0.3823 × 0.6177 / 620 = 0.2362 / 620 \(\approx\) 0.000381</li>
+        <li>두 분산 합: 0.000288 + 0.000381 = 0.000669</li>
+        <li>√ → SE \(\approx\) <strong>0.02586</strong></li>
+      </ul>
 
       <div class="table-scroll">
       <table class="blue-head center">
@@ -645,19 +777,29 @@
 
       <h3>(f) 양측 검정 · \(p_S \ne p_D\)?</h3>
 
-      <p>두 비율 H.T.에서는 <strong>pooled \(\bar{p}\)</strong>를 써요. (8강 14장)</p>
+      <div class="callout">
+        <div class="label">왜 H.T.에서는 pooled p̄?</div>
+        <p>\(H_0 : p_S = p_D\) 즉 "두 집단의 진짜 비율이 같다"고 가정한 상태에서 검정. 그러면 \(p_S = p_D = p\) (어떤 하나의 \(p\)).</p>
+        <p>이 \(p\)는 모르지만, "전체 양식 선호자 합 / 전체 표본"으로 추정 가능 — 그게 <strong>pooled \(\bar{p}\)</strong>.</p>
+        <p>(e) CI에서는 "두 모비율이 같다"는 가정이 없어서 분리 추정 (각각 \(\hat{p}_S, \hat{p}_D\)). H.T.와 SE 공식이 다른 이유.</p>
+      </div>
 
-      <p><strong>① pooled \(\bar{p}\):</strong></p>
+      <p><strong>① pooled \(\bar{p}\)</strong> — 두 집단을 합쳐서 보면 "전체 학생 중 양식 선호자 비율".</p>
       <p>\(\bar{p}\) = (365 + 237) / (850 + 620) = 602 / 1,470 \(\approx\) <strong>0.4095</strong></p>
 
-      <p><strong>② SE (pooled):</strong></p>
-      <p>SE = \(\sqrt{0.4095  \times  0.5905  \times  (1/850 + 1/620)}\)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;= \(\sqrt{0.2418  \times  (0.001176 + 0.001613)}\)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;= \(\sqrt{0.2418  \times  0.002789}\) = \(\sqrt{0.000674} \approx\) <strong>0.02597</strong></p>
+      <p><strong>② SE (pooled):</strong> 두 집단 모두 같은 \(p = \bar{p}\)라 가정. 분산은 \(\bar{p}(1-\bar{p})(1/n_S + 1/n_D)\).</p>
+      <p>한 단계씩:</p>
+      <ul>
+        <li>\(\bar{p}(1-\bar{p})\) = 0.4095 × 0.5905 = 0.2418</li>
+        <li>\(1/n_S + 1/n_D\) = 1/850 + 1/620 = 0.001176 + 0.001613 = 0.002789</li>
+        <li>곱: 0.2418 × 0.002789 = 0.000674</li>
+        <li>√: SE \(\approx\) <strong>0.02597</strong></li>
+      </ul>
 
-      <p><strong>③ z-값:</strong> 0.0471 / 0.02597 \(\approx\) <strong>1.814</strong></p>
+      <p><strong>③ z-값:</strong> 차이 0.0471이 SE 단위로 몇 칸 떨어졌나.</p>
+      <p>z = 0.0471 / 0.02597 \(\approx\) <strong>1.814</strong></p>
 
-      <p><strong>④ p-값 (양측):</strong> 2 × P(Z &gt; 1.814) \(\approx\) 2 × 0.0349 \(\approx\) <strong>0.0698</strong></p>
+      <p><strong>④ p-값 (양측):</strong> 한쪽 꼬리 P(Z &gt; 1.814) \(\approx\) 0.0349. 양측이라 × 2 \(\approx\) <strong>0.0698</strong>.</p>
 
       <p><strong>⑤ 결론:</strong> 0.0698 &gt; 0.05 → <strong>Fail to Reject</strong>.</p>
 
@@ -730,15 +872,27 @@
 
       <h3>0단계 · SE 계산</h3>
 
+      <div class="callout">
+        <div class="label">두 독립 평균 차이의 SE 공식</div>
+        <p>두 표본이 독립이라 차이 \(\bar{X} - \bar{Y}\)의 분산은 각 표본평균의 분산을 더한 것 — \(\sigma_X^2/n_X + \sigma_Y^2/n_Y\).</p>
+        <p>표준편차(=SE)는 그 √. 비율 차의 SE랑 구조가 같죠 — 분산 합 후 √.</p>
+        <p><strong>주의:</strong> \(\sigma\)들을 그냥 더하면 안 됩니다. \(\sigma^2\)을 더하고 √을 씌워야.</p>
+      </div>
+
       <div class="formula wide">
         \[ SE = \sqrt{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \]
       </div>
 
-      <p>\(\sigma^2_X\)/\(n_X\) = 78,500² / 500 = 6,162,250,000 / 500 = 12,324,500</p>
-      <p>\(\sigma^2_Y\)/\(n_Y\) = 94,700² / 500 = 8,968,090,000 / 500 = 17,936,180</p>
-      <p>합 \(\approx\) 30,260,680. \(\sqrt{30{,}260{,}680} \approx\) <strong>5,501</strong>.</p>
+      <p>한 단계씩 풀어봐요:</p>
+      <ul>
+        <li>\(\sigma^2_X / n_X\) = 78,500² / 500 = 6,162,250,000 / 500 = 12,324,500</li>
+        <li>\(\sigma^2_Y / n_Y\) = 94,700² / 500 = 8,968,090,000 / 500 = 17,936,180</li>
+        <li>두 분산 합: 12,324,500 + 17,936,180 = 30,260,680</li>
+        <li>SE = √30,260,680 \(\approx\) <strong>5,501원</strong></li>
+      </ul>
 
-      <p>차이: \(\bar{X}\) − \(\bar{Y}\) = 255,200 − 242,800 = <strong>12,400원</strong>.</p>
+      <p>점추정 — 두 표본평균의 차이: \(\bar{X}\) − \(\bar{Y}\) = 255,200 − 242,800 = <strong>12,400원</strong>.</p>
+      <p>해석: KAIST가 평균 12,400원 더 많은데, 그게 진짜 차이인지 단순한 표본 변동인지 SE(5,501원)와 비교해 판단.</p>
 
       <h3>(a) 차이의 CI</h3>
 
@@ -841,21 +995,39 @@
 
       <h3>0단계 · D의 통계량</h3>
 
-      <p><strong>\(\bar{D}\) = \(\bar{X}\) − \(\bar{Y}\)</strong> = 298,100 − 289,200 = <strong>8,900원</strong></p>
+      <div class="callout">
+        <div class="label">짝 표본 — 한 표본 문제로 환원</div>
+        <p>같은 사람의 X와 Y는 강한 상관관계가 있어서 독립 가정으로 풀면 SE를 잘못 추정해요. 해결법: 각 사람마다 <strong>차이 \(D_i = X_i - Y_i\)</strong>를 만들어 새 변수로 보기.</p>
+        <p>이렇게 만든 \(D_1, D_2, \ldots, D_n\)은 500개의 일반 표본 — 한 표본 평균 검정 문제로 줄어듭니다.</p>
+        <p>가설도 평균 차이가 아니라 "\(D\)의 평균 \(\mu_D\)"로 표현 — \(\mu_D = \mu_X - \mu_Y\)이라 결과는 같음.</p>
+      </div>
 
-      <p><strong>\(S_D\)</strong> = 88,700 (문제에서 주어짐. \(S_X\)와 \(S_Y\)로 추측 못 하는 값임! 짝 표본의 특수성.)</p>
+      <p><strong>\(\bar{D}\)</strong> — 차이의 표본평균. 같은 사람들의 \(X - Y\)를 평균낸 값.</p>
+      <p>\(\bar{D} = \bar{X} - \bar{Y}\) = 298,100 − 289,200 = <strong>8,900원</strong></p>
 
-      <p><strong>\(SE_{\bar{D}}\)</strong> = \(S_D\) / \(\sqrt{n}\) = 88,700 / \(\sqrt{500}\) = 88,700 / 22.36 \(\approx\) <strong>3,966원</strong></p>
+      <p><strong>\(S_D\) = 88,700</strong> (문제에서 주어짐).</p>
+
+      <div class="callout">
+        <div class="label">왜 S_D를 따로 주는 거지?</div>
+        <p>\(S_X\), \(S_Y\)를 알아도 \(S_D\)는 계산할 수 없어요. 차이 \(D\)의 분산에는 X와 Y의 <em>공분산</em>이 들어가는데 그건 별도 측정값이거든요.</p>
+        <p>\(S_D^2 = S_X^2 + S_Y^2 - 2 \cdot \text{Cov}(X, Y)\). Cov를 모르니 \(S_D\)도 못 구함. 그래서 문제가 직접 주는 것.</p>
+      </div>
+
+      <p><strong>\(SE_{\bar{D}}\)</strong> — 표본 차이 평균 \(\bar{D}\)의 표준오차. Q2·Q3와 같은 공식 (\(S/\sqrt{n}\)).</p>
+      <p>\(SE_{\bar{D}} = S_D / \sqrt{n}\) = 88,700 / √500 = 88,700 / 22.36 \(\approx\) <strong>3,966원</strong></p>
 
       <h3>(a) 양측 검정 · \(\mu_{D} \ne\) 0?</h3>
 
       <p><strong>① 가설:</strong> \(H_0 : \mu_{D}\) = 0 &nbsp; vs &nbsp; \(H_1 : \mu_{D} \ne\) 0</p>
+      <p>"평균 차이가 0이 아니다 = 두 지출 평균이 다르다"가 \(H_1\). 한 표본 검정으로 푸니까 가설도 단순해짐.</p>
 
-      <p><strong>② z-값:</strong> 8,900 / 3,966 \(\approx\) <strong>2.244</strong></p>
+      <p><strong>② z-값:</strong> 차이 평균이 0에서 SE 단위로 몇 칸 떨어졌나.</p>
+      <p>z = (\(\bar{D}\) − 0) / SE = 8,900 / 3,966 \(\approx\) <strong>2.244</strong></p>
 
-      <p><strong>③ p-값 (양측):</strong> 2 × P(Z &gt; 2.244) \(\approx\) 2 × 0.0125 \(\approx\) <strong>0.0250</strong></p>
+      <p><strong>③ p-값 (양측):</strong> 한쪽 꼬리 P(Z &gt; 2.244) \(\approx\) 0.0125. 양측이라 × 2 \(\approx\) <strong>0.0250</strong>.</p>
 
       <p><strong>④ 결론:</strong> 0.0250 &gt; 0.01 = \(\alpha\) → <strong>Fail to Reject</strong>.</p>
+      <p>해석: 1% 기준에서는 두 지출이 다르다는 증거 부족. 5% 기준이었다면 기각될 수치 (0.0250 &lt; 0.05).</p>
 
       <div class="callout green">
         <div class="label">(a) 답</div>
